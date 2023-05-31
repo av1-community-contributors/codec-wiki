@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkav_1_wiki=self.webpackChunkav_1_wiki||[]).push([[5071],{6611:a=>{a.exports=JSON.parse('{"label":"facebook","permalink":"/av1-wiki/blog/tags/facebook","allTagsPath":"/av1-wiki/blog/tags","count":1}')}}]);
