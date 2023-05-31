@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkav_1_wiki=self.webpackChunkav_1_wiki||[]).push([[5329],{5013:e=>{e.exports=JSON.parse('{"permalink":"/av1-wiki/blog/tags/hello","page":1,"postsPerPage":10,"totalPages":1,"totalCount":2,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

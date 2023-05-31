@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkav_1_wiki=self.webpackChunkav_1_wiki||[]).push([[5797],{7190:a=>{a.exports=JSON.parse('{"label":"docusaurus","permalink":"/av1-wiki.github.io/blog/tags/docusaurus","allTagsPath":"/av1-wiki.github.io/blog/tags","count":4}')}}]);
