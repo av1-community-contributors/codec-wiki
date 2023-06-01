@@ -1,0 +1,27 @@
+{
+  "unversionedId": "filtering/denoise",
+  "id": "filtering/denoise",
+  "title": "Denoise",
+  "description": "",
+  "source": "@site/docs/filtering/denoise.md",
+  "sourceDirName": "filtering",
+  "slug": "/filtering/denoise",
+  "permalink": "/av1-wiki.github.io/docs/filtering/denoise",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/filtering/denoise.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "label": "Denoise",
+    "order": 200
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Detelecine",
+    "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace"
+  },
+  "next": {
+    "title": "Detelecine",
+    "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+  }
+}

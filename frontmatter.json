@@ -1,0 +1,82 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "default",
+      "pageBundle": false,
+      "previewPath": null,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "Publishing date",
+          "name": "date",
+          "type": "datetime",
+          "default": "{{now}}",
+          "isPublishDate": true
+        },
+        {
+          "title": "Content preview",
+          "name": "preview",
+          "type": "image"
+        },
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        }
+      ]
+    }
+  ],
+  "frontMatter.framework.id": "docusaurus",
+  "frontMatter.content.publicFolder": "static",
+  "frontMatter.preview.host": "http://localhost:3000",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "blog",
+      "path": "[[workspace]]/blog"
+    },
+    {
+      "title": "pages",
+      "path": "[[workspace]]/src/pages"
+    },
+    {
+      "title": "utilities",
+      "path": "[[workspace]]/docs/utilities"
+    },
+    {
+      "title": "introduction",
+      "path": "[[workspace]]/docs/introduction"
+    },
+    {
+      "title": "filtering",
+      "path": "[[workspace]]/docs/filtering"
+    },
+    {
+      "title": "encoders",
+      "path": "[[workspace]]/docs/encoders"
+    },
+    {
+      "title": "2021-08-26-welcome",
+      "path": "[[workspace]]/blog/2021-08-26-welcome"
+    }
+  ]
+}

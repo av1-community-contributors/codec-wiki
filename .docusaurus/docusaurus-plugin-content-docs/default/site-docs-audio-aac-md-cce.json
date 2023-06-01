@@ -1,0 +1,26 @@
+{
+  "unversionedId": "audio/AAC",
+  "id": "audio/AAC",
+  "title": "AAC",
+  "description": "To be To be filled.",
+  "source": "@site/docs/audio/AAC.md",
+  "sourceDirName": "audio",
+  "slug": "/audio/AAC",
+  "permalink": "/av1-wiki.github.io/docs/audio/AAC",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/audio/AAC.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "AAC"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "❓ FAQ",
+    "permalink": "/av1-wiki.github.io/docs/FAQ"
+  },
+  "next": {
+    "title": "✨ Contribution Guide",
+    "permalink": "/av1-wiki.github.io/docs/contribution-guide"
+  }
+}

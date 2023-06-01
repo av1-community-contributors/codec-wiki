@@ -1,0 +1,28 @@
+{
+  "unversionedId": "vapoursynth",
+  "id": "vapoursynth",
+  "title": "VapourSynth",
+  "description": "Average anime encoder VapourSynth script",
+  "source": "@site/docs/vapoursynth.md",
+  "sourceDirName": ".",
+  "slug": "/vapoursynth",
+  "permalink": "/av1-wiki.github.io/docs/vapoursynth",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/vapoursynth.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "vapoursynth",
+    "title": "VapourSynth",
+    "sidebar_label": "🖼️ VapourSynth"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "hdr10plus_tool",
+    "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+  },
+  "next": {
+    "title": "▶️ Video Players",
+    "permalink": "/av1-wiki.github.io/docs/video-players"
+  }
+}

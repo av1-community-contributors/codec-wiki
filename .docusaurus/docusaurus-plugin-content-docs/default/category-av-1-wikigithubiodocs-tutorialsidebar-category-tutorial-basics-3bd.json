@@ -1,0 +1,16 @@
+{
+  "title": "Tutorial - Basics",
+  "description": "5 minutes to learn the most important Docusaurus concepts.",
+  "slug": "/category/tutorial---basics",
+  "permalink": "/av1-wiki.github.io/docs/category/tutorial---basics",
+  "navigation": {
+    "previous": {
+      "title": "Prologue",
+      "permalink": "/av1-wiki.github.io/docs/introduction/prologue"
+    },
+    "next": {
+      "title": "Create a Page",
+      "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-page"
+    }
+  }
+}

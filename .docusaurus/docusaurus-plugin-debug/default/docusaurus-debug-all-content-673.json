@@ -1,0 +1,2096 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/av1-wiki.github.io/docs",
+          "tagsPath": "/av1-wiki.github.io/docs/tags",
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
+          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/home/gianni13700k/Documents/projects/docusaurus/av1-wiki/av1-wiki.github.io/sidebars.js",
+          "contentPath": "/home/gianni13700k/Documents/projects/docusaurus/av1-wiki/av1-wiki.github.io/docs",
+          "contentPathLocalized": "/home/gianni13700k/Documents/projects/docusaurus/av1-wiki/av1-wiki.github.io/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "unversionedId": "audio/AAC",
+              "id": "audio/AAC",
+              "title": "AAC",
+              "description": "To be To be filled.",
+              "source": "@site/docs/audio/AAC.md",
+              "sourceDirName": "audio",
+              "slug": "/audio/AAC",
+              "permalink": "/av1-wiki.github.io/docs/audio/AAC",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/audio/AAC.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "AAC"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "❓ FAQ",
+                "permalink": "/av1-wiki.github.io/docs/FAQ"
+              },
+              "next": {
+                "title": "✨ Contribution Guide",
+                "permalink": "/av1-wiki.github.io/docs/contribution-guide"
+              }
+            },
+            {
+              "unversionedId": "contribution-guide",
+              "id": "contribution-guide",
+              "title": "Contribution Guide",
+              "description": "This wiki is powered by Docusaurus. to get started google it.",
+              "source": "@site/docs/contribution-guide.md",
+              "sourceDirName": ".",
+              "slug": "/contribution-guide",
+              "permalink": "/av1-wiki.github.io/docs/contribution-guide",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/contribution-guide.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "contribution-guide",
+                "title": "Contribution Guide",
+                "sidebar_label": "✨ Contribution Guide"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "AAC",
+                "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+              },
+              "next": {
+                "title": "Detelecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deband"
+              }
+            },
+            {
+              "unversionedId": "encoders/aomenc",
+              "id": "encoders/aomenc",
+              "title": "aomenc",
+              "description": "aomenc or libaom is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.",
+              "source": "@site/docs/encoders/aomenc.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/aomenc",
+              "permalink": "/av1-wiki.github.io/docs/encoders/aomenc",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/aomenc.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "aomenc"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "VVenC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VVenC"
+              },
+              "next": {
+                "title": "rav1e",
+                "permalink": "/av1-wiki.github.io/docs/encoders/rav1e"
+              }
+            },
+            {
+              "unversionedId": "encoders/AVM",
+              "id": "encoders/AVM",
+              "title": "AVM",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/encoders/AVM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/AVM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/AVM",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/AVM.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "AVM",
+                "order": 189
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "💅🏼 Encoding Introduction",
+                "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction"
+              },
+              "next": {
+                "title": "HM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/HM"
+              }
+            },
+            {
+              "unversionedId": "encoders/HM",
+              "id": "encoders/HM",
+              "title": "HM",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/encoders/HM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/HM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/HM",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/HM.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "HM",
+                "order": 187
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "AVM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/AVM"
+              },
+              "next": {
+                "title": "JM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+              }
+            },
+            {
+              "unversionedId": "encoders/JM",
+              "id": "encoders/JM",
+              "title": "JM",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/encoders/JM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/JM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/JM",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/JM.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "JM",
+                "order": 186
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "HM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/HM"
+              },
+              "next": {
+                "title": "Kvaazar",
+                "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar"
+              }
+            },
+            {
+              "unversionedId": "encoders/Kvaazar",
+              "id": "encoders/Kvaazar",
+              "title": "Kvaazar",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/encoders/Kvaazar.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/Kvaazar",
+              "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/Kvaazar.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "Kvaazar",
+                "order": 193
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "JM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+              },
+              "next": {
+                "title": "SVT-AV1",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1"
+              }
+            },
+            {
+              "unversionedId": "encoders/rav1e",
+              "id": "encoders/rav1e",
+              "title": "rav1e",
+              "description": "rav1e is a command line application for encoding AV1 written in Rust and Assembly joint-developed by Xiph.org and Mozilla.",
+              "source": "@site/docs/encoders/rav1e.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/rav1e",
+              "permalink": "/av1-wiki.github.io/docs/encoders/rav1e",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/rav1e.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "rav1e",
+                "order": 196,
+                "date": "2023-05-09T00:00:00.000Z"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "aomenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/aomenc"
+              },
+              "next": {
+                "title": "uvg266",
+                "permalink": "/av1-wiki.github.io/docs/encoders/uvg266"
+              }
+            },
+            {
+              "unversionedId": "encoders/SVT-AV1",
+              "id": "encoders/SVT-AV1",
+              "title": "SVT-AV1",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/encoders/SVT-AV1.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/SVT-AV1",
+              "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/SVT-AV1.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "SVT-AV1",
+                "order": 197
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Kvaazar",
+                "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar"
+              },
+              "next": {
+                "title": "SVT-HEVC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC"
+              }
+            },
+            {
+              "unversionedId": "encoders/SVT-HEVC",
+              "id": "encoders/SVT-HEVC",
+              "title": "SVT-HEVC",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/SVT-HEVC.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/SVT-HEVC",
+              "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/SVT-HEVC.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "SVT-HEVC"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SVT-AV1",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1"
+              },
+              "next": {
+                "title": "SVT-VP9",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9"
+              }
+            },
+            {
+              "unversionedId": "encoders/SVT-VP9",
+              "id": "encoders/SVT-VP9",
+              "title": "SVT-VP9",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/SVT-VP9.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/SVT-VP9",
+              "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/SVT-VP9.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "SVT-VP9"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SVT-HEVC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC"
+              },
+              "next": {
+                "title": "VTM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+              }
+            },
+            {
+              "unversionedId": "encoders/uvg266",
+              "id": "encoders/uvg266",
+              "title": "uvg266",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/encoders/uvg266.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/uvg266",
+              "permalink": "/av1-wiki.github.io/docs/encoders/uvg266",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/uvg266.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "uvg266",
+                "order": 190
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "rav1e",
+                "permalink": "/av1-wiki.github.io/docs/encoders/rav1e"
+              },
+              "next": {
+                "title": "vpxenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc"
+              }
+            },
+            {
+              "unversionedId": "encoders/vpxenc",
+              "id": "encoders/vpxenc",
+              "title": "vpxenc",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/vpxenc.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/vpxenc",
+              "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/vpxenc.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "vpxenc"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "uvg266",
+                "permalink": "/av1-wiki.github.io/docs/encoders/uvg266"
+              },
+              "next": {
+                "title": "x264",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x264"
+              }
+            },
+            {
+              "unversionedId": "encoders/VTM",
+              "id": "encoders/VTM",
+              "title": "VTM",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/VTM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/VTM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/VTM",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/VTM.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "VTM"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SVT-VP9",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9"
+              },
+              "next": {
+                "title": "VVenC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VVenC"
+              }
+            },
+            {
+              "unversionedId": "encoders/VVenC",
+              "id": "encoders/VVenC",
+              "title": "VVenC",
+              "description": "`vvencapp` spamming the terminal output with progress per-picture-order-count cause god knows why.",
+              "source": "@site/docs/encoders/VVenC.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/VVenC",
+              "permalink": "/av1-wiki.github.io/docs/encoders/VVenC",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/VVenC.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "VVenC"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "VTM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+              },
+              "next": {
+                "title": "aomenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/aomenc"
+              }
+            },
+            {
+              "unversionedId": "encoders/x264",
+              "id": "encoders/x264",
+              "title": "x264",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/x264.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/x264",
+              "permalink": "/av1-wiki.github.io/docs/encoders/x264",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/x264.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "x264"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "vpxenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc"
+              },
+              "next": {
+                "title": "x265",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x265"
+              }
+            },
+            {
+              "unversionedId": "encoders/x265",
+              "id": "encoders/x265",
+              "title": "x265",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/x265.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/x265",
+              "permalink": "/av1-wiki.github.io/docs/encoders/x265",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/x265.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "x265"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "x264",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x264"
+              },
+              "next": {
+                "title": "💅🏼 Encoding Introduction",
+                "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction-1"
+              }
+            },
+            {
+              "unversionedId": "FAQ",
+              "id": "FAQ",
+              "title": "FAQ",
+              "description": "Why are you doing this?",
+              "source": "@site/docs/FAQ.md",
+              "sourceDirName": ".",
+              "slug": "/FAQ",
+              "permalink": "/av1-wiki.github.io/docs/FAQ",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/FAQ.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "FAQ",
+                "sidebar_label": "❓ FAQ"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Translate your site",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-extras/translate-your-site"
+              },
+              "next": {
+                "title": "AAC",
+                "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+              }
+            },
+            {
+              "unversionedId": "filtering/deband",
+              "id": "filtering/deband",
+              "title": "Detelecine",
+              "description": "",
+              "source": "@site/docs/filtering/deband.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/deband",
+              "permalink": "/av1-wiki.github.io/docs/filtering/deband",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/filtering/deband.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "Deband",
+                "order": 200
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "✨ Contribution Guide",
+                "permalink": "/av1-wiki.github.io/docs/contribution-guide"
+              },
+              "next": {
+                "title": "Detelecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace"
+              }
+            },
+            {
+              "unversionedId": "filtering/deinterlace",
+              "id": "filtering/deinterlace",
+              "title": "Detelecine",
+              "description": "",
+              "source": "@site/docs/filtering/deinterlace.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/deinterlace",
+              "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/filtering/deinterlace.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "Deinterlace",
+                "order": 200
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Detelecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deband"
+              },
+              "next": {
+                "title": "Denoise",
+                "permalink": "/av1-wiki.github.io/docs/filtering/denoise"
+              }
+            },
+            {
+              "unversionedId": "filtering/denoise",
+              "id": "filtering/denoise",
+              "title": "Denoise",
+              "description": "",
+              "source": "@site/docs/filtering/denoise.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/denoise",
+              "permalink": "/av1-wiki.github.io/docs/filtering/denoise",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/filtering/denoise.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "Denoise",
+                "order": 200
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Detelecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace"
+              },
+              "next": {
+                "title": "Detelecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+              }
+            },
+            {
+              "unversionedId": "filtering/detelecine",
+              "id": "filtering/detelecine",
+              "title": "Detelecine",
+              "description": "",
+              "source": "@site/docs/filtering/detelecine.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/detelecine",
+              "permalink": "/av1-wiki.github.io/docs/filtering/detelecine",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/filtering/detelecine.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "Detelecine / Inverse Telecine",
+                "order": 200
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Denoise",
+                "permalink": "/av1-wiki.github.io/docs/filtering/denoise"
+              },
+              "next": {
+                "title": "👁️ Metrics",
+                "permalink": "/av1-wiki.github.io/docs/metrics"
+              }
+            },
+            {
+              "unversionedId": "intro",
+              "id": "intro",
+              "title": "Tutorial Intro",
+              "description": "Let's discover Docusaurus in less than 5 minutes.",
+              "source": "@site/docs/intro.md",
+              "sourceDirName": ".",
+              "slug": "/intro",
+              "permalink": "/av1-wiki.github.io/docs/intro",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "💅🏼 Encoding Introduction",
+                "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction"
+              }
+            },
+            {
+              "unversionedId": "introduction/codecs",
+              "id": "introduction/codecs",
+              "title": "Codecs",
+              "description": "To be filled.",
+              "source": "@site/docs/introduction/codecs.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/codecs",
+              "permalink": "/av1-wiki.github.io/docs/introduction/codecs",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/introduction/codecs.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Codecs"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "High Dynamic Range",
+                "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range"
+              },
+              "next": {
+                "title": "Containers",
+                "permalink": "/av1-wiki.github.io/docs/introduction/containers"
+              }
+            },
+            {
+              "unversionedId": "introduction/containers",
+              "id": "introduction/containers",
+              "title": "Containers",
+              "description": "A video container is a digital file format that holds video and audio data, as well as additional information such as subtitles, metadata, and chapter markers. It acts as a \"wrapper\" that packages all these elements into a single file that can be played on various devices and software platforms. Think of it like a container you might use to transport goods - the video and audio data are like the items being transported, while the container itself provides a structure and organization for the contents.",
+              "source": "@site/docs/introduction/containers.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/containers",
+              "permalink": "/av1-wiki.github.io/docs/introduction/containers",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/introduction/containers.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Containers"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Codecs",
+                "permalink": "/av1-wiki.github.io/docs/introduction/codecs"
+              },
+              "next": {
+                "title": "Prologue",
+                "permalink": "/av1-wiki.github.io/docs/introduction/prologue"
+              }
+            },
+            {
+              "unversionedId": "introduction/high-dynamic-range",
+              "id": "introduction/high-dynamic-range",
+              "title": "High Dynamic Range",
+              "description": "HDR (High Dynamic Range) is a technology used in modern TVs and displays to produce more vibrant and lifelike images. In simple terms, it allows your TV to display a wider range of colors and brightness levels than standard displays. This means that you can see more details in both bright and dark areas of an image, which can make movies, TV shows, and video games look much more realistic.",
+              "source": "@site/docs/introduction/high-dynamic-range.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/high-dynamic-range",
+              "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/introduction/high-dynamic-range.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Psycho-visual",
+                "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual"
+              },
+              "next": {
+                "title": "Codecs",
+                "permalink": "/av1-wiki.github.io/docs/introduction/codecs"
+              }
+            },
+            {
+              "unversionedId": "introduction/prologue",
+              "id": "introduction/prologue",
+              "title": "Prologue",
+              "description": "Videos, we're no strangers to love~~ them. It is EVERYWHERE, from your home television to your ~~pocket tracking device phone. Videos have become a part of our daily lives as a means to entertainment, source of information, or as a simple communication medium.",
+              "source": "@site/docs/introduction/prologue.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/prologue",
+              "permalink": "/av1-wiki.github.io/docs/introduction/prologue",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/introduction/prologue.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Prologue"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Containers",
+                "permalink": "/av1-wiki.github.io/docs/introduction/containers"
+              },
+              "next": {
+                "title": "Tutorial - Basics",
+                "permalink": "/av1-wiki.github.io/docs/category/tutorial---basics"
+              }
+            },
+            {
+              "unversionedId": "introduction/psychovisual",
+              "id": "introduction/psychovisual",
+              "title": "Psycho-visual",
+              "description": "\"Traditionally, the encoder tends to favor blurred reconstructed blocks over blocks which have wrong motion. The human eye generally prefers the wrong motion over the blur. Psycho-visual options combat this. While technically less “correct”, which is why they are disabled for research purposes, they should be enabled for content intended for “human eyes”. \"",
+              "source": "@site/docs/introduction/psychovisual.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/psychovisual",
+              "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/introduction/psychovisual.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "sidebar_position": 5
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Spotting Video Artifacts",
+                "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts"
+              },
+              "next": {
+                "title": "High Dynamic Range",
+                "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range"
+              }
+            },
+            {
+              "unversionedId": "introduction/video-artifacts",
+              "id": "introduction/video-artifacts",
+              "title": "Spotting Video Artifacts",
+              "description": "https://xkcd.com/2414",
+              "source": "@site/docs/introduction/video-artifacts.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/video-artifacts",
+              "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/introduction/video-artifacts.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "💅🏼 Encoding Introduction",
+                "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction-1"
+              },
+              "next": {
+                "title": "Psycho-visual",
+                "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual"
+              }
+            },
+            {
+              "unversionedId": "metrics",
+              "id": "metrics",
+              "title": "Metrics",
+              "description": "Average anime encoder VapourSynth script",
+              "source": "@site/docs/metrics.md",
+              "sourceDirName": ".",
+              "slug": "/metrics",
+              "permalink": "/av1-wiki.github.io/docs/metrics",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/metrics.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "metrics",
+                "title": "Metrics",
+                "sidebar_label": "👁️ Metrics"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Detelecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+              },
+              "next": {
+                "title": "🗃️ Prequisites",
+                "permalink": "/av1-wiki.github.io/docs/prequisites"
+              }
+            },
+            {
+              "unversionedId": "prequisites",
+              "id": "prequisites",
+              "title": "Prequisites",
+              "description": "- Patience",
+              "source": "@site/docs/prequisites.md",
+              "sourceDirName": ".",
+              "slug": "/prequisites",
+              "permalink": "/av1-wiki.github.io/docs/prequisites",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/prequisites.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "prequisites",
+                "title": "Prequisites",
+                "sidebar_label": "🗃️ Prequisites"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "👁️ Metrics",
+                "permalink": "/av1-wiki.github.io/docs/metrics"
+              },
+              "next": {
+                "title": "🔏 Privacy Policy",
+                "permalink": "/av1-wiki.github.io/docs/privacy-policy"
+              }
+            },
+            {
+              "unversionedId": "privacy-policy",
+              "id": "privacy-policy",
+              "title": "Privacy Policy",
+              "description": "- This website is hosted in Iceland",
+              "source": "@site/docs/privacy-policy.md",
+              "sourceDirName": ".",
+              "slug": "/privacy-policy",
+              "permalink": "/av1-wiki.github.io/docs/privacy-policy",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/privacy-policy.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "privacy-policy",
+                "title": "Privacy Policy",
+                "sidebar_label": "🔏 Privacy Policy"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "🗃️ Prequisites",
+                "permalink": "/av1-wiki.github.io/docs/prequisites"
+              },
+              "next": {
+                "title": "💾 Resources",
+                "permalink": "/av1-wiki.github.io/docs/resources"
+              }
+            },
+            {
+              "unversionedId": "resources",
+              "id": "resources",
+              "title": "Resources",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/resources.md",
+              "sourceDirName": ".",
+              "slug": "/resources",
+              "permalink": "/av1-wiki.github.io/docs/resources",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/resources.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "resources",
+                "title": "Resources",
+                "sidebar_label": "💾 Resources"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "🔏 Privacy Policy",
+                "permalink": "/av1-wiki.github.io/docs/privacy-policy"
+              },
+              "next": {
+                "title": "SRT",
+                "permalink": "/av1-wiki.github.io/docs/subtitles/SRT"
+              }
+            },
+            {
+              "unversionedId": "subtitles/SRT",
+              "id": "subtitles/SRT",
+              "title": "SRT",
+              "description": "To be To be filled.",
+              "source": "@site/docs/subtitles/SRT.md",
+              "sourceDirName": "subtitles",
+              "slug": "/subtitles/SRT",
+              "permalink": "/av1-wiki.github.io/docs/subtitles/SRT",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/subtitles/SRT.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "SRT"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "💾 Resources",
+                "permalink": "/av1-wiki.github.io/docs/resources"
+              },
+              "next": {
+                "title": "FFMetrics",
+                "permalink": "/av1-wiki.github.io/docs/utilities/FFMetrics"
+              }
+            },
+            {
+              "unversionedId": "tutorial-basics/congratulations",
+              "id": "tutorial-basics/congratulations",
+              "title": "Congratulations!",
+              "description": "You have just learned the basics of Docusaurus and made some changes to the initial template.",
+              "source": "@site/docs/tutorial-basics/congratulations.md",
+              "sourceDirName": "tutorial-basics",
+              "slug": "/tutorial-basics/congratulations",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-basics/congratulations",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-basics/congratulations.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Deploy your site",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/deploy-your-site"
+              },
+              "next": {
+                "title": "Tutorial - Extras",
+                "permalink": "/av1-wiki.github.io/docs/category/tutorial---extras"
+              }
+            },
+            {
+              "unversionedId": "tutorial-basics/create-a-blog-post",
+              "id": "tutorial-basics/create-a-blog-post",
+              "title": "Create a Blog Post",
+              "description": "Docusaurus creates a page for each blog post, but also a blog index page, a tag system, an RSS feed...",
+              "source": "@site/docs/tutorial-basics/create-a-blog-post.md",
+              "sourceDirName": "tutorial-basics",
+              "slug": "/tutorial-basics/create-a-blog-post",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-blog-post",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-basics/create-a-blog-post.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Create a Document",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-document"
+              },
+              "next": {
+                "title": "Markdown Features",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/markdown-features"
+              }
+            },
+            {
+              "unversionedId": "tutorial-basics/create-a-document",
+              "id": "tutorial-basics/create-a-document",
+              "title": "Create a Document",
+              "description": "Documents are groups of pages connected through:",
+              "source": "@site/docs/tutorial-basics/create-a-document.md",
+              "sourceDirName": "tutorial-basics",
+              "slug": "/tutorial-basics/create-a-document",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-document",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-basics/create-a-document.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Create a Page",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-page"
+              },
+              "next": {
+                "title": "Create a Blog Post",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-blog-post"
+              }
+            },
+            {
+              "unversionedId": "tutorial-basics/create-a-page",
+              "id": "tutorial-basics/create-a-page",
+              "title": "Create a Page",
+              "description": "Add Markdown or React files to src/pages to create a standalone page:",
+              "source": "@site/docs/tutorial-basics/create-a-page.md",
+              "sourceDirName": "tutorial-basics",
+              "slug": "/tutorial-basics/create-a-page",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-page",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-basics/create-a-page.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Tutorial - Basics",
+                "permalink": "/av1-wiki.github.io/docs/category/tutorial---basics"
+              },
+              "next": {
+                "title": "Create a Document",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-document"
+              }
+            },
+            {
+              "unversionedId": "tutorial-basics/deploy-your-site",
+              "id": "tutorial-basics/deploy-your-site",
+              "title": "Deploy your site",
+              "description": "Docusaurus is a static-site-generator (also called Jamstack).",
+              "source": "@site/docs/tutorial-basics/deploy-your-site.md",
+              "sourceDirName": "tutorial-basics",
+              "slug": "/tutorial-basics/deploy-your-site",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-basics/deploy-your-site",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-basics/deploy-your-site.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "sidebar_position": 5
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Markdown Features",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/markdown-features"
+              },
+              "next": {
+                "title": "Congratulations!",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/congratulations"
+              }
+            },
+            {
+              "unversionedId": "tutorial-basics/markdown-features",
+              "id": "tutorial-basics/markdown-features",
+              "title": "Markdown Features",
+              "description": "Docusaurus supports Markdown and a few additional features.",
+              "source": "@site/docs/tutorial-basics/markdown-features.mdx",
+              "sourceDirName": "tutorial-basics",
+              "slug": "/tutorial-basics/markdown-features",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-basics/markdown-features",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-basics/markdown-features.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Create a Blog Post",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/create-a-blog-post"
+              },
+              "next": {
+                "title": "Deploy your site",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-basics/deploy-your-site"
+              }
+            },
+            {
+              "unversionedId": "tutorial-extras/manage-docs-versions",
+              "id": "tutorial-extras/manage-docs-versions",
+              "title": "Manage Docs Versions",
+              "description": "Docusaurus can manage multiple versions of your docs.",
+              "source": "@site/docs/tutorial-extras/manage-docs-versions.md",
+              "sourceDirName": "tutorial-extras",
+              "slug": "/tutorial-extras/manage-docs-versions",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-extras/manage-docs-versions",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-extras/manage-docs-versions.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Tutorial - Extras",
+                "permalink": "/av1-wiki.github.io/docs/category/tutorial---extras"
+              },
+              "next": {
+                "title": "Translate your site",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-extras/translate-your-site"
+              }
+            },
+            {
+              "unversionedId": "tutorial-extras/translate-your-site",
+              "id": "tutorial-extras/translate-your-site",
+              "title": "Translate your site",
+              "description": "Let's translate docs/intro.md to French.",
+              "source": "@site/docs/tutorial-extras/translate-your-site.md",
+              "sourceDirName": "tutorial-extras",
+              "slug": "/tutorial-extras/translate-your-site",
+              "permalink": "/av1-wiki.github.io/docs/tutorial-extras/translate-your-site",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/tutorial-extras/translate-your-site.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Manage Docs Versions",
+                "permalink": "/av1-wiki.github.io/docs/tutorial-extras/manage-docs-versions"
+              },
+              "next": {
+                "title": "❓ FAQ",
+                "permalink": "/av1-wiki.github.io/docs/FAQ"
+              }
+            },
+            {
+              "unversionedId": "utilities/av1an",
+              "id": "utilities/av1an",
+              "title": "Av1an",
+              "description": "Av1an encoding AV1 with 96 workers",
+              "source": "@site/docs/utilities/av1an.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/av1an",
+              "permalink": "/av1-wiki.github.io/docs/utilities/av1an",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/av1an.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "Av1an",
+                "order": 200,
+                "templating": true
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "YUView",
+                "permalink": "/av1-wiki.github.io/docs/utilities/YUView"
+              },
+              "next": {
+                "title": "dovi_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool"
+              }
+            },
+            {
+              "unversionedId": "utilities/dovi_tool",
+              "id": "utilities/dovi_tool",
+              "title": "dovi_tool",
+              "description": "dovi_tool is a command line tool written in Rust combining multiple utilities for working with Dolby Vision.",
+              "source": "@site/docs/utilities/dovi_tool.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/dovi_tool",
+              "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/dovi_tool.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "dovi_tool",
+                "order": 197,
+                "date": "2023-05-07T00:00:00.000Z"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Av1an",
+                "permalink": "/av1-wiki.github.io/docs/utilities/av1an"
+              },
+              "next": {
+                "title": "eac3to",
+                "permalink": "/av1-wiki.github.io/docs/utilities/eac3to"
+              }
+            },
+            {
+              "unversionedId": "utilities/eac3to",
+              "id": "utilities/eac3to",
+              "title": "eac3to",
+              "description": "eac3to is a command line tool written by madshi to mostly work with audios (conversion) and raw, unencrypted Blu-rays (BDMV).",
+              "source": "@site/docs/utilities/eac3to.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/eac3to",
+              "permalink": "/av1-wiki.github.io/docs/utilities/eac3to",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/eac3to.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "eac3to",
+                "order": 195,
+                "date": "2023-05-09T00:00:00.000Z"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "dovi_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool"
+              },
+              "next": {
+                "title": "hdr10plus_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+              }
+            },
+            {
+              "unversionedId": "utilities/FFMetrics",
+              "id": "utilities/FFMetrics",
+              "title": "FFMetrics",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/utilities/FFMetrics.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/FFMetrics",
+              "permalink": "/av1-wiki.github.io/docs/utilities/FFMetrics",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/FFMetrics.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "FFMetrics",
+                "order": 199
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SRT",
+                "permalink": "/av1-wiki.github.io/docs/subtitles/SRT"
+              },
+              "next": {
+                "title": "MKVToolNix",
+                "permalink": "/av1-wiki.github.io/docs/utilities/MKVToolNix"
+              }
+            },
+            {
+              "unversionedId": "utilities/hdr10plus_tool",
+              "id": "utilities/hdr10plus_tool",
+              "title": "hdr10plus_tool",
+              "description": "hdr10plus_tool is a command line tool written in Rust for working with HDR10+ in HEVC files. Previously named `hdr10plus_parser`, now it's more than just a parser.",
+              "source": "@site/docs/utilities/hdr10plus_tool.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/hdr10plus_tool",
+              "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/hdr10plus_tool.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "hdr10plus_tool",
+                "order": 197,
+                "date": "2023-05-07T00:00:00.000Z"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "eac3to",
+                "permalink": "/av1-wiki.github.io/docs/utilities/eac3to"
+              },
+              "next": {
+                "title": "🖼️ VapourSynth",
+                "permalink": "/av1-wiki.github.io/docs/vapoursynth"
+              }
+            },
+            {
+              "unversionedId": "utilities/MKVToolNix",
+              "id": "utilities/MKVToolNix",
+              "title": "MKVToolNix",
+              "description": "Your average MKVToolNix workload.",
+              "source": "@site/docs/utilities/MKVToolNix.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/MKVToolNix",
+              "permalink": "/av1-wiki.github.io/docs/utilities/MKVToolNix",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/MKVToolNix.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "MKVToolNix",
+                "order": 198
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "FFMetrics",
+                "permalink": "/av1-wiki.github.io/docs/utilities/FFMetrics"
+              },
+              "next": {
+                "title": "YUView",
+                "permalink": "/av1-wiki.github.io/docs/utilities/YUView"
+              }
+            },
+            {
+              "unversionedId": "utilities/YUView",
+              "id": "utilities/YUView",
+              "title": "YUView",
+              "description": "Discord: ForIndex#0621 (692694682974683157)",
+              "source": "@site/docs/utilities/YUView.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/YUView",
+              "permalink": "/av1-wiki.github.io/docs/utilities/YUView",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/utilities/YUView.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "label": "YUView",
+                "order": 195
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "MKVToolNix",
+                "permalink": "/av1-wiki.github.io/docs/utilities/MKVToolNix"
+              },
+              "next": {
+                "title": "Av1an",
+                "permalink": "/av1-wiki.github.io/docs/utilities/av1an"
+              }
+            },
+            {
+              "unversionedId": "vapoursynth",
+              "id": "vapoursynth",
+              "title": "VapourSynth",
+              "description": "Average anime encoder VapourSynth script",
+              "source": "@site/docs/vapoursynth.md",
+              "sourceDirName": ".",
+              "slug": "/vapoursynth",
+              "permalink": "/av1-wiki.github.io/docs/vapoursynth",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/vapoursynth.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "id": "vapoursynth",
+                "title": "VapourSynth",
+                "sidebar_label": "🖼️ VapourSynth"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "hdr10plus_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+              },
+              "next": {
+                "title": "▶️ Video Players",
+                "permalink": "/av1-wiki.github.io/docs/video-players"
+              }
+            },
+            {
+              "unversionedId": "video-players",
+              "id": "video-players",
+              "title": "Video Players",
+              "description": "To be filled.",
+              "source": "@site/docs/video-players.md",
+              "sourceDirName": ".",
+              "slug": "/video-players",
+              "permalink": "/av1-wiki.github.io/docs/video-players",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/video-players.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "sidebar_label": "▶️ Video Players",
+                "title": "Video Players"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "🖼️ VapourSynth",
+                "permalink": "/av1-wiki.github.io/docs/vapoursynth"
+              },
+              "next": {
+                "title": "👋 Welcome",
+                "permalink": "/av1-wiki.github.io/docs/welcome"
+              }
+            },
+            {
+              "unversionedId": "welcome",
+              "id": "welcome",
+              "title": "Welcome",
+              "description": "Welcome! This place is your future one-stop-shop for all media encoding documentations and beginners guides including x264, x265, Vapoursynth, and much more! Currently this website is in a very very very heavy work in progress, some parts will be altered or even overhauled completely based on fellow encoders input, new research, and my knowledge.",
+              "source": "@site/docs/welcome.md",
+              "sourceDirName": ".",
+              "slug": "/welcome",
+              "permalink": "/av1-wiki.github.io/docs/welcome",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/welcome.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Welcome",
+                "sidebar_label": "👋 Welcome"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "▶️ Video Players",
+                "permalink": "/av1-wiki.github.io/docs/video-players"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "doc",
+                "id": "intro"
+              },
+              {
+                "type": "category",
+                "label": "💅🏼 Encoding Introduction",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "encoders/AVM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/HM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/JM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/Kvaazar"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/SVT-AV1"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/SVT-HEVC"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/SVT-VP9"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/VTM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/VVenC"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/aomenc"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/rav1e"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/uvg266"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/vpxenc"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/x264"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/x265"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "description": "Learn the basics of video encoding.",
+                  "slug": "/category/-encoding-introduction",
+                  "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction"
+                }
+              },
+              {
+                "type": "category",
+                "label": "💅🏼 Encoding Introduction",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "introduction/video-artifacts"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/psychovisual"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/high-dynamic-range"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/codecs"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/containers"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/prologue"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "description": "Learn the basics of video encoding.",
+                  "slug": "/category/-encoding-introduction-1",
+                  "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction-1"
+                }
+              },
+              {
+                "type": "category",
+                "label": "Tutorial - Basics",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "tutorial-basics/create-a-page"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial-basics/create-a-document"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial-basics/create-a-blog-post"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial-basics/markdown-features"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial-basics/deploy-your-site"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial-basics/congratulations"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "description": "5 minutes to learn the most important Docusaurus concepts.",
+                  "slug": "/category/tutorial---basics",
+                  "permalink": "/av1-wiki.github.io/docs/category/tutorial---basics"
+                }
+              },
+              {
+                "type": "category",
+                "label": "Tutorial - Extras",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "tutorial-extras/manage-docs-versions"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "tutorial-extras/translate-your-site"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "slug": "/category/tutorial---extras",
+                  "permalink": "/av1-wiki.github.io/docs/category/tutorial---extras"
+                }
+              },
+              {
+                "type": "doc",
+                "id": "FAQ",
+                "label": "❓ FAQ"
+              },
+              {
+                "type": "category",
+                "label": "audio",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "audio/AAC"
+                  }
+                ]
+              },
+              {
+                "type": "doc",
+                "id": "contribution-guide",
+                "label": "✨ Contribution Guide"
+              },
+              {
+                "type": "category",
+                "label": "filtering",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "filtering/deband"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/deinterlace"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/denoise"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/detelecine"
+                  }
+                ]
+              },
+              {
+                "type": "doc",
+                "id": "metrics",
+                "label": "👁️ Metrics"
+              },
+              {
+                "type": "doc",
+                "id": "prequisites",
+                "label": "🗃️ Prequisites"
+              },
+              {
+                "type": "doc",
+                "id": "privacy-policy",
+                "label": "🔏 Privacy Policy"
+              },
+              {
+                "type": "doc",
+                "id": "resources",
+                "label": "💾 Resources"
+              },
+              {
+                "type": "category",
+                "label": "subtitles",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "subtitles/SRT"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "utilities",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "utilities/FFMetrics"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/MKVToolNix"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/YUView"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/av1an"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/dovi_tool"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/eac3to"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/hdr10plus_tool"
+                  }
+                ]
+              },
+              {
+                "type": "doc",
+                "id": "vapoursynth",
+                "label": "🖼️ VapourSynth"
+              },
+              {
+                "type": "doc",
+                "id": "video-players",
+                "label": "▶️ Video Players"
+              },
+              {
+                "type": "doc",
+                "id": "welcome",
+                "label": "👋 Welcome"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [
+        {
+          "id": "welcome",
+          "metadata": {
+            "permalink": "/av1-wiki.github.io/blog/welcome",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2021-08-26-welcome/index.md",
+            "source": "@site/blog/2021-08-26-welcome/index.md",
+            "title": "Welcome",
+            "description": "Docusaurus blogging features are powered by the blog plugin.",
+            "date": "2021-08-26T00:00:00.000Z",
+            "formattedDate": "August 26, 2021",
+            "tags": [
+              {
+                "label": "facebook",
+                "permalink": "/av1-wiki.github.io/blog/tags/facebook"
+              },
+              {
+                "label": "hello",
+                "permalink": "/av1-wiki.github.io/blog/tags/hello"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/av1-wiki.github.io/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 0.405,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Sébastien Lorber",
+                "title": "Docusaurus maintainer",
+                "url": "https://sebastienlorber.com",
+                "imageURL": "https://github.com/slorber.png",
+                "key": "slorber"
+              },
+              {
+                "name": "Yangshun Tay",
+                "title": "Front End Engineer @ Facebook",
+                "url": "https://github.com/yangshun",
+                "imageURL": "https://github.com/yangshun.png",
+                "key": "yangshun"
+              }
+            ],
+            "frontMatter": {
+              "slug": "welcome",
+              "title": "Welcome",
+              "authors": [
+                "slorber",
+                "yangshun"
+              ],
+              "tags": [
+                "facebook",
+                "hello",
+                "docusaurus"
+              ]
+            },
+            "nextItem": {
+              "title": "MDX Blog Post",
+              "permalink": "/av1-wiki.github.io/blog/mdx-blog-post"
+            }
+          },
+          "content": "[Docusaurus blogging features](https://docusaurus.io/docs/blog) are powered by the [blog plugin](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog).\n\nSimply add Markdown files (or folders) to the `blog` directory.\n\nRegular blog authors can be added to `authors.yml`.\n\nThe blog post date can be extracted from filenames, such as:\n\n- `2019-05-30-welcome.md`\n- `2019-05-30-welcome/index.md`\n\nA blog post folder can be convenient to co-locate blog post images:\n\n![Docusaurus Plushie](./docusaurus-plushie-banner.jpeg)\n\nThe blog supports tags as well!\n\n**And if you don't want a blog**: just delete this directory, and use `blog: false` in your Docusaurus config."
+        },
+        {
+          "id": "mdx-blog-post",
+          "metadata": {
+            "permalink": "/av1-wiki.github.io/blog/mdx-blog-post",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2021-08-01-mdx-blog-post.mdx",
+            "source": "@site/blog/2021-08-01-mdx-blog-post.mdx",
+            "title": "MDX Blog Post",
+            "description": "Blog posts support Docusaurus Markdown features, such as MDX.",
+            "date": "2021-08-01T00:00:00.000Z",
+            "formattedDate": "August 1, 2021",
+            "tags": [
+              {
+                "label": "docusaurus",
+                "permalink": "/av1-wiki.github.io/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 0.175,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Sébastien Lorber",
+                "title": "Docusaurus maintainer",
+                "url": "https://sebastienlorber.com",
+                "imageURL": "https://github.com/slorber.png",
+                "key": "slorber"
+              }
+            ],
+            "frontMatter": {
+              "slug": "mdx-blog-post",
+              "title": "MDX Blog Post",
+              "authors": [
+                "slorber"
+              ],
+              "tags": [
+                "docusaurus"
+              ]
+            },
+            "prevItem": {
+              "title": "Welcome",
+              "permalink": "/av1-wiki.github.io/blog/welcome"
+            },
+            "nextItem": {
+              "title": "Long Blog Post",
+              "permalink": "/av1-wiki.github.io/blog/long-blog-post"
+            }
+          },
+          "content": "Blog posts support [Docusaurus Markdown features](https://docusaurus.io/docs/markdown-features), such as [MDX](https://mdxjs.com/).\n\n:::tip\n\nUse the power of React to create interactive blog posts.\n\n```js\n<button onClick={() => alert('button clicked!')}>Click me!</button>\n```\n\n<button onClick={() => alert('button clicked!')}>Click me!</button>\n\n:::"
+        },
+        {
+          "id": "long-blog-post",
+          "metadata": {
+            "permalink": "/av1-wiki.github.io/blog/long-blog-post",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2019-05-29-long-blog-post.md",
+            "source": "@site/blog/2019-05-29-long-blog-post.md",
+            "title": "Long Blog Post",
+            "description": "This is the summary of a very long blog post,",
+            "date": "2019-05-29T00:00:00.000Z",
+            "formattedDate": "May 29, 2019",
+            "tags": [
+              {
+                "label": "hello",
+                "permalink": "/av1-wiki.github.io/blog/tags/hello"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/av1-wiki.github.io/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 2.05,
+            "hasTruncateMarker": true,
+            "authors": [
+              {
+                "name": "Endilie Yacop Sucipto",
+                "title": "Maintainer of Docusaurus",
+                "url": "https://github.com/endiliey",
+                "imageURL": "https://github.com/endiliey.png",
+                "key": "endi"
+              }
+            ],
+            "frontMatter": {
+              "slug": "long-blog-post",
+              "title": "Long Blog Post",
+              "authors": "endi",
+              "tags": [
+                "hello",
+                "docusaurus"
+              ]
+            },
+            "prevItem": {
+              "title": "MDX Blog Post",
+              "permalink": "/av1-wiki.github.io/blog/mdx-blog-post"
+            },
+            "nextItem": {
+              "title": "First Blog Post",
+              "permalink": "/av1-wiki.github.io/blog/first-blog-post"
+            }
+          },
+          "content": "This is the summary of a very long blog post,\n\nUse a `<!--` `truncate` `-->` comment to limit blog post size in the list view.\n\n<!--truncate-->\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet"
+        },
+        {
+          "id": "first-blog-post",
+          "metadata": {
+            "permalink": "/av1-wiki.github.io/blog/first-blog-post",
+            "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/blog/2019-05-28-first-blog-post.md",
+            "source": "@site/blog/2019-05-28-first-blog-post.md",
+            "title": "First Blog Post",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet",
+            "date": "2019-05-28T00:00:00.000Z",
+            "formattedDate": "May 28, 2019",
+            "tags": [
+              {
+                "label": "hola",
+                "permalink": "/av1-wiki.github.io/blog/tags/hola"
+              },
+              {
+                "label": "docusaurus",
+                "permalink": "/av1-wiki.github.io/blog/tags/docusaurus"
+              }
+            ],
+            "readingTime": 0.12,
+            "hasTruncateMarker": false,
+            "authors": [
+              {
+                "name": "Gao Wei",
+                "title": "Docusaurus Core Team",
+                "url": "https://github.com/wgao19",
+                "image_url": "https://github.com/wgao19.png",
+                "imageURL": "https://github.com/wgao19.png"
+              }
+            ],
+            "frontMatter": {
+              "slug": "first-blog-post",
+              "title": "First Blog Post",
+              "authors": {
+                "name": "Gao Wei",
+                "title": "Docusaurus Core Team",
+                "url": "https://github.com/wgao19",
+                "image_url": "https://github.com/wgao19.png",
+                "imageURL": "https://github.com/wgao19.png"
+              },
+              "tags": [
+                "hola",
+                "docusaurus"
+              ]
+            },
+            "prevItem": {
+              "title": "Long Blog Post",
+              "permalink": "/av1-wiki.github.io/blog/long-blog-post"
+            }
+          },
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet"
+        }
+      ],
+      "blogListPaginated": [
+        {
+          "items": [
+            "welcome",
+            "mdx-blog-post",
+            "long-blog-post",
+            "first-blog-post"
+          ],
+          "metadata": {
+            "permalink": "/av1-wiki.github.io/blog",
+            "page": 1,
+            "postsPerPage": 10,
+            "totalPages": 1,
+            "totalCount": 4,
+            "blogDescription": "Blog",
+            "blogTitle": "Blog"
+          }
+        }
+      ],
+      "blogTags": {
+        "/av1-wiki.github.io/blog/tags/facebook": {
+          "label": "facebook",
+          "items": [
+            "welcome"
+          ],
+          "permalink": "/av1-wiki.github.io/blog/tags/facebook",
+          "pages": [
+            {
+              "items": [
+                "welcome"
+              ],
+              "metadata": {
+                "permalink": "/av1-wiki.github.io/blog/tags/facebook",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/av1-wiki.github.io/blog/tags/hello": {
+          "label": "hello",
+          "items": [
+            "welcome",
+            "long-blog-post"
+          ],
+          "permalink": "/av1-wiki.github.io/blog/tags/hello",
+          "pages": [
+            {
+              "items": [
+                "welcome",
+                "long-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/av1-wiki.github.io/blog/tags/hello",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 2,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/av1-wiki.github.io/blog/tags/docusaurus": {
+          "label": "docusaurus",
+          "items": [
+            "welcome",
+            "mdx-blog-post",
+            "long-blog-post",
+            "first-blog-post"
+          ],
+          "permalink": "/av1-wiki.github.io/blog/tags/docusaurus",
+          "pages": [
+            {
+              "items": [
+                "welcome",
+                "mdx-blog-post",
+                "long-blog-post",
+                "first-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/av1-wiki.github.io/blog/tags/docusaurus",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 4,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        },
+        "/av1-wiki.github.io/blog/tags/hola": {
+          "label": "hola",
+          "items": [
+            "first-blog-post"
+          ],
+          "permalink": "/av1-wiki.github.io/blog/tags/hola",
+          "pages": [
+            {
+              "items": [
+                "first-blog-post"
+              ],
+              "metadata": {
+                "permalink": "/av1-wiki.github.io/blog/tags/hola",
+                "page": 1,
+                "postsPerPage": 10,
+                "totalPages": 1,
+                "totalCount": 1,
+                "blogDescription": "Blog",
+                "blogTitle": "Blog"
+              }
+            }
+          ]
+        }
+      },
+      "blogTagsListPath": "/av1-wiki.github.io/blog/tags"
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/av1-wiki.github.io/",
+        "source": "@site/src/pages/index.js"
+      },
+      {
+        "type": "mdx",
+        "permalink": "/av1-wiki.github.io/markdown-page",
+        "source": "@site/src/pages/markdown-page.md",
+        "title": "Markdown page example",
+        "description": "You don't need React to write simple standalone pages.",
+        "frontMatter": {
+          "title": "Markdown page example"
+        }
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

@@ -1,0 +1,27 @@
+{
+  "unversionedId": "filtering/deinterlace",
+  "id": "filtering/deinterlace",
+  "title": "Detelecine",
+  "description": "",
+  "source": "@site/docs/filtering/deinterlace.md",
+  "sourceDirName": "filtering",
+  "slug": "/filtering/deinterlace",
+  "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/filtering/deinterlace.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "label": "Deinterlace",
+    "order": 200
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Detelecine",
+    "permalink": "/av1-wiki.github.io/docs/filtering/deband"
+  },
+  "next": {
+    "title": "Denoise",
+    "permalink": "/av1-wiki.github.io/docs/filtering/denoise"
+  }
+}

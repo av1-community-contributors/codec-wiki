@@ -1,0 +1,27 @@
+{
+  "unversionedId": "FAQ",
+  "id": "FAQ",
+  "title": "FAQ",
+  "description": "Why are you doing this?",
+  "source": "@site/docs/FAQ.md",
+  "sourceDirName": ".",
+  "slug": "/FAQ",
+  "permalink": "/av1-wiki.github.io/docs/FAQ",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/FAQ.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "FAQ",
+    "sidebar_label": "❓ FAQ"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Translate your site",
+    "permalink": "/av1-wiki.github.io/docs/tutorial-extras/translate-your-site"
+  },
+  "next": {
+    "title": "AAC",
+    "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+  }
+}

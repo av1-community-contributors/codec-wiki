@@ -1,0 +1,16 @@
+{
+  "title": "💅🏼 Encoding Introduction",
+  "description": "Learn the basics of video encoding.",
+  "slug": "/category/-encoding-introduction-1",
+  "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction-1",
+  "navigation": {
+    "previous": {
+      "title": "x265",
+      "permalink": "/av1-wiki.github.io/docs/encoders/x265"
+    },
+    "next": {
+      "title": "Spotting Video Artifacts",
+      "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "unversionedId": "encoders/HM",
+  "id": "encoders/HM",
+  "title": "HM",
+  "description": "Discord: ForIndex#0621 (692694682974683157)",
+  "source": "@site/docs/encoders/HM.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/HM",
+  "permalink": "/av1-wiki.github.io/docs/encoders/HM",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/HM.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "label": "HM",
+    "order": 187
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "AVM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/AVM"
+  },
+  "next": {
+    "title": "JM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+  }
+}

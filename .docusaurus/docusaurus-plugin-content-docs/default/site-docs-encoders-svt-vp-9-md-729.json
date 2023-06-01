@@ -1,0 +1,26 @@
+{
+  "unversionedId": "encoders/SVT-VP9",
+  "id": "encoders/SVT-VP9",
+  "title": "SVT-VP9",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/SVT-VP9.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/SVT-VP9",
+  "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/SVT-VP9.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "SVT-VP9"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SVT-HEVC",
+    "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC"
+  },
+  "next": {
+    "title": "VTM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+  }
+}

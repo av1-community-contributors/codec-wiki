@@ -1,0 +1,308 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/av1-wiki.github.io/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/av1-wiki.github.io/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "audio/AAC",
+              "path": "/av1-wiki.github.io/docs/audio/AAC",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "contribution-guide",
+              "path": "/av1-wiki.github.io/docs/contribution-guide",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/aomenc",
+              "path": "/av1-wiki.github.io/docs/encoders/aomenc",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/AVM",
+              "path": "/av1-wiki.github.io/docs/encoders/AVM",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/HM",
+              "path": "/av1-wiki.github.io/docs/encoders/HM",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/JM",
+              "path": "/av1-wiki.github.io/docs/encoders/JM",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/Kvaazar",
+              "path": "/av1-wiki.github.io/docs/encoders/Kvaazar",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/rav1e",
+              "path": "/av1-wiki.github.io/docs/encoders/rav1e",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/SVT-AV1",
+              "path": "/av1-wiki.github.io/docs/encoders/SVT-AV1",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/SVT-HEVC",
+              "path": "/av1-wiki.github.io/docs/encoders/SVT-HEVC",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/SVT-VP9",
+              "path": "/av1-wiki.github.io/docs/encoders/SVT-VP9",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/uvg266",
+              "path": "/av1-wiki.github.io/docs/encoders/uvg266",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/vpxenc",
+              "path": "/av1-wiki.github.io/docs/encoders/vpxenc",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/VTM",
+              "path": "/av1-wiki.github.io/docs/encoders/VTM",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/VVenC",
+              "path": "/av1-wiki.github.io/docs/encoders/VVenC",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/x264",
+              "path": "/av1-wiki.github.io/docs/encoders/x264",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "encoders/x265",
+              "path": "/av1-wiki.github.io/docs/encoders/x265",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "FAQ",
+              "path": "/av1-wiki.github.io/docs/FAQ",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "filtering/deband",
+              "path": "/av1-wiki.github.io/docs/filtering/deband",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "filtering/deinterlace",
+              "path": "/av1-wiki.github.io/docs/filtering/deinterlace",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "filtering/denoise",
+              "path": "/av1-wiki.github.io/docs/filtering/denoise",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "filtering/detelecine",
+              "path": "/av1-wiki.github.io/docs/filtering/detelecine",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/av1-wiki.github.io/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/codecs",
+              "path": "/av1-wiki.github.io/docs/introduction/codecs",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/containers",
+              "path": "/av1-wiki.github.io/docs/introduction/containers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/high-dynamic-range",
+              "path": "/av1-wiki.github.io/docs/introduction/high-dynamic-range",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/prologue",
+              "path": "/av1-wiki.github.io/docs/introduction/prologue",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/psychovisual",
+              "path": "/av1-wiki.github.io/docs/introduction/psychovisual",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "introduction/video-artifacts",
+              "path": "/av1-wiki.github.io/docs/introduction/video-artifacts",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "metrics",
+              "path": "/av1-wiki.github.io/docs/metrics",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "prequisites",
+              "path": "/av1-wiki.github.io/docs/prequisites",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "privacy-policy",
+              "path": "/av1-wiki.github.io/docs/privacy-policy",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "resources",
+              "path": "/av1-wiki.github.io/docs/resources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "subtitles/SRT",
+              "path": "/av1-wiki.github.io/docs/subtitles/SRT",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-basics/congratulations",
+              "path": "/av1-wiki.github.io/docs/tutorial-basics/congratulations",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-basics/create-a-blog-post",
+              "path": "/av1-wiki.github.io/docs/tutorial-basics/create-a-blog-post",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-basics/create-a-document",
+              "path": "/av1-wiki.github.io/docs/tutorial-basics/create-a-document",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-basics/create-a-page",
+              "path": "/av1-wiki.github.io/docs/tutorial-basics/create-a-page",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-basics/deploy-your-site",
+              "path": "/av1-wiki.github.io/docs/tutorial-basics/deploy-your-site",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-basics/markdown-features",
+              "path": "/av1-wiki.github.io/docs/tutorial-basics/markdown-features",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-extras/manage-docs-versions",
+              "path": "/av1-wiki.github.io/docs/tutorial-extras/manage-docs-versions",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "tutorial-extras/translate-your-site",
+              "path": "/av1-wiki.github.io/docs/tutorial-extras/translate-your-site",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/av1an",
+              "path": "/av1-wiki.github.io/docs/utilities/av1an",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/dovi_tool",
+              "path": "/av1-wiki.github.io/docs/utilities/dovi_tool",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/eac3to",
+              "path": "/av1-wiki.github.io/docs/utilities/eac3to",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/FFMetrics",
+              "path": "/av1-wiki.github.io/docs/utilities/FFMetrics",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/hdr10plus_tool",
+              "path": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/MKVToolNix",
+              "path": "/av1-wiki.github.io/docs/utilities/MKVToolNix",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "utilities/YUView",
+              "path": "/av1-wiki.github.io/docs/utilities/YUView",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "vapoursynth",
+              "path": "/av1-wiki.github.io/docs/vapoursynth",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "video-players",
+              "path": "/av1-wiki.github.io/docs/video-players",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "welcome",
+              "path": "/av1-wiki.github.io/docs/welcome",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/-encoding-introduction",
+              "path": "/av1-wiki.github.io/docs/category/-encoding-introduction",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/-encoding-introduction-1",
+              "path": "/av1-wiki.github.io/docs/category/-encoding-introduction-1",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/tutorial---basics",
+              "path": "/av1-wiki.github.io/docs/category/tutorial---basics",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/tutorial---extras",
+              "path": "/av1-wiki.github.io/docs/category/tutorial---extras",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/av1-wiki.github.io/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

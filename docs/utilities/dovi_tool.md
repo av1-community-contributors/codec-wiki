@@ -1,0 +1,46 @@
+---
+label: dovi_tool
+order: 197
+date: 2023-05-07
+---
+
+# dovi_tool
+
+**dovi_tool** is a command line tool written in Rust combining multiple utilities for working with Dolby Vision.
+
+&nbsp;&nbsp;
+
+## Installation
+
+- Download pre-built binaries from [here](https://github.com/quietvoid/dovi_tool/releases)
+
+or
+- Compile yourself (Rust must be installed, minimum v1.64.0 at the time of writing)
+
+```bash
+git clone https://github.com/quietvoid/dovi_tool.git
+cd dovi_tool
+RUSTFLAGS="-C target-cpu=native" cargo build --release
+```
+
+on Windows:
+```bash
+git clone https://github.com/quietvoid/dovi_tool.git
+cd dovi_tool
+set RUSTFLAGS=-C target-cpu=native 
+cargo build --release
+```
+
+&nbsp;&nbsp;
+
+## Usage
+
+```bash
+dovi_tool [OPTIONS] <SUBCOMMAND>
+```
+
+To get more detailed options for a subcommand
+
+```bash
+dovi_tool <SUBCOMMAND> --help
+```

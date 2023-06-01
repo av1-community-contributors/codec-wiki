@@ -1,0 +1,27 @@
+{
+  "unversionedId": "video-players",
+  "id": "video-players",
+  "title": "Video Players",
+  "description": "To be filled.",
+  "source": "@site/docs/video-players.md",
+  "sourceDirName": ".",
+  "slug": "/video-players",
+  "permalink": "/av1-wiki.github.io/docs/video-players",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/video-players.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "sidebar_label": "▶️ Video Players",
+    "title": "Video Players"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "🖼️ VapourSynth",
+    "permalink": "/av1-wiki.github.io/docs/vapoursynth"
+  },
+  "next": {
+    "title": "👋 Welcome",
+    "permalink": "/av1-wiki.github.io/docs/welcome"
+  }
+}

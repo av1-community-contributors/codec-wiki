@@ -1,0 +1,28 @@
+{
+  "unversionedId": "metrics",
+  "id": "metrics",
+  "title": "Metrics",
+  "description": "Average anime encoder VapourSynth script",
+  "source": "@site/docs/metrics.md",
+  "sourceDirName": ".",
+  "slug": "/metrics",
+  "permalink": "/av1-wiki.github.io/docs/metrics",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/metrics.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "metrics",
+    "title": "Metrics",
+    "sidebar_label": "👁️ Metrics"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Detelecine",
+    "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+  },
+  "next": {
+    "title": "🗃️ Prequisites",
+    "permalink": "/av1-wiki.github.io/docs/prequisites"
+  }
+}

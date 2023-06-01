@@ -1,0 +1,21 @@
+{
+  "title": "Recent posts",
+  "items": [
+    {
+      "title": "Welcome",
+      "permalink": "/av1-wiki.github.io/blog/welcome"
+    },
+    {
+      "title": "MDX Blog Post",
+      "permalink": "/av1-wiki.github.io/blog/mdx-blog-post"
+    },
+    {
+      "title": "Long Blog Post",
+      "permalink": "/av1-wiki.github.io/blog/long-blog-post"
+    },
+    {
+      "title": "First Blog Post",
+      "permalink": "/av1-wiki.github.io/blog/first-blog-post"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "title": "💅🏼 Encoding Introduction",
+  "description": "Learn the basics of video encoding.",
+  "slug": "/category/-encoding-introduction",
+  "permalink": "/av1-wiki.github.io/docs/category/-encoding-introduction",
+  "navigation": {
+    "previous": {
+      "title": "Tutorial Intro",
+      "permalink": "/av1-wiki.github.io/docs/intro"
+    },
+    "next": {
+      "title": "AVM",
+      "permalink": "/av1-wiki.github.io/docs/encoders/AVM"
+    }
+  }
+}

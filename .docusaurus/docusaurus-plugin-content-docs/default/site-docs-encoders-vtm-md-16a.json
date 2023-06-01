@@ -1,0 +1,26 @@
+{
+  "unversionedId": "encoders/VTM",
+  "id": "encoders/VTM",
+  "title": "VTM",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/VTM.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/VTM",
+  "permalink": "/av1-wiki.github.io/docs/encoders/VTM",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/encoders/VTM.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "VTM"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SVT-VP9",
+    "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9"
+  },
+  "next": {
+    "title": "VVenC",
+    "permalink": "/av1-wiki.github.io/docs/encoders/VVenC"
+  }
+}
