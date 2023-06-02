@@ -71,11 +71,11 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/introduction',
+                to: '/docs/category/-encoding-introduction',
               },
               {
                 label: 'Encoders',
-                to: '/docs/encoders',
+                to: '/docs/category/encoders',
               },
             ],
           },
