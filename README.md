@@ -1,4 +1,8 @@
-# Clone & Push Instructions
+# AV1 Community Wiki
+
+A community maintained wiki for all things encoding.
+
+## Clone & Push Instructions
 **Make sure to clone from & edit the** `main` **branch only, and push your final changes to the** `development` **branch according to the instructions below.**
 
 1. Clone from the `main` branch to start to make a contribution:
@@ -22,7 +26,7 @@ $ GIT_USER=<username> DEPLOYMENT_BRANCH=deployment yarn deploy
 ```
 
 *Docusaurus Info*
-# Website
+## Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
