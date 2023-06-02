@@ -1,7 +1,8 @@
 ---
+position: 3
 id: metrics
 title: Metrics
-sidebar_label: 👁️ Metrics
+sidebar_label: 👁️Metrics
 ---
 
 # Metrics
