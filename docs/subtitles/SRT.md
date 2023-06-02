@@ -4,4 +4,25 @@ title: SRT
 
 # SRT
 
-To be To be filled.
+SubRip Text (SRT) is a text format for subtitles, described as 'the most basic of all subtitle formats'. SRT files are plain text with the extension `.srt`.
+
+## Format
+Subtitles are placed into sequentially ordered groups, with a starting and ending timestamp, encoded `hours:minutes:seconds,milliseconds`. Note the seperator for the millisecond value is a comma. The starting and ending value are seperated by ` --> `.
+### Unoffical features
+Some basic HTML tags are supported by some viewers, such as:
+* `<b>bold</b>` **bold**
+* `<i>italics</i>` *italics*
+* `<u></u>` underlined
+* `<font color="#0000FF">Blue</font>` colored text.
+
+Note these will be displayed verbatim on viewers that don't support these features.
+## Example
+```
+1
+00:00:00,000 --> 00:01:00,000
+This subtitle will be visible for the first minute of the stream
+
+2
+00:01:00,000 --> 00:01:30,000
+and this one for thirty seconds after that.
+```
