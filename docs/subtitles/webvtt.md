@@ -18,5 +18,15 @@ an ID, then they have to have a line specifying from where to where
 the cue should be displayed like this: `STARTTIME -> ENDTIME [optional
 settings go here]`, then all the text to be displayed goes after
 it. That text can have some HTML-like formatting in it. To learn about
-them, see [the
-documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#webvtt_cues).
+them, see [the documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#webvtt_cues).
+
+## Example
+
+    WEBVTT
+
+    00:01.000 --> 00:04.000
+    - Never drink liquid nitrogen.
+
+    00:05.000 --> 00:09.000
+    - It will perforate your stomach.
+    - You could die.
