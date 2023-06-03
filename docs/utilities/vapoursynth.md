@@ -1,9 +1,3 @@
----
-id: vapoursynth
-title: VapourSynth
-sidebar_label: 🖼️ VapourSynth
----
-
 # VapourSynth
 
 ![Average anime encoder VapourSynth script](https://cdn.discordapp.com/attachments/778167033401049098/1104718855256944660/VSEdit.png)

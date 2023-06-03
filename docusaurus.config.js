@@ -63,6 +63,11 @@ const config = {
           src: 'img/av1stonks.avif',
         },
       },
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
+      },
       footer: {
         style: 'dark',
         links: [

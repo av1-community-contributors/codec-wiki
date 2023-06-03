@@ -1,5 +1,5 @@
 ---
-sidebar_label: ▶️ Video Players
+sidebar_label: Video Players
 title: Video Players
 ---
 

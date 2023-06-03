@@ -1,7 +1,7 @@
 ---
 id: prequisites
 title: Prequisites
-sidebar_label: 🗃️ Prequisites
+sidebar_label: Prequisites
 ---
 
 # Prequisites

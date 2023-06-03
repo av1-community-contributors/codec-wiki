@@ -1,6 +1,6 @@
 {
-  "label": "Audio",
-  "position": 2,
+  "label": "Audio encoders",
+  "position": 3,
   "link": {
     "type": "generated-index",
     "description": "Learn about audio encoding."

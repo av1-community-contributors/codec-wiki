@@ -1,6 +1,7 @@
 ---
 title: FAQ
-sidebar_label: ❓ FAQ
+sidebar_label: FAQ
+position: 8
 ---
 
 # FAQ
