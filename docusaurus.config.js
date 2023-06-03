@@ -76,11 +76,11 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/category/-encoding-introduction',
+                to: '/docs/category/encoding-introduction',
               },
               {
                 label: 'Encoders',
-                to: '/docs/category/encoders',
+                to: '/docs/category/video-encoders',
               },
             ],
           },
