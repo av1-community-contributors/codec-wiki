@@ -1,0 +1,1 @@
+WebVTT, or Web Video Text Tracks, is the format for subtitles on the web. It is used with the [HTML \<track\> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), or embedded into a webm container.
