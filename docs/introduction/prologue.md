@@ -7,8 +7,7 @@ sidebar_position: 1
 
 Videos, we're no strangers to ~~love~~ them. They're EVERYWHERE, from
 your home television to your phone. Videos have become a part of our
-daily lives as a means to entertainment, source of information, or as
-a simple communication medium.
+daily lives as a means to entertainment, source of information, or as a simple communication medium.
 
 But have you ever wondered how these things work? How that 50MB Shrek
 movie spread around Discord is compressed? Why there are so many

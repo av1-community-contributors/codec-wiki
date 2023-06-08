@@ -8,7 +8,7 @@ position: 8
 
 ## Why are you doing this?
 
-Because nobody else is doing it, and I am sick of scouring through codes for "Documentation".
+Because nobody else is doing it, and I am sick of scouring through code for "Documentation".
 
 
 ## Why not use MediaWiki?
