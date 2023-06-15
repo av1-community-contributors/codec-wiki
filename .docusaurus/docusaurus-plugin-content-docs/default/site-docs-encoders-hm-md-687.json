@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/HM",
+  "id": "encoders/HM",
+  "title": "HM",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/HM.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/HM",
+  "permalink": "/av1-wiki.github.io/docs/encoders/HM",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/HM.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 13,
+  "frontMatter": {
+    "label": "HM",
+    "sidebar_position": 13
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "AVM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/AVM"
+  },
+  "next": {
+    "title": "JM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+  }
+}

@@ -1,8 +1,11 @@
 ---
 label: Av1an
-order: 200
+sidebar_position: 1
 templating: true
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Av1an
 
@@ -37,25 +40,12 @@ Since Nmkoder already ships everything by default and it's last release was 29th
 
 **Pre-built binary, bleeding edge [Recommended]:**
 
-- Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases), select "Latest" and click the "Assets" dropdown. Put it in PATH
-
-**Compiling, via cargo:**
-
-- ``cargo install av1an``
-
-**Compiling [NOT recommended]:**
-```bash
-git clone https://github.com/master-of-zen/Av1an.git
-cd Av1an
-set RUSTFLAGS=-C target-cpu=native
-cargo build --release
-```
-You will run into errors with pkg-config ``libavutil.pc`` being unavailable or whatnot, I am a total noob at software compilation and cannot help you with this as I am also stuck with it, which is why I am heavily against this method. If you know how to solve this contact me and I'll get this section updated.
+- Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases), select "Latest" and click the "Assets" dropdown. Put it in [PATH](https://www.maketecheasier.com/what-is-the-windows-path)
 
 &nbsp;&nbsp;
 ### MacOS
 
-Sorry, I don't use or have Mac. You're on your own.
+To be filled.
 
 &nbsp;&nbsp;
 ### Linux
@@ -65,7 +55,9 @@ Sorry, I don't use or have Mac. You're on your own.
 Install [Aviator](https://github.com/gianni-rosato/aviator), it is currently only available as a [Flatpak](https://beta.flathub.org/apps/net.natesales.Aviator)
 or
 Install [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically same thing but av1an + rav1e
-**Keep in mind Aviator ships with SVT-AV1 and rAV1ator with rav1e instead of Aomenc/AOM-AV1.**
+:::note
+Keep in mind Aviator only ships with **SVT-AV1** and rAV1ator with **rav1e** instead of Aomenc/AOM-AV1.
+:::
 &nbsp;&nbsp;
 
 
@@ -94,30 +86,44 @@ after done, the binary will be located in ``target/release``, copy it to somewhe
 ### Docker
 The following examples assume the file you want to encode is in your current working directory.
 
-**Linux**
+<Tabs>
+  <TabItem value="windows" label="Windows" default>
 
-```bash
-docker run --privileged -v "$(pwd):/videos" --user $(id -u):$(id -g) -it --rm masterofzen/av1an:latest -i S01E01.mkv {options}
-```
+   ```bash
+   docker run --privileged -v "$(pwd):/videos" --user $(id -u):$(id -g) -it --rm masterofzen/av1an:latest -i S01E01.mkv {options}
+   ```
+  </TabItem>
+  <TabItem value="linux" label="Linux">
 
-**Windows**
+   ```bash
+   docker run --privileged -v "${PWD}:/videos" -it --rm masterofzen/av1an:latest -i S01E01.mkv {options}
+   ```
+  </TabItem>
+  <TabItem value="build" label="Manual Build">
 
-```bash
-docker run --privileged -v "${PWD}:/videos" -it --rm masterofzen/av1an:latest -i S01E01.mkv {options}
-```
-
-**The image can also be manually built by running**
-
-```bash
-docker build -t "av1an" .
-```
-in the root directory of this repository. The dependencies will automatically be installed into the image, no manual installations necessary.
+   ```bash
+   docker build -t "av1an" .
+   ```
+   Run in the root directory of the repository. The dependencies will automatically be installed into the image, no manual installations necessary.
+  </TabItem>
+</Tabs>
 
 
+&nbsp;&nbsp;
+
+:::info
 To specify a different directory to use you would replace $(pwd) with the directory
 
 ```bash
 docker run --privileged -v "/c/Users/masterofzen/Videos":/videos --user $(id -u):$(id -g) -it --rm masterofzen/av1an:latest -i S01E01.mkv {options}
 ```
 
-The ``--user`` flag is required on linux to avoid permission issues with the docker container not being able to write to the location, if you get permission issues ensure your user has access to the folder that you are using to encode.
+The ``--user`` flag is required on Linux to avoid permission issues with the docker container not being able to write to the location, if you get permission issues ensure your user has access to the folder that you are using to encode.
+:::
+
+&nbsp;&nbsp;
+
+## Troubleshooting
+
+1. mkvmerge "Open file error" on Linux - Run ``ulimit -n 20000``
+2. Gray screen flashing for a single frame in output - Create a lossless intermediary with x264 ``-qp 0``

@@ -1,0 +1,24 @@
+{
+  "unversionedId": "privacy-policy",
+  "id": "privacy-policy",
+  "title": "Privacy Policy",
+  "description": "This site is hosted on Github Pages.",
+  "source": "@site/docs/privacy-policy.md",
+  "sourceDirName": ".",
+  "slug": "/privacy-policy",
+  "permalink": "/av1-wiki.github.io/docs/privacy-policy",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/privacy-policy.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "Privacy Policy",
+    "sidebar_label": "🔏 Privacy Policy",
+    "position": 13
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "❓ FAQ",
+    "permalink": "/av1-wiki.github.io/docs/FAQ"
+  }
+}

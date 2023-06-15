@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/vpxenc",
+  "id": "encoders/vpxenc",
+  "title": "vpxenc",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/vpxenc.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/vpxenc",
+  "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/vpxenc.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "vpxenc",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "aomenc",
+    "permalink": "/av1-wiki.github.io/docs/encoders/aomenc"
+  },
+  "next": {
+    "title": "SVT-AV1",
+    "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1"
+  }
+}

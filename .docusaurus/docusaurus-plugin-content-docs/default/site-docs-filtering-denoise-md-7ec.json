@@ -1,0 +1,28 @@
+{
+  "unversionedId": "filtering/denoise",
+  "id": "filtering/denoise",
+  "title": "Denoise",
+  "description": "To be filled.",
+  "source": "@site/docs/filtering/denoise.md",
+  "sourceDirName": "filtering",
+  "slug": "/filtering/denoise",
+  "permalink": "/av1-wiki.github.io/docs/filtering/denoise",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/denoise.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "title": "Denoise",
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Deinterlace",
+    "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace"
+  },
+  "next": {
+    "title": "Detelecine / Inverse Telecine",
+    "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+  }
+}

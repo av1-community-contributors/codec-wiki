@@ -1,6 +1,6 @@
 ---
 label: rav1e
-order: 196
+sidebar_position: 5
 date: 2023-05-09
 ---
 
@@ -12,24 +12,7 @@ rav1e is a command line application for encoding AV1 written in Rust and Assembl
 
 ## FFmpeg
 
-rav1e is available in FFmpeg via ``librav1e``, check if you have it by running ``ffmpeg -h encoder=librav1e`` which would display the following output (As of 2023-05-09):
-=== CLI output
-```bash
-Encoder librav1e [librav1e AV1]:
-    General capabilities: dr1 delay threads 
-    Threading capabilities: other
-    Supported pixel formats: yuv420p yuvj420p yuv420p10le yuv420p12le yuv422p yuvj422p yuv422p10le yuv422p12le yuv444p yuvj444p yuv444p10le yuv444p12le
-librav1e AVOptions:
-  -qp                <int>        E..V....... use constant quantizer mode (from -1 to 255) (default -1)
-  -speed             <int>        E..V....... what speed preset to use (from -1 to 10) (default -1)
-  -tiles             <int>        E..V....... number of tiles encode with (from -1 to I64_MAX) (default 0)
-  -tile-rows         <int>        E..V....... number of tiles rows to encode with (from -1 to I64_MAX) (default 0)
-  -tile-columns      <int>        E..V....... number of tiles columns to encode with (from -1 to I64_MAX) (default 0)
-  -rav1e-params      <dictionary> E..V....... set the rav1e configuration using a :-separated list of key=value parameters
-```
-===
-
-You can input non-FFmpeg standard rav1e parameters via ``-rav1e-params``. Please keep in mind that unless you built FFmpeg yourself, you are using the most vanilla version of rav1e.
+rav1e is available in FFmpeg via ``librav1e``, check if you have it by running ``ffmpeg -h encoder=librav1e``. You can input non-FFmpeg standard rav1e parameters via ``-rav1e-params``. Please keep in mind that unless you built FFmpeg yourself, you are using the most vanilla version of rav1e.
 
 &nbsp;&nbsp;
 
@@ -41,9 +24,9 @@ You can input non-FFmpeg standard rav1e parameters via ``-rav1e-params``. Please
 
 &nbsp;&nbsp;
 
-!!! warning
+:::caution
 Compilation requires NASM
-!!!
+:::
 
 **Compiling, via cargo:**
 
@@ -110,4 +93,4 @@ ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - 
 
 ## Tips and tricks
 
-1. 
+1. Use 2x1 tiles or ``tile-columns 2`` and ``tile-rows 1`` for 4K (2160p) encoding, this will help with both encoding and decoding.

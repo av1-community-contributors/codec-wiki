@@ -1,0 +1,29 @@
+{
+  "unversionedId": "video-players",
+  "id": "video-players",
+  "title": "Video Players",
+  "description": "To be filled.",
+  "source": "@site/docs/video-players.md",
+  "sourceDirName": ".",
+  "slug": "/video-players",
+  "permalink": "/av1-wiki.github.io/docs/video-players",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/video-players.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "title": "Video Players",
+    "sidebar_label": "▶️ Video Players",
+    "sidebar_position": 10
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "👁️ Metrics",
+    "permalink": "/av1-wiki.github.io/docs/metrics"
+  },
+  "next": {
+    "title": "🗃️ Resources",
+    "permalink": "/av1-wiki.github.io/docs/resources"
+  }
+}

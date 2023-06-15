@@ -1,0 +1,29 @@
+{
+  "unversionedId": "prequisites",
+  "id": "prequisites",
+  "title": "Prequisites",
+  "description": "- Patience.",
+  "source": "@site/docs/prequisites.md",
+  "sourceDirName": ".",
+  "slug": "/prequisites",
+  "permalink": "/av1-wiki.github.io/docs/prequisites",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/prequisites.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "Prequisites",
+    "sidebar_label": "🗳️ Prequisites",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "✒️ Contribution Guide",
+    "permalink": "/av1-wiki.github.io/docs/contribution-guide"
+  },
+  "next": {
+    "title": "Prologue",
+    "permalink": "/av1-wiki.github.io/docs/introduction/prologue"
+  }
+}

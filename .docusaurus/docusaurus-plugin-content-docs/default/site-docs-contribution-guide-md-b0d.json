@@ -1,0 +1,25 @@
+{
+  "unversionedId": "contribution-guide",
+  "id": "contribution-guide",
+  "title": "Contribution Guide",
+  "description": "AV1 Community Wiki - community maintained wiki for all things encoding.",
+  "source": "@site/docs/contribution-guide.md",
+  "sourceDirName": ".",
+  "slug": "/contribution-guide",
+  "permalink": "/av1-wiki.github.io/docs/contribution-guide",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/contribution-guide.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Contribution Guide",
+    "sidebar_label": "✒️ Contribution Guide",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "🗳️ Prequisites",
+    "permalink": "/av1-wiki.github.io/docs/prequisites"
+  }
+}

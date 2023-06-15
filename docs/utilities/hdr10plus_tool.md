@@ -1,7 +1,6 @@
 ---
 label: hdr10plus_tool
-order: 197
-date: 2023-05-07
+sidebar_position: 7
 ---
 
 # hdr10plus_tool
@@ -43,4 +42,35 @@ To get more detailed options for a subcommand
 
 ```bash
 hdr10plus_tool <SUBCOMMAND> --help
+```
+
+### Extracting
+
+Extract from raw bitstream
+```bash
+hdr10plus_tool extract video.hevc -o metadata.json
+```
+
+Extract using FFmpeg pipe (Recommended)
+```bash
+ffmpeg -hide_banner -strict -2 -i input.mkv -map 0:v:0 -c copy -vbsf hevc_mp4toannexb -f hevc - | hdr10plus_tool extract -o metadata.json -
+```
+
+### Injecting
+
+Inject to raw bitstream
+```bash
+hdr10plus_tool inject -i video.hevc -j metadata.json -o injected_output.hevc
+```
+
+### Remove HDR10+ Metadata
+
+Remove from raw bitstream
+```bash
+hdr10plus_tool remove video.hevc -o hdr10plus_removed_output.hevc
+```
+
+Remove using FFmpeg pipe (Recommended)
+```bash
+ffmpeg -hide_banner -strict -2 -i input.mkv -map 0:v:0 -c copy -vbsf hevc_mp4toannexb -f hevc - | hdr10plus_tool remove -
 ```

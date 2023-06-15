@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/VVenC",
+  "id": "encoders/VVenC",
+  "title": "VVenC",
+  "description": "`vvencapp` spamming the terminal output with progress per-picture-order-count cause god knows why.",
+  "source": "@site/docs/encoders/VVenC.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/VVenC",
+  "permalink": "/av1-wiki.github.io/docs/encoders/VVenC",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/VVenC.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "title": "VVenC",
+    "sidebar_position": 9
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SVT-VP9",
+    "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9"
+  },
+  "next": {
+    "title": "uvg266",
+    "permalink": "/av1-wiki.github.io/docs/encoders/uvg266"
+  }
+}

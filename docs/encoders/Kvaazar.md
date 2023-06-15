@@ -1,9 +1,8 @@
 ---
 label: Kvaazar
-order: 193
-
+sidebar_position: 6
 ---
 
 # Kvaazar
 
-Discord: ForIndex#0621 (692694682974683157)
+To be filled.

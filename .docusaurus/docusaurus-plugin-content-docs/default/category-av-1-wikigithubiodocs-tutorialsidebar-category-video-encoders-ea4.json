@@ -1,0 +1,16 @@
+{
+  "title": "Video encoders",
+  "description": "Get to know the encoders you can use.",
+  "slug": "/category/video-encoders",
+  "permalink": "/av1-wiki.github.io/docs/category/video-encoders",
+  "navigation": {
+    "previous": {
+      "title": "High Dynamic Range",
+      "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range"
+    },
+    "next": {
+      "title": "x264",
+      "permalink": "/av1-wiki.github.io/docs/encoders/x264"
+    }
+  }
+}

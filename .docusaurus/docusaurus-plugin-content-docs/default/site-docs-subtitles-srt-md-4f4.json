@@ -1,0 +1,26 @@
+{
+  "unversionedId": "subtitles/SRT",
+  "id": "subtitles/SRT",
+  "title": "SRT",
+  "description": "SubRip Text (SRT) is a text format for subtitles, described as 'the most basic of all subtitle formats'. SRT files are plain text with the extension .srt.",
+  "source": "@site/docs/subtitles/SRT.md",
+  "sourceDirName": "subtitles",
+  "slug": "/subtitles/SRT",
+  "permalink": "/av1-wiki.github.io/docs/subtitles/SRT",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/subtitles/SRT.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "SRT"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Dehalo",
+    "permalink": "/av1-wiki.github.io/docs/filtering/dehalo"
+  },
+  "next": {
+    "title": "WebVTT",
+    "permalink": "/av1-wiki.github.io/docs/subtitles/webvtt"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "unversionedId": "utilities/Vapoursynth",
+  "id": "utilities/Vapoursynth",
+  "title": "VapourSynth",
+  "description": "Average anime encoder VapourSynth script",
+  "source": "@site/docs/utilities/Vapoursynth.md",
+  "sourceDirName": "utilities",
+  "slug": "/utilities/Vapoursynth",
+  "permalink": "/av1-wiki.github.io/docs/utilities/Vapoursynth",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/Vapoursynth.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "eac3to",
+    "permalink": "/av1-wiki.github.io/docs/utilities/eac3to"
+  },
+  "next": {
+    "title": "👁️ Metrics",
+    "permalink": "/av1-wiki.github.io/docs/metrics"
+  }
+}

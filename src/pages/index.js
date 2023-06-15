@@ -16,7 +16,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/category/encoding-introduction">
+            to="/docs/prequisites">
             Start learning!
           </Link>
         </div>
@@ -25,7 +25,7 @@ function HomepageHeader() {
         <p className="hero__subtitle">
         Welcome! This place is your future one-stop-shop for all media encoding documentations and beginners guides including x264, x265, Vapoursynth, and much more! </p>
         <p className="hero__subtitle">
-          Currently this website is in a very very very heavy work in progress, some parts will be altered or even overhauled completely based on fellow encoders input, new research, and my knowledge.
+          Currently this website is in a very very very heavy work in progress, some parts will be altered or even overhauled completely based on fellow encoders input, new research, and our knowledge.
         </p>
       </div>
     </header>

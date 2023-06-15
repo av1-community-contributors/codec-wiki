@@ -1,0 +1,28 @@
+{
+  "unversionedId": "filtering/Vapoursynth",
+  "id": "filtering/Vapoursynth",
+  "title": "Vapoursynth",
+  "description": "Average anime encoder VapourSynth script",
+  "source": "@site/docs/filtering/Vapoursynth.md",
+  "sourceDirName": "filtering",
+  "slug": "/filtering/Vapoursynth",
+  "permalink": "/av1-wiki.github.io/docs/filtering/Vapoursynth",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/Vapoursynth.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "label": "Vapoursynth",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Intro",
+    "permalink": "/av1-wiki.github.io/docs/filtering/intro"
+  },
+  "next": {
+    "title": "Deband",
+    "permalink": "/av1-wiki.github.io/docs/filtering/deband"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/aomenc",
+  "id": "encoders/aomenc",
+  "title": "aomenc",
+  "description": "aomenc or libaom is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.",
+  "source": "@site/docs/encoders/aomenc.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/aomenc",
+  "permalink": "/av1-wiki.github.io/docs/encoders/aomenc",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/aomenc.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "title": "aomenc",
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "x265",
+    "permalink": "/av1-wiki.github.io/docs/encoders/x265"
+  },
+  "next": {
+    "title": "vpxenc",
+    "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc"
+  }
+}

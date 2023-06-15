@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/x265",
+  "id": "encoders/x265",
+  "title": "x265",
+  "description": "x265 is a software library and command line application for encoding H.265 / HEVC developed by MulticoreWare, written in C++ and x86 assembly, and finally released in 2013.",
+  "source": "@site/docs/encoders/x265.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/x265",
+  "permalink": "/av1-wiki.github.io/docs/encoders/x265",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/x265.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "title": "x265",
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "x264",
+    "permalink": "/av1-wiki.github.io/docs/encoders/x264"
+  },
+  "next": {
+    "title": "aomenc",
+    "permalink": "/av1-wiki.github.io/docs/encoders/aomenc"
+  }
+}

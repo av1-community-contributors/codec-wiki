@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/x264",
+  "id": "encoders/x264",
+  "title": "x264",
+  "description": "x264 is a software library and command line application for encoding H.264 / AVC developed by VideoLAN, the people behind the ever-popular VLC Media Player and released under GNU GPL. It is written in C and Assembly with almost two decades worth of development and threading optimizations which makes it the fastest software video encoder available, which also happens to be extremely popular.",
+  "source": "@site/docs/encoders/x264.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/x264",
+  "permalink": "/av1-wiki.github.io/docs/encoders/x264",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/x264.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "x264",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "High Dynamic Range",
+    "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range"
+  },
+  "next": {
+    "title": "x265",
+    "permalink": "/av1-wiki.github.io/docs/encoders/x265"
+  }
+}

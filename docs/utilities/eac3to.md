@@ -1,7 +1,6 @@
 ---
 label: eac3to
-order: 195
-date: 2023-05-09
+sidebar_position: 8
 ---
 
 # eac3to
@@ -52,4 +51,9 @@ eac3to Movie.2024.Bluray/BDMV
 
 ```bash
 eac3to Movie.2024.Bluray/BDMV -demux
+```
+
+### Delay audio
+```bash
+eac3to input.eac3 output.eac3 1000ms
 ```

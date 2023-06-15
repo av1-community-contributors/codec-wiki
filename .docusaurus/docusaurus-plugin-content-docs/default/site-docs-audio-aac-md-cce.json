@@ -1,0 +1,26 @@
+{
+  "unversionedId": "audio/AAC",
+  "id": "audio/AAC",
+  "title": "AAC",
+  "description": "To be filled.",
+  "source": "@site/docs/audio/AAC.md",
+  "sourceDirName": "audio",
+  "slug": "/audio/AAC",
+  "permalink": "/av1-wiki.github.io/docs/audio/AAC",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/audio/AAC.md",
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "title": "AAC"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "JM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+  },
+  "next": {
+    "title": "Intro",
+    "permalink": "/av1-wiki.github.io/docs/filtering/intro"
+  }
+}

@@ -1,7 +1,8 @@
 ---
-label: Deband
-order: 200
+title: Deband
+sidebar_position: 2
 ---
 
-# Detelecine
+# Deband
 
+To be filled.

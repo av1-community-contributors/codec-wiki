@@ -1,0 +1,1550 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/av1-wiki.github.io/docs",
+          "tagsPath": "/av1-wiki.github.io/docs/tags",
+          "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs",
+          "editUrlLocalized": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/home/rafie/av1-wiki.github.io/sidebars.js",
+          "contentPath": "/home/rafie/av1-wiki.github.io/docs",
+          "contentPathLocalized": "/home/rafie/av1-wiki.github.io/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "unversionedId": "audio/AAC",
+              "id": "audio/AAC",
+              "title": "AAC",
+              "description": "To be filled.",
+              "source": "@site/docs/audio/AAC.md",
+              "sourceDirName": "audio",
+              "slug": "/audio/AAC",
+              "permalink": "/av1-wiki.github.io/docs/audio/AAC",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/audio/AAC.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "AAC"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "JM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+              },
+              "next": {
+                "title": "Intro",
+                "permalink": "/av1-wiki.github.io/docs/filtering/intro"
+              }
+            },
+            {
+              "unversionedId": "contribution-guide",
+              "id": "contribution-guide",
+              "title": "Contribution Guide",
+              "description": "AV1 Community Wiki - community maintained wiki for all things encoding.",
+              "source": "@site/docs/contribution-guide.md",
+              "sourceDirName": ".",
+              "slug": "/contribution-guide",
+              "permalink": "/av1-wiki.github.io/docs/contribution-guide",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/contribution-guide.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Contribution Guide",
+                "sidebar_label": "✒️ Contribution Guide",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "🗳️ Prequisites",
+                "permalink": "/av1-wiki.github.io/docs/prequisites"
+              }
+            },
+            {
+              "unversionedId": "encoders/aomenc",
+              "id": "encoders/aomenc",
+              "title": "aomenc",
+              "description": "aomenc or libaom is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.",
+              "source": "@site/docs/encoders/aomenc.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/aomenc",
+              "permalink": "/av1-wiki.github.io/docs/encoders/aomenc",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/aomenc.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "aomenc",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "x265",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x265"
+              },
+              "next": {
+                "title": "vpxenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc"
+              }
+            },
+            {
+              "unversionedId": "encoders/AVM",
+              "id": "encoders/AVM",
+              "title": "AVM",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/AVM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/AVM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/AVM",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/AVM.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 12,
+              "frontMatter": {
+                "label": "AVM",
+                "sidebar_position": 12
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "VTM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+              },
+              "next": {
+                "title": "HM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/HM"
+              }
+            },
+            {
+              "unversionedId": "encoders/HM",
+              "id": "encoders/HM",
+              "title": "HM",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/HM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/HM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/HM",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/HM.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 13,
+              "frontMatter": {
+                "label": "HM",
+                "sidebar_position": 13
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "AVM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/AVM"
+              },
+              "next": {
+                "title": "JM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+              }
+            },
+            {
+              "unversionedId": "encoders/JM",
+              "id": "encoders/JM",
+              "title": "JM",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/JM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/JM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/JM",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/JM.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 14,
+              "frontMatter": {
+                "label": "JM",
+                "sidebar_position": 14
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "HM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/HM"
+              },
+              "next": {
+                "title": "AAC",
+                "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+              }
+            },
+            {
+              "unversionedId": "encoders/Kvaazar",
+              "id": "encoders/Kvaazar",
+              "title": "Kvaazar",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/Kvaazar.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/Kvaazar",
+              "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/Kvaazar.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "label": "Kvaazar",
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "rav1e",
+                "permalink": "/av1-wiki.github.io/docs/encoders/rav1e"
+              },
+              "next": {
+                "title": "SVT-HEVC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC"
+              }
+            },
+            {
+              "unversionedId": "encoders/rav1e",
+              "id": "encoders/rav1e",
+              "title": "rav1e",
+              "description": "rav1e is a command line application for encoding AV1 written in Rust and Assembly joint-developed by Xiph.org and Mozilla.",
+              "source": "@site/docs/encoders/rav1e.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/rav1e",
+              "permalink": "/av1-wiki.github.io/docs/encoders/rav1e",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/rav1e.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "label": "rav1e",
+                "sidebar_position": 5,
+                "date": "2023-05-09T00:00:00.000Z"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SVT-AV1",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1"
+              },
+              "next": {
+                "title": "Kvaazar",
+                "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar"
+              }
+            },
+            {
+              "unversionedId": "encoders/SVT-AV1",
+              "id": "encoders/SVT-AV1",
+              "title": "SVT-AV1",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/SVT-AV1.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/SVT-AV1",
+              "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/SVT-AV1.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "label": "SVT-AV1",
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "vpxenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc"
+              },
+              "next": {
+                "title": "rav1e",
+                "permalink": "/av1-wiki.github.io/docs/encoders/rav1e"
+              }
+            },
+            {
+              "unversionedId": "encoders/SVT-HEVC",
+              "id": "encoders/SVT-HEVC",
+              "title": "SVT-HEVC",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/SVT-HEVC.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/SVT-HEVC",
+              "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/SVT-HEVC.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 7,
+              "frontMatter": {
+                "title": "SVT-HEVC",
+                "sidebar_position": 7
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Kvaazar",
+                "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar"
+              },
+              "next": {
+                "title": "SVT-VP9",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9"
+              }
+            },
+            {
+              "unversionedId": "encoders/SVT-VP9",
+              "id": "encoders/SVT-VP9",
+              "title": "SVT-VP9",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/SVT-VP9.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/SVT-VP9",
+              "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/SVT-VP9.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 8,
+              "frontMatter": {
+                "title": "SVT-VP9",
+                "sidebar_position": 8
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SVT-HEVC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-HEVC"
+              },
+              "next": {
+                "title": "VVenC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VVenC"
+              }
+            },
+            {
+              "unversionedId": "encoders/uvg266",
+              "id": "encoders/uvg266",
+              "title": "uvg266",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/uvg266.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/uvg266",
+              "permalink": "/av1-wiki.github.io/docs/encoders/uvg266",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/uvg266.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "label": "uvg266",
+                "sidebar_position": 10
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "VVenC",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VVenC"
+              },
+              "next": {
+                "title": "VTM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+              }
+            },
+            {
+              "unversionedId": "encoders/vpxenc",
+              "id": "encoders/vpxenc",
+              "title": "vpxenc",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/vpxenc.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/vpxenc",
+              "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/vpxenc.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "vpxenc",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "aomenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/aomenc"
+              },
+              "next": {
+                "title": "SVT-AV1",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1"
+              }
+            },
+            {
+              "unversionedId": "encoders/VTM",
+              "id": "encoders/VTM",
+              "title": "VTM",
+              "description": "To be filled.",
+              "source": "@site/docs/encoders/VTM.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/VTM",
+              "permalink": "/av1-wiki.github.io/docs/encoders/VTM",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/VTM.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 11,
+              "frontMatter": {
+                "title": "VTM",
+                "sidebar_position": 11
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "uvg266",
+                "permalink": "/av1-wiki.github.io/docs/encoders/uvg266"
+              },
+              "next": {
+                "title": "AVM",
+                "permalink": "/av1-wiki.github.io/docs/encoders/AVM"
+              }
+            },
+            {
+              "unversionedId": "encoders/VVenC",
+              "id": "encoders/VVenC",
+              "title": "VVenC",
+              "description": "`vvencapp` spamming the terminal output with progress per-picture-order-count cause god knows why.",
+              "source": "@site/docs/encoders/VVenC.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/VVenC",
+              "permalink": "/av1-wiki.github.io/docs/encoders/VVenC",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/VVenC.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 9,
+              "frontMatter": {
+                "title": "VVenC",
+                "sidebar_position": 9
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SVT-VP9",
+                "permalink": "/av1-wiki.github.io/docs/encoders/SVT-VP9"
+              },
+              "next": {
+                "title": "uvg266",
+                "permalink": "/av1-wiki.github.io/docs/encoders/uvg266"
+              }
+            },
+            {
+              "unversionedId": "encoders/x264",
+              "id": "encoders/x264",
+              "title": "x264",
+              "description": "x264 is a software library and command line application for encoding H.264 / AVC developed by VideoLAN, the people behind the ever-popular VLC Media Player and released under GNU GPL. It is written in C and Assembly with almost two decades worth of development and threading optimizations which makes it the fastest software video encoder available, which also happens to be extremely popular.",
+              "source": "@site/docs/encoders/x264.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/x264",
+              "permalink": "/av1-wiki.github.io/docs/encoders/x264",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/x264.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "x264",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "High Dynamic Range",
+                "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range"
+              },
+              "next": {
+                "title": "x265",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x265"
+              }
+            },
+            {
+              "unversionedId": "encoders/x265",
+              "id": "encoders/x265",
+              "title": "x265",
+              "description": "x265 is a software library and command line application for encoding H.265 / HEVC developed by MulticoreWare, written in C++ and x86 assembly, and finally released in 2013.",
+              "source": "@site/docs/encoders/x265.md",
+              "sourceDirName": "encoders",
+              "slug": "/encoders/x265",
+              "permalink": "/av1-wiki.github.io/docs/encoders/x265",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/x265.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "x265",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "x264",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x264"
+              },
+              "next": {
+                "title": "aomenc",
+                "permalink": "/av1-wiki.github.io/docs/encoders/aomenc"
+              }
+            },
+            {
+              "unversionedId": "FAQ",
+              "id": "FAQ",
+              "title": "FAQ",
+              "description": "Why are you doing this?",
+              "source": "@site/docs/FAQ.md",
+              "sourceDirName": ".",
+              "slug": "/FAQ",
+              "permalink": "/av1-wiki.github.io/docs/FAQ",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/FAQ.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "FAQ",
+                "sidebar_label": "❓ FAQ",
+                "position": 12
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "🗃️ Resources",
+                "permalink": "/av1-wiki.github.io/docs/resources"
+              },
+              "next": {
+                "title": "🔏 Privacy Policy",
+                "permalink": "/av1-wiki.github.io/docs/privacy-policy"
+              }
+            },
+            {
+              "unversionedId": "filtering/deband",
+              "id": "filtering/deband",
+              "title": "Deband",
+              "description": "To be filled.",
+              "source": "@site/docs/filtering/deband.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/deband",
+              "permalink": "/av1-wiki.github.io/docs/filtering/deband",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/deband.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Deband",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Vapoursynth",
+                "permalink": "/av1-wiki.github.io/docs/filtering/Vapoursynth"
+              },
+              "next": {
+                "title": "Deinterlace",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace"
+              }
+            },
+            {
+              "unversionedId": "filtering/dehalo",
+              "id": "filtering/dehalo",
+              "title": "Dehalo",
+              "description": "To be filled.",
+              "source": "@site/docs/filtering/dehalo.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/dehalo",
+              "permalink": "/av1-wiki.github.io/docs/filtering/dehalo",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/dehalo.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "title": "Dehalo",
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Detelecine / Inverse Telecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+              },
+              "next": {
+                "title": "SRT",
+                "permalink": "/av1-wiki.github.io/docs/subtitles/SRT"
+              }
+            },
+            {
+              "unversionedId": "filtering/deinterlace",
+              "id": "filtering/deinterlace",
+              "title": "Deinterlace",
+              "description": "To be filled.",
+              "source": "@site/docs/filtering/deinterlace.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/deinterlace",
+              "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/deinterlace.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Deinterlace",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Deband",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deband"
+              },
+              "next": {
+                "title": "Denoise",
+                "permalink": "/av1-wiki.github.io/docs/filtering/denoise"
+              }
+            },
+            {
+              "unversionedId": "filtering/denoise",
+              "id": "filtering/denoise",
+              "title": "Denoise",
+              "description": "To be filled.",
+              "source": "@site/docs/filtering/denoise.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/denoise",
+              "permalink": "/av1-wiki.github.io/docs/filtering/denoise",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/denoise.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "Denoise",
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Deinterlace",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deinterlace"
+              },
+              "next": {
+                "title": "Detelecine / Inverse Telecine",
+                "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+              }
+            },
+            {
+              "unversionedId": "filtering/detelecine",
+              "id": "filtering/detelecine",
+              "title": "Detelecine / Inverse Telecine",
+              "description": "To be filled.",
+              "source": "@site/docs/filtering/detelecine.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/detelecine",
+              "permalink": "/av1-wiki.github.io/docs/filtering/detelecine",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/detelecine.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "title": "Detelecine / Inverse Telecine",
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Denoise",
+                "permalink": "/av1-wiki.github.io/docs/filtering/denoise"
+              },
+              "next": {
+                "title": "Dehalo",
+                "permalink": "/av1-wiki.github.io/docs/filtering/dehalo"
+              }
+            },
+            {
+              "unversionedId": "filtering/intro",
+              "id": "filtering/intro",
+              "title": "Intro",
+              "description": "In the future, you will definitely come into contact with less than ideal or even downright terrible media, like a ton of film grain/unwanted noise that explodes the bitrate because of their randomness, annoying banding, random halos. Or even in more extreme cases, Interlaced and telecined videos you might come across because they're old and nobody cared about restoring them.",
+              "source": "@site/docs/filtering/intro.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/intro",
+              "permalink": "/av1-wiki.github.io/docs/filtering/intro",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/intro.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Intro",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "AAC",
+                "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+              },
+              "next": {
+                "title": "Vapoursynth",
+                "permalink": "/av1-wiki.github.io/docs/filtering/Vapoursynth"
+              }
+            },
+            {
+              "unversionedId": "filtering/Vapoursynth",
+              "id": "filtering/Vapoursynth",
+              "title": "Vapoursynth",
+              "description": "Average anime encoder VapourSynth script",
+              "source": "@site/docs/filtering/Vapoursynth.md",
+              "sourceDirName": "filtering",
+              "slug": "/filtering/Vapoursynth",
+              "permalink": "/av1-wiki.github.io/docs/filtering/Vapoursynth",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/Vapoursynth.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "label": "Vapoursynth",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Intro",
+                "permalink": "/av1-wiki.github.io/docs/filtering/intro"
+              },
+              "next": {
+                "title": "Deband",
+                "permalink": "/av1-wiki.github.io/docs/filtering/deband"
+              }
+            },
+            {
+              "unversionedId": "introduction/codecs",
+              "id": "introduction/codecs",
+              "title": "Codecs",
+              "description": "Codecs, shortened from coder-decoders, are a system for encoding and decoding data. Image codecs convert the color channels, (often Red, Green, and Blue) into a stream of bits that can be turned back into a sequence of Red, Green, and Blue at the other end.",
+              "source": "@site/docs/introduction/codecs.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/codecs",
+              "permalink": "/av1-wiki.github.io/docs/introduction/codecs",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/codecs.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "title": "Codecs",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Containers",
+                "permalink": "/av1-wiki.github.io/docs/introduction/containers"
+              },
+              "next": {
+                "title": "Spotting Video Artifacts",
+                "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts"
+              }
+            },
+            {
+              "unversionedId": "introduction/containers",
+              "id": "introduction/containers",
+              "title": "Containers",
+              "description": "A video container is a digital file format that holds video and audio data, as well as additional information such as subtitles, metadata, and chapter markers. It acts as a \"wrapper\" that packages all these elements into a single file that can be played on various devices and software platforms. Think of it like a container you might use to transport goods - the video and audio data are like the items being transported, while the container itself provides a structure and organization for the contents.",
+              "source": "@site/docs/introduction/containers.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/containers",
+              "permalink": "/av1-wiki.github.io/docs/introduction/containers",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/containers.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Containers",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Prologue",
+                "permalink": "/av1-wiki.github.io/docs/introduction/prologue"
+              },
+              "next": {
+                "title": "Codecs",
+                "permalink": "/av1-wiki.github.io/docs/introduction/codecs"
+              }
+            },
+            {
+              "unversionedId": "introduction/high-dynamic-range",
+              "id": "introduction/high-dynamic-range",
+              "title": "High Dynamic Range",
+              "description": "HDR (High Dynamic Range) is a technology used in modern TVs and displays to produce more vibrant and lifelike images. In simple terms, it allows your TV to display a wider range of colors and brightness levels than standard displays. This means that you can see more details in both bright and dark areas of an image, which can make movies, TV shows, and video games look much more realistic.",
+              "source": "@site/docs/introduction/high-dynamic-range.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/high-dynamic-range",
+              "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/high-dynamic-range.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Psycho-visual",
+                "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual"
+              },
+              "next": {
+                "title": "x264",
+                "permalink": "/av1-wiki.github.io/docs/encoders/x264"
+              }
+            },
+            {
+              "unversionedId": "introduction/prologue",
+              "id": "introduction/prologue",
+              "title": "Prologue",
+              "description": "Videos, we're no strangers to love them. They're EVERYWHERE, from",
+              "source": "@site/docs/introduction/prologue.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/prologue",
+              "permalink": "/av1-wiki.github.io/docs/introduction/prologue",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/prologue.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "title": "Prologue",
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "🗳️ Prequisites",
+                "permalink": "/av1-wiki.github.io/docs/prequisites"
+              },
+              "next": {
+                "title": "Containers",
+                "permalink": "/av1-wiki.github.io/docs/introduction/containers"
+              }
+            },
+            {
+              "unversionedId": "introduction/psychovisual",
+              "id": "introduction/psychovisual",
+              "title": "Psycho-visual",
+              "description": "\"Traditionally, the encoder tends to favor blurred reconstructed blocks over blocks which have wrong motion. The human eye generally prefers the wrong motion over the blur. Psycho-visual options combat this. While technically less “correct”, which is why they are disabled for research purposes, they should be enabled for content intended for “human eyes”. \"",
+              "source": "@site/docs/introduction/psychovisual.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/psychovisual",
+              "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/psychovisual.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "sidebar_position": 5
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Spotting Video Artifacts",
+                "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts"
+              },
+              "next": {
+                "title": "High Dynamic Range",
+                "permalink": "/av1-wiki.github.io/docs/introduction/high-dynamic-range"
+              }
+            },
+            {
+              "unversionedId": "introduction/video-artifacts",
+              "id": "introduction/video-artifacts",
+              "title": "Spotting Video Artifacts",
+              "description": "https://xkcd.com/2414",
+              "source": "@site/docs/introduction/video-artifacts.md",
+              "sourceDirName": "introduction",
+              "slug": "/introduction/video-artifacts",
+              "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/video-artifacts.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Codecs",
+                "permalink": "/av1-wiki.github.io/docs/introduction/codecs"
+              },
+              "next": {
+                "title": "Psycho-visual",
+                "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual"
+              }
+            },
+            {
+              "unversionedId": "metrics",
+              "id": "metrics",
+              "title": "Metrics",
+              "description": "TODO",
+              "source": "@site/docs/metrics.md",
+              "sourceDirName": ".",
+              "slug": "/metrics",
+              "permalink": "/av1-wiki.github.io/docs/metrics",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/metrics.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 9,
+              "frontMatter": {
+                "title": "Metrics",
+                "sidebar_label": "👁️ Metrics",
+                "sidebar_position": 9
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "eac3to",
+                "permalink": "/av1-wiki.github.io/docs/utilities/eac3to"
+              },
+              "next": {
+                "title": "▶️ Video Players",
+                "permalink": "/av1-wiki.github.io/docs/video-players"
+              }
+            },
+            {
+              "unversionedId": "prequisites",
+              "id": "prequisites",
+              "title": "Prequisites",
+              "description": "- Patience.",
+              "source": "@site/docs/prequisites.md",
+              "sourceDirName": ".",
+              "slug": "/prequisites",
+              "permalink": "/av1-wiki.github.io/docs/prequisites",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/prequisites.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "title": "Prequisites",
+                "sidebar_label": "🗳️ Prequisites",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "✒️ Contribution Guide",
+                "permalink": "/av1-wiki.github.io/docs/contribution-guide"
+              },
+              "next": {
+                "title": "Prologue",
+                "permalink": "/av1-wiki.github.io/docs/introduction/prologue"
+              }
+            },
+            {
+              "unversionedId": "privacy-policy",
+              "id": "privacy-policy",
+              "title": "Privacy Policy",
+              "description": "This site is hosted on Github Pages.",
+              "source": "@site/docs/privacy-policy.md",
+              "sourceDirName": ".",
+              "slug": "/privacy-policy",
+              "permalink": "/av1-wiki.github.io/docs/privacy-policy",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/privacy-policy.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "Privacy Policy",
+                "sidebar_label": "🔏 Privacy Policy",
+                "position": 13
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "❓ FAQ",
+                "permalink": "/av1-wiki.github.io/docs/FAQ"
+              }
+            },
+            {
+              "unversionedId": "resources",
+              "id": "resources",
+              "title": "Resources",
+              "description": "Encoding resources that you might find useful.",
+              "source": "@site/docs/resources.md",
+              "sourceDirName": ".",
+              "slug": "/resources",
+              "permalink": "/av1-wiki.github.io/docs/resources",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/resources.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 11,
+              "frontMatter": {
+                "title": "Resources",
+                "sidebar_label": "🗃️ Resources",
+                "sidebar_position": 11
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "▶️ Video Players",
+                "permalink": "/av1-wiki.github.io/docs/video-players"
+              },
+              "next": {
+                "title": "❓ FAQ",
+                "permalink": "/av1-wiki.github.io/docs/FAQ"
+              }
+            },
+            {
+              "unversionedId": "subtitles/SRT",
+              "id": "subtitles/SRT",
+              "title": "SRT",
+              "description": "SubRip Text (SRT) is a text format for subtitles, described as 'the most basic of all subtitle formats'. SRT files are plain text with the extension .srt.",
+              "source": "@site/docs/subtitles/SRT.md",
+              "sourceDirName": "subtitles",
+              "slug": "/subtitles/SRT",
+              "permalink": "/av1-wiki.github.io/docs/subtitles/SRT",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/subtitles/SRT.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "SRT"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Dehalo",
+                "permalink": "/av1-wiki.github.io/docs/filtering/dehalo"
+              },
+              "next": {
+                "title": "WebVTT",
+                "permalink": "/av1-wiki.github.io/docs/subtitles/webvtt"
+              }
+            },
+            {
+              "unversionedId": "subtitles/webvtt",
+              "id": "subtitles/webvtt",
+              "title": "WebVTT",
+              "description": "WebVTT, or Web Video Text Tracks, is the format for subtitles on the web. It is used with the HTML \\ element, or embedded into a webm container.",
+              "source": "@site/docs/subtitles/webvtt.md",
+              "sourceDirName": "subtitles",
+              "slug": "/subtitles/webvtt",
+              "permalink": "/av1-wiki.github.io/docs/subtitles/webvtt",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/subtitles/webvtt.md",
+              "tags": [],
+              "version": "current",
+              "frontMatter": {
+                "title": "WebVTT"
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "SRT",
+                "permalink": "/av1-wiki.github.io/docs/subtitles/SRT"
+              },
+              "next": {
+                "title": "Av1an",
+                "permalink": "/av1-wiki.github.io/docs/utilities/av1an"
+              }
+            },
+            {
+              "unversionedId": "utilities/av1an",
+              "id": "utilities/av1an",
+              "title": "Av1an",
+              "description": "Av1an encoding AV1 with 96 workers",
+              "source": "@site/docs/utilities/av1an.mdx",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/av1an",
+              "permalink": "/av1-wiki.github.io/docs/utilities/av1an",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/av1an.mdx",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "label": "Av1an",
+                "sidebar_position": 1,
+                "templating": true
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "WebVTT",
+                "permalink": "/av1-wiki.github.io/docs/subtitles/webvtt"
+              },
+              "next": {
+                "title": "MKVToolNix",
+                "permalink": "/av1-wiki.github.io/docs/utilities/MKVToolNix"
+              }
+            },
+            {
+              "unversionedId": "utilities/dovi_tool",
+              "id": "utilities/dovi_tool",
+              "title": "dovi_tool",
+              "description": "dovi_tool is a command line tool written in Rust combining multiple utilities for working with Dolby Vision.",
+              "source": "@site/docs/utilities/dovi_tool.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/dovi_tool",
+              "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/dovi_tool.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "label": "dovi_tool",
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "YUView",
+                "permalink": "/av1-wiki.github.io/docs/utilities/YUView"
+              },
+              "next": {
+                "title": "hdr10plus_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+              }
+            },
+            {
+              "unversionedId": "utilities/eac3to",
+              "id": "utilities/eac3to",
+              "title": "eac3to",
+              "description": "eac3to is a command line tool written by madshi to mostly work with audios (conversion) and raw, unencrypted Blu-rays (BDMV).",
+              "source": "@site/docs/utilities/eac3to.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/eac3to",
+              "permalink": "/av1-wiki.github.io/docs/utilities/eac3to",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/eac3to.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 8,
+              "frontMatter": {
+                "label": "eac3to",
+                "sidebar_position": 8
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "hdr10plus_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+              },
+              "next": {
+                "title": "👁️ Metrics",
+                "permalink": "/av1-wiki.github.io/docs/metrics"
+              }
+            },
+            {
+              "unversionedId": "utilities/FFMetrics",
+              "id": "utilities/FFMetrics",
+              "title": "FFMetrics",
+              "description": "To be filled.",
+              "source": "@site/docs/utilities/FFMetrics.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/FFMetrics",
+              "permalink": "/av1-wiki.github.io/docs/utilities/FFMetrics",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/FFMetrics.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "label": "FFMetrics",
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "MKVToolNix",
+                "permalink": "/av1-wiki.github.io/docs/utilities/MKVToolNix"
+              },
+              "next": {
+                "title": "YUView",
+                "permalink": "/av1-wiki.github.io/docs/utilities/YUView"
+              }
+            },
+            {
+              "unversionedId": "utilities/hdr10plus_tool",
+              "id": "utilities/hdr10plus_tool",
+              "title": "hdr10plus_tool",
+              "description": "hdr10plus_tool is a command line tool written in Rust for working with HDR10+ in HEVC files. Previously named `hdr10plus_parser`, now it's more than just a parser.",
+              "source": "@site/docs/utilities/hdr10plus_tool.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/hdr10plus_tool",
+              "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/hdr10plus_tool.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 7,
+              "frontMatter": {
+                "label": "hdr10plus_tool",
+                "sidebar_position": 7
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "dovi_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool"
+              },
+              "next": {
+                "title": "eac3to",
+                "permalink": "/av1-wiki.github.io/docs/utilities/eac3to"
+              }
+            },
+            {
+              "unversionedId": "utilities/MKVToolNix",
+              "id": "utilities/MKVToolNix",
+              "title": "MKVToolNix",
+              "description": "Your average MKVToolNix workload.",
+              "source": "@site/docs/utilities/MKVToolNix.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/MKVToolNix",
+              "permalink": "/av1-wiki.github.io/docs/utilities/MKVToolNix",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/MKVToolNix.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "label": "MKVToolNix",
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Av1an",
+                "permalink": "/av1-wiki.github.io/docs/utilities/av1an"
+              },
+              "next": {
+                "title": "FFMetrics",
+                "permalink": "/av1-wiki.github.io/docs/utilities/FFMetrics"
+              }
+            },
+            {
+              "unversionedId": "utilities/YUView",
+              "id": "utilities/YUView",
+              "title": "YUView",
+              "description": "To be filled.",
+              "source": "@site/docs/utilities/YUView.md",
+              "sourceDirName": "utilities",
+              "slug": "/utilities/YUView",
+              "permalink": "/av1-wiki.github.io/docs/utilities/YUView",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/YUView.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "label": "YUView",
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "FFMetrics",
+                "permalink": "/av1-wiki.github.io/docs/utilities/FFMetrics"
+              },
+              "next": {
+                "title": "dovi_tool",
+                "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool"
+              }
+            },
+            {
+              "unversionedId": "video-players",
+              "id": "video-players",
+              "title": "Video Players",
+              "description": "To be filled.",
+              "source": "@site/docs/video-players.md",
+              "sourceDirName": ".",
+              "slug": "/video-players",
+              "permalink": "/av1-wiki.github.io/docs/video-players",
+              "draft": false,
+              "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/video-players.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 10,
+              "frontMatter": {
+                "title": "Video Players",
+                "sidebar_label": "▶️ Video Players",
+                "sidebar_position": 10
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "👁️ Metrics",
+                "permalink": "/av1-wiki.github.io/docs/metrics"
+              },
+              "next": {
+                "title": "🗃️ Resources",
+                "permalink": "/av1-wiki.github.io/docs/resources"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "doc",
+                "id": "contribution-guide",
+                "label": "✒️ Contribution Guide"
+              },
+              {
+                "type": "doc",
+                "id": "prequisites",
+                "label": "🗳️ Prequisites"
+              },
+              {
+                "type": "category",
+                "label": "💡 Introduction",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "introduction/prologue"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/containers"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/codecs"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/video-artifacts"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/psychovisual"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "introduction/high-dynamic-range"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "📼 Video Encoders",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "encoders/x264"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/x265"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/aomenc"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/vpxenc"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/SVT-AV1"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/rav1e"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/Kvaazar"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/SVT-HEVC"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/SVT-VP9"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/VVenC"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/uvg266"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/VTM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/AVM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/HM"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "encoders/JM"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "🔊 Audio Encoders",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "audio/AAC"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "🎞️ Filtering",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "filtering/intro"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/Vapoursynth"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/deband"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/deinterlace"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/denoise"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/detelecine"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "filtering/dehalo"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "💬 Subtitles",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "subtitles/SRT"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "subtitles/webvtt"
+                  }
+                ]
+              },
+              {
+                "type": "category",
+                "label": "🛠️ Utilities",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "utilities/av1an"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/MKVToolNix"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/FFMetrics"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/YUView"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/dovi_tool"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/hdr10plus_tool"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "utilities/eac3to"
+                  }
+                ]
+              },
+              {
+                "type": "doc",
+                "id": "metrics",
+                "label": "👁️ Metrics"
+              },
+              {
+                "type": "doc",
+                "id": "video-players",
+                "label": "▶️ Video Players"
+              },
+              {
+                "type": "doc",
+                "id": "resources",
+                "label": "🗃️ Resources"
+              },
+              {
+                "type": "doc",
+                "id": "FAQ",
+                "label": "❓ FAQ"
+              },
+              {
+                "type": "doc",
+                "id": "privacy-policy",
+                "label": "🔏 Privacy Policy"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [],
+      "blogListPaginated": [],
+      "blogTags": {},
+      "blogTagsListPath": "/av1-wiki.github.io/blog/tags",
+      "blogTagsPaginated": []
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/av1-wiki.github.io/",
+        "source": "@site/src/pages/index.js"
+      },
+      {
+        "type": "mdx",
+        "permalink": "/av1-wiki.github.io/markdown-page",
+        "source": "@site/src/pages/markdown-page.md",
+        "title": "Markdown page example",
+        "description": "You don't need React to write simple standalone pages.",
+        "frontMatter": {
+          "title": "Markdown page example"
+        }
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

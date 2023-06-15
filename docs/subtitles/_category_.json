@@ -1,8 +1,4 @@
 {
-  "label": "Subtitles",
-  "position": 4,
-  "link": {
-    "type": "generated-index",
-    "description": "Putting dialogue on screen as text."
-  }
+  "label": "💬 Subtitles",
+  "position": 7,
 }

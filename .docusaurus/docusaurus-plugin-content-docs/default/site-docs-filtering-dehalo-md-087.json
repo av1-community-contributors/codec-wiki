@@ -1,0 +1,28 @@
+{
+  "unversionedId": "filtering/dehalo",
+  "id": "filtering/dehalo",
+  "title": "Dehalo",
+  "description": "To be filled.",
+  "source": "@site/docs/filtering/dehalo.md",
+  "sourceDirName": "filtering",
+  "slug": "/filtering/dehalo",
+  "permalink": "/av1-wiki.github.io/docs/filtering/dehalo",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/filtering/dehalo.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "title": "Dehalo",
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Detelecine / Inverse Telecine",
+    "permalink": "/av1-wiki.github.io/docs/filtering/detelecine"
+  },
+  "next": {
+    "title": "SRT",
+    "permalink": "/av1-wiki.github.io/docs/subtitles/SRT"
+  }
+}

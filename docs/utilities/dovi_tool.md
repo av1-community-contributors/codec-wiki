@@ -1,7 +1,6 @@
 ---
 label: dovi_tool
-order: 197
-date: 2023-05-07
+sidebar_position: 6
 ---
 
 # dovi_tool

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/JM",
+  "id": "encoders/JM",
+  "title": "JM",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/JM.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/JM",
+  "permalink": "/av1-wiki.github.io/docs/encoders/JM",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/JM.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 14,
+  "frontMatter": {
+    "label": "JM",
+    "sidebar_position": 14
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "HM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/HM"
+  },
+  "next": {
+    "title": "AAC",
+    "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+  }
+}

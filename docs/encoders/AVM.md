@@ -1,9 +1,8 @@
 ---
 label: AVM
-order: 189
-
+sidebar_position: 12
 ---
 
 # AVM
 
-Discord: ForIndex#0621 (692694682974683157)
+To be filled.

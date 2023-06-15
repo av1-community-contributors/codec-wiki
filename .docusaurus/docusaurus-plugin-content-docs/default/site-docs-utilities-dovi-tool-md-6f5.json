@@ -1,0 +1,28 @@
+{
+  "unversionedId": "utilities/dovi_tool",
+  "id": "utilities/dovi_tool",
+  "title": "dovi_tool",
+  "description": "dovi_tool is a command line tool written in Rust combining multiple utilities for working with Dolby Vision.",
+  "source": "@site/docs/utilities/dovi_tool.md",
+  "sourceDirName": "utilities",
+  "slug": "/utilities/dovi_tool",
+  "permalink": "/av1-wiki.github.io/docs/utilities/dovi_tool",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/dovi_tool.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "label": "dovi_tool",
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "YUView",
+    "permalink": "/av1-wiki.github.io/docs/utilities/YUView"
+  },
+  "next": {
+    "title": "hdr10plus_tool",
+    "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+  }
+}

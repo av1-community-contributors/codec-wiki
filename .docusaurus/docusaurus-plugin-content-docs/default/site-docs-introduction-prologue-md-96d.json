@@ -1,0 +1,28 @@
+{
+  "unversionedId": "introduction/prologue",
+  "id": "introduction/prologue",
+  "title": "Prologue",
+  "description": "Videos, we're no strangers to love them. They're EVERYWHERE, from",
+  "source": "@site/docs/introduction/prologue.md",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/prologue",
+  "permalink": "/av1-wiki.github.io/docs/introduction/prologue",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/prologue.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "title": "Prologue",
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "🗳️ Prequisites",
+    "permalink": "/av1-wiki.github.io/docs/prequisites"
+  },
+  "next": {
+    "title": "Containers",
+    "permalink": "/av1-wiki.github.io/docs/introduction/containers"
+  }
+}

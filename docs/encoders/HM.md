@@ -1,9 +1,8 @@
 ---
 label: HM
-order: 187
-
+sidebar_position: 13
 ---
 
 # HM
 
-Discord: ForIndex#0621 (692694682974683157)
+To be filled.

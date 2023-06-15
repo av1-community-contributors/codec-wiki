@@ -1,8 +1,8 @@
 ---
 label: SVT-AV1
-order: 197
+sidebar_position: 4
 ---
 
 # SVT-AV1
 
-Discord: ForIndex#0621 (692694682974683157)
+To be filled.

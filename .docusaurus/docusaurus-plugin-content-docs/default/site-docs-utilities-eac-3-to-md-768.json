@@ -1,0 +1,28 @@
+{
+  "unversionedId": "utilities/eac3to",
+  "id": "utilities/eac3to",
+  "title": "eac3to",
+  "description": "eac3to is a command line tool written by madshi to mostly work with audios (conversion) and raw, unencrypted Blu-rays (BDMV).",
+  "source": "@site/docs/utilities/eac3to.md",
+  "sourceDirName": "utilities",
+  "slug": "/utilities/eac3to",
+  "permalink": "/av1-wiki.github.io/docs/utilities/eac3to",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/utilities/eac3to.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 8,
+  "frontMatter": {
+    "label": "eac3to",
+    "sidebar_position": 8
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "hdr10plus_tool",
+    "permalink": "/av1-wiki.github.io/docs/utilities/hdr10plus_tool"
+  },
+  "next": {
+    "title": "👁️ Metrics",
+    "permalink": "/av1-wiki.github.io/docs/metrics"
+  }
+}

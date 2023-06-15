@@ -1,8 +1,4 @@
 {
-  "label": "Filtering",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Applying filters to improve media."
-  }
+  "label": "🎞️ Filtering",
+  "position": 6,
 }

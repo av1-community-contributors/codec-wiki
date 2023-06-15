@@ -1,7 +1,8 @@
 ---
-label: Deinterlace
-order: 200
+title: Deinterlace
+sidebar_position: 3
 ---
 
-# Detelecine
+# Deinterlace
 
+To be filled.

@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/SVT-AV1",
+  "id": "encoders/SVT-AV1",
+  "title": "SVT-AV1",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/SVT-AV1.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/SVT-AV1",
+  "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/SVT-AV1.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "label": "SVT-AV1",
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "vpxenc",
+    "permalink": "/av1-wiki.github.io/docs/encoders/vpxenc"
+  },
+  "next": {
+    "title": "rav1e",
+    "permalink": "/av1-wiki.github.io/docs/encoders/rav1e"
+  }
+}

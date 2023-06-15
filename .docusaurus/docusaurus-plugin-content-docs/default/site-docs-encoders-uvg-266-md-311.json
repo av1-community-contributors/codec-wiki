@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/uvg266",
+  "id": "encoders/uvg266",
+  "title": "uvg266",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/uvg266.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/uvg266",
+  "permalink": "/av1-wiki.github.io/docs/encoders/uvg266",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/uvg266.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 10,
+  "frontMatter": {
+    "label": "uvg266",
+    "sidebar_position": 10
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "VVenC",
+    "permalink": "/av1-wiki.github.io/docs/encoders/VVenC"
+  },
+  "next": {
+    "title": "VTM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+  }
+}

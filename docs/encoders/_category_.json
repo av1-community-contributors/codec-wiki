@@ -1,8 +1,4 @@
 {
-  "label": "Video encoders",
-  "position": 2,
-  "link": {
-    "type": "generated-index",
-    "description": "Get to know the encoders you can use."
-  }
+  "label": "📼 Video Encoders",
+  "position": 4,
 }

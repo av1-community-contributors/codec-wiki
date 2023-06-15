@@ -1,0 +1,28 @@
+{
+  "unversionedId": "encoders/AVM",
+  "id": "encoders/AVM",
+  "title": "AVM",
+  "description": "To be filled.",
+  "source": "@site/docs/encoders/AVM.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/AVM",
+  "permalink": "/av1-wiki.github.io/docs/encoders/AVM",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/AVM.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 12,
+  "frontMatter": {
+    "label": "AVM",
+    "sidebar_position": 12
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "VTM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/VTM"
+  },
+  "next": {
+    "title": "HM",
+    "permalink": "/av1-wiki.github.io/docs/encoders/HM"
+  }
+}

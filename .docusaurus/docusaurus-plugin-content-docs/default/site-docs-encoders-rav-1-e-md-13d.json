@@ -1,0 +1,29 @@
+{
+  "unversionedId": "encoders/rav1e",
+  "id": "encoders/rav1e",
+  "title": "rav1e",
+  "description": "rav1e is a command line application for encoding AV1 written in Rust and Assembly joint-developed by Xiph.org and Mozilla.",
+  "source": "@site/docs/encoders/rav1e.md",
+  "sourceDirName": "encoders",
+  "slug": "/encoders/rav1e",
+  "permalink": "/av1-wiki.github.io/docs/encoders/rav1e",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/encoders/rav1e.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "label": "rav1e",
+    "sidebar_position": 5,
+    "date": "2023-05-09T00:00:00.000Z"
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SVT-AV1",
+    "permalink": "/av1-wiki.github.io/docs/encoders/SVT-AV1"
+  },
+  "next": {
+    "title": "Kvaazar",
+    "permalink": "/av1-wiki.github.io/docs/encoders/Kvaazar"
+  }
+}

@@ -1,9 +1,8 @@
 ---
 label: JM
-order: 186
-
+sidebar_position: 14
 ---
 
 # JM
 
-Discord: ForIndex#0621 (692694682974683157)
+To be filled.

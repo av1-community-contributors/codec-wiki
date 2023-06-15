@@ -1,8 +1,4 @@
 {
-  "label": "Audio encoders",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "Learn about audio encoding."
-  }
+  "label": "🔊 Audio Encoders",
+  "position": 5,
 }

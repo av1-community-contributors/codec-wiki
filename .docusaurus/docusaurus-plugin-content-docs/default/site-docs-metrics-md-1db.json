@@ -1,0 +1,29 @@
+{
+  "unversionedId": "metrics",
+  "id": "metrics",
+  "title": "Metrics",
+  "description": "TODO",
+  "source": "@site/docs/metrics.md",
+  "sourceDirName": ".",
+  "slug": "/metrics",
+  "permalink": "/av1-wiki.github.io/docs/metrics",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/metrics.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 9,
+  "frontMatter": {
+    "title": "Metrics",
+    "sidebar_label": "👁️ Metrics",
+    "sidebar_position": 9
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "eac3to",
+    "permalink": "/av1-wiki.github.io/docs/utilities/eac3to"
+  },
+  "next": {
+    "title": "▶️ Video Players",
+    "permalink": "/av1-wiki.github.io/docs/video-players"
+  }
+}

@@ -1,7 +1,8 @@
 ---
-label: Detelecine / Inverse Telecine
-order: 200
+title: Detelecine / Inverse Telecine
+sidebar_position: 4
 ---
 
-# Detelecine
+# Detelecine / Inverse Telecine
 
+To be filled.

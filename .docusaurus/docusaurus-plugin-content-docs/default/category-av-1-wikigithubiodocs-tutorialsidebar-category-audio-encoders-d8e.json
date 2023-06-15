@@ -1,0 +1,16 @@
+{
+  "title": "Audio encoders",
+  "description": "Learn about audio encoding.",
+  "slug": "/category/audio-encoders",
+  "permalink": "/av1-wiki.github.io/docs/category/audio-encoders",
+  "navigation": {
+    "previous": {
+      "title": "JM",
+      "permalink": "/av1-wiki.github.io/docs/encoders/JM"
+    },
+    "next": {
+      "title": "AAC",
+      "permalink": "/av1-wiki.github.io/docs/audio/AAC"
+    }
+  }
+}

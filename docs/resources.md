@@ -1,9 +1,19 @@
 ---
-id: resources
 title: Resources
-sidebar_label: Resources
+sidebar_label: 🗃️ Resources
+sidebar_position: 11
 ---
 
-# Useful Resources
+# Resources
 
-Discord: ForIndex#0621 (692694682974683157)
+Encoding resources that you might find useful.
+
+
+- https://guide.encode.moe - Filtering and fansubbing.
+- https://lvsfunc.encode.moe/en/latest - lvsfunc documentation.
+- https://silentaperture.gitlab.io/mdbook-guide/introduction.html - SilentAperture's Advanced Encoding guide, mostly about filtering.
+- https://encoding.bluefalcon.cc/ - Soichiro's "Encoding in Depth".
+- https://x265.readthedocs.io/en/master - x265 technical documentation, made by MulticoreWare themselves.
+- http://www.chaneru.com/Roku/HLS/X264_Settings.htm - x264 settings.
+- https://kokomins.wordpress.com/2019/10/10/anime-encoding-guide-for-x265-and-why-to-never-use-flac - Anime encoding guide by Kokomins. Has some pretty good advices regarding psychovisual stuff and x265.
+- https://wiki.xiph.org/Main_Page - Xiph Wiki.

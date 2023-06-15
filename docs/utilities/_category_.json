@@ -1,8 +1,4 @@
 {
-  "label": "Utilities",
-  "position": 5,
-  "link": {
-    "type": "generated-index",
-    "description": "Tooling for working with media."
-  }
+  "label": "🛠️ Utilities",
+  "position": 8,
 }

@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'AV1 Wiki',
-  tagline: 'Your Guide to All Things AV1',
+  title: 'AV1 Community Wiki',
+  tagline: 'Your Guide to All Things Encoding',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -72,15 +72,49 @@ const config = {
         style: 'dark',
         links: [
           {
-            title: 'Encoding',
+            title: 'Getting Started',
             items: [
               {
-                label: 'Introduction',
-                to: '/docs/category/encoding-introduction',
+                label: 'Prequisites',
+                to: '/docs/prequisites',
               },
               {
-                label: 'Encoders',
-                to: '/docs/category/video-encoders',
+                label: 'Prologue',
+                to: '/docs/prologue',
+              },
+            ],
+          },
+          {
+            title: 'Filtering',
+            items: [
+              {
+                label: 'Vapoursynth',
+                href: '/docs/filtering/Vapoursynth',
+              },
+              {
+                label: 'Deband',
+                href: '/docs/filtering/deband',
+              },
+              {
+                label: 'Denoise',
+                href: '/docs/filtering/denoise',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'Contribute',
+                href: 'https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main',
+              },
+              {
+                label: 'FAQ',
+                href: '/docs/FAQ',
+              },
+              {
+                label: 'Privacy Policy',
+                href: '/docs/privacy-policy',
               },
             ],
           },

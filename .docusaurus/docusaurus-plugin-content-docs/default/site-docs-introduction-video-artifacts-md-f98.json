@@ -1,0 +1,27 @@
+{
+  "unversionedId": "introduction/video-artifacts",
+  "id": "introduction/video-artifacts",
+  "title": "Spotting Video Artifacts",
+  "description": "https://xkcd.com/2414",
+  "source": "@site/docs/introduction/video-artifacts.md",
+  "sourceDirName": "introduction",
+  "slug": "/introduction/video-artifacts",
+  "permalink": "/av1-wiki.github.io/docs/introduction/video-artifacts",
+  "draft": false,
+  "editUrl": "https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main/docs/introduction/video-artifacts.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Codecs",
+    "permalink": "/av1-wiki.github.io/docs/introduction/codecs"
+  },
+  "next": {
+    "title": "Psycho-visual",
+    "permalink": "/av1-wiki.github.io/docs/introduction/psychovisual"
+  }
+}

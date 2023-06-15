@@ -1,7 +1,8 @@
 ---
-label: Denoise
-order: 200
+title: Denoise
+sidebar_position: 4
 ---
 
 # Denoise
 
+To be filled.
