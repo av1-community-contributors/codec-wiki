@@ -80,7 +80,7 @@ const config = {
               },
               {
                 label: 'Prologue',
-                to: '/docs/prologue',
+                to: '/docs/introduction/prologue',
               },
             ],
           },
