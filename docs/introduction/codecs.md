@@ -16,7 +16,7 @@ Within compression, there is the further distiction between lossy and lossless c
 ### Video codecs
 - **AVC / H.264** - The JPEG of video codecs, very commonly found throughout the internet.
 - **HEVC / H.265** - The successor to AVC, lacks web browser support and is mostly used to serve UHD content from streaming services. Excellent support for HDR10+ and Dolby Vision but not very good for extremely high fidelity content due to the default filters being applied.
-- **H.266 / VVC** - The latest and greatest MPEG codec, however encoding it is extremely slow and pretty much the same case with adoption. Avoid unless for experimentation.
+- **VVC / H.266** - The latest and greatest MPEG codec, however encoding it is extremely slow and pretty much the same case with adoption. Avoid unless for experimentation.
 - **VP8** - Google's competitor to AVC, the most useless codec ever created for the love of God don't use it. It's worse than AVC in terms of efficiency.
 - **VP9** - Google's competitor to HEVC, a decent alternative to HEVC when dealing with web browser compatibility. But has awful threading.
 - **AV1** - Successor to VP9, features include more efficiency and most attractively, grain synthesis. Currently adoption being pushed hard by all major companies such as Google, NVIDIA, Intel, and many more. Only HDR10+ support is available as of now although the spec does allow for Dolby Vision aswell, just waiting for someone to create the tool to inject into the bitstream.
