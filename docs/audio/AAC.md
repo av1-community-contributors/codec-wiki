@@ -39,6 +39,8 @@ High Efficiency AAC v2 introduces Parametric Stereo (PS), which further increase
 
 Extended High Efficiency AAC is actually slightly different from xHE-AAC. While Extended High Efficiency AAC specifically includes all of HE-AACv2's coding techniques as well as compression techniques from the USAC specification, the Extended High Efficiency AAC profile was designed in such a manner that building an encoder for the format would allow it to be perfectly backwards compatible with past variations of AAC. xHE-AAC is a codec that combines tho Extended High Efficiency AAC profile with further USAC coding techniques, specifically within the *MPEG-D DRC Loudness Control Profile*. For all intents and purposes, when someone refers to "USAC audio," they probably mean xHE-AAC. xHE-AAC further extends performance at lower bitrates compared to past variants of AAC. USAC's specialty & purpose was to create an audio codec that didn't compromise music performance for speech & vice versa, but rather automatically tuned its coding technique selection to perform the best on any given source.
 
+xHE-AAC is not widely supported. On a Mac, playback is only possible through QuickTime Player. Windows 11 & Android support xHE-AAC natively, but Windows 10 & Linux will not allow you to play it back without some grief. The most effective way currently is to use an AAC plugin with foobar2000, although this plugin is 32-bit only, so you'll need 32-bit foobar2000. This works on Linux under WINE.
+
 ## Encoders
 There are a number of ways to encode each format, which I'll outline below.
 
@@ -80,4 +82,7 @@ Exhale is the only encoder on this list capable of encoding xHE-AAC audio. While
 
 ## Conclusion
 
-Alternatives to AAC
+Alternatives to AAC include Opus, Vorbis, MP3, & FLAC, among others.
+- Vorbis & MP3 are considered to be worse, although Vorbis has its moments & is entirely royalty-free unlike AAC.
+- FLAC is a lossless audio codec with an entirely different use case. It is important to reinforce that lossy audio codecs are not replacements for lossless, as good as they might get.
+- Opus is competitive with HE-AACv2 & xHE-AAC moreso than the older, worse variants, & is widely supported as well as royalty free. The open source reference encoder `opusenc` is an excellent implementation of the format & the tooling is much easier to use compared to AAC's frankly nightmarish assortment of various options with numerous individual downsides. xHE-AAC is generally better than Opus, especially at lower bitrates, which is a fact that merits consideration.
