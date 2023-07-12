@@ -8,6 +8,11 @@ sidebar_position: 1
 
 AV1 Community Wiki - community maintained wiki for all things encoding.
 
+## Before You Contribute
+
+1. By making a contribution to the AV1 Community Wiki, you are communicating that you have read & agreed to our Terms & Conditions, Privacy Policy, & Code of Conduct.
+2. Ensure your understanding of the material you're contributing is sufficient to the point of being useful to the project. It is perfectly acceptable not to get everything right the first time, but always double check your contributions for factual correctness.
+
 ## Connect With Us
 
 If you're interested in communicating with other passionate contributors helping this project, visit [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You'll need a Revolt account to join. Revolt is an open source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).

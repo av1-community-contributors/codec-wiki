@@ -2,8 +2,14 @@
 
 A community maintained wiki for all things encoding.
 
+## Before You Contribute
+
+1. By making a contribution to the AV1 Community Wiki, you are communicating that you have read & agreed to our Terms & Conditions, Privacy Policy, & Code of Conduct.
+2. Ensure your understanding of the material you're contributing is sufficient to the point of being useful to the project. It is perfectly acceptable not to get everything right the first time, but always double check your contributions for factual correctness.
+3. If you would like, connect with us via our Revolt server located at [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You can ask questions & communicate with other contributors here.
+
 ## Clone & Push Instructions
-**Make sure to clone from & edit the** `main` **branch only, and push your final changes to the** `development` **branch according to the instructions below.**
+**Make sure to clone from & edit the** `main` **branch only, & push your final changes to the** `development` **branch according to the instructions below.**
 
 *don't forget to add unimportant files to the .gitignore*
 
