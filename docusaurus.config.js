@@ -109,17 +109,17 @@ const config = {
                 href: 'https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main',
               },
               {
-                label: 'FAQ',
-                href: '/docs/FAQ',
+                label: 'Terms of Use',
+                href: '/docs/terms-of-use',
               },
               {
                 label: 'Privacy Policy',
-                href: '/docs/privacy-policy',
+                href: 'https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Gianni Rosato. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Gianni Rosato & contributors. Content licensed under CC BY-SA 4.0. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
