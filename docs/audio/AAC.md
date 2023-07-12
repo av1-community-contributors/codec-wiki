@@ -44,8 +44,8 @@ xHE-AAC is not widely supported. On a Mac, playback is only possible through Qui
 ## Encoders
 There are a number of ways to encode each format, which I'll outline below.
 
-### FDK-AAC
-FDK-AAC is a high quality source available AAC encoder by [Fraunhofer IIS](https://en.wikipedia.org/wiki/Fraunhofer_Society). It was initially included in Android, and issues regarding the legality of its distribution have arisen since its inception. Its license doesn't grant the user rights to the patented technologies used in the source code & therefore restricts its use, but this topic is still debated. Debian does not consider FDK-AAC free software, while Red Hat does. The Free Software Foundation remains relatively neutral, stating that the tool should be used with caution & patents always loom over FOSS programs even if these patents don't explicitly exist to threaten these tools yet.
+### Fraunhofer FDK AAC
+Fraunhofer FDK AAC is a high quality, open-source AAC encoder by [Fraunhofer IIS](https://en.wikipedia.org/wiki/Fraunhofer_Society). It was introduced with the release of Android 4.1 and has since been forked to a [seperate repository](https://github.com/mstorsjo/fdk-aac). Issues regarding the legality of its distribution have arisen since the Free Software Foundation declared the license incompatible with the GPL. The license does not grant the user rights to the patented technologies used in the source code, and therefore restricts its use. However, this topic is still debated as Debian does not consider FDK AAC free software while Red Hat does.
 
 Another similar tool, FhG-AAC, performs similarly to FDK-AAC but with greater precision as it performs floating point operations. It can be used through the proprietary Windows media player Winamp.
 
