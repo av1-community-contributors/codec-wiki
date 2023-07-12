@@ -52,13 +52,12 @@ Another similar tool, FhG-AAC, performs similarly to FDK-AAC but with greater pr
 FDK-AAC can encode the following formats:
 `AAC-LC AAC-LD AAC-ELD HE-AAC HE-AACv2`
 
-### CoreAudio
-If you're on a Mac, you can encode using Apple's proprietary CoreAudio framework. CoreAudio supports a number of formats including its own container (.caf/.caff). CoreAudio's CLI utility can be called using `afconvert`; running `afconvert -h` will allow you to see the help. Specifying a filetype & format is required when using `afconvert`. The `qaac` encoder can be used through CoreAudio, & is known for its high quality output; Apple's AAC encoding is considered the highest quality compared to competing encoders for the supported formats. `qaac` is also known as `aac_at` (for AAC Audio Toolbox) & audioToolboxWrapper.
+### Core Audio
+Apple's proprietary Core Audio Toolbox encoder is a popular, high-quality choice for encoding AAC. This encoder can be used in macOS via Apple's own `afconvert` utility, or in FFmpeg by specifying `aac_at` as the audio encoder. Windows users can also take advantage of Core Audio by using the free [qaac](https://github.com/nu774/qaac) command-line utility, but users will need to either have [iTunes] (https://support.apple.com/en-ca/HT210384) installed, or extract the libraries from said installer, using the [makeportable](https://github.com/nu774/makeportable) script.
 
-`qaac` can be used with the CoreAudio library on Windows as well as macOS.
+Core Audio can encode the following formats: `AAC-LC, HE-AAC, HE-AACv2`*
 
-Using this tool, we can encode the following formats:
-`AAC-LC HE-AAC HE-AACv2`
+*`HE-AACv2` encoding is only supported on macOS.
 
 ### FFmpeg AAC
 FFmpeg's native AAC encoder is known for being completely free & open source, licensed under the GNU General Public License (or LGPL, depending on how FFmpeg is configured). If you want a completely FOSS solution for encoding AAC, FFmpeg AAC is one of the only places you'll find this. It is not known for being particularly feature rich or high quality & doesn't support the entire profile of the AAC variants it can encode, but it gets the job done in most scenarios.
