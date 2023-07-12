@@ -11,7 +11,7 @@ AV1 Community Wiki - community maintained wiki for all things encoding.
 ## Before You Contribute
 
 1. By making a contribution to the AV1 Community Wiki, you are communicating that you have read & agreed to our Terms & Conditions, Privacy Policy, & Code of Conduct.
-2. Ensure your understanding of the material you're contributing is sufficient to the point of being useful to the project. It is perfectly acceptable not to get everything right the first time, but always double check your contributions for factual correctness.
+2. Ensure your understanding of the material you're contributing is sufficient to a point where it is useful to the project. It is perfectly acceptable not to get everything right the first time, but always double check your contributions for factual correctness.
 
 ## Connect With Us
 
