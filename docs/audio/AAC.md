@@ -37,9 +37,9 @@ High Efficiency AAC v2 introduces Parametric Stereo (PS), which further increase
 
 ### xHE-AAC
 
-Extended High Efficiency AAC is actually slightly different from xHE-AAC. While Extended High Efficiency AAC specifically includes all of HE-AACv2's coding techniques as well as compression techniques from the USAC specification, the Extended High Efficiency AAC profile was designed in such a manner that building an encoder for the format would allow it to be perfectly backwards compatible with past variations of AAC. xHE-AAC is a codec that combines tho Extended High Efficiency AAC profile with further USAC coding techniques, specifically within the *MPEG-D DRC Loudness Control Profile*. For all intents and purposes, when someone refers to "USAC audio," they probably mean xHE-AAC. xHE-AAC further extends performance at lower bitrates compared to past variants of AAC. USAC's specialty & purpose was to create an audio codec that didn't compromise music performance for speech & vice versa, but rather automatically tuned its coding technique selection to perform the best on any given source.
+Extended High Efficiency AAC is actually slightly different from xHE-AAC. While Extended High Efficiency AAC specifically includes all of HE-AACv2's coding techniques as well as compression techniques from the USAC specification, the Extended High Efficiency AAC profile was designed in such a manner that building an encoder for the format would allow it to be perfectly backwards compatible with past variations of AAC. xHE-AAC is a codec that combinese the Extended High Efficiency AAC profile with further USAC coding techniques, specifically within the *MPEG-D DRC Loudness Control Profile*. For all intents and purposes, when someone refers to "USAC audio," they probably mean xHE-AAC. xHE-AAC further extends performance at lower bitrates compared to past variants of AAC. USAC's specialty & purpose was to create an audio codec that didn't compromise music performance for speech & vice versa, but rather automatically tuned its coding technique selection to perform the best on any given source.
 
-xHE-AAC is not widely supported. On a Mac, playback is only possible through QuickTime Player. Windows 11 & Android support xHE-AAC natively, but Windows 10 & Linux will not allow you to play it back without some grief. The most effective way currently is to use an AAC plugin with foobar2000, although this plugin is 32-bit only, so you'll need 32-bit foobar2000. This works on Linux under WINE.
+xHE-AAC is not widely supported. On a Mac, playback is only possible through QuickTime Player & other utilities which use CoreAudio for decoding. Windows 11 & Android support xHE-AAC natively, but Windows 10 & Linux will not allow you to play it back without some grief. The most effective way currently is to use an AAC plugin with foobar2000, although this plugin is 32-bit only, so you'll need 32-bit foobar2000. This works on Linux under WINE.
 
 ## Encoders
 There are a number of ways to encode each format, which I'll outline below.
@@ -52,8 +52,10 @@ Another similar tool, FhG-AAC, performs similarly to FDK-AAC but with greater pr
 FDK-AAC can encode the following formats:
 `AAC-LC AAC-LD AAC-ELD HE-AAC HE-AACv2`
 
-### CoreAudio on macOS
-If you're on a Mac, you can encode using Apple's proprietary CoreAudio framework. CoreAudio supports a number of formats including its own container (.caf/.caff). CoreAudio's CLI utility can be called using `afconvert`. Running `afconvert -h` will allow you to see the help. Specifying a filetype & format is required when using `afconvert`. The qaac encoder can be used through CoreAudio, & is known for its high quality output; Apple's AAC encoding is considered the highest quality compared to competing encoders for the supported formats.
+### CoreAudio
+If you're on a Mac, you can encode using Apple's proprietary CoreAudio framework. CoreAudio supports a number of formats including its own container (.caf/.caff). CoreAudio's CLI utility can be called using `afconvert`; running `afconvert -h` will allow you to see the help. Specifying a filetype & format is required when using `afconvert`. The `qaac` encoder can be used through CoreAudio, & is known for its high quality output; Apple's AAC encoding is considered the highest quality compared to competing encoders for the supported formats. `qaac` is also known as `aac_at` (for AAC Audio Toolbox) & audioToolboxWrapper.
+
+`qaac` can be used with the CoreAudio library on Windows as well as macOS.
 
 Using this tool, we can encode the following formats:
 `AAC-LC HE-AAC HE-AACv2`
@@ -61,8 +63,10 @@ Using this tool, we can encode the following formats:
 ### FFmpeg AAC
 FFmpeg's native AAC encoder is known for being completely free & open source, licensed under the GNU General Public License (or LGPL, depending on how FFmpeg is configured). If you want a completely FOSS solution for encoding AAC, FFmpeg AAC is one of the only places you'll find this. It is not known for being particularly feature rich or high quality & doesn't support the entire profile of the AAC variants it can encode, but it gets the job done in most scenarios.
 
+FFmpeg's AAC encoder can be called with a simple `-c:a aac` parameter, but there are more granular options available. By default, the profile is `aac_low` which encodes MPEG-4 AAC-LC. The `mpeg2_aac_low` profile encodes simpler, lower-quality MPEG-2 AAC from 1997, while `aac_main` encodes the more obscure main AAC profile from the 1997 MPEG-2 specification. Finally, `aac-ltp` encodes AAC long-term prediction introduced in MPEG-4.
+
 Using FFmpeg AAC, we can encode the following formats:
-`AAC-LC AAC-LD HE-AAC`
+`AAC-LC`
 
 ### FAAC
 FAAC is an old AAC encoder, name meaning Freeware Advanced Audio Coder. It is one of the lower quality options, & isn't recommended for general use. It only supports `AAC-LC`.

@@ -8,29 +8,39 @@ sidebar_position: 1
 
 AV1 Community Wiki - community maintained wiki for all things encoding.
 
+## Connect With Us
+
+If you're interested in communicating with other passionate contributors helping this project, visit [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You'll need a Revolt account to join. Revolt is an open source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).
+
 ## Clone & Push Instructions
 **Make sure to clone from & edit the** `main` **branch only, and push your final changes to the** `development` **branch according to the instructions below.**
 
+*don't forget to add unimportant files to the .gitignore before making any commits*
+
 1. Clone from the `main` branch to start to make a contribution:
+```zsh
+% git clone git@github.com:av1-community-contributors/av1-wiki.github.io.git -b main
 ```
-$ git clone https://github.com/av1-community-contributors/av1-wiki.github.io -b main
-```
+
 2. Test your changes locally before making a commit:
+```zsh
+% yarn
+% npx docusaurus start
 ```
-$ npx docusaurus start
-```
+
 3. Push changes to `main` branch:
-```
-$ git add .
-$ git commit -m "Commit Message"
-$ git push -u origin main
+```zsh
+% git add .
+% git commit -m "Commit Message"
+% git push -u origin main
 ```
 
 4. Deploy to `deployment` branch to make live on site:
-```
-$ GIT_USER=<username> DEPLOYMENT_BRANCH=deployment yarn deploy
+```zsh
+% GIT_USER=<username> DEPLOYMENT_BRANCH=deployment yarn deploy
 ```
 
+*Docusaurus Info*
 ## Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
