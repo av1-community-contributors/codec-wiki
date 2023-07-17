@@ -6,7 +6,7 @@ position: 13
 
 # Terms of Use
 
-These terms & conditions outline the rules & regulations for the use of the AV1 Community Wiki Website as a visitor, contributor, or any other party who falls under the jurisdiction of these terms.
+These terms & conditions outline the rules & regulations for the use of the Codec Wiki Website as a visitor, contributor, or any other party who falls under the jurisdiction of these terms.
 
 By accessing this website we assume you accept these terms & conditions. Do not continue to use the site if you do not agree to all of the terms & conditions stated on this page.
 
@@ -20,7 +20,7 @@ Some interactive websites use cookies to let them retrieve user details for each
 
 2. Licensing
 
-Unless otherwise stated, the site's contributors and/or its licensors own the intellectual property rights for all material on the AV1 Community Wiki. All intellectual property is distributed under CC BY-SA 4.0 unless it is specified otherwise. You may assess the terms & conditions of this Creative Commons license via this link: https://creativecommons.org/licenses/by-sa/4.0/. Using assets and/or intellectual property from the AV1 Community Wiki site is subject to these terms unless otherwise specified.
+Unless otherwise stated, the site's contributors and/or its licensors own the intellectual property rights for all material on the Codec Wiki. All intellectual property is distributed under CC BY-SA 4.0 unless it is specified otherwise. You may assess the terms & conditions of this Creative Commons license via this link: https://creativecommons.org/licenses/by-sa/4.0/. Using assets and/or intellectual property from the Codec Wiki site is subject to these terms unless otherwise specified.
 
 Under CC BY-SA 4.0, you may:
 
@@ -49,7 +49,7 @@ You warrant & represent that:
     The Comments/contributions do not contain any defamatory, libelous, offensive, indecent or otherwise unlawful material which is an invasion of privacy
     The Comments/contributions will not be used to promote unlawful activity.
 
-You hereby grant the AV1 Community Wiki a non-exclusive license to use, reproduce, edit & authorize others to use, reproduce & edit any of your Comments/contributions in any & all forms, formats or media.
+You hereby grant the Codec Wiki a non-exclusive license to use, reproduce, edit & authorize others to use, reproduce & edit any of your Comments/contributions in any & all forms, formats or media.
 
 3. iFrames
 
