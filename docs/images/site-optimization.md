@@ -13,9 +13,13 @@ A big part of understanding any multimedia codec technology is knowing the appli
 These instructions are for *photographic* images; other kinds of images, like non-photographic, artwork, pixel art, etc. should likely be handled differently.
 :::
 
+:::warning
+Many images won't load properly unless your browser supports JXL, AVIF, & proper ICCv2 color management. This is for demonstration purposes only & won't represent an actual common website experience.
+:::
+
 ## Fire & Forget
 
-First, we'll illustrate what *not* to do, which is fortunately not incredibly difficult to avoid. Taking an image straight out of your editing software at a massive size will often bloat the size & resolution to something that isn't generally usable for a website regardless of the codec you're using & its fidelity. It can be argued there are specific use cases where incredible resolution & fidelity need to coexist on the Web, but we won't be covering those here. Here's an example of a bloated image:
+First, we'll illustrate what *not* to do, which is fortunately not incredibly difficult to avoid. Taking an image straight out of your editing software at a massive size will often bloat the size & resolution to something that isn't generally usable for a website regardless of the codec you're using & its quality per bit. It can be argued there are specific use cases that demand incredible resolution & fidelity coexist on the Web, but we won't be covering those here. Here's an example of a bloated image:
 
 *exported straight from Darktable at JPEG q90, no scaling*
 
@@ -38,6 +42,16 @@ Obviously there's lost fidelity compared to the original, but considering this i
 
 2.2 MB -> **233 kB**
 
+### Lazy Loading
+
+A bonus tip is to add the `loading="lazy"` attribute to your picture tag to allow the image to load only when scrolled to by a user. This doesn't save bandwidth, but it improves the user experience by loading images further down the page only when necessary. An example may look like this:
+
+```html
+<picture>
+    <img src="/images/jpeg_fallback.jpg" alt="alt text" width="XX" height="YY" loading="lazy" />
+</picture> 
+```
+
 ## New Codecs
 
 If you desire further improvement, it may be time to consider using a newer codec like [AVIF](/images/avif.md) or [JPEG-XL](/images/jxl.md). These options will compress far more effectively than JPEG, with the only trade-off being browser support. We're not going to consider [WebP](/images/webp.md) or [HEIC](/images/heif.md), since WebP is not competitive enough with JPEG for photographic imagery (often being worse) & HEIC has been superseded by AVIF - which sees greater support anyhow - & is not royalty free, effectively preventing widespread Web adoption forever. Again, we're just considering *lossy* compression for *photographic* images; it is a different story with WebP elsewhere, as it performs well on non-photographic content & is almost always better than PNG for 8-bit lossless compression. So, we are left with JXL & AVIF for now.
@@ -48,10 +62,10 @@ AVIF sees widespread support, but JPEG-XL isn't quite there yet with Web support
 
 ```html
 <picture>
-    <source srcset="/img/jxl_image.jxl" type="image/jxl">
-    <source srcset="/img/avif_image.avif" type="image/avif">
-    <source srcset="/img/webp_fback.webp" type="image/webp">
-    <img src="/images/jpeg_fallback.jpg" alt="alt text" width=XX height=YY loading="lazy">
+    <source srcset="/img/jxl_image.jxl" type="image/jxl" />
+    <source srcset="/img/avif_image.avif" type="image/avif" />
+    <source srcset="/img/webp_fback.webp" type="image/webp" />
+    <img src="/images/jpeg_fallback.jpg" alt="alt text" width="XX" height="YY" loading="lazy" />
 </picture> 
 ```
 
@@ -84,3 +98,25 @@ The final trick we can use, while not a new codec at all, still increases qualit
 In this particular instance, AVIF seems to be the overall winner. This isn't always the case due to JXL's superiority at higher fidelity & with more detailed images, but according to SSIMULACRA2, AVIF has the best quality per bit with this image. You can use your own eyes to further clarify your choice, though. It is worth mentionining that as these were encoded from a 16-bit source PNG, the JXL image is the only one that maintains the full original bit depth, & AVIF isn't fast to encode.
 
 ## Responsive Images
+
+Displaying an image that is too large for a viewport is a waste of bandwidth, & displaying an image that's too small for the viewport leaves fidelity to be desired. Luckily, we have the [Responsive Image Linter](https://ausi.github.io/respimagelint/) that can help us figure out which image sizes we should be using.
+
+![responsive_image_linter](/img/responsive_image_linter.avif)
+
+In our fire & forget example, we see that we are serving an image that is far too large. We already know that, but now we can see that given various viewport sizes we could be serving images that have respective widths of 270px, 958px, 1350px, 1660px, & 1916px to optimize for delivery to a variety of different devices. Here's how we'd write that in HTML:
+
+```html
+<picture>
+  <source type="image/jxl" srcset="/img_270.jxl 270w, /img_958.jxl 958w, /img_1350.jxl 1350w, /img_1660.jxl 1660w, /img_1916.jxl 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" />
+  <source type="image/avif" srcset="/img_270.avif 270w, /img_958.avif 958w, /img_1350.avif 1350w, /img_1660.avif 1660w, /img_1916.avif 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" />
+  <img width="1699" height="1136" alt="alt text" srcset="/img_270.jpg 270w, /img_958.jpg 958w, /img_1350.jpg 1350w, /img_1660.jpg 1660w, /img_1916.jpg 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" src="/fallback.jpg" />
+</picture>
+```
+
+<picture>
+  <source type="image/jxl" srcset="/img/img_size/img_270.jxl 270w, /img/img_size/img_958.jxl 958w, /img/img_size/img_1350.jxl 1350w, /img/img_size/img_1660.jxl 1660w, /img/img_size/img_1916.jxl 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" />
+  <source type="image/avif" srcset="/img/img_size/img_270.avif 270w, /img/img_size/img_958.avif 958w, /img/img_size/img_1350.avif 1350w, /img/img_size/img_1660.avif 1660w, /img/img_size/img_1916.avif 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" />
+  <img loading="lazy" width="1699" height="1136" alt="alt text" srcset="/img/img_size/img_270.jpg 270w, /img/img_size/img_958.jpg 958w, /img/img_size/img_1350.jpg 1350w, /img/img_size/img_1660.jpg 1660w, /img/img_size/img_1916.jpg 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" src="/img/_DSC8466-smaller.jpg" />
+</picture>
+
+That's all! Massive thanks to Auto-Rez Media Technologies for the inspiration behind this article & explicit permission to use their [Reduce Your Page's Image Load](https://autocompressor.net/blog/reduce-image-load) blog post when writing this entry. I have [confirmed](https://cdn.discordapp.com/attachments/870877058283233312/1129578082077003836/root_written_perm.png) with their leadership that this wiki entry can be safely licensed under CC BY-SA 4.0.
