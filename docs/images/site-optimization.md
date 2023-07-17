@@ -14,7 +14,10 @@ These instructions are for *photographic* images; other kinds of images, like no
 :::
 
 :::warning
-Many images won't load properly unless your browser supports JXL, AVIF, & proper ICCv2 color management. This is for demonstration purposes only & won't represent an actual common website experience.
+Many images won't load properly unless your browser supports JXL, AVIF, & proper ICCv2 color management. This is for demonstration purposes only & shouldn't represent an actual common website experience. If you're curious anyway, the following browsers are able to display the contents of this page perfectly:
+- [Thorium](https://thorium.rocks/) | *Linux, [macOS](https://github.com/Alex313031/Thorium-Special/releases), [Windows](https://github.com/Alex313031/thorium/releases/), [Android](https://github.com/Alex313031/Thorium-Special/releases)*
+- [Waterfox](https://www.waterfox.net/) | *[Linux](https://flathub.org/apps/net.waterfox.waterfox), [macOS](https://www.waterfox.net/download/), [Windows](https://www.waterfox.net/download/)*
+- [Mercury](https://thorium.rocks/mercury) | *[Linux](https://github.com/Alex313031/Mercury/releases), [Windows](https://github.com/Alex313031/Mercury/releases)*
 :::
 
 ## Fire & Forget
@@ -58,7 +61,7 @@ If you desire further improvement, it may be time to consider using a newer code
 
 ### Fallbacks
 
-AVIF sees widespread support, but JPEG-XL isn't quite there yet with Web support as Google continues to push AVIF (it is debatable if it ever will be outside the Apple ecosystem). Even with AVIF, it may be worth providing a fallback. This can look like the following example:
+AVIF sees widespread support, but JPEG-XL isn't quite there yet with Web support as Google continues to push AVIF (it is debatable if it ever will be outside the Apple ecosystem). Even with AVIF, adoption isn't remotely close to JPEG, so it is definitely worth providing a fallback. This can look like the following example:
 
 ```html
 <picture>
@@ -112,6 +115,13 @@ In our fire & forget example, we see that we are serving an image that is far to
   <img width="1699" height="1136" alt="alt text" srcset="/img_270.jpg 270w, /img_958.jpg 958w, /img_1350.jpg 1350w, /img_1660.jpg 1660w, /img_1916.jpg 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" src="/fallback.jpg" />
 </picture>
 ```
+
+It is worth noting that this example above & the example below aren't actually perfect implementations of a responsive image given the conditions of this site, but the general concept still applies. Some things to note:
+
+- `srcset` = the images available to your browser to serve, & their respective widths
+- `sizes` = the conditions given to the browser explaining under what conditions should it serve which image
+- `(min-width: XXXpx) YYYpx` = Given the viewport is at least XXX wide, serve an image of YYY horizontal resolution. The browser will pick an image from srcset that is CSS pixels \* display scaling.
+- `calc(100vw - 24px)` = Usually preceded by a (min-width) condition. Specifies a value the browser should calculate on its own to pick the closest option from the srcset. Let's say we have `(min-width: 997px) calc(75vw - 257px)`. This means given the viewport is at least 997px wide, calculate 0.75 \* the current viewport resolution - 257 to find the closest image in the srcset to fit the number of pixel specified.
 
 <picture>
   <source type="image/jxl" srcset="https://raw.githubusercontent.com/av1-community-contributors/av1-wiki.github.io/deployment/img/img_size/img_270.jxl 270w, https://raw.githubusercontent.com/av1-community-contributors/av1-wiki.github.io/deployment/img/img_size/img_958.jxl 958w, https://raw.githubusercontent.com/av1-community-contributors/av1-wiki.github.io/deployment/img/img_size/img_1350.jxl 1350w, https://raw.githubusercontent.com/av1-community-contributors/av1-wiki.github.io/deployment/img/img_size/img_1660.jxl 1660w, https://raw.githubusercontent.com/av1-community-contributors/av1-wiki.github.io/deployment/img/img_size/img_1916.jxl 1916w" sizes="(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)" />
