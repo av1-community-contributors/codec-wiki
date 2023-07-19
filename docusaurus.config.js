@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Codec Wiki',
   tagline: 'Your Guide to All Things Encoding',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
   url: 'https://av1-wiki.github.io',
@@ -60,7 +60,7 @@ const config = {
         title: 'Codec Wiki',
         logo: {
           alt: 'AV1 "Stonks" logo',
-          src: 'img/av1stonks.avif',
+          src: 'img/favicon.svg',
         },
       },
       colorMode: {
