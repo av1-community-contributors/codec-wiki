@@ -1,21 +1,19 @@
 ---
 title: Prequisites
 sidebar_label: 🗳️ Prequisites
-sidebar_position: 2
+sidebar_position: 0
 ---
 
 # Prequisites
 
 - Patience.
-- A brain.
+- A willingness to learn & be curious
 - Basic to intermediate computer proficiency.
-- Ability to read and follow instructions.
-- Depending on how long you want to wait, a beefy CPU with lots of cores is recommended.
-- Experimentation.
-- (Heavily recommended) A lot of free time.
-- (Heavily recommended) Ability to use the command line, or the will to understand it as you read on.
-- **(Heavily recommended) When using Linux, Arch Linux and it's derivatives are the most preferable.**
+- Willingness to read & follow instructions.
+- Higher-end CPU hardware will decrease wait times for some larger video encoding workloads discussed here.
+- A level of comfort with CLI utilities, or a willingness to engage with them in the absence of background knowledge.
+- **(Heavily recommended) Arch-based Linux distributions, excluding Manjaro, are optimal for working with most encoding utilities.**
 
 :::info Why Arch?
-Most encoding tools such are already available in the package manager, it is bleeding edge which is what you want for encoding softwares, and most importantly **ALL** Vapoursynth plugins are already available in the Arch User Repository (AUR). Which makes it extremely easy to install and version control with your favorite AUR helper.
+Most encoding tools are already available in the package manager, & it is a bleeding edge Linux distribution which ensures your utilities are always kept up to date. For filtering, all Vapoursynth plugins are already available in the Arch User Repository (AUR) which makes it extremely easy to install and version control with an AUR helper [like `yay`](https://github.com/Jguer/yay)
 :::

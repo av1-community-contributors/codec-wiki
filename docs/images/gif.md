@@ -1,9 +1,9 @@
 ---
-label: PNG
-sidebar_position: 2
+label: GIF
+sidebar_position: 3
 ---
 
-# PNG
+# GIF
 
 To be filled.
 
@@ -13,15 +13,15 @@ Lossless? *Yes*
 
 Lossy? *No*
 
-Supported Bit Depths:
-*8 BPC, 16 BPC*
+Supported Bit Depth:
+*256 colors*
 
-HDR/Wide Gamut? *Yes*
+HDR/Wide Gamut? *No*
 
 Animation? *Yes*
 
 Transparency? *Yes*
 
-Progressive Decode? *Kinda*
+Progressive Decode? *No*
 
 Royalty Free? *Yes*

@@ -23,9 +23,9 @@ function HomepageHeader() {
       </div>
       <div className="container centered-text">
         <p className="hero__subtitle">
-        Welcome! This place is your future one-stop-shop for all media encoding documentations and beginners guides including x264, x265, Vapoursynth, and much more! </p>
+        The Codec Wiki aims to be a complete source of multimedia documentation & & general codec knowledge. </p>
         <p className="hero__subtitle">
-          Currently this website is in a very very very heavy work in progress, some parts will be altered or even overhauled completely based on fellow encoders input, new research, and our knowledge.
+          Currently this website is under heavy development, so ensure you are cautious in trusting the absolute legitimacy of any material you read here for the time being.
         </p>
       </div>
     </header>

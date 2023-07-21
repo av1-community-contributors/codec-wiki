@@ -59,7 +59,7 @@ To be filled. Maybe try the Linux route?
 **The Easy Way:** 
 Install [Aviator](https://github.com/gianni-rosato/aviator), it is currently only available as a [Flatpak](https://beta.flathub.org/apps/net.natesales.Aviator)
 or
-Install [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically same thing but av1an + rav1e
+Install [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically the same thing but av1an + rav1e
 :::caution
 Aviator ships with SVT-AV1 and rAV1ator with rav1e instead of Aomenc/AOM-AV1.
 :::
@@ -116,5 +116,21 @@ sudo make install
 
 ## Usage
 
+### AV1 Encoding
 the
 
+### AVIF Encoding
+
+Using aomenc through avifenc is widely considered to be the best way to encode AVIF images, as SVT-AV1 only supports 4:2:0 chroma subsampling, rav1e isn't fast enough for still images, & the libaom team have put more effort into intra coding than the teams responsible for producing the other prominent open source AV1 encoders. A sample command for encoding AVIF looks like this:
+
+`avifenc -c aom -s 4 -j 8 -d 10 -y 444 --min 1 --max 63 -a end-usage=q -a cq-level=16 -a tune=ssim [input] output.avif`
+
+Where:
+
+- `-c aom` is the encoder
+- `-s 4` is the speed. Speeds 4 & below offer the best compression quality at the expense of longer encode times.
+- `-j 8` is the number of threads the encoder is allowed to use. Increasing this past 12 will sometimes hurt encode times, as AVIF encoding via aomenc doesn't parallelize perfectly. Test using a speed benchmark to verify which value works best for you.
+- `-d 10` is the bit depth. Specifying a value below 10 isn't recommended, as it will hurt coding efficiency even with an 8-bit source image.
+- `-y 444` is the chroma subsampling mode. 4:4:4 chroma subsampling tends to provide better compression than 4:2:0 with AVIF, though on some images 4:2:0 chroma subsampling might be the better choice.
+- `cq-level=16` is how you specify quality. Lower values correspond to higher quality & filesize, while higher values mean a smaller, lower-quality output is desired. This is preceded by `-a` because it is an aomenc option, not an avifenc one.
+- `tune=ssim` is how the encoder handles RDO (rate-distortion optimization). This may be redundant with the default aomenc parameters, but specifying doesn't hurt to avoid an unintended change if a default is modified sometime in the future.

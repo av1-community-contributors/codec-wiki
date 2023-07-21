@@ -1,7 +1,7 @@
 ---
 title: Terms of Use
 sidebar_label: 🤝 Terms of Use
-position: 13
+position: 15
 ---
 
 # Terms of Use
@@ -14,7 +14,7 @@ The following terminology applies to these Terms & Conditions & all other Agreem
 
 1. Cookies
 
-We may employ the use of cookies in the future. At the time of writing, we do not. If accessing radixproject.org employs the use of cookies, you will be prompted to agree to use cookies in agreement with The Radix Project’s Privacy Policy. As of writing, our Privacy Policy does not require users consent to the use of cookies due to the fact that we do not use cookies.
+We may employ the use of cookies in the future. At the time of writing, we do not. If accessing radixproject.org employs the use of cookies, you will be prompted to agree to use cookies in agreement with The Radix Project’s Privacy Policy. As of writing, our Privacy Policy does not require users' consent to the use of cookies due to the fact that we do not use cookies.
 
 Some interactive websites use cookies to let them retrieve user details for each visit. Cookies may be used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our partners & sponsors who are linked may also use cookies.
 
@@ -36,11 +36,11 @@ No party can revoke these freedoms as long as you follow the license terms. The 
 
 Contributors may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
-Parts of this website may offer an opportunity for users to post & exchange opinions & information in certain areas of the site. We do not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views & opinions of contributors, its agents and/or affiliates. Comments reflect the views & opinions of the person who posts their views & opinions. To the extent permitted by applicable laws, the site's host & wiki contributors shall not be liable for the Comments or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.
+Parts of this website may offer an opportunity for users to post & exchange opinions & information in certain areas of the site. We do not filter, edit, publish or review Comments prior to their presence on the website. Comments do not reflect the views & opinions of contributors, its agents and/or affiliates. Comments reflect the views & opinions of the person who posts their views & opinions. To the extent permitted by applicable laws, the site's host & wiki contributors shall not be liable for the Comments or any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the Comments on this website.
 
-Part of the nature of a community-developed wiki is the ability for members of the community to make contributions to the contents of the site. Contributors are responsible for their own contributions to the site, & we shall not be liable for the contributions or for any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the contributions to this website.
+Part of the nature of a community-developed wiki is the ability for members of the community to make contributions to the contents of the site. Contributors are responsible for their own contributions to the site, & we shall not be liable for the contributions or any liability, damages or expenses caused and/or suffered as a result of any use of and/or posting of and/or appearance of the contributions to this website.
 
-We reserve the right to monitor all Comments and/or contributions & to remove any Comments and/or contributions which can be considered inappropriate, offensive or causes breach of these Terms & Conditions.
+We reserve the right to monitor all Comments and/or contributions & to remove any Comments and/or contributions which can be considered inappropriate, offensive or causes a breach of these Terms & Conditions.
 
 You warrant & represent that:
 
@@ -69,7 +69,7 @@ We reserve the right to request that you remove all links or any particular link
 
 7. Removal of links from our website
 
-If you find any link on our Website that is offensive for any reason, you are free to contact & inform us any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly. We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up-to-date.
+If you find any link on our Website that is offensive for any reason, you are free to contact & inform us at any moment. We will consider requests to remove links but we are not obligated to or so or to respond to you directly. We do not ensure that the information on this website is correct, we do not warrant its completeness or accuracy; nor do we promise to ensure that the website remains available or that the material on the website is kept up-to-date.
 
 8. Disclaimer
 

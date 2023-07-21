@@ -1,8 +1,8 @@
 ---
-label: HEIF
+label: VP8
 sidebar_position: 4
 ---
 
-# HEIF
+# VP8
 
 To be filled.

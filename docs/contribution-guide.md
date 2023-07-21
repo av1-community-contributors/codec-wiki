@@ -1,21 +1,21 @@
 ---
 title: Contribution Guide
 sidebar_label: ✒️ Contribution Guide
-sidebar_position: 1
+sidebar_position: 12
 ---
 
 # Contribution Guide
 
-Codec Wiki - community maintained wiki for all things encoding.
+Codec Wiki - community-maintained wiki for all things encoding.
 
 ## Before You Contribute
 
-1. By making a contribution to the Codec Wiki, you are communicating that you have read & agreed to our Terms & Conditions, Privacy Policy, & Code of Conduct.
-2. Ensure your understanding of the material you're contributing is sufficient to a point where it is useful to the project. It is perfectly acceptable not to get everything right the first time, but always double check your contributions for factual correctness.
+1. By contributing to the Codec Wiki, you are communicating that you have read & agreed to our Terms & Conditions, Privacy Policy, & Code of Conduct.
+2. Ensure your understanding of the material you're contributing is sufficient to a point where it is useful to the project. It is perfectly acceptable not to get everything right the first time, but always double-check your contributions for factual correctness.
 
 ## Connect With Us
 
-If you're interested in communicating with other passionate contributors helping this project, visit [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You'll need a Revolt account to join. Revolt is an open source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).
+If you're interested in communicating with other passionate contributors helping this project, visit [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You'll need a Revolt account to join. Revolt is an open-source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).
 
 ## Clone & Push Instructions
 **Make sure to clone from & edit the** `main` **branch only, and push your final changes to the** `development` **branch according to the instructions below.**
@@ -74,4 +74,4 @@ This command generates static content into the `build` directory and can be serv
 
 ### Deployment
 
-See initial instructions at the top.
+See the initial instructions at the top.
