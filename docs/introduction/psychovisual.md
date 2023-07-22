@@ -4,6 +4,14 @@ sidebar_position: 5
 
 # Psycho-visual
 
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+:::caution Pending Review
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
+:::
+
 "*Traditionally, the encoder tends to favor blurred reconstructed blocks over blocks which have wrong motion. The human eye generally prefers the wrong motion over the blur. Psycho-visual options combat this. While technically less “correct”, which is why they are disabled for research purposes, they should be enabled for content intended for “human eyes”.* "
 
 -- Kokomins' x265 [guide](https://kokomins.wordpress.com/2019/10/10/anime-encoding-guide-for-x265-and-why-to-never-use-flac)

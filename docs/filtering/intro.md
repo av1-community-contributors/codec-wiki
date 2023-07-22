@@ -5,10 +5,13 @@ sidebar_position: 1
 
 # Intro
 
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
 In the future, you will definitely come into contact with less than ideal or even downright terrible media, like a ton of film grain/unwanted noise that explodes the bitrate because of their randomness, annoying banding, random halos. Or even in more extreme cases, Interlaced and telecined videos you might come across because they're old and nobody cared about restoring them.
 
 This is where filtering comes into play, currently there are three players in the filtering game. [FFmpeg](https://ffmpeg.org), [Vapoursynth](https://vapoursynth.com), and [Avisynth](http://avisynth.nl/index.php/Main_Page). This wiki will only cover Vapoursynth (and FFmpeg when relevant) as it is intended as a replacement to Avisynth, you will need to understand a bit of Python as filtering involves a bit of scripting.
-
 
 ## Lore
 

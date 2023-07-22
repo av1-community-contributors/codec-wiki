@@ -4,6 +4,11 @@ sidebar_position: 3
 ---
 
 # aomenc
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
 aomenc or **libaom** is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.
 
 &nbsp;&nbsp;

@@ -8,7 +8,6 @@ sidebar_position: 12
 
 Encoding resources that you might find useful.
 
-
 - https://guide.encode.moe - Filtering and fansubbing.
 - https://lvsfunc.encode.moe/en/latest - lvsfunc documentation.
 - https://silentaperture.gitlab.io/mdbook-guide/introduction.html - SilentAperture's Advanced Encoding guide, mostly about filtering.

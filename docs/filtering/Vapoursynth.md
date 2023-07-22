@@ -5,6 +5,10 @@ sidebar_position: 2
 
 # Vapoursynth
 
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
 ![Average anime encoder VapourSynth script](https://cdn.discordapp.com/attachments/778167033401049098/1104718855256944660/VSEdit.png)
 
 "VapourSynth is an application for video manipulation. Or a plugin. Or a library. It’s hard to tell because it has a core library written in C++ and a Python module to allow video scripts to be created."

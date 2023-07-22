@@ -4,6 +4,11 @@ sidebar_position: 3
 ---
 
 # Codecs
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
 Codecs, shortened from **coder-decoders**, are a system for encoding and decoding data. Image codecs convert the color channels, (often Red, Green, and Blue) into a stream of bits that can be turned back into a sequence of Red, Green, and Blue at the other end.
 
 ## Compression
