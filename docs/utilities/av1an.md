@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 # Av1an
 
 <picture>
-    <source srcset="/static/img/av1an_96_workers.avif" type="image/avif" />
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/av1-wiki.github.io/main/static/img/av1an_96_workers.avif" type="image/avif" />
     <img src="https://autumn.revolt.chat/attachments/K3OhOCAy9bkUCkImek_q3-t6q3zctbn9SbWW-_RI19/av1an_96_workers.webp" alt="Av1an with 96 workers" width="1703" height="958" />
 </picture>
 
