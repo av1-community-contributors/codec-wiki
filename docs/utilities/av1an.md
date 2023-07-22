@@ -9,7 +9,10 @@ import TabItem from '@theme/TabItem';
 
 # Av1an
 
-![Av1an encoding AV1 with 96 workers](https://cdn.discordapp.com/attachments/756076013372440656/1103284312675188777/av1an_96_workers.jpeg)
+<picture>
+    <source srcset="/static/img/av1an_96_workers.avif" type="image/avif" />
+    <img src="https://autumn.revolt.chat/attachments/K3OhOCAy9bkUCkImek_q3-t6q3zctbn9SbWW-_RI19/av1an_96_workers.webp" alt="Av1an with 96 workers" width="1703" height="958" />
+</picture>
 
 Av1an is a video encoding framework. It can increase your encoding speed and improve cpu utilization by running multiple encoder processes in parallel. Target quality, VMAF plotting, and more, available to take advantage for video encoding.
 
@@ -17,20 +20,20 @@ Av1an is a video encoding framework. It can increase your encoding speed and imp
 ## Prerequisites
 Since Av1an is just a tool that helps with parallelization, you'll need to have the following installed for the entire thing to work: 
 - Rust
-- Python (Required for Vapoursynth, currently needs 3.11, this will change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html))
+- Python (Required for [Vapoursynth](../filtering/Vapoursynth.md), currently needs 3.11, this may change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html))
 - FFmpeg
-- MKVToolNix (mkvmerge)
+- [MKVToolNix](../utilities/MKVToolNix.md) (mkvmerge)
 - Vapoursynth
 - L-SMASH (Vapoursynth plugin)
 - FFMS2 (Vapoursynth plugin, optional)
-- VMAF (For target VMAF, optional)
-- Any of the supported encoders (aomenc, rav1e, SVT-AV1, vpxenc, x264, x265)
+- [VMAF](../metrics/VMAF.md) (For target VMAF, optional)
+- Any of the supported encoders ([aomenc](../encoders/aomenc.md), [rav1e](../encoders/rav1e.md), [SVT-AV1](../encoders/SVT-AV1.md), [vpxenc](../encoders/vpxenc.md), [x264](../encoders/x264.md), [x265](../encoders/x265.md))
 
 &nbsp;&nbsp;
 ## Installation
 ### Microsoft Windows
 **GUI:**
-1. Install [Nmkoder](https://github.com/n00mkrad/nmkoder) which is a GUI front-end to av1an with all dependencies installed
+1. Install [Nmkoder](../utilities/nmkoder.md) which is a GUI front-end to av1an with all dependencies installed
 2. You're done!
 
 :::danger Outdated Software
@@ -52,9 +55,7 @@ To be filled.
 
 **The Easy Way:** 
 
-Install [Aviator](https://github.com/gianni-rosato/aviator), it is currently only available as a [Flatpak](https://beta.flathub.org/apps/net.natesales.Aviator)
-or
-Install [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically same thing but av1an + rav1e
+Install [rAV1ator](../utilities/rAV1ator.md), a GUI frontend for Av1an & the rust-based rav1e encoder.
 :::note
 Keep in mind Aviator only ships with **SVT-AV1** and rAV1ator with **rav1e** instead of Aomenc/AOM-AV1.
 :::
