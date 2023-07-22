@@ -1,7 +1,7 @@
 ---
 title: Terms of Use
 sidebar_label: 🤝 Terms of Use
-position: 15
+position: 16
 ---
 
 # Terms of Use

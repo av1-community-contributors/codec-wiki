@@ -1,7 +1,7 @@
 ---
 title: Video Players
 sidebar_label: ▶️ Video Players
-sidebar_position: 10
+sidebar_position: 11    
 ---
 
 # Video Players

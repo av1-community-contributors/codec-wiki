@@ -1,7 +1,7 @@
 ---
 title: Privacy Policy
 sidebar_label: 🔏 Privacy Policy
-position: 14
+position: 15
 ---
 
 # Privacy Policy

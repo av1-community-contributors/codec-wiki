@@ -1,7 +1,7 @@
 ---
 title: Resources
 sidebar_label: 🗃️ Resources
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 # Resources
