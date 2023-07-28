@@ -5,6 +5,58 @@ sidebar_position: 1
 
 # Aviator
 
-:::warning Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../docs/contribution-guide.md) to get started as a contributor!
-:::
+Aviator is a GUI application designed for encoding [AV1](../video/av1.md) video & Opus audio with [SVT-AV1](../encoders/SVT-AV1.md), [libopus](../audio/opus.md), & [ffmpeg](../utilities/ffmpeg.md) on Linux systems in a user-friendly, intuitive manner. Aviator's primary focus is ease-of-use, while still striving to offer optimal quality per bit through smart defaults implemented via its SVT-AV1 encoder.
+
+<img width="640" height="360" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_splash2.avif" alt="Aviator Splash"/>
+
+## Installation
+
+Aviator is available on Flathub as a Flatpak. You can learn how to set up Flatpak on your distro of choice [here](https://flatpak.org/setup/).
+
+<a href="https://flathub.org/apps/details/net.natesales.Aviator"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
+
+Aviator's rationale behind using Flatpak is to ship its own dependencies & ensure users across every distro have a cohesive experience with the latest up-to-date SVT-AV1 implementation that is best for visual quality.
+
+## Aviator's Defaults
+
+Hovering over most user configurable options in Aviator will produce a helpful tooltip that you can look at to make things more clear.
+
+### Perceptual Optimization
+
+Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.com/BlueSwordM/SVT-AV1) maintained for perceptual quality. It includes several unique changes, including a custom [SSIM](../metrics/ssim.md) [RDO](../introduction/psychovisual.md) tune that isn't included in mainline SVT-AV1.
+
+Aviator's default FFmpeg command uses the following SVT-AV1 parameters:
+
+```zsh
+-c:v libsvtav1 -crf X -preset X -pix_fmt yuv420p10le -svtav1-params film-grain=X:input-depth=10:tune=2:enable-qm=1:scd=1:enable-overlays=1:film-grain-denoise=X
+```
+
+### Video
+
+<img width="678" height="567" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_video.webp" alt="Aviator Video Settings" loading="lazy" />
+
+By default, output resolution will match your source's resolution. Manually changing one resolution value will automatically calculate the other based on the video's aspect ratio. Aviator's SVT-AV1 speed preset is set to 6 by default, with a CRF (Constant Rate Factor) level of 32. You can set CRF from 0 to 63 using the slider, with larger numerical values indicating smaller filesize at the expense of visual quality. You can look at the detailed specifications behind each speed preset [here](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.md#what-presets-do). Speed 6 offers a good balance between speed & compression efficiency at any CRF level.
+
+Setting values that don't correspond with the source video's aspect ratio means the output will either stretch or crop based on if the "crop" option is checked.
+
+The Grain Synth slider allows you to add artificial grain to your video to mimic its natural grain. This option applies the artificial grain at decode time as a filter, which makes it easier to encode grainy videos at high fidelity. The Denoise switch removes noise from the video before applying artificial grain.
+
+### Audio
+
+<img width="678" height="567" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_audio.webp" alt="Aviator Audio Settings" loading="lazy" />
+
+The default bitrate for Opus audio is 48kb/s. The audio source can be copied to the output media via that "Copy Audio" switch, & audio with >2 channels can be downmixed to stereo via the appropriately labelled switch. Volume adjustment & normalization are also offered in this section as well; the Volume slider allows you to increase or decrease the output's volume & is measured in decibels, & negative values decrease the volume. The Normalize toggle allows you to normalize your audio's perceived loudness.
+
+The "Copy Audio" switch disables WebM output due to potential compatibility hiccups & overrides every option on the Audio page to keep the source audio untouched. This option, when enabled, ensures the source audio isn't reencoded.
+
+The Volume slider allows you to increase or decrease the output's volume. It is measured in decibels, and negative values decrease the volume. The Normalize switch allows you to normalize the audio's perceived loudness.
+
+### Output
+
+<img width="678" height="567" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_output.webp" alt="Aviator Output UI" loading="lazy" />
+
+The container your video is stored in is associated with the file extension. Aviator offers two options for video output: the [Matroska](../introduction/containers.md#mkv--mka--mks--mk3d) video container & the [WebM](../introduction/containers.md#webm) container. The open-source Matroska container (.MKV) is used by default in Aviator & is a universal multimedia container with broad video & audio support. WebM is designed for web compatibility. Aviator won't copy subtitles to WebM outputs because WebM is only officially compatible with [WebVTT](../subtitles/webvtt.md) subtitles. Both containers work out of the box with Aviator's AV1 video & Opus audio, but WebM output will be disabled if the Copy Audio switch is enabled because then we lose this format compliance assurance.
+
+## Credits
+
+Actively developed by [Gianni Rosato](https://github.com/gianni-rosato/).
