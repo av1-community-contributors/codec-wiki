@@ -5,6 +5,10 @@ sidebar_position: 6
 
 # AVIF
 
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
 AVIF, which stands for AV1 Image File Format, is a newer image codec that is based on the [AV1](../video/av1.md) video codec. AVIF supersedes [HEIC](heic.md), & uses the same HEIF container as HEIC. AVIF is designed to have a better featureset & better general lossy compression than older image codecs, including [WebP](webp.md), HEIC, & [JPEG](jpeg.md). AVIF is often compared to [JPEG-XL](jxl.md), though in practice, the two have very different strengths.
 
 There are two AVIF profiles available for encoding: Baseline & Advanced, which are based on AV1's Main & High profiles respectively. The AVIF Baseline profile supports up to 8,192\*4,352 resolution specified by the requirement of using AV1 Level 5.1 or lower. Using tiling, it is possible to increase the maximum resolution of the AVIF Baseline profile to 65536\*65536, although this hurts coding efficiency as visual anomalies may be encountered along the edges of the tile boundaries. AVIF is also limited to 10 bit color precision in its Baseline profile.
