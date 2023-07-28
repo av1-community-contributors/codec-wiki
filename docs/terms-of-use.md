@@ -14,9 +14,9 @@ The following terminology applies to these Terms & Conditions & all other Agreem
 
 1. Cookies
 
-We may employ the use of cookies in the future. At the time of writing, we do not. If accessing radixproject.org employs the use of cookies, you will be prompted to agree to use cookies in agreement with The Radix Project’s Privacy Policy. As of writing, our Privacy Policy does not require users' consent to the use of cookies due to the fact that we do not use cookies.
+We may employ the use of cookies in the future. At the time of writing, we do not. If accessing the site employs the use of cookies, you will be prompted to agree to use cookies in agreement with our Privacy Policy. As of writing, our Privacy Policy does not require users' consent to the use of cookies due to the fact that we do not use cookies.
 
-Some interactive websites use cookies to let them retrieve user details for each visit. Cookies may be used by our website to enable the functionality of certain areas to make it easier for people visiting our website. Some of our partners & sponsors who are linked may also use cookies.
+Some interactive websites use cookies to let them retrieve user details for each visit. Cookies may be used by our website to enable the functionality of certain areas to make it easier for people visiting our website.
 
 2. Licensing
 

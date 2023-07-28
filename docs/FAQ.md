@@ -18,7 +18,7 @@ While this is true, this is easier said than done.
 
 - [guide.encode.moe](https://guide.encode.moe/) is stagnant and mostly focused on fansub, docs & personal experiences that are scattered around the Internet.
 
-- There are sources littered about that explain pieces of the larger puzzle, but these serve as small drops in a bucket of vast incoherency & don't meaningfully help the steep learning curve for understanding multimedia compression without background knowledge.
+- There are sources littered about that explain pieces of the larger puzzle, but these serve as small drops in a bucket of vast incoherency & don't meaningfully remedy the steep learning curve for understanding multimedia compression without background knowledge.
 
 ### How do I get started as a contributor?
 
