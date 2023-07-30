@@ -6,91 +6,72 @@ date: 2023-05-09
 
 # rav1e
 
-rav1e is a command line application for encoding AV1 written in Rust and Assembly joint-developed by Xiph.org and Mozilla.
+rav1e is a command line application for encoding AV1 written in Rust & Assembly co-developed by Xiph.org and Mozilla.
+
+rav1e is available in FFmpeg via `librav1e`. You can check if you have it by running `ffmpeg -h encoder=librav1e`. You can input non-FFmpeg standard rav1e parameters via `-rav1e-params`. Please keep in mind that unless you build FFmpeg yourself, you are using the most vanilla version of rav1e.
 
 &nbsp;&nbsp;
 
-## FFmpeg
+## Building
 
-rav1e is available in FFmpeg via ``librav1e``, check if you have it by running ``ffmpeg -h encoder=librav1e``. You can input non-FFmpeg standard rav1e parameters via ``-rav1e-params``. Please keep in mind that unless you built FFmpeg yourself, you are using the most vanilla version of rav1e.
+### Linux/macOS
 
-&nbsp;&nbsp;
+Pre-built binaries can be found in the [releases page](https://github.com/xiph/rav1e/releases) on Github. rav1e can also be installed with Cargo by running `cargo install rav1e`. 
 
-## Installation
-
-**Pre-built binary [Recommended]:**
-
-- https://github.com/xiph/rav1e/releases
-
-&nbsp;&nbsp;
-
-:::caution
-Compilation requires NASM
+:::caution Warning
+For stability & a proper version number, please reset the source to the correct release commit. In the releases page, click the icon to the right of the release tag & copy the commit in the url bar. Then, in the cloned rav1e directory, `git reset --hard [commit hash]`
 :::
 
-**Compiling, via cargo:**
+Here are instructions for resetting to release 0.6.6. Omit the git reset command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
 
-- ``cargo install rav1e``
-
-
-**Compiling, manually (Linux/MacOS):**
-
-```bash
+```zsh
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
+git reset --hard 7c9db10494c2fffa98a572027d756e55bf754036
 RUSTFLAGS="-C target-cpu=native" cargo build --release
 ```
 
-**Compiling, manually (Windows):**
+When done, the binary can be found in `/target/release`. You can then `cp /target/release/rav1e /usr/local/bin` or wherever you desire the binary to go.
 
-```bash
+### Windows
+```powershell
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
+git reset --hard 7c9db10494c2fffa98a572027d756e55bf754036
 set RUSTFLAGS=-C target-cpu=native
 cargo build --release
 ```
-
 When done, the binary can be found in ``target/release``
 
-&nbsp;&nbsp;
+**Installation with HDR10+ support**
 
+rav1e currently has an [unmerged pull request](https://github.com/xiph/rav1e/pull/3000) by quietvoid, the person behind ``hdr10plus_tool`` and ``dovi_tool``. The PR adds a new parameter called ``--hdr10plus-json`` for HDR10+ JSON dynamic metadata input. To merge it locally, do the following:
 
-&nbsp;&nbsp;
-
-## Installation with HDR10+ support
-
-rav1e currently have an [unmerged pull request](https://github.com/xiph/rav1e/pull/3000) none other by quietvoid, the person behind ``hdr10plus_tool`` and ``dovi_tool``. The PR adds a new parameter called ``--hdr10plus-json`` for HDR10+ JSON dynamic metadata input, to merge it locally do the following
-
-```bash
+```zsh
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
+git reset --hard [release commit]
 git fetch origin pull/3000/head:HDR10+
 ```
 now the patch should be applied, build as usual
 
-&nbsp;&nbsp;
+### AV1
 
-## Usage
-
-rav1e is made to "Just work", so you don't have to fiddle around with cargo cult settings, here are some examples
+For AV1 encoding, rav1e has very sane defaults. It is very hard to go wrong with parameters if you modify as few as possible.
 
 Basic usage:
-```bash
+```zsh
 rav1e -i input.y4m -o output.ivf --quantizer 60 --photon-noise 8
 ```
 
 Basic usage with FFmpeg piping, 10bit input:
-```bash
+```zsh
 ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - -o output.ivf --quantizer 80 --photon-noise 8
 ```
 
 Basic usage with FFmpeg piping, 10bit input and assuming 4K:
-```bash
+```zsh
 ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - -o output.ivf --quantizer 68 --tile-columns 2 --tile-rows 1 --photon-noise 8
 ```
-
-&nbsp;&nbsp;
-
-## Tips and tricks
 
 1. Use 2x1 tiles or ``tile-columns 2`` and ``tile-rows 1`` for 4K (2160p) encoding, this will help with both encoding and decoding.

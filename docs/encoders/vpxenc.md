@@ -11,15 +11,7 @@ The content in this entry is incomplete & is in the process of being completed.
 
 vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.md) & [VP8](../video/VP8.md) video codecs. It is capable of encoding & decoding both formats, where vpxenc is the multipurpose encoder. VP9 competes with [HEVC](../video/h265.md) (h265) & [AVC](../video/h264.md) (h264) in coding efficiency, and has been superseded by [AV1](../video/av1.md). VP8 competes with AVC. By default, vpxenc isn't as competitive as it could be, but even when used properly, most tests show that h265 offers slightly better quality per bit with efficient encoders like [x265](../encoders/x265.md).
 
-## VP8
-
-*Incomplete*
-
-## VP9
-
-For encoding VP9, vpxenc's default parameters are not considered optimal. There are a lot of options that are either disabled without reason or are simply misconfigured, hurting coding efficiency at little cost otherwise. As of mid-2021, some parameters (the TPL-model, lag-in-frames and auto-alt-ref frames) were changed (since libvpx 1.9.0 and libvpx 1.10.0) which means that there's not much use of setting these three parameters unless you're in [FFmpeg](../utilities/ffmpeg.md). This section covers the most important options libvpx-vp9 has to offer, recommended settings, & what they do.
-
-### Building
+## Building
 
 **Linux & macOS**
 
@@ -47,6 +39,14 @@ Included encoders:
 
         Use --codec to switch to a non-default encoder.
 ```
+
+## VP8
+
+*Incomplete*
+
+## VP9
+
+For encoding VP9, vpxenc's default parameters are not considered optimal. There are a lot of options that are either disabled without reason or are simply misconfigured, hurting coding efficiency at little cost otherwise. As of mid-2021, some parameters (the TPL-model, lag-in-frames and auto-alt-ref frames) were changed (since libvpx 1.9.0 and libvpx 1.10.0) which means that there's not much use of setting these three parameters unless you're in [FFmpeg](../utilities/ffmpeg.md). This section covers the most important options libvpx-vp9 has to offer, recommended settings, & what they do.
 
 ### Encoding
 
