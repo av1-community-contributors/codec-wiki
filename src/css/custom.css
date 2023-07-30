@@ -4,24 +4,34 @@
  * work well for content-centric websites.
  */
 
-[data-theme='dark'] {
+/* [data-theme='dark'] {
   --ifm-color-primary-darkest: #831a40;
   --ifm-color-primary-darker: #9f1f4e;
   --ifm-color-primary-dark: #a82153;
-  --ifm-color-primary: #bb255c; /* AV1 Red */
+  --ifm-color-primary: #bb255c;
   --ifm-color-primary-light: #ce2965;
   --ifm-color-primary-lighter: #d52c6a;
   --ifm-color-primary-lightest: #db487e;
+} */
+
+[data-theme='dark'] {
+  --ifm-color-primary-darkest: color(display-p3 0.513 0.232 0.376);
+  --ifm-color-primary-darker: color(display-p3 0.620 0.191 0.305);
+  --ifm-color-primary-dark: color(display-p3 0.647 0.189 0.326);
+  --ifm-color-primary: color(display-p3 0.733 0.176 0.360);
+  --ifm-color-primary-light: color(display-p3 0.804 0.160 0.396);
+  --ifm-color-primary-lighter: color(display-p3 0.839 0.161 0.416);
+  --ifm-color-primary-lightest: color(display-p3 0.851 0.208 0.494);
 }
 
 [data-theme='light'] {
-  --ifm-color-primary-darkest: #831a40;
-  --ifm-color-primary-darker: #9f1f4e;
-  --ifm-color-primary-dark: #a82153;
-  --ifm-color-primary: #bb255c; /* AV1 Red */
-  --ifm-color-primary-light: #ce2965;
-  --ifm-color-primary-lighter: #d52c6a;
-  --ifm-color-primary-lightest: #db487e;
+  --ifm-color-primary-darkest: color(display-p3 0.513 0.232 0.376);
+  --ifm-color-primary-darker: color(display-p3 0.620 0.191 0.305);
+  --ifm-color-primary-dark: color(display-p3 0.647 0.189 0.326);
+  --ifm-color-primary: color(display-p3 0.733 0.176 0.360); /* AV1 Red */
+  --ifm-color-primary-light: color(display-p3 0.804 0.160 0.396);
+  --ifm-color-primary-lighter: color(display-p3 0.839 0.161 0.416);
+  --ifm-color-primary-lightest: color(display-p3 0.851 0.208 0.494);
 }
 
 .centered-text {
