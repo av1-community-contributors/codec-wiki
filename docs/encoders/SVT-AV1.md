@@ -79,9 +79,9 @@ Enables overlay pictures to be used as additional reference frames for the refer
 
 Similar to `--kf-max-dist` in [vpxenc](../encoders/vpxenc.md), this tells the encoder when to place keyframes. Because SVT-AV1 doesn't have scene detection, this isn't the maximum distance between keyframes, but rather a fixed interval for placing keyframes.
 
-- `--irefresh-type 1`
+- `--irefresh-type 2`
 
-Intra refresh is specified through this option, & lets the user decide between Closed GOP & Open GOP. GOP stands for Group of Pictures. Open GOP allows GOPs to [reference one another](https://ottverse.com/closed-gop-open-gop-idr/).
+Intra refresh is specified through this option, & lets the user decide between Closed GOP & Open GOP. GOP stands for Group of Pictures. Open GOP allows GOPs to [reference one another](https://ottverse.com/closed-gop-open-gop-idr/), but support for this feature is currently incomplete. Therefore, it is recommended to use Closed GOP for the time being via `--irefresh-type 2` until this is rectified.
 
 - `--preset X`
 
