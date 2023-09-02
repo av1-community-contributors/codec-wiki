@@ -1,9 +1,9 @@
 ---
-label: brotli
-sidebar_position: 6
+label: AVC / H.264
+sidebar_position: 1
 ---
 
-# Brotli
+# H.264
 
 :::warning Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../docs/contribution-guide.md) to get started as a contributor!
