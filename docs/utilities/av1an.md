@@ -20,7 +20,7 @@ Av1an is a video encoding framework. It can increase your encoding speed and imp
 ## Prerequisites
 Since Av1an is just a tool that helps with parallelization, you'll need to have the following installed for the entire thing to work: 
 - Rust
-- Python (Required for [Vapoursynth](../filtering/Vapoursynth.md), currently needs 3.11, this may change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html))
+- Python (Required for [Vapoursynth](../filtering/vapoursynth.md), currently needs 3.11, this may change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html))
 - FFmpeg
 - [MKVToolNix](../utilities/MKVToolNix.md) (mkvmerge)
 - Vapoursynth
