@@ -11,15 +11,15 @@ const config = {
   favicon: 'img/favicon.svg',
 
   // Set the production url of your site here
-  url: 'https://av1-wiki.github.io',
+  url: 'https://wiki.x266.mov',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/av1-wiki.github.io/',
+  baseUrl: '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'av1-community-contributors', // Usually your GitHub org/user name.
-  projectName: 'av1-wiki.github.io', // Usually your repo name.
+  projectName: 'codec-wiki', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
