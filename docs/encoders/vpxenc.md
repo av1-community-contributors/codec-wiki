@@ -9,7 +9,7 @@ sidebar_position: 3
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.md) & [VP8](../video/VP8.md) video codecs. It is capable of encoding & decoding both formats, where vpxenc is the multipurpose encoder. VP9 competes with [HEVC](../video/h265.md) (h265) & [AVC](../video/h264.md) (h264) in coding efficiency, and has been superseded by [AV1](../video/av1.md). VP8 competes with AVC. By default, vpxenc isn't as competitive as it could be, but even when used properly, most tests show that h265 offers slightly better quality per bit with efficient encoders like [x265](../encoders/x265.md).
+vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.md) & [VP8](../video/VP8.md) video codecs. It is capable of encoding & decoding both formats, where vpxenc is the multipurpose encoder. VP9 competes with [HEVC](../video/HEVC.md) (h265) & [AVC](../video/AVC.md) (h264) in coding efficiency, and has been superseded by [AV1](../video/AV1.md). VP8 competes with AVC. By default, vpxenc isn't as competitive as it could be, but even when used properly, most tests show that h265 offers slightly better quality per bit with efficient encoders like [x265](../encoders/x265.md).
 
 ## Building
 

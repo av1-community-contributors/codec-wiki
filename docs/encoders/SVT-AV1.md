@@ -69,7 +69,7 @@ Most live-action sources feature hard-to-compress CCD noise that is easily smoot
 
 - `--tune 2`
 
-There are three tunes in SVT-AV1: Tune 1 is for [PSNR](../metrics/psnr.md) [RDO](../introduction/psychovisual.md), Tune 2 is for [SSIM](../metrics/ssim.md) RDO, & Tune 0 is a [psychovisual](../introduction/psychovisual.md) tune labeled VQ. It has been common practice to lean away from the PSNR tune, as it is not designed for visual quality but rather to perform better on the PSNR metric which is widely considered to be inconsistent with our human perception of fidelity. Using the VQ tune is a safe bet for now, but many believe the newer SSIM tune provides better visual fidelity. This is anecdotal, & has yet to be meaningfully proven
+There are three tunes in SVT-AV1: Tune 1 is for [PSNR](../metrics/PSNR.md) [RDO](../introduction/psychovisual.md), Tune 2 is for [SSIM](../metrics/SSIM.md) RDO, & Tune 0 is a [psychovisual](../introduction/psychovisual.md) tune labeled VQ. It has been common practice to lean away from the PSNR tune, as it is not designed for visual quality but rather to perform better on the PSNR metric which is widely considered to be inconsistent with our human perception of fidelity. Using the VQ tune is a safe bet for now, but many believe the newer SSIM tune provides better visual fidelity. This is anecdotal, & has yet to be meaningfully proven
 
 - `--enable-overlays 1`
 

@@ -9,7 +9,7 @@ sidebar_position: 13
 The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
 :::
 
-HM is the original [H.265](../video/h265.md) reference encoder, predating alternatives like [x265](../encoders/x265.md). In the modern day, it joins other MPEG reference encoders such as [JM](../encoders/JM.md) & [VTM](../encoders/VTM.md) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages. x264 is more efficient than JM.
+HM is the original [H.265](../video/HEVC.md) reference encoder, predating alternatives like [x265](../encoders/x265.md). In the modern day, it joins other MPEG reference encoders such as [JM](../encoders/JM.md) & [VTM](../encoders/VTM.md) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages. x264 is more efficient than JM.
 
 HM is capable of producing higher quality streams than highly tuned x265, even at excruciatingly slow speeds. This is only a theoretical advantage, though, as HM is incapable of placing keyframes automatically with scene detection & would need a chunking too reminiscent of [Av1an](../utilities/av1an.md) to do this. For videos containing few enough frames where keyframe placement isn't a concern, HM is better in practice than x265 at the expense of a massive dropoff in speed. HM doesn't have any threading capabilities & is much slower than even x265 placebo.
 

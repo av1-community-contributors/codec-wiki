@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Aviator
 
-Aviator is a GUI application designed for encoding [AV1](../video/av1.md) video & Opus audio with [SVT-AV1](../encoders/SVT-AV1.md), [libopus](../audio/opus.md), & [ffmpeg](../utilities/ffmpeg.md) on Linux systems in a user-friendly, intuitive manner. Aviator's primary focus is ease-of-use, while still striving to offer optimal quality per bit through smart defaults implemented via its SVT-AV1 encoder.
+Aviator is a GUI application designed for encoding [AV1](../video/AV1.md) video & Opus audio with [SVT-AV1](../encoders/SVT-AV1.md), [libopus](../audio/opus.md), & [ffmpeg](../utilities/ffmpeg.md) on Linux systems in a user-friendly, intuitive manner. Aviator's primary focus is ease-of-use, while still striving to offer optimal quality per bit through smart defaults implemented via its SVT-AV1 encoder.
 
 <img width="640" height="360" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_splash2.avif" alt="Aviator Splash"/>
 
@@ -23,7 +23,7 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 ### Perceptual Optimization
 
-Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.com/BlueSwordM/SVT-AV1) maintained for perceptual quality. It includes several unique changes, including a custom [SSIM](../metrics/ssim.md) [RDO](../introduction/psychovisual.md) tune that isn't included in mainline SVT-AV1.
+Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.com/BlueSwordM/SVT-AV1) maintained for perceptual quality. It includes several unique changes, including a custom [SSIM](../metrics/SSIM.md) [RDO](../introduction/psychovisual.md) tune that isn't included in mainline SVT-AV1.
 
 Aviator's default FFmpeg command uses the following SVT-AV1 parameters:
 

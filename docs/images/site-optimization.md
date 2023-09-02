@@ -57,7 +57,7 @@ A bonus tip is to add the `loading="lazy"` attribute to your picture tag to allo
 
 ## New Codecs
 
-If you desire further improvement, it may be time to consider using a newer codec like [AVIF](/images/avif.md) or [JPEG-XL](/images/jxl.md). These options will compress far more effectively than JPEG, with the only trade-off being browser support. We're not going to consider [WebP](/images/webp.md) or [HEIC](/images/heic.md), since WebP is not competitive enough with JPEG for photographic imagery (often being worse) & HEIC has been superseded by AVIF - which sees greater support anyhow - & is not royalty free, effectively preventing widespread Web adoption forever. Again, we're just considering *lossy* compression for *photographic* images; it is a different story with WebP elsewhere, as it performs well on non-photographic content & is almost always better than PNG for 8-bit lossless compression. So, we are left with JXL & AVIF for now.
+If you desire further improvement, it may be time to consider using a newer codec like [AVIF](/images/AVIF.md) or [JPEG-XL](/images/JXL.md). These options will compress far more effectively than JPEG, with the only trade-off being browser support. We're not going to consider [WebP](/images/WebP.md) or [HEIC](/images/HEIC.md), since WebP is not competitive enough with JPEG for photographic imagery (often being worse) & HEIC has been superseded by AVIF - which sees greater support anyhow - & is not royalty free, effectively preventing widespread Web adoption forever. Again, we're just considering *lossy* compression for *photographic* images; it is a different story with WebP elsewhere, as it performs well on non-photographic content & is almost always better than PNG for 8-bit lossless compression. So, we are left with JXL & AVIF for now.
 
 ### Fallbacks
 
@@ -76,7 +76,7 @@ Here is a JXL falling back to an AVIF falling back to a WebP falling back to a J
 
 ### Compression Efficacy
 
-Let's look at how our image examples compare to the original with our new codec selection. We'll be aiming for high visual fidelity, so around the same quality as our initial JPEG encoded with `cjpegli` (which scores ~`83.01` with the [SSIMULACRA2](/metrics/ssimu2.md) visual fidelity metric).
+Let's look at how our image examples compare to the original with our new codec selection. We'll be aiming for high visual fidelity, so around the same quality as our initial JPEG encoded with `cjpegli` (which scores ~`83.01` with the [SSIMULACRA2](/metrics/SSIMULACRA2.md) visual fidelity metric).
 
 ![smaller_jxl](/img/_DSC8466-smaller.jxl)
 
