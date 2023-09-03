@@ -1,13 +1,25 @@
 ---
-label: Site Optimization
-sidebar_position: 7
+title: "Site Optimization by Reducing Image Load on the Web"
+description: "Site Optimization by Reducing Image Load on the Web"
+slug: site-optimization
+authors:
+- name: RootAtKali
+  title: Autocompressor Founder / CEO
+  image_url: https://cdn.discordapp.com/avatars/456553041902960660/e57850912e0cd8dd62cb20439e0b36ea.jpg
+- name: Gianni Rosato
+  title: Maintainer
+  url: https://github.com/gianni-rosato
+  image_url: https://avatars.githubusercontent.com/u/35711760?v=4
+tags: [image, web, compression]
+hide_table_of_contents: false
 ---
 
-# Site Optimization
+A big part of understanding any multimedia codec technology is knowing the application for such technology.
 
-# Reducing Image Load on the Web
+<!--truncate-->
 
-A big part of understanding any multimedia codec technology is knowing the application for such technology. For images, a big use case is web delivery. Compared to other multimedia, images are incredibly popular on the Web & knowing how to serve them properly can be a massive boon to your website's traffic as well as less of a headache for users on slower connections or who are under bandwidth constraints. The most disappointing part is that images are often poorly done on the web; all too frequently will you run into a site serving massive photographic PNGs for no reason, or photography sites serving photographs fresh out of the editing software with no thought put into their final delivery. A little effort, patience, & knowledge will go a long way toward improving the user experience for individuals using your site, & this article will illustrate some of the basics.
+
+For images, a big use case is web delivery. Compared to other multimedia, images are incredibly popular on the Web & knowing how to serve them properly can be a massive boon to your website's traffic as well as less of a headache for users on slower connections or who are under bandwidth constraints. The most disappointing part is that images are often poorly done on the web; all too frequently will you run into a site serving massive photographic PNGs for no reason, or photography sites serving photographs fresh out of the editing software with no thought put into their final delivery. A little effort, patience, & knowledge will go a long way toward improving the user experience for individuals using your site, & this article will illustrate some of the basics.
 
 :::caution
 These instructions are for *photographic* images; other kinds of images, like non-photographic, artwork, pixel art, etc. should likely be handled differently.
@@ -57,7 +69,7 @@ A bonus tip is to add the `loading="lazy"` attribute to your picture tag to allo
 
 ## New Codecs
 
-If you desire further improvement, it may be time to consider using a newer codec like [AVIF](/images/AVIF.md) or [JPEG-XL](/images/JXL.md). These options will compress far more effectively than JPEG, with the only trade-off being browser support. We're not going to consider [WebP](/images/WebP.md) or [HEIC](/images/HEIC.md), since WebP is not competitive enough with JPEG for photographic imagery (often being worse) & HEIC has been superseded by AVIF - which sees greater support anyhow - & is not royalty free, effectively preventing widespread Web adoption forever. Again, we're just considering *lossy* compression for *photographic* images; it is a different story with WebP elsewhere, as it performs well on non-photographic content & is almost always better than PNG for 8-bit lossless compression. So, we are left with JXL & AVIF for now.
+If you desire further improvement, it may be time to consider using a newer codec like [AVIF](/docs/images/AVIF) or [JPEG-XL](/docs/images/JXL). These options will compress far more effectively than JPEG, with the only trade-off being browser support. We're not going to consider [WebP](/images/WebP) or [HEIC](/docs/images/HEIC), since WebP is not competitive enough with JPEG for photographic imagery (often being worse) & HEIC has been superseded by AVIF - which sees greater support anyhow - & is not royalty free, effectively preventing widespread Web adoption forever. Again, we're just considering *lossy* compression for *photographic* images; it is a different story with WebP elsewhere, as it performs well on non-photographic content & is almost always better than PNG for 8-bit lossless compression. So, we are left with JXL & AVIF for now.
 
 ### Fallbacks
 
@@ -76,7 +88,7 @@ Here is a JXL falling back to an AVIF falling back to a WebP falling back to a J
 
 ### Compression Efficacy
 
-Let's look at how our image examples compare to the original with our new codec selection. We'll be aiming for high visual fidelity, so around the same quality as our initial JPEG encoded with `cjpegli` (which scores ~`83.01` with the [SSIMULACRA2](/metrics/SSIMULACRA2.md) visual fidelity metric).
+Let's look at how our image examples compare to the original with our new codec selection. We'll be aiming for high visual fidelity, so around the same quality as our initial JPEG encoded with `cjpegli` (which scores ~`83.01` with the [SSIMULACRA2](/docs/metrics/SSIMULACRA2) visual fidelity metric).
 
 ![smaller_jxl](/img/_DSC8466-smaller.jxl)
 

@@ -15,7 +15,7 @@ A community maintained wiki for all things encoding.
 
 1. Clone from the `main` branch to start to make a contribution:
 ```zsh
-% git clone git@github.com:av1-community-contributors/av1-wiki.github.io.git -b main
+% git clone git@github.com:av1-community-contributors/codec-wiki.git -b main
 ```
 
 2. Test your changes locally before making a commit:

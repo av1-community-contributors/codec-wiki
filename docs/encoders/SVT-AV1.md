@@ -9,7 +9,13 @@ sidebar_position: 4
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-SVT-AV1 (Scalable Video Technology for AV1) is an AV1-compliant software encoder/decoder library. This entry discusses the SVT-AV1 encoder, also known as the "Production" AV1 encoder (while [aomenc](../encoders/aomenc.md) is the "reference" AV1 encoder), & refers to SVT-AV1 as such. SVT-AV1 is known for its parallelization, high coding efficiency, & active development. SVT-AV1 scales across multiple CPU cores much more effectively than aomenc or [rav1e](../encoders/rav1e.md), so the use of tools like [Av1an](../utilities/av1an.md) is less helpful.
+SVT-AV1 (Scalable Video Technology for AV1) is an AV1-compliant software encoder/decoder library. Joint-developed by Intel and Netflix, written in C with some parts in C++ and Assembly.
+
+This entry discusses the SVT-AV1 encoder, also known as the "Production" AV1 encoder (while [aomenc](../encoders/aomenc.md) is the "reference" AV1 encoder), & refers to SVT-AV1 as such. SVT-AV1 is known for its parallelization, high coding efficiency, & active development. SVT-AV1 scales across multiple CPU cores much more effectively than aomenc or [rav1e](../encoders/rav1e.md), so the use of tools like [Av1an](../utilities/av1an.md) is less helpful.
+
+## FFmpeg
+
+SVT-AV1 is available in FFmpeg via ``libsvtav1``, to check if you have it, run ``ffmpeg -h encoder=libsvtav1``. You can input non-FFmpeg standard SVT-AV1 parameters via ``-svtav1-params``.
 
 ## Building
 

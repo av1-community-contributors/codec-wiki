@@ -42,7 +42,10 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main',
+            'https://github.com/av1-community-contributors/codec-wiki/tree/main',
+        },
+        blog: {
+          showReadingTime: true
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -55,8 +58,12 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card
-      image: 'img/codec-wiki-social-comp.svg',
+      image: 'img/codec-wiki-social-card.webp',
       navbar: {
+      items: [
+        // ...
+        {to: 'blog', label: 'Blog', position: 'left'}, // or position: 'right'
+      ],
         title: 'Codec Wiki',
         logo: {
           alt: 'AV1 "Stonks" logo',
@@ -106,7 +113,7 @@ const config = {
             items: [
               {
                 label: 'Contribute',
-                href: 'https://github.com/av1-community-contributors/av1-wiki.github.io/tree/main',
+                href: 'https://github.com/av1-community-contributors/codec-wiki/tree/main',
               },
               {
                 label: 'Terms of Use',

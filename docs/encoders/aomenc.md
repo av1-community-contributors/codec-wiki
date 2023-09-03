@@ -5,25 +5,23 @@ sidebar_position: 3
 
 # aomenc
 
-:::info Under Maintenance
-The content in this entry is incomplete & is in the process of being completed.
-:::
-
 aomenc or **libaom** is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.
 
 &nbsp;&nbsp;
 
 ## Choosing forks
-Mainline aomenc is unfortunately not good, as it suffers from bad defaults, heavy focus on PSNR which reduces its psycho-visual capabilities, clickbait (or should I call, "usebait") settings that does X instead of Y, among others. Fortunately two forks were created to combat these, first there's [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy) which was created by BlueSwordM. But it is no longer maintained as of 13th January 2023, another fork called [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish) was then created off of it by Clybius to continue on the legacy.
+Mainline aomenc is unfortunately not good, as it suffers from bad defaults, heavy focus on PSNR which reduces its psycho-visual capabilities, settings that does X instead of Y, among others. Fortunately two forks were created to combat these, first there's [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy) which was created by BlueSwordM. **But it is no longer maintained as of 13th January 2023**, another fork called [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish) was then created off of it by Clybius to continue on the legacy.
 
-These forks fix up the horrid decisions made by the original AOM devs and most importantly introduce new parameters and tunes to help fine tune (haha get it? sorry ill see myself out) the encoder more. TL;DR use [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish)
+These forks fix up the horrid decisions made by the original AOM devs and most importantly introduce new parameters and tunes to help fine tune the encoder even more. 
+
+TL;DR use [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish).
 
 &nbsp;&nbsp;
 
 ## FFmpeg
 
 aomenc is available in FFmpeg via ``libaom-av1``, check if you have it by running ``ffmpeg -h encoder=libaom-av1``. You can input non-FFmpeg standard aomenc parameters via ``-aom-params``.
-:::warning Mainline aomenc
+:::caution Mainline aomenc
 Since FFmpeg encoder libraries come as the most default, barebones as possible (Therefore mainline aomenc), it is not recommended to use it. Unless you build it yourself.
 :::
 &nbsp;&nbsp;
@@ -33,25 +31,43 @@ Since FFmpeg encoder libraries come as the most default, barebones as possible (
 ### Microsoft Windows
 **The Easy Way:** Download the pre-built versions, which can be found below:
 
-[Skylake build](https://cdn.discordapp.com/attachments/1042536514783023124/1069212358989336626/aomenc-skylake.7z)
+https://cdn.discordapp.com/attachments/1042536514783023124/1121801826921103420/aom-lavish-opmox-patch.7z
 
-[Zen 2 build](https://cdn.discordapp.com/attachments/1042536514783023124/1069198775899398234/aomenc.7z)
-:::caution Updating and compiling
-Join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) and head to #community-builds for updated versions, you can opt to compile it yourself with those custom (Butteraugli, VMAF) tunes but its a huge PITA on Windows.
+:::tip
+Join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) and head to #community-builds for updated versions, you can opt to compile it yourself with the instructions below.
 :::
 
 **The Compiling Route:**
+:::info Credits
+Full credits to u/Turbulent-Bend-7416 on Reddit for [this post](https://www.reddit.com/r/AV1/comments/s6eh5f/how_to_compile_av1_in_windows_without_crying) on how to compile aomenc.
+:::
 
-Tools needed: Visual Studio (Any), Git, CMake, nasm (or yasm for 32bit)
+This guide requires **MSYS2**, specifically **MinGW-W64**. Install it if you haven't yet.
 
-``` bash
-git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
-cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
-cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
-cmake --build . -j 16
+First, install the required dependencies:
+```bash
+pacman -S cmake git perl yasm nasm python3 doxygen mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake base-devel
 ```
 
+Now, clone the aom-av1-lavish repo in the Endless_Merging branch and create the folders:
+```bash
+git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
+cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
+```
+
+Then we can start compiling with some build optimizations for your CPU:
+```bash
+cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
+make -j$(nproc)
+```
+
+The resulting binary will be available within your home folder of the location where you installed MSYS2 (usually `C:`), navigate there and the to the aom-av1-lavish folder and it should be there.
+
 Built files should be in the "Debug" folder
+
+:::caution
+Don't share binaries compiled with native CPU optimizations unless the person you're sharing to has the same CPU architecture, as this will lead to missing instructions being used and slowing down encode speeds.
+:::
 
 &nbsp;&nbsp;
 ### MacOS
@@ -115,9 +131,9 @@ Notice how it says `AOMedia Project AV1 Encoder Psy` instead of `AOMedia Project
 &nbsp;&nbsp;
 ### Linux
 
-You know what to do, so I'll just list the things you'll need: ``Vapoursynth, Av1an, FFmpeg, mkvtoolnix, Git, Perl, CMake, Ninja, Meson, Nasm, Rust (USE RUSTUP ON DEBIAN/UBUNTU), Highway (libhwy)``
+Linux has no prebuilt binaries so you'll have to compile yourself. CMake, Perl, GNU Make, and nasm (assuming x64, if x86 use yasm) will be needed for compilation.
 
-**Compiling aom-av1-lavish (Basic, recommended for beginners)**
+**Compiling aom-av1-lavish, all-in-one-command:**
 ``` bash
 git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
 cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
@@ -126,48 +142,33 @@ make -j$(nproc)
 sudo make install
 ```
 
-
-**Compiling aom-av1-lavish (Full)**
-1. VMAF shenanigans
-``` bash
-git clone https://github.com/Netflix/vmaf
-cd vmaf/libvmaf && mkdir build && cd build
-meson .. --buildtype=release --default-library=both -Db_lto=true -Dc_args="-march=native" -Dcpp_args="-march=native" && ninja
-sudo ninja install
-```
-
-2. Copy VMAF models (Assuming user cloned in $HOME)
-```bash 
-sudo cp -r /home/$USER/vmaf/model /usr/share
-```
-
-3. Install libjxl libraries
-``` bash
-git clone https://github.com/libjxl/libjxl && cd libjxl && chmod +x deps.sh && ./deps.sh
-mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native" -DCMAKE_C_FLAGS="-O3 -march=native" -DJPEGXL_ENABLE_PLUGINS=ON -DJPEGXL_ENABLE_DEVTOOLS=ON -DJPEGXL_WARNINGS_AS_ERRORS=OFF -DJPEGXL_ENABLE_SJPEG=OFF  .. && cmake --build . -- -j$(nproc)
-sudo make install
-```
-
-4. Install aom-av1-lavish
-``` bash
-git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
-cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
-cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=1 -DCONFIG_TUNE_VMAF=1 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
-make -j$(nproc)
-sudo make install
-```
-
-
-:::info Branches
-``Endless_Butter`` used to be bleeding edge but now it's been taken over by ``Endless_Merging``.
-:::
 &nbsp;&nbsp;
 
 ## Usage
 
 ### AV1 Encoding
-the
+
+Simple Y4M input with CQ 22, 1 pass, and raw `.ivf` bitstream output:
+```bash
+aomenc --end-usage=q --cq-level=32 --bit-depth=10 --passes=1 --ivf -o output.ivf input.y4m
+```
+
+Pipe from FFmpeg:
+```bash
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=1 --ivf -o output.ivf
+```
+
+Pipe from FFmpeg, 2-pass:
+```bash
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=2 --pass=1 --fpf-log=aom-pass.log  --ivf -o output.ivf
+```
+```bash
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=2 --pass=2 --fpf-log=aom-pass.log  --ivf -o output.ivf
+```
+
+:::info
+The way aomenc was developed requires 2-pass to take full advantage of its efficiency which include better rate controls and encoding features. So always use 2 passes when encoding.
+::: 
 
 ### AVIF Encoding
 
@@ -184,3 +185,63 @@ Where:
 - `-y 444` is the chroma subsampling mode. 4:4:4 chroma subsampling tends to provide better compression than 4:2:0 with AVIF, though on some images 4:2:0 chroma subsampling might be the better choice.
 - `cq-level=16` is how you specify quality. Lower values correspond to higher quality & filesize, while higher values mean a smaller, lower-quality output is desired. This is preceded by `-a` because it is an aomenc option, not an avifenc one.
 - `tune=ssim` is how the encoder handles RDO (rate-distortion optimization). This may be redundant with the default aomenc parameters, but specifying doesn't hurt to avoid an unintended change if a default is modified sometime in the future.
+
+## Recommendations
+
+aomenc unfortunately lacks the ability to take advantage of multiple threads, so therefore a tool like [Av1an](/docs/utilities/Av1an) will be needed for parallelization. The parameters shown will be biased towards Av1an usage, so if you plan on using standalone aomenc then adjust as needed.
+
+Here are some recommended parameters:
+
+`--bit-depth=10 --cpu-used=4 --end-usage=q --cq-level=24 --threads=2 --tile-columns=0 --tile-rows=0 --lag-in-frames=64 --tune-content=psy --tune=ssim --enable-keyframe-filtering=1 --disable-kf --kf-max-dist=9999 --enable-qm=1 --deltaq-mode=0 --aq-mode=0 --quant-b-adapt=1 --enable-fwd-kf=0 --arnr-strength=1 --sb-size=dynamic --enable-dnl-denoising=0 --denoise-noise-level=8`
+
+Now let's break it down shall we.
+
+- ``--bit-depth=10`` We're using 10bit because it makes the video smaller and reduces banding.
+
+- ``--cpu-used=4`` This is the preset which ranges from 0-9, you can go to 3 if you want more efficiency, 2 if you have a lot of time, 4 is the sweet spot, and 6 if you want speed. Don't go above 6 (Worst efficiency) or even 0 (It would take WEEKS to finish).
+
+- ``--end-usage=q --cq-level=24`` This specifies that we are going to use a knockoff version of CRF level similar to x264/x265 encoders, in this case CRF 24.
+
+- ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster, see the image below (Yellow lines):
+![Tiling](https://cdn.discordapp.com/attachments/974279294740213762/1058568425313673236/latest.png)
+:::note Tile usage
+Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
+:::
+
+- ``--lag-in-frames=64`` Knockoff of x264/x265 [Group of Pictures](https://en.wikipedia.org/wiki/Group_of_pictures) (GOP), makes the encoder look into future frames for better compression decision making, do not go over 64 as it is pretty much useless.
+ 
+- ``--aq-mode=0`` adaptive quantization mode, a mostly debatable area nowadays. 0 is better most of the time but some say 1 is also good.
+
+- ``--tune-content=psy --tune=ssim`` As the name suggests they are tunes that affect the video output, for the better, and for the worst.
+:::info
+Do not use `tune-content=psy` if you encode live action above ``cq-level=30``.
+:::
+:::info
+If you use any of the VMAF tunes, you need to specify ``--vmaf-model-path=`` to where you put VMAF models in.
+:::
+
+- ``--enable-keyframe-filtering=1`` We're setting it to 1 because of compatibility reasons, 2 is more efficient but there are seeking issues and FFmpeg can't input it.
+
+- ``--sb-size=dynamic`` Allows the encoder to use 128x128 block partitioning besides 64x64 which gives an efficiency boost.
+
+- ``--deltaq-mode=0`` set to 0 b its better
+
+- ``--arnr-strength=1`` Controls how strong the filtering (smoothing) will be, always been a hot topic. Most agree on the default of 4. Others think 1 is good for 3D Pixar CGI-like and 2D animation and 4 for live action content, and a higher value for lower bitrate encodes.
+
+- ``--disable-kf --enable-fwd-kf=0`` We're disabling keyframes cause Av1an already did scene detection, so we wont have to. Plus it speeds things up.
+
+- ``--kf-max-dist=9999`` Maximum keyframe interval, we're setting it at the highest possible value since Av1an's scene detection keyframe interval is already 240 by default
+
+- ``--enable-chroma-deltaq=1 --enable-qm=1 --quant-b-adapt=1`` Parameters that give you free efficiency boost, ignore it.
+
+- ``--enable-dnl-denoising=0`` Disables the encoder's built-in denoising technique when grain synthesis is enabled, you can optionally set it to 1 when you have a pretty noisy video since it works quite well (NLMeans is the denoiser used).
+
+- ``--denoise-noise-level=8`` AV1 grain synthesis, which is a technique where the encoder puts fake grain in so it looks more natural and potentially hiding video artifacts (cause grain is hard to encode and explodes bitrate usage because of their randomness). Don't attempt to use it at high values (>12) since it creates noticeable grain patterns.
+:::info Alternative
+You can use photon noise tables as an alternative, which is also conveniently available in Av1an as `--photon-noise=X`
+:::
+
+## Tips & Tricks
+
+1. Use ``--butteraugli-resize-factor=2`` if you use any of the butteraugli-based tunes to speed it up without much losses (lavish, butteraugli) and ``--butteraugli-intensity-target=250`` to match the content light level.
+2. Use ``--arnr-maxframes`` to set max reference frames that will be used to filter the encode, higher values would make the video blurrier at high fidelity but look better at lower bitrates.

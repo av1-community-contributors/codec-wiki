@@ -1,47 +1,68 @@
 ---
-label: AV1 Encoding for Dummies
-sidebar_position: 1
+title: "AV1 Encoding for Dummies"
+description: "AV1 Encoding for Dummies"
+slug: av1-encoding-for-dummies
+authors:
+- name: Simulping
+  title: Maintainer / Encoder
+  url: https://github.com/Simulping
+  image_url: https://avatars.githubusercontent.com/u/12994794?v=4
+- name: Gianni Rosato
+  title: Maintainer
+  url: https://github.com/gianni-rosato
+  image_url: https://avatars.githubusercontent.com/u/35711760?v=4
+tags: [video, compression]
+hide_table_of_contents: false
 ---
 
-# AV1 Encoding for Dummies
+This guide will show you how to encode in AV1 the *right* and *optimal* way. Yes, you using standalone ``libaom``, ``libsvtav1``, and ``librav1e`` from FFmpeg or even piping ``yuv4mpeg`` into **mainline** aomenc are all unoptimal.
 
-# AV1 Encoding Guide for Dummies
--> This guide will show you how to encode in AV1 *the right way*. Yes, you using standalone ``libaom``, ``libsvtav1``, and ``librav1e`` from FFmpeg or even piping ``yuv4mpeg`` into **mainline** Aomenc are all wrong. <-
+<!--truncate-->
 
-![Compare](https://autumn.revolt.chat/attachments/Xe9o7rg3DayS0OZ4Xi9R-CO_e2gidBsI3MNOUhoy3y/compare-guide.webp)
 
-# Getting Started
+![Compare](/img/compare-guide.webp)
+
+In this guide, we'll be installing Av1an for chunked encoding and infinite threading, because the current state of AV1 encoders, except for [SVT-AV1](/docs/encoders/SVT-AV1), unfortunately lacks threading and will only use very low amount of cores, which hampers speeds. The only caveat to this approach is **RAM consumption**, encoding 2160p (4K) with [aomenc](/docs/encoders/aomenc) with 4 workers could take upwards of **16GB** of RAM! So do keep this in mind.
+
+## Installing the Tools
 
 ### Microsoft Windows
 
-**The Easy Way:**
-1. Install [Nmkoder](https://github.com/n00mkrad/nmkoder) which is a GUI front-end to av1an with all dependencies installed
-2. You're done, you can skip to the next part
+**The GUI Way:**
+1. Install [NMKODER](https://github.com/n00mkrad/nmkoder) which is a GUI front-end to av1an with all dependencies installed.
+2. You're done, you can skip to the encoding part
 
-:::warning Outdated Software
-Since Nmkoder already ships everything by default and its last release was 29th March 2022. You need to manually update EVERYTHING (av1an.exe, aomenc.exe, etc) to get performance optimizations, better speeds, and more settings. Missing out on updates will result in your encodes being sub-optimal. You can use the instructions below to help you update.
+:::warning Almost abandonware
+Since Nmkoder already ships everything by default and its last release was 29th March 2022. You need to manually update all encoders and tools to get better encoding speeds. Missing out on updates will result in your encodes being sub-optimal.
 :::
 
-**The (not very) Hard Way (Recommended):**
+**The Automated Way:**
+
+There is now a batch script for automating the install process, which can be found [here](https://github.com/Hishiro64/av1an-win-script). The instructions are in the README file.
+
+:::caution
+The script will download outdated version encoders and tools such as `aom-av1-psy` and MKVToolNix v76.0, if you are fine with these you can proceed.
+:::
+
+**The Manual Way:**
 1. Install **Python 3.10.x, this will change so consult from the** [Vapoursynth website](http://www.vapoursynth.com/doc/installation.html) **if you're reading this from the future** from [here](https://www.python.org/downloads/windows/) and select "Windows Installer 64-bit". Upon installation check the tick for adding Python to PATH like so
-![Python](https://miro.medium.com/max/1344/0*7nOyowsPsGI19pZT.png)
+![Python PATH](/img/python-path.webp))
 
 2. Download and install Vapoursynth from [here](https://github.com/vapoursynth/vapoursynth/releases) and select "VapourSynth64-RXX.exe"
-3. Open Command Prompt/Terminal/whatever and do ``vsrepo.py install lsmas ffms2`` to install some plugins for Av1an to work
-4. Download MKVToolNix from [here](https://mkvtoolnix.download/downloads.html#windows), select "mkvtoolnix-64bit-XX.X.X-setup.exe", and install
+3. Open the terminal and type ``vsrepo.py install lsmas ffms2`` to install some plugins for Av1an to work.
+4. Download MKVToolNix from [here](https://mkvtoolnix.download/downloads.html#windows), select "mkvtoolnix-64bit-XX.X.X-setup.exe", and install **(Also available on winget!)**
 5. Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases) (SELECT LATEST AND CLICK THE "ASSETS" DROPDOWN)
 6. Download **shared libraries** FFmpeg from [gyan.dev](https://www.gyan.dev/ffmpeg/builds)
 7. Download a pre-built fork of Aomenc ([aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish/tree/Endless_Merging)) which has neat stuff such as sane defaults, new tunes, optimizations, etc. Which can be downloaded [here](https://cdn.discordapp.com/attachments/1042536514783023124/1121801826921103420/aom-lavish-opmox-patch.7z)
-:::caution Updating and compiling
-Join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) and head to #community-builds for updated versions, you can opt to compile it yourself with those custom (Butteraugli, VMAF) tunes but its a huge PITA on Windows.
+:::info
+If you opt to compile aomenc yourself, you can view the instructions on how to do that [here](/docs/encoders/aomenc#installation).
 :::
-
-8. Move Av1an, FFmpeg **(Including the DLLs)**, and Aomenc to somewhere preferable eg ``C:\Encoding``
-9. Add the folder **AND MKVTOOLNIX INSTALLATION FOLDER** to the [Windows PATH environment](https://www.maketecheasier.com/what-is-the-windows-path/)
+8. Move Av1an, FFmpeg **(Including the FFmpeg DLLs)**, and aomenc to somewhere preferable, eg ``C:\Encoding``.
+9. Add the folder **AND MKVTOOLNIX INSTALLATION FOLDER** to the [Windows PATH environment](https://www.maketecheasier.com/what-is-the-windows-path/).
 
 
 ### macOS
-*written by gb82*
+*written by gb82 (Gianni Rosato)*
 
 macOS is very similar to Linux, although there aren't any GUI tools for AV1 encoding that I can comfortably recommend.
 
@@ -155,37 +176,128 @@ Notice how it says `AOMedia Project AV1 Encoder Psy` instead of `AOMedia Project
 
 ### Linux
 
-**The Easy Way:** 
-Install [Aviator](https://github.com/gianni-rosato/aviator), it is currently only available as a [Flatpak](https://beta.flathub.org/apps/net.natesales.Aviator)
-or
-Install [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically same thing but av1an + rav1e
-**Keep in mind Aviator ships with SVT-AV1 and rAV1ator with rav1e instead of Aomenc/AOM-AV1, which I will not be covering here**
+:::info
+Yet again, try using Arch. It's way easier.
+:::
 
-**The compiling route:**
-You know what to do, so I'll just list the things you'll need: ``Vapoursynth, Av1an, FFmpeg, mkvtoolnix-cli, aom-av1-lavish, Git, Perl, CMake, Ninja, Meson, Nasm, Rust, Highway``
+#### The Easy Way
 
-**Compiling aom-av1-lavish (Basic, recommended for beginners)**
-``` bash
-git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
-cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
-cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
+Install [Aviator](https://github.com/gianni-rosato/aviator), it is currently only available as a [Flatpak](https://beta.flathub.org/apps/net.natesales.Aviator) or [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically same thing but av1an + rav1e. Keep in mind Aviator ships with **SVT-AV1** and rAV1ator with **rav1e** instead of aomenc/AOM-AV1, which I will not be covering here.
+
+#### The Compiling Route
+
+##### Ubuntu
+
+The guide below is targeted towards 22.04, packages and other things may be different on other versions. First Install Rust via `rustup` first, as apt version of Rust is severely outdated, then you can continue.
+
+Install dependencies:
+```bash
+sudo apt install wget python unzip unrar build-essential meson autoconf automake libtool git nasm yasm python3-dev python3-pip cython3 libass-dev libqt5websockets5-dev libfftw3-dev libtesseract-dev ffmpeg libavcodec-dev libavformat-dev libswscale-dev libavutil-dev libswresample-dev libmediainfo-dev mkvtoolnix mediainfo perl nasm yasm git cmake libavutil-dev libavcodec-dev libavformat-dev libavdevice-dev libavfilter-dev libswscale-dev libswresample-dev libpostproc-dev llvm libclang-dev libssl-dev
+```
+
+Install l-smash:
+```bash
+git clone https://github.com/l-smash/l-smash.git
+cd l-smash
+./configure --enable-shared --extra-cflags="-march=native"
 make -j$(nproc)
 sudo make install
 ```
 
-:::note Branches
-``Endless_Butter`` used to be bleeding edge but now it's been taken over by ``Endless_Merging``, be sure to check the Github page to check which is more updated!
+Install zimg:
+```bash
+git clone --recursive https://github.com/sekrit-twc/zimg.git
+cd zimg
+./autogen.sh
+./configure
+make -j$(nproc)
+sudo make install
+```
+
+Install ImageMagick:
+```bash
+git clone https://github.com/ImageMagick/ImageMagick
+cd ImageMagick
+./configure
+make -j$(nproc)
+sudo make install
+```
+
+Install Vapoursynth R63:
+```bash
+wget https://github.com/vapoursynth/vapoursynth/archive/refs/tags/R63.zip
+unzip R63.zip
+cd vapoursynth-R63
+./autogen.sh
+./configure CFLAGS="-march=native" CXXFLAGS="-march=native" --libdir=/usr/lib
+make -j$(nproc)
+sudo make install
+sudo mkdir /usr/lib/vapoursynth
+sudo ldconfig
+```
+The plugin directory will be located in `/usr/lib/vapoursynth`.
+
+
+Install L-SMASH-Works Vapoursynth Plugin:
+```bash
+git clone https://github.com/AkarinVS/L-SMASH-Works -b ffmpeg-4.5
+cd L-SMASH-Works/VapourSynth && mkdir build && cd build
+meson .. --optimization=3 --default-library=static -Db_lto=true -Dc_args="-march=native" -Dcpp_args="-march=native"
+ninja -j$(nproc)
+sudo cp libvslsmashsource.so /usr/lib/vapoursynth/
+```
+
+:::caution
+L-SMASH-Works doesn't work on **aarch64**, it is recommended to use other plugins instead.
 :::
 
-# Encoding
+Install FFMS2 Vapoursynth Plugin:
+```bash
+git clone https://github.com/FFMS/ffms2
+cd ffms2
+./autogen.sh
+./configure CFLAGS="-O3 -march=native" CXXFLAGS="-O3 -march=native"
+make -j$(nproc)
+sudo cp src/core/.libs/libffms2.so src/core/.libs/libffms2.so.5 src/core/.libs/libffms2.so.5.0.0 /usr/lib/vapoursynth
+```
 
-The moment you've all been waiting for, let's just get into it. Here's an example *recommended* parameter as of now (04/02/23):
+Install Av1an:
+```bash
+git clone https://github.com/master-of-zen/Av1an
+cd Av1an
+RUSTFLAGS="-C target-cpu=native" cargo build --release
+sudo cp target/release/av1an /usr/local/bin
+```
+
+When there's no errors, proceed to compiling `aom-av1-lavish`.
+
+##### Arch
+
+Install dependencies:
+```bash
+sudo pacman -S vapoursynth ffmpeg av1an mkvtoolnix-gui git perl cmake ninja meson nasm vapoursynth-plugin-lsmashsource ffms2
+```
+
+you're done, proceed.
+
+#### Compiling aom-av1-lavish
+``` bash
+git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
+cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
+cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt"
+make -j$(nproc)
+sudo make install
+```
+
+## Encoding
+
+The moment you've all been waiting for, let's just get into it. Here's an example *recommended* parameter as of now (09/03/23) [MM/DD/YY]:
 ```bash
 av1an -x 300 -i input.mkv -w 4 -e aom -c mkvmerge --resume -m lsmash --photon-noise=10 --set-thread-affinity=2 --verbose -a " -an " -f " -an " -v " --bit-depth=10 --cpu-used=4 --end-usage=q --cq-level=24 --threads=2 --tile-columns=0 --tile-rows=0 --lag-in-frames=64 --tune-content=psy --tune=ssim --enable-keyframe-filtering=1 --disable-kf --kf-max-dist=9999 --enable-qm=1 --deltaq-mode=0 --aq-mode=0 --quant-b-adapt=1 --enable-fwd-kf=0 --arnr-strength=1 --sb-size=dynamic --enable-dnl-denoising=0 " -o "output.mkv"
 ```
 
 :::info Parameter Meta
-Again, it is strongly recommended to join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) to get the latest updates on what to use and which to set, as it's the only easily reachable place for everything AV1 & encoding tips in general.
+It is strongly recommended to join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) to get the latest updates on what to use and which to set, as it's the only easily reachable place for everything AV1 & encoding tips in general.
 :::
 Now let's dissect it one-by-one
 
@@ -211,27 +323,29 @@ Now let's dissect it one-by-one
 
 - ``-v " "`` Is where you put the encoder's parameters in.
 
-- ``-a " -an "`` Audio options, we're removing it cause its gonna cause issues.
+- ``-a " -an "`` FFmpeg audio encoding options, we're removing it cause we can always add it later. But if you want to, you can also encode directly. Here's an example for encoding to Opus using libopus assuming stereo: `-a " -c:a libopus -b:a 128k "`.
 
 - ``--photon-noise=10`` AV1 grain synthesis, which is a technique where the encoder puts fake grain in so it looks more natural and potentially hiding video artifacts (cause grain is hard to encode and explodes bitrate usage because of their randomness), 5-8 for almost none to little grain, 10-14 for medium, 15+ heavy, 20+ extremely heavy, 30+ for extremely grainy 90s live action films.
 
 - ``--set-thread-affinity=2`` Pins the thread to the encoder, aligns with ``--threads=2`` in the encoder parameter so set them accordingly.
 
 
-**Aomenc parameters:**
+**aomenc parameters:**
 - ``--bit-depth=10`` We're using 10bit because it makes the video smaller and reduces [banding](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Video_codecs#contouring).
 
 - ``--cpu-used=4`` This is the preset which ranges from 0-9, you can go to 3 if you want more efficiency, 2 if you have a lot of time, 4 is the sweet spot, and 6 if you want speed. Don't go above 6 (Worst efficiency) or even 0 (It would take WEEKS to finish).
 
 - ``--end-usage=q --cq-level=24`` This specifies that we are going to use a knockoff version of CRF level similar to x264/x265 encoders, in this case CRF 24.
 
+- `--threads=2` Sets the amount of threads the encoder can use, aligns with `--set-thread-affinity` in Av1an.
+
 - ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster, see the image below (Yellow lines):
-![Tiling](https://cdn.discordapp.com/attachments/974279294740213762/1058568425313673236/latest.png)
+![Tiling](/img/tiles.webp)
 :::note Tile usage
 Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
 :::
 
-- ``--lag-in-frames=64`` Knockoff of x264/x265 [Group of Pictures](https://en.wikipedia.org/wiki/Group_of_pictures) (GOP), makes the encoder look into future framesfor better compression decision making, do not go over 64 as it is pretty much useless.
+- ``--lag-in-frames=64`` Knockoff of x264/x265 [Group of Pictures](https://en.wikipedia.org/wiki/Group_of_pictures) (GOP), makes the encoder look into future frames for better compression decision making, do not go over 64 as it is pretty much useless.
  
 - ``--aq-mode`` adaptive quantization mode, 0 is better most of the time
 
@@ -244,27 +358,21 @@ For ``tune``, this is a bit tricky. For now, the meta seems to be ``ssim``, but 
 If you use any of the VMAF tunes, **you need to specify ``--vmaf-model-path=`` to where you put it**.
 :::
 
-- **BONUS:** Use ``--butteraugli-resize-factor=2`` if you use any of the butteraugli-based tunes to speed it up without much losses (lavish, butteraugli) and ``--butteraugli-intensity-target=250`` to match the content light level.
-
 - ``--enable-keyframe-filtering=1`` We're setting it to 1 because of compatibility reasons, 2 is more efficient but there are seeking issues and FFmpeg for some reason can't input it.
 
 - ``--sb-size=dynamic`` Allows the encoder to use 128x128 block partitioning besides 64x64 which gives an efficiency boost, ignore it.
 
-- ``--deltaq-mode`` set to 0 bc its better
+- ``--deltaq-mode`` set to 0 because its just better.
 
-- **BONUS:** Use ``--arnr-maxframes`` to set max reference frames that will be used to filter the encode, higher values would make the video blurrier at high fidelity but look better at lower bitrates.
-
-- ``--arnr-strength=1`` Controls how strong the filtering will be, 1 is good for 3D Pixar CGI-like and 2D anjmation, use 4 if you're doing live action content. Using maximum at higher bitrates would just result in a blurry mess.
+- ``--arnr-strength=1`` Controls how strong the filtering will be, 1 is good for 3D Pixar CGI-like and 2D animation, use 4 if you're doing live action content. Using maximum at higher bitrates would just result in a blurry mess.
 
 - ``--disable-kf --enable-fwd-kf=0`` We're disabling keyframes cause **Av1an already did scene detection, so we wont have to.**. And it speeds things up.
 
 - ``--kf-max-dist=9999`` Maximum keyframe interval, we're setting it at the highest possible value since av1an's scene detection keyframe interval is already 240 by default
 
-- ``--enable-chroma-deltaq=1 --enable-qm=1 --quant-b-adapt=1`` Parameters that give you free efficiency boost, ignore it.
+- ``--enable-chroma-deltaq=1 --enable-qm=1 --quant-b-adapt=1`` Parameters that give you free efficiency boost.
 
-- ``--enable-dnl-denoising=0`` Disables the encoder's built-in denoising technique when grain synthesis is enabled, you can optionally set it to 1 when you have a pretty noisy video since it works quite well
-
-- **OPTIONAL:** ``--denoise-noise-level=10`` Alternative to ``photon-noise``, slower than photon-noise and is the OG grain synthesis method, performs okay and just serves as an alternative. Don't attempt to use it at high values (>12) since it creates noticeable grain patterns.
+- ``--enable-dnl-denoising=0`` Disables the encoder's built-in denoising technique when grain synthesis is enabled, you can optionally set it to 1 when you have a pretty noisy video since it works quite well.
 
 
 :::info Concatenation Error on Linux
@@ -272,13 +380,22 @@ Run ``ulimit -n 200000``, resume, and it should concatenate just fine. If it sti
 :::
 
 
-**Merging Everything**
+## Merging Everything
 
-Once you're done just encode your audio using ffmpeg (or just passthrough it), subtitles should be carried along with your video output, and merge them in MKVToolNix! Don't want Matroska files? That's fine, you can use FFmpeg or MP4Box to output into .mp4, just keep in mind that PGS/SUP/VOBSUB subtitles are not supported and Opus audio support is highly experimental.
+Once you're done just encode your audio using ffmpeg (or just passthrough it), subtitles should be carried along with your video output, and merge them in MKVToolNix! Don't want Matroska files? That's fine, you can use FFmpeg or MP4Box to output into `mp4`, just keep in mind that PGS/SUP/VOBSUB subtitles are not supported and Opus audio support is still experimental.
 
 
-# Final Thoughts
+## Tips & Tricks
 
--> Encoding has always been about experimentation for the best, there is really no "One size fits all" for encoding content, as they differ from scene complexity, how it's captured (2D/Real life), film grain, dark scenes, etc. So experiment away for your specific type of content! <-
+- `--denoise-noise-level=10` Alternative to `photon-noise`, slower than photon-noise and is the OG grain synthesis method, performs okay and just serves as an alternative. Don't attempt to use it at high values (>12) since it creates noticeable grain patterns.
 
-> ***Guide created by Simulping || simulping. on Discord and u/SimultaneousPing on Reddit.***
+- `--arnr-maxframes` to set max reference frames that will be used to filter the encode, higher values would make the video blurrier at high fidelity but look better at lower bitrates.
+
+- `--butteraugli-resize-factor=2` if you use any of the butteraugli-based tunes (lavish, butteraugli) to speed it up without much losses and `--butteraugli-intensity-target=250` to match the content light level.
+
+
+## Final Thoughts
+
+Encoding has always been about experimentation for the best, there is really no "One size fits all" for encoding content, as they differ from scene complexity, how it's captured (2D/Real life), film grain, dark scenes, etc. So experiment away for your specific type of content!
+
+> **Guide originally hosted on https://rentry.co/AV1, rewrite and migration by Simulping.**
