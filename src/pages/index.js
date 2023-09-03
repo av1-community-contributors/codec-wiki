@@ -21,13 +21,6 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <div className="container centered-text">
-        <p className="hero__subtitle">
-        The Codec Wiki aims to be a complete source of multimedia documentation & & general codec knowledge. </p>
-        <p className="hero__subtitle">
-          Currently this website is under heavy development, so ensure you are cautious in trusting the absolute legitimacy of any material you read here for the time being.
-        </p>
-      </div>
     </header>
   );
 }

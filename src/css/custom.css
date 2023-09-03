@@ -14,7 +14,7 @@
   --ifm-color-primary-lightest: #db487e;
 } */
 
-[data-theme='dark'] {
+/* [data-theme='dark'] {
   --ifm-color-primary-darkest: color(display-p3 0.513 0.232 0.376);
   --ifm-color-primary-darker: color(display-p3 0.620 0.191 0.305);
   --ifm-color-primary-dark: color(display-p3 0.647 0.189 0.326);
@@ -28,10 +28,31 @@
   --ifm-color-primary-darkest: color(display-p3 0.513 0.232 0.376);
   --ifm-color-primary-darker: color(display-p3 0.620 0.191 0.305);
   --ifm-color-primary-dark: color(display-p3 0.647 0.189 0.326);
-  --ifm-color-primary: color(display-p3 0.733 0.176 0.360); /* AV1 Red */
+  --ifm-color-primary: color(display-p3 0.733 0.176 0.360);
   --ifm-color-primary-light: color(display-p3 0.804 0.160 0.396);
   --ifm-color-primary-lighter: color(display-p3 0.839 0.161 0.416);
   --ifm-color-primary-lightest: color(display-p3 0.851 0.208 0.494);
+} */
+
+[data-theme='dark'] {
+  /* OKLCH color space: oklch(lightness chroma hue) */
+  --ifm-color-primary-darkest: oklch(46.74% 0.128 352.2);
+  --ifm-color-primary-darker: oklch(49.46% 0.172 8.96);
+  --ifm-color-primary-dark: oklch(50.79% 0.182 7.4);
+  --ifm-color-primary: oklch(59.2% 0.264 7);
+  --ifm-color-primary-light: oklch(57.97% 0.25 6.02);
+  --ifm-color-primary-lighter: oklch(59.74% 0.25 5.67);
+  --ifm-color-primary-lightest: oklch(61.68% 0.27 0.05);
+}
+
+[data-theme='light'] {
+  --ifm-color-primary-darkest: oklch(46.74% 0.128 352.2);
+  --ifm-color-primary-darker: oklch(49.46% 0.172 8.96);
+  --ifm-color-primary-dark: oklch(50.79% 0.182 7.4);
+  --ifm-color-primary: oklch(59.2% 0.264 7);
+  --ifm-color-primary-light: oklch(57.97% 0.25 6.02);
+  --ifm-color-primary-lighter: oklch(59.74% 0.25 5.67);
+  --ifm-color-primary-lightest: oklch(61.68% 0.27 0.05);
 }
 
 .centered-text {
