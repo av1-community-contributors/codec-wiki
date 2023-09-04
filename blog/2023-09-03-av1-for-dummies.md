@@ -275,7 +275,7 @@ When there's no errors, proceed to compiling `aom-av1-lavish`.
 
 Install dependencies:
 ```bash
-sudo pacman -S vapoursynth ffmpeg av1an mkvtoolnix-gui git perl cmake ninja meson nasm vapoursynth-plugin-lsmashsource ffms2
+sudo pacman -S vapoursynth ffmpeg av1an mkvtoolnix-gui git perl cmake ninja meson nasm vapoursynth-plugin-lsmashsource ffms2 base-devel
 ```
 
 you're done, proceed.
