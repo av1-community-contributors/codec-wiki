@@ -53,7 +53,7 @@ FDK-AAC can encode the following formats:
 `AAC-LC AAC-LD AAC-ELD HE-AAC HE-AACv2`
 
 ### Core Audio
-Apple's proprietary Core Audio Toolbox encoder is a popular, high-quality choice for encoding AAC. This encoder can be used in macOS via Apple's own `afconvert` utility, or in FFmpeg by specifying `aac_at` as the audio encoder. Windows users can also take advantage of Core Audio by using the free [qaac](https://github.com/nu774/qaac) command-line utility, but users will need to either have [iTunes] (https://support.apple.com/en-ca/HT210384) installed, or extract the libraries from said installer, using the [makeportable](https://github.com/nu774/makeportable) script.
+Apple's proprietary Core Audio Toolbox encoder is a popular, high-quality choice for encoding AAC. This encoder can be used in macOS via Apple's own `afconvert` utility, or in FFmpeg by specifying `aac_at` as the audio encoder. Windows users can also take advantage of Core Audio by using the free [qaac](https://github.com/nu774/qaac) command-line utility, but users will need to either have [iTunes](https://support.apple.com/en-ca/HT210384) installed, or extract the libraries from said installer, using the [makeportable](https://github.com/nu774/makeportable) script.
 
 Core Audio can encode the following formats: `AAC-LC, HE-AAC, HE-AACv2`*
 
