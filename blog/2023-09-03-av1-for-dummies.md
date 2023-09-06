@@ -53,7 +53,7 @@ The script will download outdated version encoders and tools such as `aom-av1-ps
 4. Download MKVToolNix from [here](https://mkvtoolnix.download/downloads.html#windows), select "mkvtoolnix-64bit-XX.X.X-setup.exe", and install **(Also available on winget!)**
 5. Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases) (SELECT LATEST AND CLICK THE "ASSETS" DROPDOWN)
 6. Download **shared libraries** FFmpeg from [gyan.dev](https://www.gyan.dev/ffmpeg/builds)
-7. Download a pre-built fork of Aomenc ([aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish/tree/Endless_Merging)) which has neat stuff such as sane defaults, new tunes, optimizations, etc. Which can be downloaded [here](https://cdn.discordapp.com/attachments/1042536514783023124/1121801826921103420/aom-lavish-opmox-patch.7z)
+7. Download a pre-built fork of Aomenc ([aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish/tree/Endless_Merging)) which has neat stuff such as sane defaults, new tunes, optimizations, etc. This can be downloaded for Windows [here](https://autumn.revolt.chat/attachments/download/-2EiZW1edcT9anApFZ1PJBEber-pJ6z02NiQBjbr28) *(Current as of Sept 6, 2023)*
 :::info
 If you opt to compile aomenc yourself, you can view the instructions on how to do that [here](/docs/encoders/aomenc#installation).
 :::
@@ -340,7 +340,11 @@ Now let's dissect it one-by-one
 - `--threads=2` Sets the amount of threads the encoder can use, aligns with `--set-thread-affinity` in Av1an.
 
 - ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster, see the image below (Yellow lines):
-![Tiling](/img/tiles.webp)
+<picture>
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/tiling_av1.avif?token=GHSAT0AAAAAACEZPDXIZARY5MGSTJW4SI22ZHY636A" type="image/avif" />
+    <img src="https://autumn.revolt.chat/attachments/HwhZjoDsdzLZsJM2mjzX7lEDmJn1xcYNdrQqmOxPYW/tiling_av1.jpeg" alt="Tiling" width="1280" height="768" loading="lazy" />
+</picture> 
+
 :::note Tile usage
 Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
 :::

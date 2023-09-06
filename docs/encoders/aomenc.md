@@ -29,9 +29,9 @@ Since FFmpeg encoder libraries come as the most default, barebones as possible (
 ## Installation
 
 ### Microsoft Windows
-**The Easy Way:** Download the pre-built versions, which can be found below:
+**The Easy Way:** Download the pre-built versions, which can be found below (Current as of Sept 6, 2023):
 
-https://cdn.discordapp.com/attachments/1042536514783023124/1121801826921103420/aom-lavish-opmox-patch.7z
+https://autumn.revolt.chat/attachments/download/-2EiZW1edcT9anApFZ1PJBEber-pJ6z02NiQBjbr28
 
 :::tip
 Join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) and head to #community-builds for updated versions, you can opt to compile it yourself with the instructions below.
@@ -203,7 +203,11 @@ Now let's break it down shall we.
 - ``--end-usage=q --cq-level=24`` This specifies that we are going to use a knockoff version of CRF level similar to x264/x265 encoders, in this case CRF 24.
 
 - ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster, see the image below (Yellow lines):
-![Tiling](https://cdn.discordapp.com/attachments/974279294740213762/1058568425313673236/latest.png)
+<picture>
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/tiling_av1.avif?token=GHSAT0AAAAAACEZPDXIZARY5MGSTJW4SI22ZHY636A" type="image/avif" />
+    <img src="https://autumn.revolt.chat/attachments/HwhZjoDsdzLZsJM2mjzX7lEDmJn1xcYNdrQqmOxPYW/tiling_av1.jpeg" alt="Tiling" width="1280" height="768" loading="lazy" />
+</picture> 
+
 :::note Tile usage
 Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
 :::

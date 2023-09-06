@@ -9,7 +9,10 @@ sidebar_position: 2
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-![Average anime encoder VapourSynth script](https://cdn.discordapp.com/attachments/778167033401049098/1104718855256944660/VSEdit.png)
+<picture>
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/vs_edit_script.avif?token=GHSAT0AAAAAACEZPDXJ6SHSUQIMUOGQXQTEZHY7K4A" type="image/avif" />
+    <img src="https://autumn.revolt.chat/attachments/g7DucEq3aRGWVH0MHQe-A21GkyDVln9IHzRlfjEYEh/vs_edit_script.png" alt="Vapoursynth script" width="520" height="632" />
+</picture> 
 
 "VapourSynth is an application for video manipulation. Or a plugin. Or a library. It’s hard to tell because it has a core library written in C++ and a Python module to allow video scripts to be created."
 

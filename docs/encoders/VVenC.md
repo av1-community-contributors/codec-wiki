@@ -5,7 +5,11 @@ sidebar_position: 9
 
 # VVenC
 
-![``vvencapp`` spamming the terminal output with progress per-picture-order-count cause god knows why.](https://cdn.discordapp.com/attachments/778167033401049098/1105480788067225710/VVenC_Spam.png)
+<picture>
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/VVenC_Spam.avif?token=GHSAT0AAAAAACEZPDXI3OYO3Z4Q7LU3Z52EZHY7FMA" type="image/avif" />
+    <img src="https://autumn.revolt.chat/attachments/wU4lo6SU-hRjZSVeqd9vCOeAskthYXmiWHaXUTjyTa/VVenC_Spam.webp"
+alt="vvencapp spamming the terminal output with progress per-picture-order-count cause god knows why" width="XX" height="YY" loading="lazy" />
+</picture> 
 
 VVenC is an open source command line application for encoding H.266/VVC written in C++ and developed by Fraunhofer Heinrich-Hertz-Institute (HHI).
 
