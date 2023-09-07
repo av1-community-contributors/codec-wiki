@@ -5,17 +5,18 @@ sidebar_position: 2
 
 # MKVToolNix
 
-![Your average MKVToolNix workload.](https://cdn.discordapp.com/attachments/778167033401049098/1104704457096306758/mkvtoolnix-gui_7lzrlaJwOp.png)
+MKVToolNix is FOSS GUI frontend to a set of tools (mkvmerge, mkvinfo, mkvpropedit, mkvextract) to create, alter and inspect Matroska files under Linux, other \*NIXes and Windows.
 
-
-MKVToolNix is FOSS GUI frontend to a set of tools (mkvmerge, mkvinfo, mkvpropedit, mkvextract) to create, alter and inspect Matroska files under Linux, other Unices and Windows.
-
-&nbsp;&nbsp;
+<picture>
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/mkvtoolnix-gui-workload.avif" type="image/avif" />
+    <img src="https://raw.githubusercontent.com/av1-community-contributors/images/main/mkvtoolnix-gui-workload.webp" alt="MKVToolNix Workload" />
+</picture>
 
 ## Installation
 
-Fortunately, Moritz Bunkus (Creator) is sane enough to provide downloads for pretty much all desktop operating systems normal people use which can be found [here](https://mkvtoolnix.download/downloads.html). If not available, check your local package manager.
-
+Fortunately, Moritz Bunkus (Creator) is sane enough to provide downloads for pretty much all popular desktop operating systems.
+- Windows & Mac: [MKVToolNix site](https://mkvtoolnix.download/downloads.html).
+- Linux: [Install as a Flatpak](https://flathub.org/apps/org.bunkus.mkvtoolnix-gui) or check your package manager.
 
 ## Usage
 
