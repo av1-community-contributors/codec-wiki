@@ -9,7 +9,7 @@ A community maintained wiki for all things encoding.
 3. If you would like, connect with us via our Revolt server located at [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You can ask questions & communicate with other contributors here.
 
 ## Clone & Push Instructions
-**Make sure to clone from & edit the** `main` **branch only, & push your final changes to the** `development` **branch according to the instructions below. Also be sure to use node 18 LTS, as later versions tend to be troublesome.**
+**Make sure to clone from & edit the** `main` **branch only, & push your final changes to the** `deployment` **branch according to the instructions below. Also be sure to use node 18 LTS, as later versions tend to be troublesome.**
 
 *don't forget to add unimportant files to the .gitignore*
 

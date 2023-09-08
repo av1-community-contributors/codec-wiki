@@ -38,7 +38,7 @@ This section is in need of contributions. If you believe you can help, please se
 If you're interested in communicating with other passionate contributors helping this project, visit [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You'll need a Revolt account to join. Revolt is an open-source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).
 
 ## Clone & Push Instructions
-**Make sure to clone from & edit the** `main` **branch only, and push your final changes to the** `development` **branch according to the instructions below.**
+**Make sure to clone from & edit the** `main` **branch only, & push your final changes to the** `deployment` **branch according to the instructions below. Also be sure to use node 18 LTS, as later versions tend to be troublesome.**
 
 *don't forget to add unimportant files to the .gitignore before making any commits*
 
