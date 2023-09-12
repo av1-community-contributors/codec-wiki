@@ -9,6 +9,8 @@ const config = {
   title: 'Codec Wiki',
   tagline: 'Your Guide to All Things Encoding',
   favicon: 'img/favicon.svg',
+  // analytics
+  scripts: [{src: 'https://analytics.x266.mov/js/script.js', defer: true, 'data-domain': 'wiki.x266.mov'}],
 
   // Set the production url of your site here
   url: 'https://wiki.x266.mov',
