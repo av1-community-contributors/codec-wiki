@@ -112,8 +112,8 @@ const config = {
                 to: '/docs/introduction/prologue',
               },
               {
-                label: 'Codecs',
-                to: '/docs/introduction/codecs',
+                label: 'AV1',
+                to: '/docs/video/AV1',
               },
             ],
           },
