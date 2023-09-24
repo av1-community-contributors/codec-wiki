@@ -9,7 +9,7 @@ Multimedia compression as a whole has revolutionized our ability to communicate 
 
 ### What This Isn't
 
-The Codec Wiki is **not a highly accurate source for understanding the mathematics, research, adoption/patent politics, or specifications of specific codec/decoder implementations**. Sources like Wikipedia cover these details with great accuracy & reliability. What we *are* focused on is making higher level information - especially related to the usage & application of compression tools - highly accessible; we are focused on application, not theory, for the time being. Knowing how a codec works in theory is different than knowing when and how to best use a codec and its accompanying tools.
+The Codec Wiki is **not a highly accurate source for understanding the mathematics, research, adoption/patent politics, or specifications of specific coder/decoder implementations**. Sources like Wikipedia cover these details with great accuracy & reliability. What we *are* focused on is making higher level information - especially related to the usage & application of compression tools - highly accessible; we are focused on application, not theory, for the time being. Knowing how a codec works in theory is different than knowing when and how to best use a codec and its accompanying tools.
 
 ### What is a Codec
 
