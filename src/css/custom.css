@@ -34,6 +34,43 @@
   --ifm-color-primary-lightest: color(display-p3 0.851 0.208 0.494);
 } */
 
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/static/fonts/Mona-Sans.woff2") format("woff2 supports variations"),
+    url("/static/fonts/Mona-Sans.woff2") format("woff2-variations");
+  font-weight: 500 900;
+  font-stretch: 75% 125%;
+}
+
+/* @font-face {
+  font-family: "Hubot Sans";
+  src: url("/static/fonts/Hubot-Sans.woff2") format("woff2 supports variations"),
+    url("/static/fonts/Hubot-Sans.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+} */
+
+@font-face {
+  font-family: "Inter";
+  src: url("/static/fonts/Inter.var.woff2") format("woff2 supports variations"),
+    url("/static/fonts/Inter.var.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 75% 125%;
+}
+
+html {
+  font-family: "Inter";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Mona Sans";
+}
+
 [data-theme='dark'] {
   /* OKLCH color space: oklch(lightness chroma hue) */
   --ifm-color-primary-darkest: oklch(46.74% 0.128 352.2);
