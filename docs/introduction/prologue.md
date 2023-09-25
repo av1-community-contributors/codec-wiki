@@ -24,7 +24,7 @@ In summary, **codecs use complex algorithms to encode and decode media for effic
 
 ### What You Need
 
-A rather informal list of requirements follows:
+A rather informal list of requirements follows.
 
 You will benefit greatly from:
 - Patience.
