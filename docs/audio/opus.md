@@ -75,9 +75,7 @@ Usage: `opusenc [options] input_file output_file.opus`
 
 - `--hard-cbr` Tells the encoder to use a constant bitrate the whole time.
 
-- `--music` Forces the encoder to use CELT all the time, even at low bitrates where SILK may be more efficient. *(review needed)*
-
-- `--speech` Forces low bitrate content to use SILK, even when CELT may be preferable as SILK is regarded to be better at speech coding. *(review needed)*
+- `--music` & `--speech` Forces the AI content-detector built into opusenc to treat the input as either speech or music. The bitrate range where this is relevant is around 12-40kb/s.
 
 - `--comp #` Sets the encoder complexity to a value from 0 to 10, 0 being the least complex & 10 being the most. *The default is 10.*
 
