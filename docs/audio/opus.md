@@ -5,8 +5,8 @@ sidebar_position: 2
 
 # Opus
 
-:::warning Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
 :::
 
 Opus is an open-source audio codec that has largely replaced [Vorbis](../audio/vorbis.md) as the standard open audio codec. It is the recommended codec for usage in WebM video containers in tandem with the [VP9](../video/VP9.md) or [AV1](../video/AV1.md) video codecs.

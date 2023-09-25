@@ -27,7 +27,7 @@ Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.co
 
 Aviator's default FFmpeg command uses the following SVT-AV1 parameters:
 
-```zsh
+```bash
 -c:v libsvtav1 -crf X -preset X -pix_fmt yuv420p10le -svtav1-params film-grain=X:input-depth=10:tune=2:enable-qm=1:scd=1:enable-overlays=1:film-grain-denoise=X
 ```
 

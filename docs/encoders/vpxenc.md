@@ -16,7 +16,7 @@ vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.md)
 **Linux & macOS**
 
 To build libvpx from source:
-```zsh
+```bash
 git clone https://chromium.googlesource.com/webm/libvpx
 cd libvpx
 ./configure
@@ -24,13 +24,13 @@ make -j [# of CPU threads]
 ```
 
 It may be worth digging through the `configure` options, which can be listed by running `./configure -h`. Keeping in mind some flags might be redundant with defaults, here's an example of a tweaked configuration (without VP8 support) for efficient performance on an Apple Silicon Mac running macOS Ventura:
-```zsh
+```bash
 ./configure --disable-vp8 --target=arm64-darwin22-gcc --disable-docs --enable-webm-io --enable-vp9-postproc --enable-vp9-highbitdepth --extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native" --enable-postproc
 ```
 
 From the build, a binary will be produced called `vpxenc`. You can copy this build to `/usr/local/bin` or execute it directly in the directory, shown below:
 
-```zsh
+```bash
 ./vpxenc --help | grep vp9 -C 3
 
 Included encoders:
@@ -140,7 +140,7 @@ This option enables a temporal layer model, which helps with coding efficiency. 
 
 All of these options are only available for the standalone vpxenc program. Here is a sample FFmpeg command line interpretation of the commands above, with some options missing:
 
-```zsh
+```bash
 ffmpeg -i input.mkv -c:v libvpx-vp9 -pix_fmt yuv420p10le -pass 1 -quality good -threads 4 -profile:v 2 -lag-in-frames 25 -crf 25 -b:v 0 -g 240 -cpu-used 4 -auto-alt-ref 1 -arnr-maxframes 7 -arnr-strength 4 -aq-mode 0 -tile-rows 0 -tile-columns 1 -enable-tpl 1 -row-mt 1 -f null -
 ffmpeg -i input.mkv -c:v libvpx-vp9 -pix_fmt yuv420p10le -pass 2 -quality good -threads 4 -profile:v 2 -lag-in-frames 25 -crf 25 -b:v 0 -g 240 -cpu-used 4 -auto-alt-ref 1 -arnr-maxframes 7 -arnr-strength 4 -aq-mode 0 -tile-rows 0 -tile-columns 1 -enable-tpl 1 -row-mt 1 output.mkv
 ```
