@@ -9,6 +9,8 @@ sidebar_position: 3
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
 
+Graphics Interchange Format (GIF) is an image file format first releasedby CompuServe in 1987. It remains popular due to it's widespread support for animated images despite it's obsolesence in efficency.
+
 ## Performance Checklist
 
 Lossless? *Yes*
