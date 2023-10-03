@@ -1,12 +1,12 @@
 ---
-label: Speex
-sidebar_position: 6
+label: FLAC
+sidebar_position: 7
 ---
 
-# Speex
+# FLAC
 
 :::warning Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
 
-Speex is an open-source audio codec designed for speech. It has largely been replaced by [Opus](../audio/opus.md).
+FLAC is an open-source lossless audio codec with widespread support & compatibility.
