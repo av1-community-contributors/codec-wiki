@@ -12,6 +12,30 @@ const config = {
   // analytics
   scripts: [{src: 'https://analytics.x266.mov/js/script.js', defer: true, 'data-domain': 'wiki.x266.mov'}],
 
+  // preload fonts
+  headTags: [
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "static/fonts/Inter.var.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "static/fonts/Mona-Sans.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
+  ],
+
   // Set the production url of your site here
   url: 'https://wiki.x266.mov',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -84,12 +108,12 @@ const config = {
             title: 'Getting Started',
             items: [
               {
-                label: 'Prequisites',
-                to: '/docs/prequisites',
-              },
-              {
                 label: 'Prologue',
                 to: '/docs/introduction/prologue',
+              },
+              {
+                label: 'AV1',
+                to: '/docs/video/AV1',
               },
             ],
           },

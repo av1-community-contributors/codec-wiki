@@ -14,25 +14,25 @@ A community maintained wiki for all things encoding.
 *don't forget to add unimportant files to the .gitignore*
 
 1. Clone from the `main` branch to start to make a contribution:
-```zsh
+```bash
 % git clone git@github.com:av1-community-contributors/codec-wiki.git -b main
 ```
 
 2. Test your changes locally before making a commit:
-```zsh
+```bash
 % yarn
 % npx docusaurus start
 ```
 
 3. Push changes to `main` branch:
-```zsh
+```bash
 % git add .
 % git commit -m "Commit Message"
 % git push -u origin main
 ```
 
 4. Deploy to `deployment` branch to make live on site:
-```zsh
+```bash
 % GIT_USER=<username> DEPLOYMENT_BRANCH=deployment yarn deploy
 ```
 

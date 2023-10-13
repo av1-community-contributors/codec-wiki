@@ -15,17 +15,11 @@ This is a Windows only software, although usage with Wine is possible.
 There is absolutely no reason whatsoever to use this software unless required by paleolithic [private trackers](https://wiki.installgentoo.com/wiki/Private_trackers), due to a bajillion dependencies needed that aren't bundled with the download itself. Use something like FFmpeg instead.
 :::
 
-&nbsp;&nbsp;
-
 ## Installation
 
 - Download from [VideoHelp](https://www.videohelp.com/software/eac3to), drag and drop into your designated folder, add to PATH when necessary.
 
-&nbsp;&nbsp;
-
 ## Usage
-
-&nbsp;&nbsp;
 
 ### Audio conversion
 

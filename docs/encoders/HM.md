@@ -15,7 +15,7 @@ HM is capable of producing higher quality streams than highly tuned x265, even a
 
 ## Building
 
-```zsh
+```bash
 git clone https://vcgit.hhi.fraunhofer.de/jvet/HM
 cd HM/
 mkdir build && cd build

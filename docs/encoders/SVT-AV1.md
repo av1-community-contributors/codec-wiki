@@ -23,7 +23,7 @@ SVT-AV1 is available in FFmpeg via ``libsvtav1``, to check if you have it, run `
 
 To build SVT-AV1 from source, clone the official SVT-AV1 repository from Gitlab & build from source.
 
-```zsh
+```bash
 git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
 cd SVT-AV1/Build/linux
 ./build.sh release
@@ -31,7 +31,7 @@ cd SVT-AV1/Build/linux
 
 If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO by following this script:
 
-```zsh
+```bash
 git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
 cd SVT-AV1/Build/linux
 ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-videos=/dev/shm release
@@ -39,7 +39,7 @@ cd SVT-AV1/Build/linux
 
 If you wish to store videos elsewhere or provide custom parameters to the SvtAv1EncApp binary, try this script:
 
-```zsh
+```bash
 git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
 cd SVT-AV1/Build/linux
 ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-compile-gen release

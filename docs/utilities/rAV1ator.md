@@ -11,7 +11,7 @@ The content in this entry is incomplete & is in the process of being completed.
 
 rAV1ator is a fork of [Aviator](../utilities/Aviator.md) designed to use [Av1an](../utilities/av1an.md) & [rav1e](../encoders/rav1e.md) instead of [SVT-AV1](../encoders/SVT-AV1.md). It is also distributed as a Flatpak with bundled dependencies outside of Flathub; running the following command will allow you to install it:
 
-```zsh
+```bash
 flatpak --user remote-add --no-gpg-verify project-volo https://giannirosato.com/repo && flatpak --user install project-volo net.natesales.rAV1ator
 ```
 

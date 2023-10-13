@@ -24,7 +24,7 @@ For stability & a proper version number, please reset the source to the correct 
 
 Here are instructions for resetting to release 0.6.6. Omit the git reset command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
 
-```zsh
+```bash
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
 git reset --hard 7c9db10494c2fffa98a572027d756e55bf754036
@@ -47,7 +47,7 @@ When done, the binary can be found in ``target/release``
 
 rav1e currently has an [unmerged pull request](https://github.com/xiph/rav1e/pull/3000) by quietvoid, the person behind ``hdr10plus_tool`` and ``dovi_tool``. The PR adds a new parameter called ``--hdr10plus-json`` for HDR10+ JSON dynamic metadata input. To merge it locally, do the following:
 
-```zsh
+```bash
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
 git reset --hard [release commit]
@@ -60,17 +60,17 @@ now the patch should be applied, build as usual
 For AV1 encoding, rav1e has very sane defaults. It is very hard to go wrong with parameters if you modify as few as possible.
 
 Basic usage:
-```zsh
+```bash
 rav1e -i input.y4m -o output.ivf --quantizer 60 --photon-noise 8
 ```
 
 Basic usage with FFmpeg piping, 10bit input:
-```zsh
+```bash
 ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - -o output.ivf --quantizer 80 --photon-noise 8
 ```
 
 Basic usage with FFmpeg piping, 10bit input and assuming 4K:
-```zsh
+```bash
 ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - -o output.ivf --quantizer 68 --tile-columns 2 --tile-rows 1 --photon-noise 8
 ```
 

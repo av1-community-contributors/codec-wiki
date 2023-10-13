@@ -77,12 +77,12 @@ macOS is very similar to Linux. Note that some commands may have to be run with 
 **Homebrew**
 
 Installing the Homebrew package manager is a well documented process at this point:
-```zsh
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 Installing mainline libaom is as simple as running the following:
 
-```zsh
+```bash
 brew update && brew upgrade
 brew install aom
 ```
@@ -98,7 +98,7 @@ If you want aom-av1-lavish instead of mainline, you'll have to compile from sour
 - Building most things from source will have instructions for \*nix which work for both macOS & Linux. Even if it says Linux, there's a good chance it'll work on macOS as well, & it is always worth trying Linux build instructions on Mac. aom-av1-lavish requires some additional steps, though.
 
 If you want to make the most out of your hardware & eke out every last drop of quality, it may be worth building aom-av1-lavish from source. The first step is to clone it from the Endless Merging branch, which contains all of the latest lavish improvements:
-```zsh
+```bash
 git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
 cd aom-av1-lavish
 ```
@@ -107,7 +107,7 @@ Now, you need to make some manual changes to the source code until [this commit]
 - Comment out line 2546 in `av1/encoder/speed_features.c`. This line is `const int qindex_thresh_cdef_sf_s1_s3_l2[2] = { 92, 48 };` & becomes `// const int qindex_thresh_cdef_sf_s1_s3_l2[2] = { 92, 48 };`.
 
 Now you can continue to build according to the Linux instructions below. Obviously you'll need cmake, which you can install with homebrew along with any other tools. While still in the `aom-av1-lavish` directory:
-```zsh
+```bash
 mkdir -p aom_build && cd aom_build
 cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
 make -j$(nproc)
@@ -116,7 +116,7 @@ make install
 ```
 
 Now you can run `aomenc --help | grep "AOMedia" -C 3` to see if lavish installed. If you're getting the same output as above, you may need to copy the `aomenc` executable to `/opt/local/bin`, `/usr/local/bin`, & `/opt/homebrew/bin` if you already installed mainline aomenc. Running the version info command again, the correct output should look something like this:
-```zsh
+```bash
 % aomenc --help | grep AOMedia -C 3
 
 Included encoders:
