@@ -22,7 +22,7 @@ This guide will show you how to encode in AV1 the *right* and *optimal* way. Yes
 
 ![Compare](/img/compare-guide.webp)
 
-In this guide, we'll be installing Av1an for chunked encoding and infinite threading, because the current state of AV1 encoders, except for [SVT-AV1](/docs/encoders/SVT-AV1), unfortunately lacks threading and will only use very low amount of cores, which hampers speeds. The only caveat to this approach is **RAM consumption**, encoding 2160p (4K) with [aomenc](/docs/encoders/aomenc) with 4 workers could take upwards of **16GB** of RAM! So do keep this in mind.
+In this guide, we'll be installing Av1an for chunked encoding and infinite threading, because the current state of AV1 encoders, except for [SVT-AV1](https://wiki.x266.mov/docs/encoders/SVT-AV1), unfortunately lacks threading and will only use very low amount of cores, which hampers speeds. The only caveat to this approach is **RAM consumption**, encoding 2160p (4K) with [aomenc](https://wiki.x266.mov/docs/encoders/aomenc) with 4 workers could take upwards of **16GB** of RAM! So do keep this in mind.
 
 ## Installing the Tools
 
@@ -55,7 +55,7 @@ The script will download outdated version encoders and tools such as `aom-av1-ps
 6. Download **shared libraries** FFmpeg from [gyan.dev](https://www.gyan.dev/ffmpeg/builds)
 7. Download a pre-built fork of Aomenc ([aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish/tree/Endless_Merging)) which has neat stuff such as sane defaults, new tunes, optimizations, etc. This can be downloaded for Windows [here](https://autumn.revolt.chat/attachments/download/-2EiZW1edcT9anApFZ1PJBEber-pJ6z02NiQBjbr28) *(Current as of Sept 6, 2023)*
 :::info
-If you opt to compile aomenc yourself, you can view the instructions on how to do that [here](/docs/encoders/aomenc#installation).
+If you opt to compile aomenc yourself, you can view the instructions on how to do that [here](https://wiki.x266.mov/docs/encoders/aomenc/#installation).
 :::
 8. Move Av1an, FFmpeg **(Including the FFmpeg DLLs)**, and aomenc to somewhere preferable, eg ``C:\Encoding``.
 9. Add the folder **AND MKVTOOLNIX INSTALLATION FOLDER** to the [Windows PATH environment](https://www.maketecheasier.com/what-is-the-windows-path/).
@@ -182,8 +182,8 @@ Yet again, try using Arch. It's way easier.
 
 #### The Easy Ways
 
-- Install [Aviator](https://github.com/gianni-rosato/aviator) ([SVT-AV1](/docs/encoders/SVT-AV1.md) + [FFmpeg](/docs/utilities/ffmpeg.md)) or [rAV1ator](https://giannirosato.com/blog/post/aviator-1/) basically same thing but [Av1an](/docs/utilities/av1an.md) + [rav1e](/docs/encoders/rav1e.md). Both are only available as [Flatpaks](https://beta.flathub.org/apps/net.natesales.Aviator). Keep in mind Aviator ships with **SVT-AV1** and rAV1ator with **rav1e** instead of aomenc/AOM-AV1, which I will not be covering here.
-- Install [rav1ator-cli](/docs/utilities/rav1ator-cli.md), a TUI for using Av1an meant to be easy to use. Much more flexible than the GUI options & can work with a number of encoders. See [this page](/docs/utilities/rav1ator-cli.md) for more info.
+- Install [Aviator](https://github.com/gianni-rosato/aviator) ([SVT-AV1](https://wiki.x266.mov/docs/encoders/SVT-AV1) + [FFmpeg](https://wiki.x266.mov/docs/utilities/FFmpeg)) or [rAV1ator](https://giannirosato.com/blog/post/aviator-1/) basically same thing but [Av1an](https://wiki.x266.mov/docs/utilities/av1an.md) + [rav1e](https://wiki.x266.mov/docs/encoders/rav1e). Both are only available as [Flatpaks](https://beta.flathub.org/apps/net.natesales.Aviator). Keep in mind Aviator ships with **SVT-AV1** and rAV1ator with **rav1e** instead of aomenc/AOM-AV1, which I will not be covering here.
+- Install [rav1ator-cli](https://wiki.x266.mov/docs/utilities/rav1ator-cli), a TUI for using Av1an meant to be easy to use. Much more flexible than the GUI options & can work with a number of encoders. See [this page](https://wiki.x266.mov/docs/utilities/rav1ator-cli/#installation) for more info.
 
 #### The Compiling Route
 

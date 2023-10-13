@@ -29,6 +29,8 @@ rAV1ator CLI Edition can:
 
 Overall, it aims to provide an easy way to encode videos on the command line with helpful visual feedback. The interactive prompts help users pick encoding settings without needing deep encoding knowledge.
 
+## Installation
+
 Installing rav1ator-cli on its own is as simple as running the following two commands:
 
 ```bash
@@ -39,7 +41,7 @@ sudo cp rav1ator-cli /usr/local/bin
 However, it has other dependencies that may need to be installed in addition to the script.
 
 ## Dependencies
-These instructions are for Arch Linux specifically. Other distros should be very similar, and packages that are Arch-specific will be labelled. If you're on Ubuntu, you should see the relevant section of the [AV1 for Dummies](/blog/2023-09-03-av1-for-dummies.md#ubuntu) blog post on this site.
+These instructions are for Arch Linux specifically. Other distros should be very similar, and packages that are Arch-specific will be labelled. If you're on Ubuntu, you should see the relevant section of the [AV1 for Dummies](https://wiki.x266.mov/blog/av1-encoding-for-dummies) blog post on this site.
 
 The first thing you should always do is update your system.
 
