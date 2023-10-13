@@ -180,9 +180,10 @@ Notice how it says `AOMedia Project AV1 Encoder Psy` instead of `AOMedia Project
 Yet again, try using Arch. It's way easier.
 :::
 
-#### The Easy Way
+#### The Easy Ways
 
-Install [Aviator](https://github.com/gianni-rosato/aviator), it is currently only available as a [Flatpak](https://beta.flathub.org/apps/net.natesales.Aviator) or [rAV1ator](https://giannirosato.com/blog/post/aviator-1/), basically same thing but av1an + rav1e. Keep in mind Aviator ships with **SVT-AV1** and rAV1ator with **rav1e** instead of aomenc/AOM-AV1, which I will not be covering here.
+- Install [Aviator](https://github.com/gianni-rosato/aviator) ([SVT-AV1](/docs/encoders/SVT-AV1.md) + [FFmpeg](/docs/utilities/ffmpeg.md)) or [rAV1ator](https://giannirosato.com/blog/post/aviator-1/) basically same thing but [Av1an](/docs/utilities/av1an.md) + [rav1e](/docs/encoders/rav1e.md). Both are only available as [Flatpaks](https://beta.flathub.org/apps/net.natesales.Aviator). Keep in mind Aviator ships with **SVT-AV1** and rAV1ator with **rav1e** instead of aomenc/AOM-AV1, which I will not be covering here.
+- Install [rav1ator-cli](/docs/utilities/rav1ator-cli.md), a TUI for using Av1an meant to be easy to use. Much more flexible than the GUI options & can work with a number of encoders. See [this page](/docs/utilities/rav1ator-cli.md) for more info.
 
 #### The Compiling Route
 
