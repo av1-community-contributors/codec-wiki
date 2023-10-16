@@ -8,3 +8,5 @@ sidebar_position: 1
 :::warning Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
+
+H.264, also known as AVC (Advanced Video Coding), is a video compression standard that has played a significant role in multimedia codec technology. H.264 revolutionized video encoding by offering vastly more efficient compression than predecessors, and has been the nearly universal defacto video compression standard since. Its history is marked by continuous refinement and widespread adoption, especially as it pertains to the highly optimized [x264](../encoders/x264.md) video encoder. Despite being over a decade old, H.264 remains relevant today. Newer codecs like [H.265](../video/HEVC.md), [VP9](../video/VP9.md), and [AV1](../video/AV1.md) aim to provide more efficient compression than H.264 but are currently not as universal. The choice between these codecs largely depends on the specific requirements of the application, compatibility and support, and the balance between compression efficiency and computational complexity.

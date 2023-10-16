@@ -54,7 +54,7 @@ cd yay && makepkg -si
 
 Next, you'll want to install all of rav1ator-cli's dependencies. You can do that by doing:
 ```bash
-yay -Sy rust ffmpeg python mkvtoolnix-cli vapoursynth gum l-smash vapoursynth-plugin-lsmashsource av1an ffms2
+yay -Sy rust ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
 ```
 
 ### Troubleshooting
