@@ -35,7 +35,11 @@ This section is in need of contributions. If you believe you can help, please se
 
 ### Connect With Us
 
-If you're interested in communicating with other passionate contributors helping this project, visit [rvlt.gg/emxNXv1x](https://rvlt.gg/emxNXv1x). You'll need a Revolt account to join. Revolt is an open-source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).
+If you'd like to join the "AV1 for Dummies" Discord server to communicate with other passionate contributors helping this project, please join using the widget below:
+
+<iframe src="https://discord.com/widget?id=1163724583472472138&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+Alternatively, we have a (soon to be) bridged Revolt server linked [right here](https://rvlt.gg/eSERRhSG). Revolt is an open-source Discord alternative, which you can read more about on [this page](https://github.com/revoltchat/legal/blob/master/About.md#communication-is-critical).
 
 ## Clone & Push Instructions
 **Make sure to clone from & edit the** `main` **branch only, & push your final changes to the** `deployment` **branch according to the instructions below. Also be sure to use node 18 LTS, as later versions tend to be troublesome.**
