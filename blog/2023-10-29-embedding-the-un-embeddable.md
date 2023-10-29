@@ -12,6 +12,9 @@ image: /img/discord-embed-blog-image.webp
 hide_table_of_contents: false
 ---
 
+:::caution Copyright Disclosure
+The Codec Wiki unequivocally condemns any form of piracy, including the unauthorized distribution of copyrighted content. This blog post is intended to educate & inform. You may not use the tools discussed to infringe upon the intellectual property rights of content creators without serious legal risk. We encourage our readers to respect copyright laws & use the tools we discuss here appropriately.
+:::
 
 ![Feature image](/img/discord-embed-blog-image.webp)
 **A 567.14 MB, 12 min 11 s, 2K (2,048 x 858), VP9 + Opus, 6.51 Mbps average, Blender short film "Cosmos Laundromat"**
@@ -19,15 +22,15 @@ hide_table_of_contents: false
 
 ## A Scenario
 
-While chatting in your favorite Discord servers, or even group chats, one of your friend might have a sent an extremely weird link. You might even say suspicious. It is a video with the image of a movie backdrop poster with a play button just begging to be clicked, so you did.
+While chatting in your favorite Discord servers & group chats, you may see a friend send a weird link. You might even consider it suspicious on first glance. It is a video featuring an image of a movie poster with a play button that is almost begging to be clicked. Naturally, you click it.
 
 <!--truncate-->
 
-It loads for a bit, and to your surprise, it is a full-length, 90 minutes (sometimes even two hours!), unauthorized copy of a movie. You just sit there dumbfounded as the studio intros play in pitch perfect HD quality as opposed to the muddy, blocky, laggy ones you've seen being posted as shitposts.
+It loads for a second, and to your surprise it is a full-length, 90-minute (sometimes even two hour)-long unauthorized copy of a movie. If you don't know exactly what is going on, you probably sit there dumbfounded as a pixel perfect HD movie plays back. You may have expected a stereotypically muddy, blocky, laggy shitpost, but this has defied your expectations.
 
 ![stolen.shoes](/img/stolenshoes-puss.webp)
 
-The truth is, there is more than *one* site that does this, currently five at the time of typing this, here's an entire list of them:
+The truth is, there are *multiple* site that do this. Currently, there are five at the time of writing. Below is a list the ones I am currently familiar with:
 
 - https://stolen.shoes
 - https://discord.nfp.is
@@ -35,16 +38,17 @@ The truth is, there is more than *one* site that does this, currently five at th
 - https://x266.mov/discord-embed
 - https://autocompressor.net/av1
 
-Now, let's get to dissecting.
+The big question is, **how do they work?** Let's get to dissecting.
 
 ## How it Works
 
-The entire scheme is actually very, VERY simple to understand, it's all just HTML meta tags. (If you're a web developer this part is a walk in the park)
+The entire scheme is actually very simple, as it is all just HTML meta tags (If you are familiar with web development, this is all a walk in the park).
 
-There are two parts on how this whole thing works, first let's see it on the website's end:
+The technology's inner working can be divided into two distinct parts. First, let's see how it works on the website's end.
 
 ### The Website's End
-If you viewed each website's source, you will find this specific line in every one of them, but they may have a different order:
+If you view each website's source, you will find this specific line in each one but they may have a different order:
+
 ```html
 <meta property="og:image" content="https://example.com/i/someimageforthumbnail.jpg">
 <meta property="og:type" content="video.other">
@@ -53,7 +57,7 @@ If you viewed each website's source, you will find this specific line in every o
 <meta property="og:video:height" content="1080">
 ```
 
-These are the `head` part of HTML, which dictates metadata for the document itself such as what's the website title/name, cosmetic embed, defining the site's icon, etc. They are usually found in between the `<html>` and `<body>` tag. Here's an example of a static HTML site serving one specific video:
+These are the `head` parts of HTML, which dictate metadata for the document itself such as what the website title/name is, cosmetic embed, defining the site's icon, etc. They are usually found in between the `<html>` and `<body>` tags. Here's an example of a static HTML site serving one specific video:
 ```html
 <!DOCTYPE html>
 <html>
@@ -68,96 +72,96 @@ These are the `head` part of HTML, which dictates metadata for the document itse
   <meta property="og:video:height" content="858">
 </head>
 <body>
-  <h1>hi</h1>
-  <p>totally nothing suspicious is going on here</p>
+  <h1>Hi</h1>
+  <p>Just your friendly neighborhood video embed site</p>
   </body>
 </html>
 ```
 
 < br />
-These interactive sites usually deploy a live script, usually a Javascript framework such as NodeJS, ExpressJS, Svelte, and more to parse these video and thumbnails realtime so it embeds on Discord and sometimes even other platforms.
+These interactive sites usually deploy a live script, like a Javascript framework. Examples are NodeJS, ExpressJS, Svelte, etc. These are used to parse video and thumbnails realtime so they can be embedded on Discord (or potentially other platforms).
 
 ### Discord's End
 
-Traditionally, Discord's media embedder will impose it's own video embed size limits (50 MiB) when a user sends a direct video link like normal. But in this case Discord will embed the thumbnail first, not the video. You could say the link "tricks" Discord by showing it's false face.
+Traditionally, Discord's media embedder will impose it's own video embed size limit (50 MiB) when a user sends a direct video link as usual. But in this case Discord will embed the thumbnail first, not the video. You could say the link "tricks" Discord by showing a "false face" first.
 
 
 
-## Strength & Limitations
+## Strengths & Limitations
 
-After countless observations and rigorous testing throughout the past year, while also asking their creators, these are the current strength of this exploit:
+After a combination of countless hours of observation, rigorous testing throughout the period of a year, and conversations with the sites' creators, the current strengths & limitations of this exploit are enumerated below.
 
-- You can embed non-web compatible codecs such as H.265/HEVC in MP4/MOV, but the user must be using a compatible browser that is able to decode/play them, such as [Thorium](https://thorium.rocks).
-- There is no maximum size, you can embed a raw Blu-ray video if you want, although I do not condone this unless you have legal permissions to do so or it's a Creative Commons-licensed movie like Big Buck Bunny.
-- You can send a high bitrate gaming clip to your friends without any restrictions, assuming you already have a place to upload them to.
+#### Strengths
 
-<br />
+- You can embed non-web compatible codecs such as [HEVC](https://wiki.x266.mov/docs/video/HEVC) in [MP4/MOV](https://wiki.x266.mov/docs/introduction/terminology#mp4--m4v), but the user must be using a compatible browser. [Thorium](https://thorium.rocks) or Safari version 13 or greater will work for HEVC playback.
+- There is no maximum size. You could embed a video the size of a raw Bluray, although I do not condone this unless you have the necessary legal permissions to do so or you're uploading a Creative Commons licensed movie like Big Buck Bunny while adhering to the restrictions of the applicable Creative Commons license. This also means you can send high bitrate gaming clips to your friends without any restrictions, assuming you already have a place to upload them.
 
-and the limitations:
-- You can only use [hotlinks](https://simple.wikipedia.org/wiki/Hotlinking), which means direct linking to the video itself ending in their file extension such as `.mp4`, so things such as cloud services like Google Drive or OneDrive does not work.
-- You cannot use Discord's CDN (cdn.discordapp.com) as the video source, as it just doesn't work. I assume this is because of Discord's proxy blocking embeds over 50 MiB, but **only discord.nfp.is could do this**, as it **proxies cdn.discordapp.com** itself, making it work just fine.
-- You cannot embed videos higher than 4K (3840 x 2160), Discord specifically imposes a hard limit for this (Even normally uploaded videos won't work) after the Discord-crashing-videos-incident where videos would play normally but then scaled to ridiculous resolution at a specified duration.
+#### Limitations
+
+- You can only use [hotlinks](https://simple.wikipedia.org/wiki/Hotlinking), which means direct linking to the video itself ending in the appropriate file extension such as `.mp4`. Cloud services like Google Drive or OneDrive will not work for storage.
+- You cannot use Discord's CDN (cdn.discordapp.com) as the video source. I assume this is because of Discord's proxy blocking embeds over 50 MiB, but **only discord.nfp.is can do this**, as it **proxies cdn.discordapp.com** itself.
+- You cannot embed videos in any resolutions higher than 3840 x 2160, Discord imposes a hard limit for this on all video after it was discovered that some videos could play normally but then be maliciously scaled to ridiculous resolutions during playback to crash Discord.
 
 
 
 ## Differences between Sites
 
-Currently there's around five sites as of 29th October 2023, they all pretty much serve the same function but one may interest you more than the other 
+As mentioned before, there are five known sites at the time of writing. They all serve the same function, but one may interest you more than another due to slight differences in features & functionality.
 
-around 4 of these except for `embeds.video` are owned by members of the AV1 Community Discord.
+Here are the sites, each with one noteworthy special benefit:
 
-- https://stolen.shoes - Recognition as it's the OG.
+- https://stolen.shoes - Recognition, as it is the OG.
 - https://discord.nfp.is - You can use Discord CDN as video source.
 - https://embeds.video - Immediately input video source into the URL (`https://embeds.video/https://example.com/v/video.mp4`)
-- https://x266.mov/discord-embed - Domain, simple layout.
+- https://x266.mov/discord-embed - Attractive domain, simple layout.
 - https://autocompressor.net/av1 - Lots of info dump, pretty advanced features.
 
-And that's it for the technical overview! Keep reading below if you want to know more about how this whole shebang started!
+That concludes the technical overview! Next, let's cover the history of this exploit.
 
 ## The Lore
 
 ### Dwayne
 
-In around April 2022, a Reddit user going by the name of u/CreativeGamer03 [posted a video on r/discordapp](https://www.reddit.com/r/discordapp/comments/u96kky/someone_sent_this_in_the_memes_channel_and_bruh) of a link where a GIF of Dwayne "The Rock" Johnson with the caption "Is this a GIF or is it a video?", and when upon playing, a low quality music video of Rick Astley's "Never Gonna Give You Up" plays, rickrolling the user.
+In around April of 2022, a Reddit user going by the name of u/CreativeGamer03 [posted a video on r/discordapp](https://www.reddit.com/r/discordapp/comments/u96kky/someone_sent_this_in_the_memes_channel_and_bruh) of a link where a GIF of Dwayne "The Rock" Johnson plays caption with "Is this a GIF or is it a video?" When played, a low-quality music video of Rick Astley's "Never Gonna Give You Up" plays.
 
-It is most likely that the link was created way earlier before, it is now unfortunately [removed](https://archuser.de/the-rock).
+The link used is now unfortunately [removed](https://archuser.de/the-rock).
 
 ### Discovery
-Fast forward in 23th June 2022, a Discord user going by the name of *Clybius* on the AV1 Community Discord server, asked people for VP9/AVC videos that are over 100 MB in size (since at that time, 500 MB nitro tier does not exist yet). Then decided to use a 59-minute long, 1080p sample video of nature sceneries from around the world with the thumbnail being a GIF of a waterfall, it worked
+On 23rd June 2022, a Discord user *Clybius* on the AV1 Community server asked people for [VP9](https://wiki.x266.mov/docs/video/VP9) or [H.264](https://wiki.x266.mov/docs/video/AVC) videos that were over 100 MB in size. At the time the current 500 MB nitro tier did not exist. They then decided to use a 59 minute 1080p sample video of nature scenery from around the world with a thumbnail featuring a GIF of a waterfall to test the exploit. It worked.
 
-then he tried with AV1. Eureka, it also worked:
+He tried shortly afterward with [AV1](https://wiki.x266.mov/docs/video/AV1). Eureka, it also worked:
 
 ![AV1](/img/clybius-av1.webp)
 
-And then, when asked if the method could be patched if found out, Clybius said they could, but an important detail is that he got the idea from the *Dwayne Johnson GIF/video from above* but forgot about it for a couple of months. So it's safe to say the entire ordeal stemmed from a silly little rickroll video.
+Clybius confirmed that this could be patched if discovered. He cites having had the idea from the Dwayne Johnson example above, but forgetting about it for a couple of months. So, it seems this entire concept stemmed from a silly rickroll.
 
 ![Dwayne](/img/clybius-dwayne.webp)
 
 ### The Experiments & Interactive Site
 
-After the immediate discovery of the possibility of AV1 embedding, experimentations followed and it was discovered that every codec in existence works, just as long as the client (user) can decode/play them and the container/extension is of the following: MP4, MOV, and WebM, A.K.A web-compatible containers.
+After the discovery of AV1 embedding, experimentation brought about the discovery that *any* video codec will work as long as the user can decode/play the codec and the container/extension is an MP4, MOV, or WebM. These are all traditionally web-compatible containers. If you're interested in learning about containers, please see the [Containers](https://wiki.x266.mov/docs/introduction/terminology#container) section on the [Terminology](https://wiki.x266.mov/docs/introduction/terminology) page.
 
-This applies to HEVC, ProRes, xHE-AAC, and other bizarre codecs nobody else uses.
+This applies to HEVC, ProRes, [xHE-AAC](https://wiki.x266.mov/docs/audio/AAC#xhe-aac), and other bizarre codecs that are rarely seen on the Web.
 
-While experimentations began, Clybius converted one their owned-but-idle domain, `stolen.shoes` to serve as an interactive embedder that provides a textbox for video URL, thumbnail URL, width, and height of the video. This will be the first website to be set for embedding. Many others soon followed.
+While experimentating, Clybius converted one their idle domains `stolen.shoes` into an interactive embedder that provided a textbox for a video URL, a thumbnail URL, a width value, & a height value for the desired video. This would be the first website for Discord embedding.
 
 ### Virality
 
-It's not long before people outside of the AV1 Community Discord discovered `stolen.shoes`, and it went viral, **thrice**, at the time of typing. All to distribute full length, unauthorized copies of movies, sometimes very early.
+It's not long before people outside of the AV1 Community discovered `stolen.shoes`, and its popularity increased rapidly. Its use usually involved the illicit distribution of full-length, unauthorized copies of movies; this sometimes happened very shortly after some movies were released. There were a couple notable instances of this happenening that caused quite the stir online each time.
 
-- The first instance was when DreamWorks' sequel of "Puss in Boots (2011)", "Puss in Boots: The Last Wish (2022)", streaming-service sourced 1080p rip was the first wake up call that attracted attention to the existence of these embed sites. Used `stolen.shoes`.
+- The first instance featured the DreamWorks sequel of "Puss in Boots (2011)", "Puss in Boots: The Last Wish (2022)". A 1080p video sourced from a streaming site was the first wake up call that attracted attention to the existence of these embed sites. This example used `stolen.shoes`.
 
 ![puss](/img/stolenshoes-puss.webp)
 
-- The second instance was when highly-anticipated animated film "The Super Mario Bros. Movie (2023)" produced by Illumination, Universal Studios, and Nintendo was spread around. It was first spotted as a Cam (A camera recording by someone in theaters), then as it went out on streaming services a different link appeared but spread faster and with upgraded 1080p quality. Both used `stolen.shoes` as the host.
+- The second instance was when highly-anticipated animated film "The Super Mario Bros. Movie (2023)" produced by Illumination, Universal Studios, and Nintendo was spread around Discord. It was first spotted as a Cam (A camera recording by someone in theaters), then as it went out on streaming services a different link appeared but spread faster and with upgraded 1080p quality. Both used `stolen.shoes` as the embed site.
 
 ![mario](/img/stolenshoes-mario.webp)
 
-- The third instance is very recent (again, at the time of typing). Is another fan favorite, a streaming-service sourced "Five Nights at Freddy's (2023)", since the movie released both in theaters and streaming service (Peacock) day one, it gained steam extremely fast as most people have not seen it yet and gaining [hundreds of upvotes within the r/discordapp subreddit](https://www.reddit.com/r/discordapp/comments/17hx45y/is_discordnfp_an_ip_grabber/). The copy seems to be a 720p encoded/compressed version released by [YTS](https://en.wikipedia.org/wiki/YIFY). Uses `discord.nfp.is`.
+- The third instance is very recent as of the day this was posted. A streaming-service sourced "Five Nights at Freddy's (2023)" was spread around since the movie released both in theaters and streaming service (Peacock) day one, and it gained steam extremely fast as most people had not seen it yet. Currently, this illegal novelty is gaining [hundreds of upvotes within the r/discordapp subreddit](https://www.reddit.com/r/discordapp/comments/17hx45y/is_discordnfp_an_ip_grabber/). The copy seems to be a compressed 720p encode. This example used `discord.nfp.is`.
 
 ![fnaf](/img/discordnfpis-fnaf.webp)
 
-Note the ones listed here are the ones that gained extreme popularities, there may be lesser known links being spread around either privately, or just did not cause enough noise to be in my radar. Lesser popular ones include: 
+Note the ones listed here are the ones that I saw become extremely popular. There may be lesser known links that have been spread around privately or just did not cause enough noise for me to notice. Some less popular examples I've noticed, featuring more illicit copyrighted content distribution: 
 - Top Gun Maverick (2022)
 - The SpongeBob trilogy (2005/2015/2020)
 - Spider-Man: Across the Spider-Verse (2023)
@@ -165,6 +169,10 @@ Note the ones listed here are the ones that gained extreme popularities, there m
 
 ## Closing
 
-And that's it for today's blog! See you next time.
+The ability to embed unusually large videos on Discord has enabled both positive and negative use cases. On the one hand, it allows high-quality content to be shared easily among friends. However, it has also facilitated mass copyright infringement by empowering virtually anyone with a Discord accound to freely spread pirated movies.
 
-P.S Discord please don't patch this, thanks ;)
+While this is fascinating from a technical perspective, embedding techniques like these tread a fine ethical line. As with anything, it is important to be mindful of how our actions affect others, and I should remind everyone that content creators deserve to be compensated for their work. As users, we should support them by accessing their content via legitimate platforms.
+
+It is hard to say how long this exploit will continue to be usable. Instead of enabling piracy, which may cause Discord to be more likely to patch this exploit if they see it as a serious threat, let's instead use these capabilities responsibly to share our own creations, gaming highlights, and other media which we can share legally. Given some thoughtfulness, perhaps we can find a fair balance between respecting copyright law and appeasing Discord's sensibilities while allowing some creative flexibility on the platform.
+
+Thank you for reading this blog post, I hope you learned something!

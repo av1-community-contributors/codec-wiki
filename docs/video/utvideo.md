@@ -1,6 +1,6 @@
 ---
 label: UT Video
-sidebar_position: 1
+sidebar_position: 13
 ---
 
 # UT Video Codec Suite
@@ -11,7 +11,7 @@ This section is in need of contributions. If you believe you can help, please se
 
 UT Video Codec Suite is a fast, lossless video codec, developed by Takeshi Umezawa (梅澤 威志, Umezawa Takeshi) and released under the free GNU General Public License. The algorithm of UT video is based on the Huffman code.
 
-UT video was developed as an alternative to HuffYUV, in order to achieve better compression. It can handle color spaces such as YUV422 (ULY2), RGB (ULRG), RGBA (ULRA) and, most recently, YUV420 (ULY0).
+UT Video was developed as an alternative to HuffYUV, in order to achieve better compression. It can handle color spaces such as YUV422 (ULY2), RGB (ULRG), RGBA (ULRA) and, most recently, YUV420 (ULY0).
 
 It has both x86 and x64 builds. Due to its multithreading support, this codec is also capable of encoding HDTV material in real time. The codec requires support for the SSE2 instruction set because it is heavily used for speed optimizations.
 
