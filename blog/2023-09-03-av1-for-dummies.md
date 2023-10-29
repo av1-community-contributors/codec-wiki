@@ -1,6 +1,6 @@
 ---
 title: "AV1 Encoding for Dummies"
-description: "AV1 Encoding for Dummies"
+description: "This guide will show you how to encode in AV1 the *right* and *optimal* way."
 slug: av1-encoding-for-dummies
 authors:
 - name: Simulping

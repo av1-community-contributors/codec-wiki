@@ -1,6 +1,6 @@
 ---
 title: "Site Optimization by Reducing Image Load on the Web"
-description: "Site Optimization by Reducing Image Load on the Web"
+description: "A big part of understanding any multimedia codec technology is knowing the application for such technology. For images, a big use case is web delivery."
 slug: site-optimization
 authors:
 - name: RootAtKali
