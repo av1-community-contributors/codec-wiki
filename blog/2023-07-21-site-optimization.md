@@ -11,6 +11,7 @@ authors:
   url: https://github.com/gianni-rosato
   image_url: https://avatars.githubusercontent.com/u/35711760?v=4
 tags: [image, web, compression]
+image: /img/_DSC8466-smaller.jpg
 hide_table_of_contents: false
 ---
 
