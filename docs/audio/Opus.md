@@ -9,7 +9,7 @@ sidebar_position: 2
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-Opus is an open-source audio codec that has largely replaced [Vorbis](../audio/vorbis.md) as the standard open audio codec. It is the recommended codec for usage in WebM video containers in tandem with the [VP9](../video/VP9.md) or [AV1](../video/AV1.md) video codecs.
+Opus is an open-source audio codec that has largely replaced [Vorbis](../audio/Vorbis.md) as the standard open audio codec. It is the recommended codec for usage in WebM video containers in tandem with the [VP9](../video/VP9.md) or [AV1](../video/AV1.md) video codecs.
 
 Opus is known for its incredible coding efficiency and unique multi-channel optimizations. Stereo Opus audio reaches [transparency](https://en.wikipedia.org/wiki/Transparency_(data_compression)) (psychoacoustically lossless audio quality) at 128kb/s, compared to [AAC](../audio/AAC.md)'s generally agreed upon 256kb/s and [MP3](../audio/MP3.md)'s 320kb/s. Transparency varies based on the type of content & the encoding implementation used, especially for codecs other than Opus, and the values provided above may be debated to a degree.
 
@@ -50,7 +50,7 @@ SILK's latency is 10 to 60ms based on the desired framesize + 5ms lookahead to e
 
 Much like SILK, CELT is under the BSD 2-Clause license. The preview release came out in 2011. CELT stands for "Code-Excited Lapped Transform" and was designed to be the true successor to Vorbis, even being dubbed as "Vorbis II" during its initial development as part og Xiph.Org's "Ghost" project in 2005.
 
-CELT was designed to be a full-band general purpose codec without a particular specialization for a certain kind of audio, making it distinctly different from Xiph's [Speex](../audio/speex.md) codec & more similar to Vorbis. It is computationally simple relative to competing codec technologies like [AAC](../audio/AAC.md) & even Vorbis, enabling extremely low latency that is competitive with [AAC-LD](../audio/AAC.md#aac-ld--aac-eld).
+CELT was designed to be a full-band general purpose codec without a particular specialization for a certain kind of audio, making it distinctly different from Xiph's [Speex](../audio/Speex.md) codec & more similar to Vorbis. It is computationally simple relative to competing codec technologies like [AAC](../audio/AAC.md) & even Vorbis, enabling extremely low latency that is competitive with [AAC-LD](../audio/AAC.md#aac-ld--aac-eld).
 
 CELT can work with the following sample rates:
 > Narrowband: 3-4000hz

@@ -9,4 +9,4 @@ sidebar_position: 6
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
 
-Speex is an open-source audio codec designed for speech. It has largely been replaced by [Opus](../audio/opus.md).
+Speex is an open-source audio codec designed for speech. It has largely been replaced by [Opus](../audio/Opus.md).
