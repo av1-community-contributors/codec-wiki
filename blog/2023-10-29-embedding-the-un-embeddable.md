@@ -1,6 +1,6 @@
 ---
 title: "Embedding the Un-Embeddable: Dissecting discord.nfp.is, stolen.shoes & Others"
-description: "Revealing the secrets of those websites that allow you to embed AV1 videos, while also over 500MB on Discord."
+description: "Revealing the secrets of those websites that allow you to embed entire movies, AV1, and videos over 500MB on Discord."
 slug: embedding-the-un-embeddable
 authors:
 - name: Simulping
