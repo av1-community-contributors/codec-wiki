@@ -13,7 +13,7 @@ The content in this entry is incomplete & is in the process of being completed.
 The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
 :::
 
-JPEG (Joint Photographic Experts Group) compression is a widely used method for reducing the size of digital images while preserving visual quality. It's based on the principles of lossy compression, which means that some image data is discarded to achieve compression.
+JPEG (Joint Photographic Experts Group) compression is a widely used method for reducing the size of digital images while preserving visual quality. It's based on the principles of lossy compression, which means that some image data is discarded to achieve a smaller filesize.
 
 ## Performance Checklist
 

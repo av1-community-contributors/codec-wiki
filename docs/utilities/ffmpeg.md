@@ -64,7 +64,7 @@ To be filled.
 |-------------------|-------------------------------------------------|
 | `-vf filter_name` | set the **v**ideo **f**ilter to **filter_name** |
 
-## References
-[^multimediawiki-howtos]: [HOWTO Search Results - MultimediaWiki](//wiki.multimedia.cx/index.php?search=HOWTO&title=Special%3ASearch&go=Go)
+*References:*
+*[^multimediawiki-howtos]: [HOWTO Search Results - MultimediaWiki](//wiki.multimedia.cx/index.php?search=HOWTO&title=Special%3ASearch&go=Go)*
 
 *Special thanks to [bluefalcon's encoding guide](https://encoding.bluefalcon.cc/) for this material, licensed under CC BY-SA 4.0. Our adaptation features formatting changes & content changes, specifically regarding the titles of some headings.*

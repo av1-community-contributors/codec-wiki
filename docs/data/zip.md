@@ -29,6 +29,22 @@ ZIP files can reduce the size of files and folders by more efficiently represent
 
 Additionally, ZIP can be encoded in a number of different ways. Apple has a default "Compress" option in Finder that compresses selected files into a ZIP file, and many Linux desktops offer GUI functionality for creating ZIP files easily as well. It is common to compress to ZIP on Windows using the 7-zip data compression & decompression utility (not to be confused with the [7-zip compression format](../data/7z.md), though the two are related).
 
+## History
+
+The ZIP format was developed by Phil Katz as an open format with an open specification, where his implementation, PKZIP, was shareware.
+
+A [restricted ZIP format](http://www.digitalpreservation.gov/formats/fdd/fdd000361.shtml) exists and is used in other filetypes such as Java .jar archives, a slew of Microsoft Office file formats, Office Document Format files (.odt, .ods, .odp), and EPUB files for e-readers.
+
+In around 1990, Info-ZIP came onto the scene. "Info-ZIP's purpose is to provide free, portable, high-quality versions of the Zip and UnZip compressor-archiver utilities that are compatible with the DOS-based PKZIP by PKWARE, Inc." (https://infozip.sourceforge.net/). They did this successfully, leading to increased adoption of the ZIP format.
+
+In the early 1990s the [gzip](../data/gzip.md) format was developed, derived from the Deflate code in the Info-ZIP utilities. It was designed to replace the Unix `compress` utility, which used the (at the time) patented LZW compression algorithm which threatened its free use. Though some specific implementations of Deflate were patented by Phil Katz, the format was not, so a Deflate implementation that did not infringe on any patents was written.
+
+Unlike `.tar`, `.zip` has a central directory at the end, which provides a list of the contents. That and the separate compression provides random access to the individual entries in a `.zip` file. A `.tar` file would have to be decompressed and scanned from start to end in order to build a directory.
+
+The popular `tar` utility, which creates an archive of files, has an option to compress directly to the `.tar.gz` format and is a very popular use caze for gzip. Since the compression of a `.tar` can take advantage of redundancy across files, ZIP often compresses less effectively than the marriage of tar & gz. `.tar.gz` is the most common archive format in use on Unix due to its very high portability, but there are better compression methods available. Some of these include [XZ](../data/xz.md), [bzip2](../data/bzip2.md), [brotli](../data/brotli.md), [7-zip](../data/7z.md), & [Zstandard](../data/zstd.md).
+
+In this case, the benefit of ZIP is that because it compresses files separately and builds a central directory at the end of the archive which provides a list of the contents, ZIP provides random access to the individual entries in a `.zip` file. A `.tar` file would have to be decompressed and scanned from start to end in order to build a directory.
+
 ## Encoding
 
 #### Linux & macOS

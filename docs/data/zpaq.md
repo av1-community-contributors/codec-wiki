@@ -8,3 +8,9 @@ sidebar_position: 7
 :::warning Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
+
+ZPAQ is a lossless data compression algorithm that combines several techniques to achieve high compression ratios. It was developed by Matt Mahoney.
+
+ZPAQ uses a multitude of different compression algorithms to try to achieve the best size-to-compression-time ratio possible while producing the smallest possible archives without much concern given to decompression performance. On the official ZPAQ website, it looks like it is designed for "realistic backups that have a lot of duplicate files and a lot of already compressed files."
+
+ZPAQ is also considered an "incremental journaling archiver" meaning you can add files to an existing archive based on if they were changed or not. This reduces the time needed to wait for a new backup to finish, if that is your use case. Since ZPAQ is so focused on compression ratio, this kind of feature may reduce the burden imposed by long compression times in practical use cases where it makes sense. Windows & macOS do not handle ZPAQ archives properly by default, and it is unlikely many Linux distros do either.

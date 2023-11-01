@@ -9,6 +9,8 @@ sidebar_position: 4
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
 
+The HEIC image format, also known as the High Efficiency Image Format, is a newer image codec that was developed to provide improved compression and better performance compared to traditional image formats like [JPEG](./JPEG.md). HEIC files use [HEVC](../video/HEVC.md) internally, meaning the format is not royalty free. While this has limited its adoption across the Web, this format is supported by many modern devices including the entire Apple ecosystem. iPhones shoot HDR HEIC photos by default by utilizing the iPhone's HEVC hardware video encoder to capture these images. Some Android phones are capable of shooting HEIC as well, but these are often transcoded from JPEG. HEIC has largely been surpassed by [AVIF](./AVIF.md), which uses the same container to store [AV1](../video/AV1.md)-compressed images.
+
 ## Performance Checklist
 
 Lossless? *No*

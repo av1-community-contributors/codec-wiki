@@ -1,0 +1,6 @@
+# They are safe for immutable caching, as we're not changing fonts any time soon
+
+/static/fonts/*
+  Cache-Control: public
+  Cache-Control: max-age=31536000
+  Cache-Control: immutable
