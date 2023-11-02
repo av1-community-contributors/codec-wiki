@@ -22,8 +22,8 @@ FLAC is supported by the majority of web browsers and media players in common us
 ffmpeg -i example.wav -c:a flac example.flac
 ```
 
-### WAV to FLAC using libFLAC
-You can include a arugment of a number 0-8 to specify the compression effort, 0 being fastest and 8 having the highest compression.
+### WAV to FLAC using FLAC command-line tool:
+You can include an argument of a number 0-8 to specify the compression effort, 0 being fastest and 8 having the highest compression.
 ```bash
 flac example.wav -8 -o example.flac
 ```

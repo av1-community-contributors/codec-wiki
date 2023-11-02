@@ -9,7 +9,7 @@ sidebar_position: 2
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
 
-Portable Network Graphics (PNG) is a free lossless image file format released in 1996. It was ceated as an alternative to [GIF](./GIF.md), which was at the time a proprietary format.
+Portable Network Graphics (PNG) is a free lossless image file format released in 1996. It was ceated as an alternative to [GIF](./GIF.md), which was at the time a proprietary format. It gained animation support similar to GIF with the release of APNG in 2008, which is now supported by all popular web browsers.
 
 ## Performance Checklist
 
