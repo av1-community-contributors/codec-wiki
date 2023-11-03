@@ -8,3 +8,10 @@ sidebar_position: 9
 :::warning Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.md) to get started as a contributor!
 :::
+
+Theora is a legacy video codec first released in 2004. It is derived from VP3, part of the same family of codecs that formed [VP8](./VP8.md), [VP9](./VP9.md) and [AV1](./AV1.md).
+
+## Encoding
+Theora is frequently contained within a ogg (`.ogg` or `.ogv`) container with [vorbis](../audio/Vorbis.md) audio.
+
+To be filled.

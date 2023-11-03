@@ -14,7 +14,7 @@ WebP is a free image file format first released by Google in 2010. It consists o
 ## Encoding
 
 ### Using libwebp
-libwebp supports WebP, JPEG, PNG, PNM (PGM, PPM, PAM), TIFF as input formats, and a quality (`-q`) value between 0 (lowest quality, smallest file) and 100 (highest quality, largest file).
+libwebp supports WebP, JPEG, PNG, PNM (PGM, PPM, PAM), TIFF as input formats, and a quality (`-q`) value between 0 (lowest quality, smallest file) and 100 (highest quality, largest file). Should you need the lossless mode, you need to instead use a `-z` argument, with values representing the effort used between 0 (fastest encode, largest file) and 9 (slowest encode, smallest file).
 ```bash
 cwebp example.png -q 75 -o example.webp
 ```

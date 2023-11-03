@@ -9,6 +9,9 @@ When learning about encoding technology, it is important to understand the vast 
 ## Bitstream
 A *bitstream* or *bit stream* is a media file, the kind that is played in a media player. It consists of a [container](#container) wrapping multiple [elementary streams](#elementary-stream)
 
+## Lossy / Lossless
+*Lossy* encoding throws out some of the detail to achieve a smaller size. Often, this is an acceptable trade-off, but if you need a perfect recreation of the data, you need *lossless* encoding.
+
 ## Elementary stream
 An elementary stream is an audio, video, or subtitle track. Basically, it's the compressed data you want to [mux](#muxing) into the container.
 
