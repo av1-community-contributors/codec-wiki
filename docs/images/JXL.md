@@ -11,6 +11,36 @@ This section is in need of contributions. If you believe you can help, please se
 
 JPEG-XL is a compression format for images that was developed by the Joint Photographic Experts Group (JPEG) in 2020. It is designed to provide improved compression efficiency compared to the traditional [JPEG](./JPEG.md) format, while still maintaining image quality. JPEG-XL uses a combination of techniques such as perceptual color encoding, advanced entropy coding, and a new image prediction method to achieve its improved compression performance.
 
+## Usage
+While it has support by many image viewers, editors, and other software, such as GIMP, Krita, Safari, ImageMagick, and many more, the most complete set of tools for encoding, manipulating, and decoding `.jxl` files is libjxl, the reference library for the format.
+
+### Decoding
+Decoding a `.jxl` image is straightforward with libjxl's decoder, `djxl`:
+
+```bash
+djxl example.jxl example.png
+```
+`djxl` can decode to pixels via pipes, png, apng for animated jxl, jpg, ppm, and pfm.
+
+By default, if the `.jxl` file was encoded with lossless jpeg recompression, `djxl` will rebuild the exact jpeg file that was originally compressed. To avoid this, and create a new jpeg file:
+```bash
+djxl -j example.jxl example.jpg
+```
+**Keep in mind this is now a lossy process as `djxl` will decode to pixels, then encode a new `.jpg` with those pixels.**
+
+### Encoding
+libjxl's encoder `cjxl` has more options to play around with. It takes a few primary arguments, distance (`-d`), quality (`-q`), and effort (`-e`).
+
+#### Distance and quality
+Distance and quality are two ways of specifying *how much loss* you are willing to tolerate, and as such, they are mutually exclusive, as they pull the same levers under the hood.
+* Distance is designed to map to how 'close' one must be to the source to notice any loss. It is represented as a scale between 0.0 & 25.0. 0.0 is **mathematically lossless**, every pixel will have the exact same value as the source. 1.0 is designed to be **visually lossless**, look the same at a normal viewing distance, and higher values have more loss.
+* Quality is designed to roughly map to [JPEG](./JPEG.md)'s quality argument. A range 0-100, where 100 is **mathematically lossless**, 90 is intended to be **visually lossless**, and 0 is almost unrecognizable as the original image.
+
+#### Effort
+Effort is similar to `cpu-used` in video endcoding. It specifies the amount of effort the encoder will make in order to get the smallest file size it can. It takes the form of a range 1-9, where higher numbers will spend more resources to get diminishing returns in terms of smaller size, while lower values do the opposite, leaving file size on the table for faster encoding.
+
+
+
 ## Performance Checklist
 
 Lossless? *Yes*
