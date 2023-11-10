@@ -30,7 +30,7 @@ cd SVT-AV1/Build/linux
 ```
 The compiled binaries will be in the Bin/Release directory, including SvtAv1EncApp. You can also add the `no-dec` flag to skip building SvtAv1DecApp if you don't need it to save on some compilation time.
 
-If you'd like to build from the latest release (1.7.0 at the time of writing) please do `git reset --hard 08c18ba0768ed3dbbff0903adc326fb3a7549bd9` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
+If you'd like to build from the latest release (1.7.0 at the time of writing) please do `git reset --hard 6d5f2b4e1f04db677cdd4ab2b0d6831ab06a849c` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
 
 If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO by following this script:
 
