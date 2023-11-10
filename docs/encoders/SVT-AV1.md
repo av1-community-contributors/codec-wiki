@@ -28,6 +28,9 @@ git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
 cd SVT-AV1/Build/linux
 ./build.sh release
 ```
+The compiled binaries will be in the Bin/Release directory, including SvtAv1EncApp. You can also add the `no-dec` flag to skip building SvtAv1DecApp if you don't need it to save on some compilation time.
+
+If you'd like to build from the latest release (1.7.0 at the time of writing) please do `git reset --hard 08c18ba0768ed3dbbff0903adc326fb3a7549bd9` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
 
 If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO by following this script:
 
@@ -59,7 +62,7 @@ SVT-AV1's greatest strength is its parallelization capability, where it outclass
 
 ### Weaknesses
 
-SVT-AV1 is strongest on x86 CPUs, & it doesn't have any ARM NEON assembly which makes it underperform on ARM. For this reason, it is not a good cross-architecture CPU benchmark. SVT-AV1's support for various AV1 features is also limited; it only supports up to 4:2:0 chroma subsampling with no support for 12-bit color, and it does not support scene change detection (there are no plans to implement this, either).
+SVT-AV1 is strongest on x86 CPUs, & while ARM NEON assembly is [available](https://gitlab.com/AOMediaCodec/SVT-AV1/-/commit/ba13fac241f1b54954935f2cb200efc07f3de13a) from latest git, SVT-AV1 still underperforms on ARM. For this reason, it is not a good cross-architecture CPU benchmark. SVT-AV1's support for various AV1 features is also limited; it only supports up to 4:2:0 chroma subsampling with no support for 12-bit color, and it does not support scene change detection (there are no plans to implement this, either).
 
 ### Encoder Optimization
 
