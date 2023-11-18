@@ -10,7 +10,7 @@ Many different players exist for video, but here are a few recommended ones:
 
 ## MPV
 
-MPV is a open source lightweight media player. It is intended as a command-line application, making it's user interface extremely minimal, however, many frontends exist for mpv, giving a more complete GUI, such as Celluloid and IINA. It has wide codec and container support.
+**MPV** is a open source lightweight media player. It is intended as a command-line application, making it's user interface extremely minimal, however, many frontends exist for mpv, giving a more complete GUI, such as Celluloid and IINA. It has wide codec and container support.
 
 TODO: MPV keyboard shorcuts
 &nbsp;&nbsp;
@@ -24,3 +24,7 @@ Download instructions for VLC on all relevant platforms can be found at [VideoLA
 &nbsp;&nbsp;
 
 ## MPC-HC
+
+**Media Player Classic - Home Cinema (MPC-HC)** is an open source media player designed exclusively for Windows 7, 8, 8.1, 10, 11 operating systems. Recognized for its simplicity and efficiency, MPC-HC provides users with a streamlined and user-friendly platform for playing a diverse range of audio and video file formats. Its lightweight design ensures smooth playback without taxing system resources. While the official development ceased in 2017, the community-driven MPC-HC on GitHub continues to provide updates and support.
+
+The latest un/stable builds of MPC-HC, maintained by the community, can be found on [clsid2's MPC-HC repository](https://github.com/clsid2/mpc-hc/releases).
