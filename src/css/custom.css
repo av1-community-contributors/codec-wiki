@@ -58,6 +58,14 @@
   font-stretch: 75% 125%;
 }
 
+@font-face {
+  font-family: "Monaspace Neon";
+  src: url("/static/fonts/Monaspace-Neon.woff2") format("woff2 supports variations"),
+    url("/static/fonts/Monaspace-Neon.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-stretch: 100% 100%;
+}
+
 html {
   font-family: "Inter";
 }
@@ -69,6 +77,10 @@ h4,
 h5,
 h6 {
   font-family: "Mona Sans";
+}
+
+code {
+  font-family: "Monaspace Neon";
 }
 
 [data-theme='dark'] {
