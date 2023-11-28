@@ -1,0 +1,280 @@
+---
+label: rav1ator-cli
+sidebar_position: 4
+templating: true
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# rAV1ator CLI
+
+rAV1ator CLI, or just `rav1ator-cli`, is a TUI tool that provides an interactive command line interface for encoding videos with Av1an using various different encoders including [rav1e](../encoders/rav1e.mdx), [aomenc](../encoders/aomenc.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), [x265](../encoders/x265.mdx), and [x264](../encoders/x264.mdx).
+
+rAV1ator CLI can:
+
+- Check if it is installed & up to date on its own without a package manager
+
+- Download AVX2-optimized encoder binaries compiled with `-O3 -flto` in most cases & allow the user to install them with detailed instructions
+
+- Encode with x264, x265, aomenc, SVT-AV1, or rav1e, set a speed preset, CRF/quality value, FFmpeg parameters, and encoder parameters
+
+- Generate Av1an encoding commands with the user's chosen settings & run them to encode a provided input video to an MKV output
+
+- Encode from scratch, or resume a previous rav1ator-cli encode
+
+- Engage with rich interactivity featuring spinners, prompts, dropdowns, and the like
+
+- Error check downloads by checking SHA256 hashes on the downloaded binaries for security & convenience
+
+Overall, it aims to provide an easy way to encode videos on the command line with helpful visual feedback. The interactive prompts help users pick encoding settings without needing deep encoding knowledge.
+
+<img width="640" height="360" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/rav1ator_cli_demo1.avif" alt="rAV1ator-cli: Demo 1"/>
+
+<img width="640" height="360" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/rav1ator_cli_demo2.avif" alt="rAV1ator-cli: Demo 2"/>
+
+## Installation
+
+### Linux (Arch)
+
+These instructions are for Arch Linux specifically. Other distros should be very similar, and packages that are Arch-specific will be labelled. If you're on Ubuntu, you should see the relevant section of the [AV1 for Dummies](https://wiki.x266.mov/blog/av1-encoding-for-dummies) blog post on this site.
+
+If you're on another distro and you want to be able to follow these instructions specifically, see the [Linux (Other)](./rav1ator-cli.mdx/#linux-other) section.
+
+0. Update your system before doing anything. On Arch:
+```bash
+sudo pacman -Syu
+```
+
+1. Install `yay` (Arch only) by running the following commands:
+```bash
+sudo pacman -S --needed base-devel git
+git clone https://aur.archlinux.org/yay.git
+cd yay && makepkg -si
+```
+
+2. Next, you'll want to install all of rav1ator-cli's dependencies. You can do that by running:
+```bash
+yay -Sy rust ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
+```
+
+3. Install rav1ator-cli:
+```bash
+curl -sOJ https://raw.githubusercontent.com/gianni-rosato/rav1ator-cli/main/rav1ator-cli && chmod +x rav1ator-cli
+sudo cp rav1ator-cli /usr/local/bin
+```
+
+You're done! Run `rav1ator-cli -h` to get some help getting started. Happy encoding!
+
+### macOS
+
+No macOS support is provided at this time. It is definitely technically feasible, and I may produce a separate tool in the future with proper macOS binaries, though this would be a burden to keep up considering I don't currently see any demand for a port.
+
+### Linux (Other)
+
+If you're on Ubuntu, you can see the relevant section of the [AV1 for Dummies](https://wiki.x266.mov/blog/av1-encoding-for-dummies) blog post on this site for more information about doing this *without* a distrobox. However, a distrobox is valuable because you can use Arch's fast-paced package management on other distros. Distroboxes are generally easier than Docker for beginners, and use Docker or Podman behind the scenes anyway. This tutorial will focus on using Distrobox with Podman.
+
+0. Install Distrobox and Podman on your distro of choice. Please look up how to do this for your respective distro, and how to get everything set up properly.
+
+1. If you already use Podman, are re-creating a Distrobox, or you already have other Distroboxes running from long enough ago where your Arch image is outdated, you might want to run `podman image rm docker.io/archlinux/archlinux:latest`. It won't hurt to run it anyway if you're not sure. **Do this every time you make a new Distrobox if you're experiencing issues with Distrobox creation**.
+
+2. Now, run `distrobox-create --name rvcli-box --image archlinux:latest`. You do not need to name yours "rvcli-box", but that's what we're going to call the box in this tutorial.
+
+3. `distrobox enter rvcli-box` to go inside. You are now using Arch Linux from within your existing distro!
+
+4. First, run `sudo pacman -Syu` to update your system.
+
+5. Next, run `sudo pacman -S --needed base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si`.
+
+6. Finally, `yay -Sy rust ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2` to install the necessary dependencies.
+
+7. Download rav1ator-cli: `curl -sOJ https://raw.githubusercontent.com/gianni-rosato/rav1ator-cli/main/rav1ator-cli && chmod +x rav1ator-cli`
+
+8. Copy rav1ator-cli to your /usr/local/bin: `sudo cp rav1ator-cli /usr/local/bin`
+
+9. If you'd like to exit the distrobox, just do `Ctrl` + `D`. 
+
+You're done! Run `rav1ator-cli -h` to get some help getting started. Happy encoding!
+
+### Windows
+
+:::note Windows
+The content in this entry was written by pat-e, or `pate` on Discord. They have provided an [in-depth tutorial](https://www.pat-e.net/wsl/181796892.html) on setting up rav1ator-cli on Windows Server 2022 via WSL if you are interested, but this tutorial that they wrote focuses on Windows 11 via WSL. I thank them for their generous support of the project!
+:::
+
+**Enable WSL2 on Windows 11 and Install "ArchWSL2"**
+
+### Basic installtion
+
+1.  Open the Terminal as Administrator:  
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/01_wsl_rv-cli.avif)
+2.  In the Command-Prompt, enter the following to install WSL and (temporary) Ubuntu:  
+    
+    ```pwsh
+    wsl.exe --install
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/02_wsl_rv-cli.avifg)  
+      
+    If the "Host Process for Windows Services" asks for allowing changes, approve it (Press "Yes"):  
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/03_wsl_rv-cli.avif)
+3.  Once the installation of WSL (and Ubuntu as Default) is finished, restart your Computer:  
+    
+    ```pwsh
+    shutdown -r -f -t 1
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/04_wsl_rv-cli.avif)
+4.  Once restarted and logged in, WSL will start with Ubuntu and ask for Username and password. Enter whatever you want as this distribution will be removed after the switch to ArchWSL2. Just exit after the Ubuntu is setup:  
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/05_wsl_rv-cli.avif)
+5.  From [This GitHub link](https://github.com/sileshn/ArchWSL2), download the latest release of ArchWSL2 in the Releases section:  
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/06_wsl_rv-cli.avif)
+6.  On your SSD, create a folder where we will place the ArchWSL2 files. This folder **must be kept and never deleted** as this will contain the base files for this distribution. It is advised to use an SSD instead of an HDD. The storage must be local storage, not a network-share or a removable disk. In our example, we will create a folder located at C:\\Stuff\\ArchWSL2;  
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/07_wsl_rv-cli.avif)  
+      
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/08_wsl_rv-cli.avif)
+
+7.  Extract the downloaded ZIP of "ArchWSL2" into your newly created folder:  
+      
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/09_wsl_rv-cli.avif)
+
+8.  Once extracted, start the extracted "Arch.exe":
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/10_wsl_rv-cli.avif)
+
+9.  On first start, the program will create a virtual disk (VHDx). Once finished, press "Enter" to continue (it will close the window)
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/11_wsl_rv-cli.avif)  
+      
+    
+10.  Once the virtual hard disk is created, restart the "arch.exe" again. It will finish some steps and ask for creating a new user-account. **This account is completely separate from your Windows user.** Please remember the username and password you use.
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/12_wsl_rv-cli.avif)  
+      
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/13_wsl_rv-cli.avif)
+
+11.  The Window will close and reopen again. As fist step, update all packages. As your account you created earlier is in the sudo-group, you have to enter your password again as confirmation.
+
+    ```bash
+    sudo pacman -Syu
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/14_wsl_rv-cli.avif)
+
+12.  Approve the installation of all the updates (Type "y"):
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/15_wsl_rv-cli.avif)
+
+13.  Done... You can now use ArchWSL2.
+
+### Optional: Cleanup of the Ubuntu Distribution
+
+1.  Open the terminal as Administrator, like we did earlier.
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/16_wsl_rv-cli.avif)
+
+2.  Check the current installed distributions:  
+    ```pwsh
+    wsl --list
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/17_wsl_rv-cli.avif)
+3.  To remove "Ubuntu" (and therefor make Arch as default), enter the following command:  
+    
+    ```pwsh
+    wsl --unregister ubuntu
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/18_wsl_rv-cli.avif)
+
+4.  After the removal of Ubuntu, we can list the distributions again and verify that "Arch" is now the default:  
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/19_wsl_rv-cli.avif)
+
+### After the Installation and Cleanup, How Do I Start Arch?
+
+For the start of Arch, there are 2 steps possible:
+
+1.  You can just start "wsl" form the command prompt, terminal or "Windows Search":  
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/20_wsl_rv-cli.avif)  
+      
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/21_wsl_rv-cli.avif)
+
+2.  As another option, you can create a Shortcut to the "arch.exe" in the Installation-Folder:
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/22_wsl_rv-cli.avif)  
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/23_wsl_rv-cli.avif)  
+      
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/24_wsl_rv-cli.avif)  
+
+**Hint**: When you open the "arch.exe", you will be placed into the directory where also the "arch.exe" is located. To change to your home directory, just enter the command below:
+    ```bash
+    cd ~
+    ```
+      
+![](https://raw.githubusercontent.com/av1-community-contributors/images/main/25_wsl_rv-cli.avif)
+
+**Hint**: WSL caps RAM usage at 50% of the total RAM available on your system.
+
+When you start the VM, you will see that you only will only have 50% of your total memory available:  
+
+![](https://raw.githubusercontent.com/av1-community-contributors/images/main/26_wsl_rv-cli.avif)
+
+To allow more memory, you need to place a config-file in your profile-folder in Windows. See the instructions below:
+
+1.  Open "notepad.exe" and enter the following:  
+    
+    ```txt
+    [wsl2]
+    memory=12GB
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/27_wsl_rv-cli.avif)
+2.  The amount of memory should never be more than current memory. Set it to total memory minus 4GB to leave enough left over for Windows. In my example, Windows has 16GB of RAM available, so I select the memory to be 12GB.  
+      
+    
+3.  When saving the file, enter the following as filename:  
+    
+    `%userprofile%`
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/28_wsl_rv-cli.avif)
+
+4.  When pressing enter, the directory will switch to your user-profile folder:
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/29_wsl_rv-cli.avif)
+
+5.  Select the "Save as type" to "All files (\*.\*)" and save as the following filename:
+    
+    `.wslconfig`
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/30_wsl_rv-cli.avif)  
+      
+    Make sure the file is saved as `.wslconfig`. Then exit notepad.
+6.  Exit any current running WSL / Arch (exit):
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/31_wsl_rv-cli.avif)
+
+7.  Open the Terminal as Administrator and "shutdown" any running WSL:  
+    
+    ```pwsh
+    wsl --shutdown
+    ```
+    
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/32_wsl_rv-cli.avif)
+
+8.  Restart WSL again and check the memory settings from within Arch by running the following command:
+
+    ```bash
+    free -h
+    ```
+
+    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/33_wsl_rv-cli.avif)
+
+If you've made it this far, you should be more than ready to encode. We hope you enjoy rAV1ator CLI!
+
+### Troubleshooting
+
+- If your encode features a grey screen flashing occaisonally in the output, create a lossless intermediary of your source with x264 `-qp 0`. This happens because of VC-1 decoding errors, and is not something I can fix.
+- If you have any more questions, please join the [AV1 for Dummies Discord server](https://discord.gg/bbQD5MjDr3). There is a rAV1ator CLI channel over there, and I am always happy to talk!

@@ -1,0 +1,124 @@
+---
+label: Opus
+sidebar_position: 2
+---
+
+# Opus
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+Opus is an open-source audio codec that has largely replaced [Vorbis](../audio/Vorbis.mdx) as the standard open audio codec. It is the recommended codec for usage in WebM video containers in tandem with the [VP9](../video/VP9.mdx) or [AV1](../video/AV1.mdx) video codecs.
+
+Opus is known for its incredible coding efficiency and unique multi-channel optimizations. Stereo Opus audio reaches [transparency](https://en.wikipedia.org/wiki/Transparency_(data_compression)) (psychoacoustically lossless audio quality) at 128kb/s, compared to [AAC](../audio/AAC.mdx)'s generally agreed upon 256kb/s and [MP3](../audio/MP3.mdx)'s 320kb/s. Transparency varies based on the type of content & the encoding implementation used, especially for codecs other than Opus, and the values provided above may be debated to a degree.
+
+Opus is described on [opus-codec.org](https://opus-codec.org/) as a "totally open, royalty-free, highly versatile audio codec. Opus is unmatched for interactive speech and music transmission over the Internet, but is also intended for storage and streaming applications. It is standardized by the Internet Engineering Task Force (IETF) as [RFC 6716](https://datatracker.ietf.org/doc/html/rfc6716) which incorporated technology from Skype’s SILK codec and Xiph.Org’s CELT codec."
+
+Opus supports the following features:
+
+> - Bitrates from 6 kb/s to 510 kb/s
+- Sampling rates from 8 kHz (narrowband) to 48 kHz (fullband)
+- Frame sizes from 2.5 ms to 60 ms
+- Support for both constant bitrate (CBR) and variable bitrate (VBR)
+- Audio bandwidth from narrowband to fullband
+- Support for speech and music
+- Support for mono and stereo
+- Support for up to 255 channels (multistream frames)
+- Dynamically adjustable bitrate, audio bandwidth, and frame size
+- Good loss robustness and packet loss concealment (PLC)
+- Floating point and fixed-point implementation
+
+*via opus-codec.org*.
+
+## Format Breakdown
+
+Opus is a hybrid audio codec, composed of two codecs as mentioned above. These are Skype's SILK codec for voice & Xiph.Org's CELT codec. Opus's initial name, Harmony, may have been because of the "harmony" of these two codecs and the musical connotation of harmony.
+
+### SILK
+
+SILK, initially from Skype, was designed to be used for voice calls on Microsoft products like Skype. The first stable release of the codec was in 2009, and since then it has been freely licensed under the BSD 2-Clause license which has allowed for its adoption into Opus. The version of SILK used in Opus is substantially modified from - and not compatible with - the standalone SILK codec previously described here.
+
+SILK is optimized for speech, and so has limited sample rates as follows:
+> Narrowband: 3-4000hz
+> Mediumband: 3-6000hz
+> Wideband: 3-8000hz
+
+SILK's latency is 10 to 60ms based on the desired framesize + 5ms lookahead to estimate noise shaping + (potentially) 1.5ms sampling rate conversion overhead if the input audio needs to be resampled.
+
+### CELT
+
+Much like SILK, CELT is under the BSD 2-Clause license. The preview release came out in 2011. CELT stands for "Code-Excited Lapped Transform" and was designed to be the true successor to Vorbis, even being dubbed as "Vorbis II" during its initial development as part og Xiph.Org's "Ghost" project in 2005.
+
+CELT was designed to be a full-band general purpose codec without a particular specialization for a certain kind of audio, making it distinctly different from Xiph's [Speex](../audio/Speex.mdx) codec & more similar to Vorbis. It is computationally simple relative to competing codec technologies like [AAC](../audio/AAC.mdx) & even Vorbis, enabling extremely low latency that is competitive with [AAC-LD](../audio/AAC.mdx#aac-ld--aac-eld).
+
+CELT can work with the following sample rates:
+> Narrowband: 3-4000hz
+> Mediumband: 3-6000hz
+> Wideband: 3-8000hz
+> SuperWideband: 3-12000hz
+> Fullband: 3-20000hz
+
+## Encoders
+
+### Opusenc
+
+Opus's reference encoder is [opusenc](https://github.com/xiph/opus), which is known for its fantastic performance and versatility. It is licensed under the BSD 3-clause license as part of the reference libopus library. There are a myriad of options that may be used to encode with opusenc, but the utility is considered to have sane encoding defaults for local storage & playback. The best options will be outlined below.
+
+Usage: `opusenc [options] input_file output_file.opus`
+
+- `--bitrate #.###` Sets the overall target bitrate in kbit/s. Most encoders use *bits* per second, meaning you have to specify "128K" for 128kbit/s for example. Opus doesn't follow this, so you'd just have to type "128" though keep in mind using efficient VBR encoding means the final bitrate may be different than the target. Opus supports bitrates from 6 kb/s to 510 kb/s.
+
+- `--vbr` Tells the encoder to encode using a variable bit rate, allocating more or less bits when necessary to preserve overall fidelity per bit. This is the best option for local storage & playback, and is *enabled by default.*
+
+- `--cvbr` Tells the encoder that it is allowed to vary the bitrate like with VBR, but it must constrain the maximum bitrate at any given moment to the value provided.
+
+- `--hard-cbr` Tells the encoder to use a constant bitrate the whole time.
+
+- `--music` & `--speech` Forces the AI content-detector built into opusenc to treat the input as either speech or music. The bitrate range where this is relevant is around 12-40kb/s.
+
+- `--comp #` Sets the encoder complexity to a value from 0 to 10, 0 being the least complex & 10 being the most. *The default is 10.*
+
+- `--framesize #` Sets the maximum encoder frame size in milliseconds. Lowering this is useful for improving latency at the expense of audio quality per bit. It is worth noting that 40 & 60ms framesizes are just multiple 20ms frames stitched together via opusenc's default behavior, and are not considered useful as they just lower the encoder's adaptability which can worsen both latency & coding efficiency. *The default value is 20.*
+
+- `--expect-loss #` Percentage value for expected packet loss. Not useful for local encoding & playback, but useful for real-time applications. *Default value is 0.*
+
+- `--downmix-mono` Downmixes multiple channels into a single channel.
+
+- `--downmix-stereo` Downmixes multiple channels into two channels, left & right, given more than two channels are provided to the encoder.
+
+- `--no-phase-inv` Disables phase inversion. Helpful when downmixing stereo to mono, although this is the default behavior in that scenario since libopus 1.3. Slightly decreases stereo audio quality.
+
+- `--max-delay #` Sets maximum container delay in milliseconds, from 0-1000. *Default is 1000.*
+
+Looking at the default values for the encoder flags, opusenc almost always follows the best practices for every default value. This makes it very easy to use, and it is as simple as plugging in a source of some kind and using only the most basic commands to encode with opus.
+
+An example opusenc command:
+```bash
+opusenc "input.wav" "output.opus" --bitrate 96
+```
+
+[FFmpeg](../utilities/ffmpeg.mdx) using libopus:
+```bash
+ffmpeg -i "input.flac" -c:a libopus -b:a 128K "output.ogg"
+```
+
+If you'd like to learn more about opusenc & its recommended default behavior, read this article on [Opus Recommended Settings](https://wiki.xiph.org/Opus_Recommended_Settings#Bandwidth_Transition_Thresholds).
+
+### FFopus
+
+FFopus is an experimental native opus encoder from FFmpeg. It is not widely regarded as providing any decent uplift in coding efficiency compared to libopus, and is usually considered worse; its only merit is being able to handle 5.1(side) streams while libopus in FFmpeg cannot. It only implements the CELT part of the Opus codec.
+
+FFopus usage:
+```bash
+ffmpeg -i "input.wma" -c:a opus -b:a 128K -strict -2  "output.opus"
+```
+
+### vac-enc
+
+[VAC](https://github.com/gianni-rosato/vac-enc), or Value Added Codec, is a libopus encoder that uses SoX to resample inputs & supports output to `.ogg` rather than exclusively `.opus`. Better resampling theoretically leads to better coding efficiency, but vac-enc hasn't been thoroughly tested.
+
+Encoding a 16-bit signed little endian `pcm_s16le` WAV to 128kbit/s Opus in an OGG container:
+```bash
+vac-enc input.wav output.ogg 128
+```

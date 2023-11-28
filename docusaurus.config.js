@@ -34,6 +34,16 @@ const config = {
         crossorigin: "anonymous",
       },
     },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "preload",
+        href: "static/fonts/Monaspace-Neon.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossorigin: "anonymous",
+      },
+    },
   ],
 
   // Set the production url of your site here
@@ -161,6 +171,21 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+};
+
+export default {
+  markdown: {
+    format: 'mdx',
+    mermaid: true,
+    preprocessor: ({filePath, fileContent}) => {
+      return fileContent.replaceAll('{{MY_VAR}}', 'MY_VALUE');
+    },
+    mdx1Compat: {
+      comments: true,
+      admonitions: true,
+      headingIds: true,
+    },
+  },
 };
 
 module.exports = config;

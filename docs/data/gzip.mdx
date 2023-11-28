@@ -1,0 +1,76 @@
+---
+label: gzip
+sidebar_position: 2
+---
+
+# gzip
+
+:::warning Help Wanted
+This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::
+
+## Format Breakdown
+
+Gzip is a DEFLATE implementation for use with individual files. It is popular on Unix-like systems such as Linux & macOS, and is often seen paired with `tar` to create `.tar.gz` archives. Formats like [ZIP](../data/zip.mdx) & [PNG](../images/PNG.mdx) also use Deflate to different effects.
+
+While ZIP is a multi-file format that can compress multiple files into a single compressed file, Gzip is a single-file format that compresses a single file into a single compressed file. Both use DEFLATE for compression. ZIP supports encryption, while Gzip does not. ZIP also stores more extensive header information.
+
+## History
+
+In order to properly understand the gzip format, we must first talk about ZIP. A lot of similar or identical information is covered in our ZIP entry.
+
+The ZIP format was developed by Phil Katz as an open format with an open specification, where his implementation PKZIP was shareware.
+
+A [restricted ZIP format](http://www.digitalpreservation.gov/formats/fdd/fdd000361.shtml) exists and is used in other filetypes such as Java .jar archives, a slew of Microsoft Office file formats, Office Document Format files (.odt, .ods, .odp), and EPUB files for e-readers.
+
+In around 1990, Info-ZIP came onto the scene. "Info-ZIP's purpose is to provide free, portable, high-quality versions of the Zip and UnZip compressor-archiver utilities that are compatible with the DOS-based PKZIP by PKWARE, Inc." (https://infozip.sourceforge.net/). They did this successfully, leading to increased adoption of the ZIP format.
+
+In the early 1990s the [gzip](../data/gzip.mdx) format was developed, derived from the Deflate code in the Info-ZIP utilities. It was designed to replace the Unix `compress` utility, which used the (at the time) patented LZW compression algorithm which threatened its free use. Though some specific implementations of Deflate were patented by Phil Katz, the format was not, so a Deflate implementation that did not infringe on any patents was written.
+
+As a `compress` replacement, the Unix gzip utility can decompress data that was compressed using `compress`. Gzip compresses quite a bit better than Unix compress due to its use of DEFLATE, and it has very fast decompression. It also adds a CRC-32 checksum as an integrity check for the archived data. The header format permits the storage of more information than the compress format allowed, such as the original file name & the file modification time.
+
+The popular `tar` utility, which creates an archive of files, has an option to compress directly to the `.tar.gz` format and is a very popular use caze for gzip. Since the compression of a `.tar` can take advantage of redundancy across files, ZIP often compresses less effectively than the marriage of tar & gz. `.tar.gz` is the most common archive format in use on Unix due to its very high portability, but there are better compression methods available. Some of these include [XZ](../data/xz.mdx), [bzip2](../data/bzip2.mdx), [brotli](../data/brotli.mdx), [7-zip](../data/7z.mdx), & [Zstandard](../data/zstd.mdx).
+
+## Encoding
+
+### Linux & macOS
+
+Chances are, you have gzip already available on your system. You can encode gzip archives using the `gzip` command.
+
+1. Open a terminal window.
+
+2. Navigate to the directory where you want to create the gzip archive.
+
+3. Use the `gzip` command followed by the name of the file you want to compress. For example:
+```bash
+gzip -7 myfile.txt
+```
+This will create a compressed file called `myfile.txt.gz` in the current directory using compression level 7. Compression levels span from 1 through 9 (`-1 .. -9`; shortcuts are `--fast` for `-1`, `--best` for `-9`).
+
+4. If you want to compress multiple files at once, you can use the `-a` option followed by the names of the files you want to compress. For example:
+```bash
+gzip -a myfile1.txt myfile2.txt
+```
+This will create compressed files called `myfile1.txt.gz` & `myfile2.txt.gz` in the current directory.
+
+5. If you want to compress a directory and all its contents, you can use the `-r` option followed by the name of the directory. For example:
+```bash
+gzip -r mydirectory/
+```
+This will create compressed versions of each file in the specified directory.
+
+6. If you want to encode the gzip archive with a different extension, you can use the `-S` option followed by the suffix `.suf`. For example:
+```bash
+gzip -S .suf myfile.txt
+```
+This will create a gzip-compressed file called `myfile.txt.suf` in the current directory.
+
+Also, you can use other options like `-v` for verbose mode, `-f` to force overwriting & compress links, `-l` for listing the files and `-d` for decompressing the files.
+
+You can find more information about the `gzip` command & its options by running `man gzip` in a terminal.
+
+### Windows
+
+To be filled.
+
+*References: Mark Adler is an American software engineer best known for his work in the field of data compression as the author of the Adler-32 checksum function, and a co-author of the zlib compression library and gzip. He has contributed to Info-ZIP, and has participated in developing the Portable Network Graphics (PNG) image format. Much of this post is based on his writing in [this StackOverflow answer](https://stackoverflow.com/questions/20762094/how-are-zlib-gzip-and-zip-related-what-do-they-have-in-common-and-how-are-they)*

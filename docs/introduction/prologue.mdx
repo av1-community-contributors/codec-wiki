@@ -1,0 +1,41 @@
+---
+title: Prologue
+sidebar_position: 1
+---
+
+# Prologue
+
+Multimedia compression as a whole has revolutionized our ability to communicate on the Web & beyond. It has enabled rich experiences across many breakthrough platforms that wouldn't have been feasible otherwise, and it has allowed us to communicate information, expression, and human connection in novel ways. It is the unsung hero of the modern Web. Despite this, it is often difficult to uncover information about codec technology that is accurate, informed, and battle-tested by passionate individuals who care about the proliferation of knowledge. This wiki aims to demystify the realm of multimedia compression while connecting codec enthusiasts to create a sink of knowledge for the benefit of everyone.
+
+### What This Isn't
+
+The Codec Wiki is **not a highly accurate source for understanding the mathematics, research, adoption/patent politics, or specifications of specific coder/decoder implementations**. Sources like Wikipedia cover these details with great accuracy & reliability. What we *are* focused on is making higher level information - especially related to the usage & application of compression tools - highly accessible; we are focused on application, not theory, for the time being. Knowing how a codec works in theory is different than knowing when and how to best use a codec and its accompanying tools.
+
+### What is a Codec
+
+A codec, shortened from coder/decoder, is a system that handles digital media or data according to a specification. Usually, this means it compresses and decompresses digital media. Codecs are used to encode media for storage and transmission - among other things - and then decode that media for playback, editing, etc. Multimedia codecs compress by either [discarding less salient data](../introduction/psychovisual.mdx) using [lossy](../introduction/video-artifacts.mdx) compression to reduce filesize, or they use clever lossless compression tricks to maintain a mathematically identical stream to the input media while still reducing filesize. Lossless compression can be reversed to be the exact same as the input data, while lossy compression does not share this quality as it discards data for smaller filesizes. Some common uses of codecs include:
+
+- Video compression: Video codecs like [H.264](../video/AVC.mdx), [VP9](../video/VP9.mdx) & [AV1](../video/AV1.mdx) allow digital video files to be compressed to much smaller sizes for streaming & storage, among other things. A video codec can encode a video stream while it is being recorded or before it is distributed, and decode it when it is played back. This allows videos to be shared more quickly and use less storage & bandwidth.
+- Audio compression: Audio codecs like [MP3](../audio/MP3.mdx), [AAC](../audio/AAC.mdx), and [Opus](../audio/Opus.mdx) compress audio files like songs & podcasts. This allows them to be easily distributed & stored. 
+- Image Compression: Image codecs, whether tried and true like [JPEG](../images/JPEG.mdx) or brand new like [JPEG-XL](../images/JXL.mdx), have fundamentally the same goal: compress images well while maintaining a versatile featureset for the myriad of ways one may decide they'd like to compress an image. Color depth, HDR, transparency, color space information, EXIF data, and many other factors are at play when working with images that make compressing them easier said than done.
+- Data Compression: General compression algorithms like [ZIP](../data/zip.mdx) & [zstd](../data/zstd.mdx) are designed to compress *any* kind of data, not just multimedia specific data. This includes web assets, executables, text archives, and even entire filesystems.
+
+In summary, **codecs use complex algorithms to encode and decode media for efficient storage and transmission**. They are essential for recording, compressing, delivering and playing back digital media. Different codecs balance factors like compression efficiency, quality, computational requirements, compatibility, & features depending on their application.
+
+### What You Need
+
+A rather informal list of requirements follows.
+
+You will benefit greatly from:
+- Patience.
+- A willingness to learn, engage in curiousity, & follow instructions
+- Basic to intermediate computer proficiency.
+
+If you're only here to learn the tools, it will be very beneficial to have:
+- Higher-end CPU hardware, which will decrease wait times for some larger encoding workloads discussed here.
+- A level of comfort with CLI utilities, or enough motivation to engage with them in the absence of background knowledge.
+- A device running an Arch-based Linux distribution, excluding Manjaro
+
+:::info Why Arch?
+Most encoding tools are readily available in the package manager, & it is a bleeding edge Linux distribution which ensures your utilities are always kept up to date. For filtering, all Vapoursynth plugins are already available in the Arch User Repository (AUR) which makes it extremely easy to install and version control with an AUR helper [like `yay`](https://github.com/Jguer/yay)
+:::
