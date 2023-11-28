@@ -5,23 +5,23 @@ sidebar_position: 2
 
 # x265
 
-:::info Under Maintenance
+:::note[Under Maintenance]
+
 The content in this entry is incomplete & is in the process of being completed.
+
 :::
 
 x265 is a software library and command line application for encoding H.265 / HEVC developed by MulticoreWare, written in C++ and x86 assembly, and finally released in 2013.
 
 By default it is not very good for high fidelity content due to the amount of filters it applies even with them disabled. Unlike x264, it is not recommended to do lossless with x265 - but on the other hand, the filters are fantastic for lower bitrate content, which makes x265 insanely popular for low-sized media.
 
-&nbsp;&nbsp;
-
 ## FFmpeg
 
-x265 is available in FFmpeg via ``libx265``, to check if you have it, run ``ffmpeg -h encoder=libx265``.
+x265 is available in FFmpeg via `libx265`, to check if you have it, run `ffmpeg -h encoder=libx265`.
 
 ## Installation
 
-**Pre-built binary [Recommended]:**
+**Pre-built binary (Recommended):**
 
 - http://msystem.waw.pl/x265/
 

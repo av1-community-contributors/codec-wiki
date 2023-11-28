@@ -5,6 +5,7 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
+
 const config = {
   title: 'Codec Wiki',
   tagline: 'Your Guide to All Things Encoding',
@@ -181,8 +182,8 @@ export default {
       return fileContent.replaceAll('{{MY_VAR}}', 'MY_VALUE');
     },
     mdx1Compat: {
-      comments: true,
-      admonitions: true,
+      comments: false,
+      admonitions: false,
       headingIds: true,
     },
   },
