@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcodec_wiki=self.webpackChunkcodec_wiki||[]).push([[1221],{9742:s=>{s.exports=JSON.parse('{"label":"compression","permalink":"/blog/tags/compression","allTagsPath":"/blog/tags","count":2}')}}]);
