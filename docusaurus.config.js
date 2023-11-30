@@ -107,7 +107,7 @@ const config = {
       items: [
         {to: 'docs/introduction/prologue', activeBasePath: 'docs/introduction/prologue', label: 'Get Started', position: 'left'},
         {to: 'blog', label: 'Blog', position: 'left'},
-        {href: 'https://discord.com/invite/KtCxtY6f', className: 'header-discord-link', 'aria-label': 'Discord', position: 'right'},
+        {href: ' https://discord.gg/bbQD5MjDr3', className: 'header-discord-link', 'aria-label': 'Discord', position: 'right'},
         {href: 'https://github.com/av1-community-contributors/codec-wiki/tree/main', className: 'header-github-link', 'aria-label': 'GitHub', position: 'right'},
       ],
         title: 'Codec Wiki',
@@ -118,7 +118,7 @@ const config = {
       },
       colorMode: {
         defaultMode: 'light',
-        disableSwitch: false,
+        disableSwitch: true,
         respectPrefersColorScheme: true,
       },
       prism: {

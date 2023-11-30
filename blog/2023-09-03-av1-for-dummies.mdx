@@ -27,9 +27,13 @@ In this guide, we'll be installing Av1an for chunked encoding and infinite threa
 
 ## Installing the Tools
 
-### Microsoft Windows
+Given all of the different operating systems that people use on a day to day basis and the various different encoding workflows that exist, there are a number of ways to do this.
 
-**The GUI Way:**
+**Jump to**: [Windows](#microsoft-windows) | [macOS](#macos) | [Linux](#linux)
+
+## Microsoft Windows
+
+### The GUI Way
 1. Install [NMKODER](https://github.com/n00mkrad/nmkoder) which is a GUI front-end to av1an with all dependencies installed.
 2. You're done, you can skip to the encoding part
 
@@ -37,7 +41,15 @@ In this guide, we'll be installing Av1an for chunked encoding and infinite threa
 Since Nmkoder already ships everything by default and its last release was 29th March 2022. You need to manually update all encoders and tools to get better encoding speeds. Missing out on updates will result in your encodes being sub-optimal.
 :::
 
-**The Automated Way:**
+### The WSL2 Way
+
+*(Recommended)*
+
+If you're not already familiar with WSL2, the The Windows Subsystem for Linux (WSL) is a feature of the Windows operating system that allows you to run a Linux file system, along with Linux command-line tools and GUI apps, directly on Windows. This lets Linux distributions run on bare metal without managing any virtual machines, so encoding performance is very good.
+
+The easiest way to encode with WSL2 is to use [rAV1ator CLI](https://wiki.x266.mov/docs/utilities/rav1ator-cli), an interactive TUI for [Av1an](https://wiki.x266.mov/docs/utilities/av1an). An ArchWSL2 installation tutorial is provided [here](https://wiki.x266.mov/docs/utilities/rav1ator-cli#windows).
+
+### The Automated Way
 
 There is now a batch script for automating the install process, which can be found [here](https://github.com/Hishiro64/av1an-win-script). The instructions are in the README file.
 
@@ -45,7 +57,8 @@ There is now a batch script for automating the install process, which can be fou
 The script will download outdated version encoders and tools such as `aom-av1-psy` and MKVToolNix v76.0, if you are fine with these you can proceed.
 :::
 
-**The Manual Way:**
+### The Manual Way
+
 1. Install **Python 3.10.x, this will change so consult from the** [Vapoursynth website](http://www.vapoursynth.com/doc/installation.html) **if you're reading this from the future** from [here](https://www.python.org/downloads/windows/) and select "Windows Installer 64-bit". Upon installation check the tick for adding Python to PATH like so
 ![Python PATH](/img/python-path.webp))
 
@@ -62,8 +75,7 @@ If you opt to compile aomenc yourself, you can view the instructions on how to d
 9. Add the folder **AND MKVTOOLNIX INSTALLATION FOLDER** to the [Windows PATH environment](https://www.maketecheasier.com/what-is-the-windows-path/).
 
 
-### macOS
-*written by gb82 (Gianni Rosato)*
+## macOS
 
 macOS is very similar to Linux, although there aren't any GUI tools for AV1 encoding that I can comfortably recommend.
 
@@ -175,20 +187,25 @@ Included encoders:
 
 Notice how it says `AOMedia Project AV1 Encoder Psy` instead of `AOMedia Project AV1 Encoder`. You should be all set after this to start using aom-av1-lavish & following the current parameter meta as outlined below.
 
-### Linux
+## Linux
 
 :::info
 Yet again, try using Arch. It's way easier.
 :::
 
-#### The Easy Ways
+### The GUI Way
 
 - Install [Aviator](https://github.com/gianni-rosato/aviator) ([SVT-AV1](https://wiki.x266.mov/docs/encoders/SVT-AV1) + [FFmpeg](https://wiki.x266.mov/docs/utilities/FFmpeg)) or [rAV1ator](https://giannirosato.com/blog/post/aviator-1/) basically same thing but [Av1an](https://wiki.x266.mov/docs/utilities/av1an.mdx) + [rav1e](https://wiki.x266.mov/docs/encoders/rav1e). Both are only available as [Flatpaks](https://beta.flathub.org/apps/net.natesales.Aviator). Keep in mind Aviator ships with **SVT-AV1** and rAV1ator with **rav1e** instead of aomenc/AOM-AV1, which I will not be covering here.
-- Install [rav1ator-cli](https://wiki.x266.mov/docs/utilities/rav1ator-cli), a TUI for using Av1an meant to be easy to use. Much more flexible than the GUI options & can work with a number of encoders. See [this page](https://wiki.x266.mov/docs/utilities/rav1ator-cli/#installation) for more info.
 
-#### The Compiling Route
+### The TUI Way
 
-##### Ubuntu
+*(Recommended)*
+
+- Install [rav1ator-cli](https://wiki.x266.mov/docs/utilities/rav1ator-cli), a TUI for using Av1an meant to be easy to use. Much more flexible than the GUI options & can work with a number of encoders. See [this page](https://wiki.x266.mov/docs/utilities/rav1ator-cli/#installation) for more info. Can be easily used on any distro.
+
+### The Compiling Route
+
+#### Ubuntu
 
 The guide below is targeted towards 22.04, packages and other things may be different on other versions. First Install Rust via `rustup` first, as apt version of Rust is severely outdated, then you can continue.
 
@@ -273,7 +290,7 @@ sudo cp target/release/av1an /usr/local/bin
 
 When there's no errors, proceed to compiling `aom-av1-lavish`.
 
-##### Arch
+### Arch
 
 Install dependencies:
 ```bash

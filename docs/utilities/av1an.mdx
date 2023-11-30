@@ -11,12 +11,11 @@ import TabItem from '@theme/TabItem';
 
 <picture>
     <source srcset="https://raw.githubusercontent.com/av1-community-contributors/codec-wiki/main/static/img/av1an_96_workers.avif" type="image/avif" />
-    <img src="https://autumn.revolt.chat/attachments/K3OhOCAy9bkUCkImek_q3-t6q3zctbn9SbWW-_RI19/av1an_96_workers.webp" alt="Av1an with 96 workers" width="1703" height="958" />
+    <img src="https://autumn.revolt.chat/attachments/K3OhOCAy9bkUCkImek_q3-t6q3zctbn9SbWW-_RI19/av1an_96_workers.webp" alt="Av1an with 96 workers" />
 </picture>
 
 Av1an is a video encoding framework. It can increase your encoding speed and improve cpu utilization by running multiple encoder processes in parallel. Target quality, VMAF plotting, and more, available to take advantage for video encoding.
 
-&nbsp;&nbsp;
 ## Prerequisites
 Since Av1an is just a tool that helps with parallelization, you'll need to have the following installed for the entire thing to work: 
 - Rust
@@ -29,7 +28,6 @@ Since Av1an is just a tool that helps with parallelization, you'll need to have 
 - [VMAF](../metrics/VMAF.mdx) (For target VMAF, optional)
 - Any of the supported encoders ([aomenc](../encoders/aomenc.mdx), [rav1e](../encoders/rav1e.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), [vpxenc](../encoders/vpxenc.mdx), [x264](../encoders/x264.mdx), [x265](../encoders/x265.mdx))
 
-&nbsp;&nbsp;
 ## Installation
 ### Microsoft Windows
 **GUI:**
@@ -45,12 +43,10 @@ Since Nmkoder already ships everything by default and it's last release was 29th
 
 - Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases), select "Latest" and click the "Assets" dropdown. Put it in [PATH](https://www.maketecheasier.com/what-is-the-windows-path)
 
-&nbsp;&nbsp;
 ### MacOS
 
 To be filled.
 
-&nbsp;&nbsp;
 ### Linux
 
 **The Easy Way:** 
@@ -59,8 +55,6 @@ Install [rAV1ator](../utilities/rAV1ator.mdx), a GUI frontend for Av1an & the ru
 :::note
 Keep in mind Aviator only ships with **SVT-AV1** and rAV1ator with **rav1e** instead of Aomenc/AOM-AV1.
 :::
-&nbsp;&nbsp;
-
 
 **The compiling route:**
 
@@ -81,8 +75,6 @@ RUSTFLAGS="-C target-cpu=native" cargo build --release
 ```
 
 after done, the binary will be located in ``target/release``, copy it to somewhere like ``/usr/bin`` or ``/usr/local/bin``
-
-&nbsp;&nbsp;
 
 ### Docker
 The following examples assume the file you want to encode is in your current working directory.
@@ -110,8 +102,6 @@ The following examples assume the file you want to encode is in your current wor
 </Tabs>
 
 
-&nbsp;&nbsp;
-
 :::info
 To specify a different directory to use you would replace $(pwd) with the directory
 
@@ -121,8 +111,6 @@ docker run --privileged -v "/c/Users/masterofzen/Videos":/videos --user $(id -u)
 
 The ``--user`` flag is required on Linux to avoid permission issues with the docker container not being able to write to the location, if you get permission issues ensure your user has access to the folder that you are using to encode.
 :::
-
-&nbsp;&nbsp;
 
 ## Troubleshooting
 

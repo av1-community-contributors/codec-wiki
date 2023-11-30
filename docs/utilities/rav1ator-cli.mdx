@@ -35,7 +35,9 @@ Overall, it aims to provide an easy way to encode videos on the command line wit
 
 ## Installation
 
-### Linux (Arch)
+rAV1ator CLI is natively supported on Linux, & is supported on Windows via WSL2. A tutorial for setting up WSL2 is provided below.
+
+## Linux (Arch)
 
 These instructions are for Arch Linux specifically. Other distros should be very similar, and packages that are Arch-specific will be labelled. If you're on Ubuntu, you should see the relevant section of the [AV1 for Dummies](https://wiki.x266.mov/blog/av1-encoding-for-dummies) blog post on this site.
 
@@ -66,11 +68,7 @@ sudo cp rav1ator-cli /usr/local/bin
 
 You're done! Run `rav1ator-cli -h` to get some help getting started. Happy encoding!
 
-### macOS
-
-No macOS support is provided at this time. It is definitely technically feasible, and I may produce a separate tool in the future with proper macOS binaries, though this would be a burden to keep up considering I don't currently see any demand for a port.
-
-### Linux (Other)
+## Linux (Other)
 
 If you're on Ubuntu, you can see the relevant section of the [AV1 for Dummies](https://wiki.x266.mov/blog/av1-encoding-for-dummies) blog post on this site for more information about doing this *without* a distrobox. However, a distrobox is valuable because you can use Arch's fast-paced package management on other distros. Distroboxes are generally easier than Docker for beginners, and use Docker or Podman behind the scenes anyway. This tutorial will focus on using Distrobox with Podman.
 
@@ -96,7 +94,7 @@ If you're on Ubuntu, you can see the relevant section of the [AV1 for Dummies](h
 
 You're done! Run `rav1ator-cli -h` to get some help getting started. Happy encoding!
 
-### Windows
+## Windows
 
 :::note Windows
 The content in this entry was written by pat-e, or `pate` on Discord. They have provided an [in-depth tutorial](https://www.pat-e.net/wsl/181796892.html) on setting up rav1ator-cli on Windows Server 2022 via WSL if you are interested, but this tutorial that they wrote focuses on Windows 11 via WSL. I thank them for their generous support of the project!
@@ -216,6 +214,8 @@ For the start of Arch, there are 2 steps possible:
       
 ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/25_wsl_rv-cli.avif)
 
+### Unlock WSL RAM Usage (Optional)
+
 **Hint**: WSL caps RAM usage at 50% of the total RAM available on your system.
 
 When you start the VM, you will see that you only will only have 50% of your total memory available:  
@@ -273,6 +273,10 @@ To allow more memory, you need to place a config-file in your profile-folder in 
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/33_wsl_rv-cli.avif)
 
 If you've made it this far, you should be more than ready to encode. We hope you enjoy rAV1ator CLI!
+
+## macOS
+
+No macOS support is provided at this time. It is definitely technically feasible, and I may produce a separate tool in the future with proper macOS binaries, though this would be a burden to keep up considering I don't currently see any demand for a port.
 
 ### Troubleshooting
 

@@ -7,16 +7,21 @@ sidebar_position: 3
 
 aomenc or **libaom** is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.
 
-&nbsp;&nbsp;
+
 
 ## Choosing forks
-Mainline aomenc is unfortunately not good, as it suffers from bad defaults, heavy focus on PSNR which reduces its psycho-visual capabilities, settings that does X instead of Y, among others. Fortunately two forks were created to combat these, first there's [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy) which was created by BlueSwordM. **But it is no longer maintained as of 13th January 2023**, another fork called [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish) was then created off of it by Clybius to continue on the legacy.
+Mainline aomenc is unfortunately not perfect. It suffers from bad defaults, heavy focus on [PSNR](../metrics/PSNR.mdx) which reduces its psycho-visual capabilities, settings that does X instead of Y, among others. Fortunately there are a couple forks that were created to combat these issues.
 
-These forks fix up the horrid decisions made by the original AOM devs and most importantly introduce new parameters and tunes to help fine tune the encoder even more. 
+- [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy) *No longer maintained as of 13th January 2023*
+- [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish)
+- [aomenc-psy101](https://gitlab.com/damian101/aom/-/tree/psy101)
+- [aom-av1ador](https://github.com/porcino/aom-av1ador)
 
-TL;DR use [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish).
+These forks fix up the poor decisions made by the original AOM devs and most importantly introduce new parameters and tunes to help fine-tune the encoder even more. 
 
-&nbsp;&nbsp;
+Our recommendadion is to use either [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish) or [aomenc-psy101](https://gitlab.com/damian101/aom/-/tree/psy101), as both are actively maintained with good defaults and have been extensively tested by the encoding community.
+
+
 
 ## FFmpeg
 
@@ -24,7 +29,7 @@ aomenc is available in FFmpeg via ``libaom-av1``, check if you have it by runnin
 :::caution Mainline aomenc
 Since FFmpeg encoder libraries come as the most default, barebones as possible (Therefore mainline aomenc), it is not recommended to use it. Unless you build it yourself.
 :::
-&nbsp;&nbsp;
+
 
 ## Installation
 
@@ -69,7 +74,7 @@ Built files should be in the "Debug" folder
 Don't share binaries compiled with native CPU optimizations unless the person you're sharing to has the same CPU architecture, as this will lead to missing instructions being used and slowing down encode speeds.
 :::
 
-&nbsp;&nbsp;
+
 ### MacOS
 
 macOS is very similar to Linux. Note that some commands may have to be run with `sudo`, which I won't explicitly include for security reasons.
@@ -128,7 +133,7 @@ Included encoders:
 
 Notice how it says `AOMedia Project AV1 Encoder Psy` instead of `AOMedia Project AV1 Encoder`. You should be all set after this to start using aom-av1-lavish.
 
-&nbsp;&nbsp;
+
 ### Linux
 
 Linux has no prebuilt binaries so you'll have to compile yourself. CMake, Perl, GNU Make, and nasm (assuming x64, if x86 use yasm) will be needed for compilation.
@@ -142,7 +147,7 @@ make -j$(nproc)
 sudo make install
 ```
 
-&nbsp;&nbsp;
+
 
 ## Usage
 
