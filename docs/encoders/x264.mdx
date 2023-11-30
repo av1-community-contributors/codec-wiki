@@ -54,7 +54,7 @@ ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | x264 --preset slow -
 x264 can output ``264``, MKV, FLV (Flash Video), and MP4 (If compiled with GPAC or L-SMASH support).
 :::
 
-:::warning
+:::caution
 x264 will use Haali Matroska Muxer for MKV outputs, which has seeking issues. It is recommended to remux back using FFmpeg or mkvmerge/MKVToolNix.
 :::
 

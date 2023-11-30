@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
+const lightTheme = themes.github;
+const darkTheme = themes.dracula;
 
 /** @type {import('@docusaurus/types').Config} */
 
@@ -93,15 +94,21 @@ const config = {
     ],
   ],
 
+  plugins: [
+    'plugin-image-zoom',
+    '@easyops-cn/docusaurus-search-local',
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/codec-wiki-social-card.webp',
       navbar: {
       items: [
-        // ...
-        {to: 'blog', label: 'Blog', position: 'left'}, // or position: 'right'
+        {to: 'docs/introduction/prologue', activeBasePath: 'docs/introduction/prologue', label: 'Get Started', position: 'left'},
+        {to: 'blog', label: 'Blog', position: 'left'},
+        {href: 'https://discord.com/invite/KtCxtY6f', className: 'header-discord-link', 'aria-label': 'Discord', position: 'right'},
+        {href: 'https://github.com/av1-community-contributors/codec-wiki/tree/main', className: 'header-github-link', 'aria-label': 'GitHub', position: 'right'},
       ],
         title: 'Codec Wiki',
         logo: {
@@ -110,9 +117,15 @@ const config = {
         },
       },
       colorMode: {
-        defaultMode: 'dark',
-        disableSwitch: true,
+        defaultMode: 'light',
+        disableSwitch: false,
         respectPrefersColorScheme: true,
+      },
+      prism: {
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        // prism v2 ships with less lang than v1, so they need to be manually added
+        additionalLanguages: ['bash', 'diff', 'json', 'java', 'latex'],
       },
       footer: {
         style: 'dark',
@@ -167,10 +180,14 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} Gianni Rosato & contributors. Content licensed under CC BY-SA 4.0. Built with Docusaurus.`,
       },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
+     zoom: {
+      config: {
+        background: {
+          light: 'rgb(255, 255, 255)',
+          dark: 'rgb(50, 50, 50)'
+        }
+      }
+    },
     }),
 };
 

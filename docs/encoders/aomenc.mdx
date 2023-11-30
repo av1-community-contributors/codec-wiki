@@ -21,7 +21,7 @@ TL;DR use [aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish).
 ## FFmpeg
 
 aomenc is available in FFmpeg via ``libaom-av1``, check if you have it by running ``ffmpeg -h encoder=libaom-av1``. You can input non-FFmpeg standard aomenc parameters via ``-aom-params``.
-:::warning Mainline aomenc
+:::caution Mainline aomenc
 Since FFmpeg encoder libraries come as the most default, barebones as possible (Therefore mainline aomenc), it is not recommended to use it. Unless you build it yourself.
 :::
 &nbsp;&nbsp;
@@ -65,7 +65,7 @@ The resulting binary will be available within your home folder of the location w
 
 Built files should be in the "Debug" folder
 
-:::warning
+:::caution
 Don't share binaries compiled with native CPU optimizations unless the person you're sharing to has the same CPU architecture, as this will lead to missing instructions being used and slowing down encode speeds.
 :::
 

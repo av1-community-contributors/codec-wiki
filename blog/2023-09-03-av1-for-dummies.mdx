@@ -33,7 +33,7 @@ In this guide, we'll be installing Av1an for chunked encoding and infinite threa
 1. Install [NMKODER](https://github.com/n00mkrad/nmkoder) which is a GUI front-end to av1an with all dependencies installed.
 2. You're done, you can skip to the encoding part
 
-:::warning Almost abandonware
+:::danger Almost abandonware
 Since Nmkoder already ships everything by default and its last release was 29th March 2022. You need to manually update all encoders and tools to get better encoding speeds. Missing out on updates will result in your encodes being sub-optimal.
 :::
 
@@ -41,7 +41,7 @@ Since Nmkoder already ships everything by default and its last release was 29th 
 
 There is now a batch script for automating the install process, which can be found [here](https://github.com/Hishiro64/av1an-win-script). The instructions are in the README file.
 
-:::warning
+:::caution
 The script will download outdated version encoders and tools such as `aom-av1-psy` and MKVToolNix v76.0, if you are fine with these you can proceed.
 :::
 
@@ -249,7 +249,7 @@ ninja -j$(nproc)
 sudo cp libvslsmashsource.so /usr/lib/vapoursynth/
 ```
 
-:::warning
+:::danger
 L-SMASH-Works doesn't work on **aarch64**, it is recommended to use other plugins instead.
 :::
 
