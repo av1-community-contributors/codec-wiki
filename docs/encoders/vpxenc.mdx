@@ -48,6 +48,8 @@ Included encoders:
 
 For encoding VP9, vpxenc's default parameters are not considered optimal. There are a lot of options that are either disabled without reason or are simply misconfigured, hurting coding efficiency at little cost otherwise. As of mid-2021, some parameters (the TPL-model, lag-in-frames and auto-alt-ref frames) were changed (since libvpx 1.9.0 and libvpx 1.10.0) which means that there's not much use of setting these three parameters unless you're in [FFmpeg](../utilities/ffmpeg.mdx). This section covers the most important options libvpx-vp9 has to offer, recommended settings, & what they do.
 
+It is important to note that the vpxenc parameters provided below are considered optimal because they are efficient, but VP9 Profile 2 isn't compatible with many hardware-accelerated VP9 decoding implementations.
+
 ### Encoding
 
 - `--codec=vp9`
@@ -94,9 +96,11 @@ This tells the encoder to have a maximum number of frames between keyframes. It 
 
 This is where the biggest balance of quality to speed is with libvpx-vp9. This is similar to presets in x264 and x265, except the lower the number, the slower the encoder takes. Using `--cpu-used=3` & below enables RDO, which increases quality at the expense of speed. Another note: --cpu-used=5 and above are *slower* in the 1st pass, so it isn't recommended to use them anyway.
 
-- `--auto-alt-ref=1`
+- `--auto-alt-ref=6`
 
-Activates alternate reference frames. Alternate reference frames are "invisible" frames which are used as references when creating the final display frames. This allows the encoder to be a lot more efficient, so always use it. It is the default in the latest standalone vpxenc libvpx-vp9 encoder. `--auto-alt-ref=6` can also be used, but be aware that this does require `--profile=2` be set as mentioned above.
+Activates alternate reference frames. Alternate reference frames are "invisible" frames which are used as references when creating the final display frames.
+
+More alternate reference frames is typically more efficient. Setting this greater than 1 activates overlay frames and isn't compatible with the 8-bit color profiles.
 
 - `--arnr-maxframes=7`
 
