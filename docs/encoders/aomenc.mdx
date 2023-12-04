@@ -207,17 +207,20 @@ Now let's break it down shall we.
 
 - ``--end-usage=q --cq-level=24`` This specifies that we are going to use a knockoff version of CRF level similar to x264/x265 encoders, in this case CRF 24.
 
-- ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster, see the image below (Yellow lines):
+- ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster. See the image below (Yellow lines):
+
 <picture>
     <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/tiling_av1.avif?token=GHSAT0AAAAAACEZPDXIZARY5MGSTJW4SI22ZHY636A" type="image/avif" />
-    <img src="https://autumn.revolt.chat/attachments/HwhZjoDsdzLZsJM2mjzX7lEDmJn1xcYNdrQqmOxPYW/tiling_av1.jpeg" alt="Tiling" width="1280" height="768" loading="lazy" />
+    <img src="https://autumn.revolt.chat/attachments/HwhZjoDsdzLZsJM2mjzX7lEDmJn1xcYNdrQqmOxPYW/tiling_av1.jpeg" alt="Tiling" loading="lazy" />
 </picture> 
 
 :::note Tile usage
-Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
+Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K).
+
+If you would like an easy way to calculate the necessary number of tiles for your video, you can use [the AV1 Encoding Calculator](https://autocompressor.net/tools/av1-calculator) online or run [this local tile calculator](https://github.com/gianni-rosato/av1-tile-calc).
 :::
 
-- ``--lag-in-frames=64`` Knockoff of x264/x265 [Group of Pictures](https://en.wikipedia.org/wiki/Group_of_pictures) (GOP), makes the encoder look into future frames for better compression decision making, do not go over 64 as it is pretty much useless.
+- ``--lag-in-frames=64`` Similar to x264/x265 `rc-lookahead`. Sets a number of frames to look ahead for frametype and ratecontrol, allowing for better compression decision making. Setting to a value greater than 64 is generally not considered useful.
  
 - ``--aq-mode=0`` adaptive quantization mode, a mostly debatable area nowadays. 0 is better most of the time but some say 1 is also good.
 

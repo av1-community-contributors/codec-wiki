@@ -368,7 +368,7 @@ Now let's dissect it one-by-one
 Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
 :::
 
-- ``--lag-in-frames=64`` Knockoff of x264/x265 [Group of Pictures](https://en.wikipedia.org/wiki/Group_of_pictures) (GOP), makes the encoder look into future frames for better compression decision making, do not go over 64 as it is pretty much useless.
+- ``--lag-in-frames=64`` Similar to x264/x265 `rc-lookahead`. Sets a number of frames to look ahead for frametype and ratecontrol, allowing for better compression decision making. Setting to a value greater than 64 is generally not considered useful.
  
 - ``--aq-mode`` adaptive quantization mode, 0 is better most of the time
 
