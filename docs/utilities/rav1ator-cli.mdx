@@ -1,6 +1,6 @@
 ---
 label: rav1ator-cli
-sidebar_position: 4
+sidebar_position: 6
 templating: true
 ---
 
@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # rAV1ator CLI
 
-rAV1ator CLI, or just `rav1ator-cli`, is a TUI tool that provides an interactive command line interface for encoding videos with Av1an using various different encoders including [rav1e](../encoders/rav1e.mdx), [aomenc](../encoders/aomenc.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), [x265](../encoders/x265.mdx), and [x264](../encoders/x264.mdx).
+rAV1ator CLI, or just `rav1ator-cli`, is a TUI tool that provides an interactive command line interface for encoding videos with [Av1an](../utilities/av1an.mdx) using various different encoders including [rav1e](../encoders/rav1e.mdx), [aomenc](../encoders/aomenc.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), [x265](../encoders/x265.mdx), and [x264](../encoders/x264.mdx).
 
 rAV1ator CLI can:
 
@@ -57,7 +57,7 @@ cd yay && makepkg -si
 
 2. Next, you'll want to install all of rav1ator-cli's dependencies. You can do that by running:
 ```bash
-yay -Sy rust ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
+yay -Syu ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
 ```
 
 3. Install rav1ator-cli:

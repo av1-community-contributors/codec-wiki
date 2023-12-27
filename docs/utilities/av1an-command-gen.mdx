@@ -1,0 +1,61 @@
+---
+label: av1an-command-gen
+sidebar_position: 14
+---
+
+# Av1an Command Generator
+
+Av1an Command Generator is a rudimentary tool for easily generating Av1an commands for AV1 encoding. It is written in the Zig programming language. It is very similar to [rAV1ator CLI](../utilities/rav1ator-cli.mdx) in the sense that it can produce Av1an commands based on user input.
+
+[GitHub Link](https://github.com/gianni-rosato/av1an-command-gen/)
+
+## Description
+
+Av1an Command Generator is designed for beginners, although experienced encoders can use it to speed up their Av1an scripting. The program generates an AV1 video encoding command for use with [Av1an](../utilities/av1an.mdx), a chunked video encoding tool that can be used with [aomenc](../encoders/aomenc.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), and [rav1e](../encoders/rav1e.mdx).
+
+This tool takes in the video resolution, frame rate, desired encoder, speed preset, and target bitrate range as command line arguments. Based on these parameters, it calculates settings like tile columns/rows, lag-in-frames, CRF, and encoder speed preset. Then, it injects these into a generated encoding command string.
+
+The output is a full `av1an` command that can be run to encode a video based on the specified settings.
+
+## Usage
+
+```bash
+av1an-command-gen [width] [height] [fps] [encoder] [speed] [bitrate_target]
+```
+
+- `width` - Input video width in pixels 
+- `height` - Input video height in pixels
+- `fps` - Input video frame rate
+- `encoder` - `aom`, `svt`, or `rav1e`
+- `speed` - `slower`, `slow`, `med`, `fast`, `faster` 
+- `bitrate_target` - `lowest`, `low`, `med`, `high`
+
+## Examples
+
+Generate a command for encoding a 1280x720 video at 24 fps using rav1e at 'med' speed and 'low' bitrate target:
+
+```bash
+av1an-command-gen 1280 720 24 rav1e med low
+```
+
+Generate a command for encoding a 1920x1080 video at 30 fps using svt-av1 at 'fast' speed and 'high' bitrate target:
+
+```bash
+av1an-command-gen 1920 1080 30 svt fast high
+```
+
+## Building
+
+This program requires the [Zig](https://ziglang.org/) v0.11.0 programming language. 
+
+To build:
+
+```bash
+zig build
+```
+
+This will produce a standalone binary `av1an-command-gen` in `zig-out/bin/`.
+
+## License
+
+This project is licensed under the BSD 3-Clause License.
