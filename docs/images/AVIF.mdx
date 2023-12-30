@@ -50,7 +50,9 @@ Royalty Free? *Yes*
 
 - [Mercury](https://thorium.rocks/mercury)
 
-## Pros
+## Format Breakdown
+
+### Pros
 
 AVIF is known for its extremely strong lossy compression performance for non-photographic images as well as photographic images in the low to medium fidelity range. AVIF is consistently better than JPEG visually, except for with complex images that contain a lot of highly entropic data like random noise.
 
@@ -58,7 +60,7 @@ AVIF compatibility has grown rapidly since its adoption in Google Chrome in 2020
 
 AVIF's wider featureset enables new experiences through images, including HDR. AVIF also presents astonishing animation prowess, as it is capable of using AV1's inter-frame coding techniques which make it easily the best animated image format for most use cases where it is compatible.
 
-## Cons
+### Cons
 
 AVIF encoding implementations are difficult to use, and images require much longer encoding times for what can be considered competitive quality. Making encoding more difficult, AVIF's use of intra-frame coding techniques that share data between blocks reduces parallelization capability & worsens generation loss. Theoretically, this improves coding efficiency, though. Via the AVIF Encoding section of the aomenc page:
 
@@ -67,7 +69,7 @@ AVIF encoding implementations are difficult to use, and images require much long
   <div>
     <p>Using aomenc through avifenc is widely considered to be the best way to encode AVIF images, as SVT-AV1 only supports 4:2:0 chroma subsampling, rav1e isn't fast enough for still images, & the libaom team have put more effort into intra coding than the teams responsible for producing the other prominent open source AV1 encoders.</p>
     <p>A sample command for encoding AVIF looks like this:</p>
-    <pre><code>avifenc -c aom -s 4 -j 8 -d 10 -y 444 --min 1 --max 63 -a end-usage=q -a cq-level=16 -a tune=ssim [input] output.avif</code></pre>
+    <pre><code>avifenc -c aom -s 4 -j 8 -d 10 -y 444 --min 1 --max 63 -a end-usage=q -a cq-level=16 -a tune=ssim \[input\] output.avif</code></pre>
     <p>Where:</p>
     <ul>
       <li>`-c aom` is the encoder</li>
@@ -89,4 +91,4 @@ Finally, AVIF's lossless mode is incredibly underwhelming, often producing large
 
 ## Conclusion
 
-While AVIF is certainly promising, its shortcomings
+While AVIF is certainly promising, its shortcomings 

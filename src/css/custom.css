@@ -66,16 +66,16 @@
   font-stretch: 100% 100%;
 }
 
-html {
+html,
+h4,
+h5,
+h6 {
   font-family: "Inter";
 }
 
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3 {
   font-family: "Mona Sans";
 }
 
