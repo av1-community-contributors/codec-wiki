@@ -16,7 +16,7 @@ hide_table_of_contents: false
 
 This blog post is based on a series of visual quality benchmarks with SSIMULACRA2 and speed benchmarks of SVT-AV1 1.8.0 on a corpus of animated clips.
 
-The resources available will range from ***graphs*** to **image comparisons**. The ***former*** has the advantage of being easily understandable, showcasing pure efficiency comparisons between encoder parameters using metrics as the reference, while the **latter** are image samples from the encoded files during the tests that enable you to check quality for yourself and add another layer of subjective interpretation to these comparisons.
+The resources available will range from ***graphs*** to ~~**image comparisons**~~ (WIP). The ***former*** has the advantage of being easily understandable, showcasing pure efficiency comparisons between encoder parameters using metrics as the reference, while the **latter** are image samples from the encoded files during the tests that enable you to check quality for yourself and add another layer of subjective interpretation to these comparisons.
 
 <!--truncate-->
 
@@ -235,6 +235,8 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
 
 **SSIMU2 favors __tune 1 and 2__ above __tune 0__. At high quality, __tune 1 and 2__ are matched, while at low quality __tune 2__ takes the edge. __Tune 0__ is sometimes a match for the other two on certain clips and other times fare pretty badly.**
 **For some reason, __tune 0__ is quite a bit faster now, compared to 1 and 2 which are basically the same.**
+
+Keep in mind that I have observed multiple times in the past that __tune 0__ kept more fine detail and was sharper than the other tunes, at the expense of potential artifacting, like ringing and distortion. It may very well explain why the metric doesn't like its results. The image comparisons may give a different interpretation than what we concluded here, please stay *tuned* for these subjective comparisons.
 
 ## Parameters comparisons
 
@@ -739,8 +741,8 @@ Kinda lazy to make, share and comment so much graphs for something that can be t
 
 All superres variants are freaking useless as they:
 - do not improve efficiency
-- increase encoding speeds
-- increase decoding speeds when either bitrate or quality normalized.
+- decrease encoding speeds
+- decrease decoding speeds when either bitrate or quality normalized.
 
 ### __Early TLDR on parameters results:__
 
@@ -763,9 +765,9 @@ All superres variants are freaking useless as they:
 
 ## Conclusion
 
-The extensive benchmarking reveals that obviously the slower presets generally provide better efficiency, with diminishing returns past preset 1. However, preset 4 provides a good balance of quality and speed for most use cases. 
+The extensive benchmarking reveals that obviously the slower presets provide better efficiency, with diminishing returns past preset 2. However, preset 4 provides a good balance of quality and speed for most use cases. Presets 6 and 8 are good options for the people that find 4 to be too slow for their liking.
 
-The default settings tend to provide good results, but some tweaks like enabling quantization matrices can further optimize efficiency. Parameters like tile encoding and super resolution modes are not beneficial. Overall, SVT-AV1 continues to be a competitive option for encoding animation in AV1, with its speed being a notable strengths.
+The default settings tend to provide good results, but some tweaks like enabling quantization matrices can further optimize efficiency. Parameters like tile encoding and super resolution modes are not beneficial. Overall, SVT-AV1 continues to be a competitive option for encoding animation in AV1, with its speed being a notable strength.
 
 Further testing with more content samples would help solidify these findings. The image comparisons will also provide additional subjective evaluation to complement the objective metrics used here, and we can discover the potential usefulness of Tune 0 that may betray what the metrics suggest. Overall, this comprehensive deep dive should give encoders a helpful starting point for choosing settings when encoding animation with the latest SVT-AV1 1.8.0. Thanks for reading!
 
