@@ -8,7 +8,7 @@
     <subtitle>Codec Wiki Blog</subtitle>
     <icon>https://wiki.x266.mov/img/favicon.svg</icon>
     <entry>
-        <title type="html"><![CDATA[SVT-AV1 Animation Deep Dive]]></title>
+        <title type="html"><![CDATA[Encoding Animation with SVT-AV1: A Deep Dive]]></title>
         <id>https://wiki.x266.mov/blog/svt-av1-deep-dive</id>
         <link href="https://wiki.x266.mov/blog/svt-av1-deep-dive"/>
         <updated>2023-12-30T00:00:00.000Z</updated>
@@ -457,19 +457,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Setting <strong>qm-min</strong> to <strong>0</strong> on top of enabling <strong>quantization matrices</strong> can be beneficial in some clips at no added compute time.</p>
 </blockquote>
