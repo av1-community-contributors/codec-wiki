@@ -5,13 +5,9 @@ sidebar_position: 2
 
 # gzip
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+Gzip is a DEFLATE implementation for use with individual files. It is popular on Unix-like systems such as Linux & macOS, and is often seen paired with `tar` to create `.tar.gz` archives. Formats like [ZIP](../data/zip.mdx) & [PNG](../images/PNG.mdx) also use Deflate to different effects.
 
 ## Format Breakdown
-
-Gzip is a DEFLATE implementation for use with individual files. It is popular on Unix-like systems such as Linux & macOS, and is often seen paired with `tar` to create `.tar.gz` archives. Formats like [ZIP](../data/zip.mdx) & [PNG](../images/PNG.mdx) also use Deflate to different effects.
 
 While ZIP is a multi-file format that can compress multiple files into a single compressed file, Gzip is a single-file format that compresses a single file into a single compressed file. Both use DEFLATE for compression. ZIP supports encryption, while Gzip does not. ZIP also stores more extensive header information.
 

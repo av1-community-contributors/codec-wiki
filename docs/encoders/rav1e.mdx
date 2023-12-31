@@ -22,12 +22,12 @@ Pre-built binaries can be found in the [releases page](https://github.com/xiph/r
 For stability & a proper version number, please reset the source to the correct release commit. In the releases page, click the icon to the right of the release tag & copy the commit in the url bar. Then, in the cloned rav1e directory, `git reset --hard [commit hash]`
 :::
 
-Here are instructions for resetting to release 0.6.6. Omit the git reset command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
+Here are instructions for resetting to release 0.7.0 (latest as of 30 Dec 2023). Omit the `git reset` command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
 
 ```bash
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
-git reset --hard 7c9db10494c2fffa98a572027d756e55bf754036
+git reset --hard c4603c75dc593c1ad7c4b6a741e22bd3ea602be5
 RUSTFLAGS="-C target-cpu=native" cargo build --release
 ```
 
@@ -37,7 +37,7 @@ When done, the binary can be found in `/target/release`. You can then `cp /targe
 ```powershell
 git clone https://github.com/xiph/rav1e.git
 cd rav1e
-git reset --hard 7c9db10494c2fffa98a572027d756e55bf754036
+git reset --hard c4603c75dc593c1ad7c4b6a741e22bd3ea602be5
 set RUSTFLAGS=-C target-cpu=native
 cargo build --release
 ```
