@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.0.1">
+<title data-rh="true">SVT-AV1 Animation Deep Dive | Codec Wiki</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://wiki.x266.mov/blog/svt-av1-deep-dive"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="SVT-AV1 Animation Deep Dive | Codec Wiki"><meta data-rh="true" name="description" content="With the recent release of SVT-AV1 1.8.0, how does it stack up for encoding animation?"><meta data-rh="true" property="og:description" content="With the recent release of SVT-AV1 1.8.0, how does it stack up for encoding animation?"><meta data-rh="true" property="og:image" content="https://wiki.x266.mov/img/discord-embed-blog-image.webp"><meta data-rh="true" name="twitter:image" content="https://wiki.x266.mov/img/discord-embed-blog-image.webp"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2023-12-30T00:00:00.000Z"><meta data-rh="true" property="article:author" content="https://github.com/trixoniisama/"><meta data-rh="true" property="article:tag" content="video,compression"><link data-rh="true" rel="icon" href="/img/favicon.svg"><link data-rh="true" rel="canonical" href="https://wiki.x266.mov/blog/svt-av1-deep-dive"><link data-rh="true" rel="alternate" href="https://wiki.x266.mov/blog/svt-av1-deep-dive" hreflang="en"><link data-rh="true" rel="alternate" href="https://wiki.x266.mov/blog/svt-av1-deep-dive" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Codec Wiki RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Codec Wiki Atom Feed">
+
+
+
+
+
+<link rel="preload" href="static/fonts/Inter.var.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="static/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="static/fonts/Monaspace-Neon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<script src="https://analytics.x266.mov/js/script.js" defer="defer" data-domain="wiki.x266.mov"></script><link rel="stylesheet" href="/assets/css/styles.a330851a.css">
+<script src="/assets/js/runtime~main.77334345.js" defer="defer"></script>
+<script src="/assets/js/main.27988fa5.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/favicon.svg" alt="AV1 &quot;Stonks&quot; logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/favicon.svg" alt="AV1 &quot;Stonks&quot; logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Codec Wiki</b></a><a class="navbar__item navbar__link" href="/docs/introduction/prologue">Get Started</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://discord.gg/bbQD5MjDr3" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-discord-link" aria-label="Discord"></a><a href="https://github.com/av1-community-contributors/codec-wiki/tree/main" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z"><input placeholder="Search" aria-label="Search" class="navbar__search-input"><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">Recent posts</div><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a aria-current="page" class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href="/blog/svt-av1-deep-dive">SVT-AV1 Animation Deep Dive</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/embedding-the-un-embeddable">Embedding the Un-Embeddable</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/av1-encoding-for-dummies">AV1 Encoding for Dummies</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/site-optimization">Reducing Image Load Online</a></li></ul></nav></aside><main class="col col--7" itemscope="" itemtype="https://schema.org/Blog"><article itemprop="blogPost" itemscope="" itemtype="https://schema.org/BlogPosting"><meta itemprop="description" content="With the recent release of SVT-AV1 1.8.0, how does it stack up for encoding animation?"><link itemprop="image" href="https://wiki.x266.mov/img/discord-embed-blog-image.webp"><header><h1 class="title_f1Hy" itemprop="headline">SVT-AV1 Animation Deep Dive</h1><div class="container_mt6G margin-vert--md"><time datetime="2023-12-30T00:00:00.000Z" itemprop="datePublished">December 30, 2023</time> · <!-- -->15 min read</div><div class="margin-top--md margin-bottom--sm row"><div class="col col--6 authorCol_Hf19"><div class="avatar margin-bottom--sm"><a href="https://github.com/trixoniisama/" target="_blank" rel="noopener noreferrer" class="avatar__photo-link"><img class="avatar__photo" src="https://avatars.githubusercontent.com/u/93526043" alt="Trix" itemprop="image"></a><div class="avatar__intro" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><div class="avatar__name"><a href="https://github.com/trixoniisama/" target="_blank" rel="noopener noreferrer" itemprop="url"><span itemprop="name">Trix</span></a></div><small class="avatar__subtitle" itemprop="description">Encoder</small></div></div></div></div></header><div id="__blog-post-container" class="markdown" itemprop="articleBody"><p>This blog post is based on a series of visual quality benchmarks with SSIMULACRA2 and speed benchmarks of SVT-AV1 1.8.0 on a corpus of animated clips.</p>
+<p>The resources available will range from <em><strong>graphs</strong></em> to <strong>image comparisons</strong>. The <em><strong>former</strong></em> has the advantage of being easily understandable, showcasing pure efficiency comparisons between encoder parameters using metrics as the reference, while the <strong>latter</strong> are image samples from the encoded files during the tests that enable you to check quality for yourself and add another layer of subjective interpretation to these comparisons.</p>
+<p>The testing methodology involves using relatively short video samples from a wide range of modern anime genre, which have been either losslessly encoded with <code>x264 --qp 0</code> for ease of use or losslessly cut from their source. These lossless files are then pipped into SvtAv1EncApp <em>directly</em>, meaning we are measuring the performance of a single encoder instance and not leveraging chunked encoding like any actual final AV1 encoding pipeline should. Once an encode is done, SSIMULACRA2 scores are calculated using the <a href="https://github.com/dnjulek/vapoursynth-ssimulacra2" target="_blank" rel="noopener noreferrer">Zig implementation</a> and lots of useful data are aggregated to make the graphs for this benchmark, including encoding time, encode size (bitrate), and SSIMULACRA2 scores. Bits per pixel scores (BPP) are calculated so that the <code>Metric / BPP</code> graphs may represent the closest we have to real efficiency.</p>
+<p>The clips used in this test were acquired legally. The Codec Wiki and its contributors do not endorse media piracy.</p>
+<p>SvtAv1EncApp was compiled directly from the <a href="https://gitlab.com/AOMediaCodec/SVT-AV1/-/releases/v1.8.0" target="_blank" rel="noopener noreferrer">v1.8.0 source code</a> using the provided <code>Build/linux/build.sh</code> script, Clang 16.0.6, and Profile-Guided Optimization (PGO). The testing machine is comprised of an i7 8750H running at 35W with 16GB of 2666MHz DDR4 RAM in Arch Linux with kernel 6.6.6 and the performance governor enabled. All encodes have been made in the same session without rebooting.</p>
+<p>This testing was conducted within the <a href="https://discord.gg/83dRFDFDp7" target="_blank" rel="noopener noreferrer">AV1 Weeb Edition</a> Discord server, which is focused on encoding animated content in AV1.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="samples">Samples<a href="#samples" class="hash-link" aria-label="Direct link to Samples" title="Direct link to Samples">​</a></h2>
+<p>The samples are as follows:</p>
+<ul>
+<li>11s <code>Blame!</code> clip which sports 3DCG action with lots of grain, effects and high-contrast elements. Most complex source of this set.</li>
+<li>13s <code>Blue Lock</code> clip which sports rapid camera movements and rotations + high-contrast elements.</li>
+<li>15s <code>Fate/Grand Order: Babylonia</code> relatively slow-paced clip with lots of effects still. Easiest source of this set but easy sources still give interesting data.</li>
+<li>22s <code>Jigokuraku (Hell&#x27;s Paradise)</code> flashback clip with huge static grain in a very dark scenery and some action.</li>
+<li>14s <code>Kaguya-sama</code> opening sequence with lots of effects and fast change of scenery.
+The resolution of every clip is 1080p, except for the first one which is 1920x804.</li>
+</ul>
+<blockquote>
+<p><strong>All clips have been encoded in a wide quality range, from <code>--crf 8</code> to <code>--crf 43</code>.</strong></p>
+</blockquote>
+<p>Without further ado, let&#x27;s start with the first comparisons!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="presets-comparisons--1---13">Presets comparisons (-1 -&gt; 13)<a href="#presets-comparisons--1---13" class="hash-link" aria-label="Direct link to Presets comparisons (-1 -&gt; 13)" title="Direct link to Presets comparisons (-1 -&gt; 13)">​</a></h2>
+<p><strong>In the following graphs, you may find comparisons between all SVT-AV1 presets, ranging from the slowest <code>--preset -1</code> to the fastest <code>--preset 13</code>.</strong>
+<em>Please remember that these two extreme presets are meant for development purposes and as such should not be used in normal encoding conditions. You will soon understand why.</em></p>
+<p><code>--preset X</code> is the only parameter used here, in conjunction with the CRF values. That means everything else is default. The defaults worth mentioning are:</p>
+<ul>
+<li>
+<p><code>--tune 1</code>: tune PSNR</p>
+</li>
+<li>
+<p><code>--aq-mode 2</code>: variance deltaq</p>
+</li>
+<li>
+<p><code>--enable-qm 0</code>: quantisation matrices disabled</p>
+</li>
+<li>
+<p><code>--irefresh-type 2</code>: closed GOP</p>
+</li>
+<li>
+<p><code>--enable-tf 1</code>: temporal filtering enabled
+And more, like CDEF and restoration enabled, overlays and film-grain disabled...</p>
+</li>
+<li>
+<p>First of all, here are the efficiency graphs:</p>
+</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p>This could be too much information.</p>
+<ul>
+<li>Now the same graphs but focusing on the &quot;high quality&quot; range (CRF8 -&gt; 23):</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Same again but without presets 9 to 13 for better clarity:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Now for the &quot;low quality&quot; range (CRF28 -&gt; 43):</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Same but without presets 9 to 13 for better clarity:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li><strong>Let&#x27;s now see speed comparisons between all presets:</strong></li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed_overall.webp" alt="speed_overall" class="img_ev3q"></p>
+<p>As we can see, preset -1 is so abysmally slow it makes the graph unusable
+(BTW, notice the <code>1e6</code> in the lower right corner, it is obviously not encoding at 1 to 4 ms, but at 1 000 000 to 4 000 000 ms)</p>
+<ul>
+<li>Here is what it looks like with a logarithmic scale:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li><strong>Now the speed graphs but with SSIMU2 on the y-axis instead of BPP: (logarithmic scale)</strong></li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Here are speeds graphs for preset 1 to 6 with a linear scale:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p>One interpretation we can have is that <strong>presets 2 to 4</strong> have actually pretty close scores (pretty much the same at HQ, 2 points at max in the low quality range) but <strong>preset 2</strong> is <strong>2x slower than preset 4</strong>. The quality gap between <strong>preset 2</strong> and <strong>preset 1</strong> is even narrower but the speed penalty is also ~2x.</p>
+<p>That makes it hard to recommend <strong>preset 1</strong>, while <strong>preset 3</strong> is in a strange middle ground between <strong>2</strong> and <strong>4</strong> where it makes little sense to choose it over those two: it&#x27;s better to choose <strong>preset 2</strong> for the higher efficiency at 1.5x slower speeds, or <strong>preset 4</strong> for the 1.33 to 1.5x higher speeds. At least the option exists.</p>
+<p>A similar observation can be made between <strong>preset 5</strong> and <strong>6</strong>. They can be so close in scores in many samples (especially at HQ) while also being close in speeds that <strong>preset 5</strong> becomes rather obsolete most of the time.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tldr">TLDR<a href="#tldr" class="hash-link" aria-label="Direct link to TLDR" title="Direct link to TLDR">​</a></h3>
+<p><strong>Clear quality gains can be observed as we decrease presets, until the very last one, however the effectiveness of dropping presets becomes less and less impressive the higher in quality you go.</strong></p>
+<ul>
+<li>
+<p>For instance, in worst-case scenario, we observe that (for the CRF23 to CRF8 range), <strong><strong>preset 4</strong></strong> only loses at maximum <strong>2</strong> SSIMU2 <strong>points</strong> compared to <strong><strong>preset -1</strong></strong> while being 50-60x faster. Though to be fair, the speed loss from <strong><strong>preset 4</strong></strong> to <strong><strong>preset 0</strong></strong> is &quot;only&quot; 5-10x for a maximum SSIMU2 difference close to <strong>1.5 point</strong>.</p>
+</li>
+<li>
+<p>From CRF43 to CRF28, the difference between <strong><strong>preset 4</strong></strong> and <strong><strong>preset -1</strong></strong> can be as much as <strong>5</strong> SSIMU2 <strong>points</strong>, so lower presets become more attractive.</p>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tunes-comparisons">Tunes comparisons<a href="#tunes-comparisons" class="hash-link" aria-label="Direct link to Tunes comparisons" title="Direct link to Tunes comparisons">​</a></h2>
+<p><strong>In the following graphs, you may find comparisons between SVT-AV1 tunes, from the default <code>--tune 1</code> (PSNR) to the other two tunes:  <code>--tune 0</code> (VQ) and <code>--tune 2</code> (SSIM).</strong></p>
+<p>Except for the tunes, <code>--preset 4</code> is set due to its good balance of quality and speed, in conjunction with the CRF values. That means everything else is default. The defaults have been mentioned earlier above.</p>
+<ul>
+<li><strong>Let&#x27;s compare the efficiency of every tunes:</strong></li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Now let&#x27;s focus on the &quot;high quality&quot; range (CRF8 -&gt; 23):</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>And the &quot;low quality&quot; range (CRF28 -&gt; 43):</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>And here is the speed difference:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Graphs comparing the tunes individually between each others will be made available soon.</li>
+<li>The image comparisons will make the conclusion quite more nuanced, stay tuned (heheh) for that.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tldr-1">TLDR<a href="#tldr-1" class="hash-link" aria-label="Direct link to TLDR" title="Direct link to TLDR">​</a></h3>
+<p><strong>SSIMU2 favors <strong>tune 1 and 2</strong> above <strong>tune 0</strong>. At high quality, <strong>tune 1 and 2</strong> are matched, while at low quality <strong>tune 2</strong> takes the edge. <strong>Tune 0</strong> is sometimes a match for the other two on certain clips and other times fare pretty badly.</strong>
+<strong>For some reason, <strong>tune 0</strong> is quite a bit faster now, compared to 1 and 2 which are basically the same.</strong></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-comparisons">Parameters comparisons<a href="#parameters-comparisons" class="hash-link" aria-label="Direct link to Parameters comparisons" title="Direct link to Parameters comparisons">​</a></h2>
+<p><strong>In the following graphs, you may find comparisons between many SVT-AV1 parameters.</strong>
+<em>Additional graphs focusing on the high and low qualities will be made available later down the line</em></p>
+<p><code>--preset 4</code> is used here due to its good balance of quality and speed, in conjunction with the CRF values. That means everything else is default. The defaults have been mentioned earlier above.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--tile-rows-1---tile-columns-1-vs-default---tile-rows-0---tile-columns-0"><code>--tile-rows 1 --tile-columns 1</code> vs default <code>--tile-rows 0 --tile-columns 0</code><a href="#--tile-rows-1---tile-columns-1-vs-default---tile-rows-0---tile-columns-0" class="hash-link" aria-label="Direct link to --tile-rows-1---tile-columns-1-vs-default---tile-rows-0---tile-columns-0" title="Direct link to --tile-rows-1---tile-columns-1-vs-default---tile-rows-0---tile-columns-0">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>tiles</strong> here are both slightly harmful and slower.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--aq-mode-0-vs-default---aq-mode-2"><code>--aq-mode 0</code> vs default <code>--aq-mode 2</code><a href="#--aq-mode-0-vs-default---aq-mode-2" class="hash-link" aria-label="Direct link to --aq-mode-0-vs-default---aq-mode-2" title="Direct link to --aq-mode-0-vs-default---aq-mode-2">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Except for the Jigokuraku clip, <strong>aq-mode 0</strong> is harmful in the eyes of SSIMU2, while being slower at low CRF levels, and sometimes a match or faster at high CRF levels.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--aq-mode-1-vs-default---aq-mode-2"><code>--aq-mode 1</code> vs default <code>--aq-mode 2</code><a href="#--aq-mode-1-vs-default---aq-mode-2" class="hash-link" aria-label="Direct link to --aq-mode-1-vs-default---aq-mode-2" title="Direct link to --aq-mode-1-vs-default---aq-mode-2">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>aq-mode 1</strong> fares closer to <strong>aq-mode 2</strong> than <strong>aq-mode 0</strong> did, both in quality and speed, but is still overall inferior according to SSIMU2</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-cdef-0-vs-default---enable-cdef-1"><code>--enable-cdef 0</code> vs default <code>--enable-cdef 1</code><a href="#--enable-cdef-0-vs-default---enable-cdef-1" class="hash-link" aria-label="Direct link to --enable-cdef-0-vs-default---enable-cdef-1" title="Direct link to --enable-cdef-0-vs-default---enable-cdef-1">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>According to SSIMU2, disabling CDEF barely impact efficiency. But as its a pretty demanding tool, there&#x27;s a slight speed benefit of having it disabled too. I advise you to take these results with a grain of salt until the image comparisons, because in anime particularly, CDEF <em>can</em> be beneficial for the line-art.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-dg-0-vs-default---enable-dg-1"><code>--enable-dg 0</code> vs default <code>--enable-dg 1</code><a href="#--enable-dg-0-vs-default---enable-dg-1" class="hash-link" aria-label="Direct link to --enable-dg-0-vs-default---enable-dg-1" title="Direct link to --enable-dg-0-vs-default---enable-dg-1">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>Dynamic GoP control</strong> yields bit-perfect results in all clips except for Blue Lock and Jigokuraku. There is no speed benefit to disabling it except in clips where it is in use. Let&#x27;s not jump to conclusions too easily, the image comparisons will tell if it&#x27;s &quot;safe&quot; to keep the setting disabled at all times or not.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-dlf-0-vs-default---enable-dlf-1"><code>--enable-dlf 0</code> vs default <code>--enable-dlf 1</code><a href="#--enable-dlf-0-vs-default---enable-dlf-1" class="hash-link" aria-label="Direct link to --enable-dlf-0-vs-default---enable-dlf-1" title="Direct link to --enable-dlf-0-vs-default---enable-dlf-1">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>Deblocking loop filter</strong> can be slightly beneficial in some scenarios. In reverse, it is never harmful, so it is recommended to keep it default.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--fast-decode-1-vs-default---fast-decode-0"><code>--fast-decode 1</code> vs default <code>--fast-decode 0</code><a href="#--fast-decode-1-vs-default---fast-decode-0" class="hash-link" aria-label="Direct link to --fast-decode-1-vs-default---fast-decode-0" title="Direct link to --fast-decode-1-vs-default---fast-decode-0">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>fast-decode 1</strong> is pretty harmful in the Fate clip and slightly harmful in the rest. There is a speed benefit of enabling it though.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--irefresh-type-1-vs-default---irefresh-type-2"><code>--irefresh-type 1</code> vs default <code>--irefresh-type 2</code><a href="#--irefresh-type-1-vs-default---irefresh-type-2" class="hash-link" aria-label="Direct link to --irefresh-type-1-vs-default---irefresh-type-2" title="Direct link to --irefresh-type-1-vs-default---irefresh-type-2">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Finally something interesting to analyse!</p>
+</blockquote>
+<ul>
+<li><strong>irefresh-type 1</strong> is either a match or beneficial compared to <strong>irefresh-type 2</strong> at high CRF levels.</li>
+<li><strong>irefresh-type 1</strong> either wins or lose to <strong>irefresh-type 2</strong> at low CRF levels depending on the clip. As such, it is NOT recommended to blindly set <strong>irefresh-type</strong> to <strong>1</strong> at &quot;high quality&quot; as it might be harmful depending on the content.</li>
+<li><strong>irefresh-type 1</strong> is always slower compared to <strong>irefresh-type 2</strong>, so I might argue it is more safe to leave <strong>irefresh-type</strong> default at &quot;high quality&quot; than not.</li>
+<li>According to the content type of those clips, it appears that <strong>irefresh-type 1</strong> may benefit <em>extremely grainy</em> content while default <strong>irefresh-type 2</strong> is better suited for <em>cleanish</em> content. This needs to be confirmed with <em>moar</em> testing though.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--lookahead-0-vs-default---lookahead--1-auto"><code>--lookahead 0</code> vs default <code>--lookahead -1</code> (auto)<a href="#--lookahead-0-vs-default---lookahead--1-auto" class="hash-link" aria-label="Direct link to --lookahead-0-vs-default---lookahead--1-auto" title="Direct link to --lookahead-0-vs-default---lookahead--1-auto">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--lookahead-60-vs-default---lookahead--1-auto"><code>--lookahead 60</code> vs default <code>--lookahead -1</code> (auto)<a href="#--lookahead-60-vs-default---lookahead--1-auto" class="hash-link" aria-label="Direct link to --lookahead-60-vs-default---lookahead--1-auto" title="Direct link to --lookahead-60-vs-default---lookahead--1-auto">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--lookahead-120-max-vs-default---lookahead--1-auto"><code>--lookahead 120</code> (max) vs default <code>--lookahead -1</code> (auto)<a href="#--lookahead-120-max-vs-default---lookahead--1-auto" class="hash-link" aria-label="Direct link to --lookahead-120-max-vs-default---lookahead--1-auto" title="Direct link to --lookahead-120-max-vs-default---lookahead--1-auto">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>lookahead</strong> seems to behave strangely when set...</p>
+</blockquote>
+<ul>
+<li><strong>lookahead 0</strong> shifts quality around a lot and it is difficult to draw conclusions but there&#x27;s a clear speed drawback of disabling lookahead.</li>
+<li><strong>lookahead 60</strong> is perfectly bit-perfect to every clips EXCEPT for some damn reason in Jigokuraku at CRF23</li>
+<li><strong>lookahead 120</strong> is somehow also bit-perfect, but this time in every clips and every CRF levels. Both 60 and 120 don&#x27;t see much speed differences.</li>
+</ul>
+<blockquote>
+<p>Soooo.... this behavior is so odd I don&#x27;t advise to set any lookahead value. Let the encoder decide.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-overlays-1-vs-default---enable-overlays-0"><code>--enable-overlays 1</code> vs default <code>--enable-overlays 0</code><a href="#--enable-overlays-1-vs-default---enable-overlays-0" class="hash-link" aria-label="Direct link to --enable-overlays-1-vs-default---enable-overlays-0" title="Direct link to --enable-overlays-1-vs-default---enable-overlays-0">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p><strong>overlays</strong> do not seem to either improve efficiency or performance.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-qm-1-vs-default---enable-qm-0"><code>--enable-qm 1</code> vs default <code>--enable-qm 0</code><a href="#--enable-qm-1-vs-default---enable-qm-0" class="hash-link" aria-label="Direct link to --enable-qm-1-vs-default---enable-qm-0" title="Direct link to --enable-qm-1-vs-default---enable-qm-0">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Enabling <strong>quantization matrices</strong> alone increase efficiency at &quot;high quality&quot; with no real speed impact.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-qm-1---qm-min-0-vs---enable-qm-1"><code>--enable-qm 1 --qm-min 0</code> vs <code>--enable-qm 1</code><a href="#--enable-qm-1---qm-min-0-vs---enable-qm-1" class="hash-link" aria-label="Direct link to --enable-qm-1---qm-min-0-vs---enable-qm-1" title="Direct link to --enable-qm-1---qm-min-0-vs---enable-qm-1">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Setting <strong>qm-min</strong> to <strong>0</strong> on top of enabling <strong>quantization matrices</strong> can be beneficial in some clips at no added compute time.</p>
+</blockquote>
+<p>I will re-tests many QMs ranges in the future, but I doubt it changed much from v1.7.0 where 0 was the most appropriate choice for most content.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-restoration-0-vs-default---enable-restoration-1"><code>--enable-restoration 0</code> vs default <code>--enable-restoration 1</code><a href="#--enable-restoration-0-vs-default---enable-restoration-1" class="hash-link" aria-label="Direct link to --enable-restoration-0-vs-default---enable-restoration-1" title="Direct link to --enable-restoration-0-vs-default---enable-restoration-1">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Even though the efficiencies are very similar, nothing is bit-perfect here. So according to SSIMU2, the <strong>loop restoration filter</strong> isn&#x27;t necessarily useful. However, just like CDEF, it&#x27;s a pretty demanding tool, so disabling it yields some performance improvements. Let&#x27;s take these with a grain of salt until the image comparisons.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--scm-0-vs-default---scm-2-content-adaptive"><code>--scm 0</code> vs default <code>--scm 2</code> (content adaptive)<a href="#--scm-0-vs-default---scm-2-content-adaptive" class="hash-link" aria-label="Direct link to --scm-0-vs-default---scm-2-content-adaptive" title="Direct link to --scm-0-vs-default---scm-2-content-adaptive">​</a></h3>
+<p>In all the clips, the results are bit-perfect and there is no notable performance difference.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--scm-1-vs-default---scm-2-content-adaptive"><code>--scm 1</code> vs default <code>--scm 2</code> (content adaptive)<a href="#--scm-1-vs-default---scm-2-content-adaptive" class="hash-link" aria-label="Direct link to --scm-1-vs-default---scm-2-content-adaptive" title="Direct link to --scm-1-vs-default---scm-2-content-adaptive">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_blame.webp" alt="scm1-efficiency-1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_bluelock.webp" alt="scm1-efficiency-2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_fate.webp" alt="scm1-efficiency-3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_jigokuraku.webp" alt="scm1-efficiency-4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_kaguya.webp" alt="scm1-efficiency-5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Interestingly enough, <strong>screen content tools</strong> seem to improve efficiency according to SSIMU2, at the cost of a huge performance regression. After the image comparisons are published, I will conduct additional testing on this.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-tf-0-vs-default---enable-tf-1"><code>--enable-tf 0</code> vs default <code>--enable-tf 1</code><a href="#--enable-tf-0-vs-default---enable-tf-1" class="hash-link" aria-label="Direct link to --enable-tf-0-vs-default---enable-tf-1" title="Direct link to --enable-tf-0-vs-default---enable-tf-1">​</a></h3>
+<ul>
+<li>Efficiency graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<ul>
+<li>Speed graphs:</li>
+</ul>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<blockquote>
+<p>Disabled <strong>temporal filtering</strong> <em>can</em> sometimes improve efficiency slightly at &quot;high quality&quot;, however it is very much clip dependent. It also improves performance slightly. The image comparisons will give another perspective to these results.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="--enable-tpl-la-0-vs-default---enable-tpl-la-1"><code>--enable-tpl-la 0</code> vs default <code>--enable-tpl-la 1</code><a href="#--enable-tpl-la-0-vs-default---enable-tpl-la-1" class="hash-link" aria-label="Direct link to --enable-tpl-la-0-vs-default---enable-tpl-la-1" title="Direct link to --enable-tpl-la-0-vs-default---enable-tpl-la-1">​</a></h3>
+<p>In all the clips, the results are bit-perfect and there is no notable performance difference.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="superres"><code>superres</code>:<a href="#superres" class="hash-link" aria-label="Direct link to superres" title="Direct link to superres">​</a></h3>
+<p>Kinda lazy to make, share and comment so much graphs for something that can be told in two lines...</p>
+<p>All superres variants are freaking useless as they:</p>
+<ul>
+<li>do not improve efficiency</li>
+<li>increase encoding speeds</li>
+<li>increase decoding speeds when either bitrate or quality normalized.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="early-tldr-on-parameters-results"><strong>Early TLDR on parameters results:</strong><a href="#early-tldr-on-parameters-results" class="hash-link" aria-label="Direct link to early-tldr-on-parameters-results" title="Direct link to early-tldr-on-parameters-results">​</a></h3>
+<p><em><strong>For a previous test with SVT-AV1 1.7.0 I did all parameters tests with <code>--preset 6 --tune 2</code>, now I did them with <code>--preset 4 --tune 1</code>. Mostly everything tested on v1.7.0 still stands today, but now we have more valuable data. Images comparisons are still needed to give more context to some results, so the conclusion presented here remains early as they are 100% based on SSIMU2 results and will require more analysis down the line.</strong></em></p>
+<p><strong>Here is a quick run down of how each parameter affect encoding:</strong></p>
+<ul>
+<li><code>--tile-rows --tile-columns</code> should never be used (except for decreasing decode complexity)</li>
+<li><code>--aq-mode 2</code> is the most efficient / fastest</li>
+<li><code>--enable-cdef 0</code> <em>might</em> improve performance at almost no efficiency loss <em>(needs more thorough testing)</em></li>
+<li><code>--enable-dg</code> and <code>--enable-dlf</code> barely do anything</li>
+<li><code>--fast-decode 1</code> decreases efficiency, improves encoding times, and the decoding gains still need to be determined.</li>
+<li><code>--irefresh-type</code> should be kept default at high CRF values and for cleanish content at low CRF values, but can be set to 1 at low CRF values for extremely grainy content</li>
+<li><code>--lookahead</code> should be kept default</li>
+<li><code>--enable-overlays 1</code> does not improve efficiency, slight speed regression as well</li>
+<li><code>--enable-qm 1 --qm-min 0</code> should be set for increased efficiency especially at low CRF values at no perf cost</li>
+<li><code>--enable-restoration</code> barely does anything but disabling yields better performance <em>(needs visual confirmation)</em></li>
+<li><code>--scm 1</code> screen content tools can improve efficiency with a big performance trade-off <em>(needs more thorough testing)</em></li>
+<li><code>--enable-tf 0</code> is a mixed bag efficiency wise but improves performance</li>
+<li><code>superres &amp; resize</code> please don&#x27;t.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h2>
+<p>The extensive benchmarking reveals that obviously the slower presets generally provide better efficiency, with diminishing returns past preset 1. However, preset 4 provides a good balance of quality and speed for most use cases.</p>
+<p>The default settings tend to provide good results, but some tweaks like enabling quantization matrices can further optimize efficiency. Parameters like tile encoding and super resolution modes are not beneficial. Overall, SVT-AV1 continues to be a competitive option for encoding animation in AV1, with its speed being a notable strengths.</p>
+<p>Further testing with more content samples would help solidify these findings. The image comparisons will also provide additional subjective evaluation to complement the objective metrics used here, and we can discover the potential usefulness of Tune 0 that may betray what the metrics suggest. Overall, this comprehensive deep dive should give encoders a helpful starting point for choosing settings when encoding animation with the latest SVT-AV1 1.8.0. Thanks for reading!</p>
+</div><footer class="row docusaurus-mt-lg blogPostFooterDetailsFull_mRVl"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/video">video</a></li><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/compression">compression</a></li></ul></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--next" href="/blog/embedding-the-un-embeddable"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">Embedding the Un-Embeddable</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#samples" class="table-of-contents__link toc-highlight">Samples</a></li><li><a href="#presets-comparisons--1---13" class="table-of-contents__link toc-highlight">Presets comparisons (-1 -&gt; 13)</a><ul><li><a href="#tldr" class="table-of-contents__link toc-highlight">TLDR</a></li></ul></li><li><a href="#tunes-comparisons" class="table-of-contents__link toc-highlight">Tunes comparisons</a><ul><li><a href="#tldr-1" class="table-of-contents__link toc-highlight">TLDR</a></li></ul></li><li><a href="#parameters-comparisons" class="table-of-contents__link toc-highlight">Parameters comparisons</a><ul><li><a href="#--tile-rows-1---tile-columns-1-vs-default---tile-rows-0---tile-columns-0" class="table-of-contents__link toc-highlight"><code>--tile-rows 1 --tile-columns 1</code> vs default <code>--tile-rows 0 --tile-columns 0</code></a></li><li><a href="#--aq-mode-0-vs-default---aq-mode-2" class="table-of-contents__link toc-highlight"><code>--aq-mode 0</code> vs default <code>--aq-mode 2</code></a></li><li><a href="#--aq-mode-1-vs-default---aq-mode-2" class="table-of-contents__link toc-highlight"><code>--aq-mode 1</code> vs default <code>--aq-mode 2</code></a></li><li><a href="#--enable-cdef-0-vs-default---enable-cdef-1" class="table-of-contents__link toc-highlight"><code>--enable-cdef 0</code> vs default <code>--enable-cdef 1</code></a></li><li><a href="#--enable-dg-0-vs-default---enable-dg-1" class="table-of-contents__link toc-highlight"><code>--enable-dg 0</code> vs default <code>--enable-dg 1</code></a></li><li><a href="#--enable-dlf-0-vs-default---enable-dlf-1" class="table-of-contents__link toc-highlight"><code>--enable-dlf 0</code> vs default <code>--enable-dlf 1</code></a></li><li><a href="#--fast-decode-1-vs-default---fast-decode-0" class="table-of-contents__link toc-highlight"><code>--fast-decode 1</code> vs default <code>--fast-decode 0</code></a></li><li><a href="#--irefresh-type-1-vs-default---irefresh-type-2" class="table-of-contents__link toc-highlight"><code>--irefresh-type 1</code> vs default <code>--irefresh-type 2</code></a></li><li><a href="#--lookahead-0-vs-default---lookahead--1-auto" class="table-of-contents__link toc-highlight"><code>--lookahead 0</code> vs default <code>--lookahead -1</code> (auto)</a></li><li><a href="#--lookahead-60-vs-default---lookahead--1-auto" class="table-of-contents__link toc-highlight"><code>--lookahead 60</code> vs default <code>--lookahead -1</code> (auto)</a></li><li><a href="#--lookahead-120-max-vs-default---lookahead--1-auto" class="table-of-contents__link toc-highlight"><code>--lookahead 120</code> (max) vs default <code>--lookahead -1</code> (auto)</a></li><li><a href="#--enable-overlays-1-vs-default---enable-overlays-0" class="table-of-contents__link toc-highlight"><code>--enable-overlays 1</code> vs default <code>--enable-overlays 0</code></a></li><li><a href="#--enable-qm-1-vs-default---enable-qm-0" class="table-of-contents__link toc-highlight"><code>--enable-qm 1</code> vs default <code>--enable-qm 0</code></a></li><li><a href="#--enable-qm-1---qm-min-0-vs---enable-qm-1" class="table-of-contents__link toc-highlight"><code>--enable-qm 1 --qm-min 0</code> vs <code>--enable-qm 1</code></a></li><li><a href="#--enable-restoration-0-vs-default---enable-restoration-1" class="table-of-contents__link toc-highlight"><code>--enable-restoration 0</code> vs default <code>--enable-restoration 1</code></a></li><li><a href="#--scm-0-vs-default---scm-2-content-adaptive" class="table-of-contents__link toc-highlight"><code>--scm 0</code> vs default <code>--scm 2</code> (content adaptive)</a></li><li><a href="#--scm-1-vs-default---scm-2-content-adaptive" class="table-of-contents__link toc-highlight"><code>--scm 1</code> vs default <code>--scm 2</code> (content adaptive)</a></li><li><a href="#--enable-tf-0-vs-default---enable-tf-1" class="table-of-contents__link toc-highlight"><code>--enable-tf 0</code> vs default <code>--enable-tf 1</code></a></li><li><a href="#--enable-tpl-la-0-vs-default---enable-tpl-la-1" class="table-of-contents__link toc-highlight"><code>--enable-tpl-la 0</code> vs default <code>--enable-tpl-la 1</code></a></li><li><a href="#superres" class="table-of-contents__link toc-highlight"><code>superres</code>:</a></li><li><a href="#early-tldr-on-parameters-results" class="table-of-contents__link toc-highlight"><strong>Early TLDR on parameters results:</strong></a></li></ul></li><li><a href="#conclusion" class="table-of-contents__link toc-highlight">Conclusion</a></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Getting Started</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/introduction/prologue">Prologue</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/video/AV1">AV1</a></li></ul></div><div class="col footer__col"><div class="footer__title">Filtering</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/filtering/Vapoursynth">Vapoursynth</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/filtering/deband">Deband</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/filtering/denoise">Denoise</a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/av1-community-contributors/codec-wiki/tree/main" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contribute<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a class="footer__link-item" href="/docs/terms-of-use">Terms of Use</a></li><li class="footer__item"><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" class="footer__link-item">Privacy Policy<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2023 Gianni Rosato & contributors. Content licensed under CC BY-SA 4.0. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
