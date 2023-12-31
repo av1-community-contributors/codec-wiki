@@ -1,5 +1,5 @@
 ---
-title: "SVT-AV1 Animation Deep Dive"
+title: "Encoding Animation with SVT-AV1: A Deep Dive"
 description: "With the recent release of SVT-AV1 1.8.0, how does it stack up for encoding animation?"
 slug: svt-av1-deep-dive
 authors:
@@ -615,27 +615,27 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_blame.webp)
+![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_blame.webp)
 
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_bluelock.webp)
+![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_bluelock.webp)
 
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_fate.webp)
+![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_fate.webp)
 
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_jigokuraku.webp)
+![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_jigokuraku.webp)
 
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_kaguya.webp)
+![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_kaguya.webp)
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_blame.webp)
+![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_blame.webp)
 
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_bluelock.webp)
+![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_bluelock.webp)
 
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_fate.webp)
+![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_fate.webp)
 
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_jigokuraku.webp)
+![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_jigokuraku.webp)
 
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_kaguya.webp)
+![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_kaguya.webp)
 
 > Setting __qm-min__ to __0__ on top of enabling __quantization matrices__ can be beneficial in some clips at no added compute time.
 
