@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcodec_wiki=self.webpackChunkcodec_wiki||[]).push([[1863],{6222:e=>{e.exports=JSON.parse('{"label":"benchmarks","permalink":"/blog/tags/benchmarks","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

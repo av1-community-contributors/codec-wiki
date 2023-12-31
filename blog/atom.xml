@@ -576,6 +576,7 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
         </author>
         <category label="video" term="video"/>
         <category label="compression" term="compression"/>
+        <category label="benchmarks" term="benchmarks"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Embedding the Un-Embeddable]]></title>

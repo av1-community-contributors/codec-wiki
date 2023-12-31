@@ -573,6 +573,7 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 ]]></content:encoded>
             <category>video</category>
             <category>compression</category>
+            <category>benchmarks</category>
         </item>
         <item>
             <title><![CDATA[Embedding the Un-Embeddable]]></title>
