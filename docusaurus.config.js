@@ -178,7 +178,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Gianni Rosato & contributors. Content licensed under CC BY-SA 4.0. Built with Docusaurus.`,
+        copyright: `Copyright © 2024 Gianni Rosato & contributors. Content licensed under CC BY-SA 4.0. Built with Docusaurus.`,
       },
      zoom: {
       config: {
