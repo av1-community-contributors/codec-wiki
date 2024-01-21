@@ -105,6 +105,22 @@ ffmpeg -i "input.flac" -c:a libopus -b:a 128K "output.ogg"
 
 If you'd like to learn more about opusenc & its recommended default behavior, read this article on [Opus Recommended Settings](https://wiki.xiph.org/Opus_Recommended_Settings#Bandwidth_Transition_Thresholds).
 
+::::info Existing bug in ffmpeg
+Due to a bug in ffmpeg [(#5718)](https://trac.ffmpeg.org/ticket/5718), ffmpeg won't automatically remap `5.1(side)` to `5.1` when using libopus.  
+To remap the channel layout explicitly, try this:
+```bash
+ffmpeg -i "input.flac" -c:a libopus -af aformat=channel_layouts=5.1 "output.ogg"
+```
+
+:::tip
+You can handle arbitrary audio stream mappings with this:
+```bash
+-af aformat=channel_layouts=7.1|5.1|stereo -mapping_family 1
+```
+:::
+
+::::
+
 ### FFopus
 
 FFopus is an experimental native opus encoder from FFmpeg. It is not widely regarded as providing any decent uplift in coding efficiency compared to libopus, and is usually considered worse; its only merit is being able to handle 5.1(side) streams while libopus in FFmpeg cannot. It only implements the CELT part of the Opus codec.
