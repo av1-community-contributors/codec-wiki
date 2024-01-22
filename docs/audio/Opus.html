@@ -14,7 +14,7 @@
 <link rel="preload" href="static/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="static/fonts/Monaspace-Neon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <script src="https://analytics.x266.mov/js/script.js" defer="defer" data-domain="wiki.x266.mov"></script><link rel="stylesheet" href="/assets/css/styles.a330851a.css">
-<script src="/assets/js/runtime~main.ed5c030b.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.444d7221.js" defer="defer"></script>
 <script src="/assets/js/main.a39bee58.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -25,7 +25,7 @@
 <p>Opus is described on <a href="https://opus-codec.org/" target="_blank" rel="noopener noreferrer">opus-codec.org</a> as a &quot;totally open, royalty-free, highly versatile audio codec. Opus is unmatched for interactive speech and music transmission over the Internet, but is also intended for storage and streaming applications. It is standardized by the Internet Engineering Task Force (IETF) as <a href="https://datatracker.ietf.org/doc/html/rfc6716" target="_blank" rel="noopener noreferrer">RFC 6716</a> which incorporated technology from Skype’s SILK codec and Xiph.Org’s CELT codec.&quot;</p>
 <p>Opus supports the following features:</p>
 <ul>
-<li>Bitrates from 6 kb/s to 510 kb/s</li>
+<li>Bitrates from 6 kb/s to 510 kb/s (with a maximum of 255 kb/s per channel on non stereo layouts)</li>
 <li>Sampling rates from 8 kHz (narrowband) to 48 kHz (fullband)</li>
 <li>Frame sizes from 2.5 ms to 60 ms</li>
 <li>Support for both constant bitrate (CBR) and variable bitrate (VBR)</li>
@@ -37,7 +37,7 @@
 <li>Good loss robustness and packet loss concealment (PLC)</li>
 <li>Floating point and fixed-point implementation</li>
 </ul>
-<p><em>via opus-codec.org</em>.</p>
+<p><em>via opus-codec.org and wiki.hydrogenaud.io</em>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="format-breakdown">Format Breakdown<a href="#format-breakdown" class="hash-link" aria-label="Direct link to Format Breakdown" title="Direct link to Format Breakdown">​</a></h2>
 <p>Opus is a hybrid audio codec, composed of two codecs as mentioned above. These are Skype&#x27;s SILK codec for voice &amp; Xiph.Org&#x27;s CELT codec. Opus&#x27;s initial name, Harmony, may have been because of the &quot;harmony&quot; of these two codecs and the musical connotation of harmony.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="silk">SILK<a href="#silk" class="hash-link" aria-label="Direct link to SILK" title="Direct link to SILK">​</a></h3>
