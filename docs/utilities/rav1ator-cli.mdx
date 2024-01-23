@@ -9,23 +9,46 @@ import TabItem from '@theme/TabItem';
 
 # rAV1ator CLI
 
-rAV1ator CLI, or just `rav1ator-cli`, is a TUI tool that provides an interactive command line interface for encoding videos with [Av1an](../utilities/av1an.mdx) using various different encoders including [rav1e](../encoders/rav1e.mdx), [aomenc](../encoders/aomenc.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), [x265](../encoders/x265.mdx), and [x264](../encoders/x264.mdx).
+rAV1ator CLI, or just `rav1ator-cli`, is a TUI tool that provides an interactive command line interface for encoding videos with [Av1an](../utilities/av1an.mdx) using various different encoders including [rav1e](../encoders/rav1e.mdx), [aomenc](../encoders/aomenc.mdx) (specifically aom-av1-lavish, as mentioned in the aomenc page), [SVT-AV1](../encoders/SVT-AV1.mdx), [x265](../encoders/x265.mdx), and [x264](../encoders/x264.mdx).
+
+```bash
+~ > rav1ator-cli -h
+rAV1ator: CLI Edition_ v0.2.0
+
+Usage:
+	rav1ator-cli [input] [output] [--offline]
+
+Dependencies (Arch): 
+	rust ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
+
+Options: (Currently, only one option is useful at a time)
+	-h, --help			Print this help section
+	-l, --last-used		Print last used encode settings from history
+	-f, --full-history	Print full history from ".rav1ator-cli-history" file
+	-b, --binaries		Just install binaries, then exit
+	-x, --offline		Don't check for updates.
+	-a, --batch			Batch encode. All video files in a directory specified after this flag are encoded.
+```
 
 rAV1ator CLI can:
 
 - Check if it is installed & up to date on its own without a package manager
 
-- Download AVX2-optimized encoder binaries compiled with `-O3 -flto` in most cases & allow the user to install them with detailed instructions
+- Download AVX2-optimized encoder binaries compiled with -O3 -flto in most cases & allow the user to install them with detailed instructions
+
+- Remember encoding history and let you view your whole history or your most recent command
+
+- Allow you to encode an entire directory of video files with the same settings
 
 - Encode with x264, x265, aomenc, SVT-AV1, or rav1e, set a speed preset, CRF/quality value, FFmpeg parameters, and encoder parameters
 
-- Generate Av1an encoding commands with the user's chosen settings & run them to encode a provided input video to an MKV output
+- Generate Av1an encoding commands with the user's chosen settings & run them to encode a provided input video to an MKV output.
 
-- Encode from scratch, or resume a previous rav1ator-cli encode
+- Encode from scratch, or resume a previous rAV1ator CLI encode
 
-- Engage with rich interactivity featuring spinners, prompts, dropdowns, and the like
+- Engage with rich interactivity features like spinners, prompts, & dropdowns
 
-- Error check downloads by checking SHA256 hashes on the downloaded binaries for security & convenience
+- Automatically error check binaries with SHA256 hashes for security & convenience
 
 Overall, it aims to provide an easy way to encode videos on the command line with helpful visual feedback. The interactive prompts help users pick encoding settings without needing deep encoding knowledge.
 
@@ -35,7 +58,7 @@ Overall, it aims to provide an easy way to encode videos on the command line wit
 
 ## Installation
 
-rAV1ator CLI is natively supported on Linux, & is supported on Windows via WSL2. A tutorial for setting up WSL2 is provided below.
+rAV1ator CLI is natively supported on Linux, & is supported on Windows via WSL2. A tutorial for setting up WSL2 is provided below. macOS is not supported.
 
 ## Linux (Arch)
 
@@ -57,7 +80,7 @@ cd yay && makepkg -si
 
 2. Next, you'll want to install all of rav1ator-cli's dependencies. You can do that by running:
 ```bash
-yay -Syu ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
+yay -Syu openssl ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2
 ```
 
 3. Install rav1ator-cli:
@@ -84,7 +107,7 @@ If you're on Ubuntu, you can see the relevant section of the [AV1 for Dummies](h
 
 5. Next, run `sudo pacman -S --needed base-devel git && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si`.
 
-6. Finally, `yay -Sy rust ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2` to install the necessary dependencies.
+6. Finally, `yay -Syu openssl ffmpeg python mkvtoolnix-cli vapoursynth gum numactl l-smash vapoursynth-plugin-lsmashsource av1an ffms2` to install the necessary dependencies.
 
 7. Download rav1ator-cli: `curl -sOJ https://raw.githubusercontent.com/gianni-rosato/rav1ator-cli/main/rav1ator-cli && chmod +x rav1ator-cli`
 
