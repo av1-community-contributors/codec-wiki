@@ -1,0 +1,46 @@
+---
+title: Mediacodec
+sidebar_position: 5
+---
+
+# Mediacodec
+
+The Android's MediaCodec framework is a part of Android's multimedia framework that provides access to low-level media encoder & decoder components. It is similar to [VideoToolbox](./videotoolbox.mdx) on Apple devices. Hardware acceleration with MediaCodec is used for processing audio, video, and compressed data.
+
+One of the key features of the MediaCodec framework is its support for automatic media transcoding within the operating system. Introduced in Android 12, media transcoding features of the operating system allow devices to use more modern, storage-efficient media formats for video capture while maintaining compatibility with apps. For devices with compatible media transcoding enabled, Android can automatically convert videos recorded in formats such as [H.265](../video/HEVC.mdx) when the videos are opened by an app that doesn't support the format. This allows apps to function even when videos are captured in newer formats on the device.
+
+## Usage
+
+In order to view your device's supported hardware and software encoders exposed by the MediaCodec framework, it is advised to download the open source [Codec Info](https://play.google.com/store/apps/details?id=com.parseus.codecinfo) application.
+
+Once you know how to properly interact with your device's hardware encoders, [FFmpeg](../utilities/ffmpeg.mdx) will help you transcode videos easily from the command line.
+
+### FFmpeg
+
+Testing for this piece was done on the Google Pixel 8, which featurs the Tensor G3 SoC. It is Exynos-based, so [H.264](../video/AVC.mdx), H.265 (HEVC), and [VP9](../video/VP9.mdx) hardware acceleration for encoding are provided by the Exynos media block. AV1 encoding and decoding are available on the Tensor G3 provided by a custom Google multimedia block.
+
+The Exynos's hardware implementation for encoding H.264 and H.265 does not support CQ (Constant Quality) encoding, so a target bitrate must be provided for either CBR (Constant Bitrate) or VBR (Variable Bitrate) encoding. Google's AV1 implementation is in the same situation. 
+
+Some example MediaCodec encoding commands with FFmpeg:
+
+```bash title="H.264 encoding (VBR, target bitrate 4000K, 250-frame GOP size)"
+ffmpeg -i input.mkv -c:v h264_mediacodec -codec_name c2.exynos.h264.encoder -bitrate_mode 1 -b:v 4000K -g 250 output.mp4
+```
+
+```bash title="H.265 encoding (VBR, target bitrate 4000K, 250-frame GOP size)"
+ffmpeg -i input.mkv -c:v hevc_mediacodec -codec_name c2.exynos.hevc.encoder -bitrate_mode 1 -b:v 4000K -g 250 output.mp4
+```
+VP9 encoding produces video that is severely distorted relative to the bitrate, and AV1 encoding produces broken files without metadata.
+
+```bash title="VP9 encoding (VBR, target bitrate 9000K, 250-frame GOP size)"
+ffmpeg -i input.mkv -c:v vp9_mediacodec -codec_name c2.exynos.vp9.encoder -bitrate_mode 1 -b:v 9000K -g 250 output.mkv
+```
+```bash title="AV1 encoding (VBR, target bitrate 8000K, 250-frame GOP size)"
+ffmpeg -i input.mkv -c:v av1_mediacodec -codec_name c2.google.av1.encoder -bitrate_mode 1 -b:v 8000K -g 250 output.mp4
+```
+
+Just run `ffmpeg -help encoder=hevc_mediacodec` or `ffmpeg -help encoder=h264_mediacodec` for more info on how to use your MediaCodec encoders. You can choose a value for `-codec_name` based on what is shown in the Codec Info app.
+
+*Sources*
+(1) MediaCodec | Android Developers. https://developer.android.com/reference/android/media/MediaCodec.
+(2) Media | Android Open Source Project. https://source.android.com/docs/core/media.

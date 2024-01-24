@@ -27,7 +27,7 @@ A more complete guide is available at the [FFmpeg Compilation Guide](https://tra
 - grab [the sources](https://ffmpeg.org/download.html) or clone from FFmpeg's git: `git clone https://git.ffmpeg.org/ffmpeg.git ffmpeg`
 - Enter the directory & run `./configure --help` to see a list of features and libraries you can choose to build with.
 - Install all libraries you want to build FFmpeg with.
-- Run `./configure` with all `--enable-` flags you want.
+- Run `./configure` with `--enable-` flags as desired.
 - Run `make`, or `make -j $(nproc)` on Linux to properly make use of multiple cores. on macOS, this would be `make -j $(sysctl -n hw.ncpu)`.
 - Run `make install`. May require root.
 
@@ -37,11 +37,13 @@ To be filled.
 # Using FFmpeg
 `ffmpeg` is the primary command-line tool of FFmpeg. It takes 0 or more bitstreams as inputs & outputs.
 
-`ffmpeg`'s command-line arguments are positional, meaning it matters where you put each option. Each input and output has its own arguments. For example, `ffmpeg -r 24 -i file1 file2` applies the `-r 24` option to the input `file1`, interpreting the video as having that frame rate, while `ffmpeg -i file1 -r 24 file2` applies the `-r 24` option to `file2`. To get a list of options, refer to the [FFmpeg documentation](//ffmpeg.org/ffmpeg-all.html).
+`ffmpeg`'s command-line arguments are positional, meaning it matters where you put each option. Each input and output has its own arguments. For example, `ffmpeg -r 24 -i file1 file2` applies the `-r 24` option to the input `file1`, interpreting the video as having that frame rate, while `ffmpeg -i file1 -r 24 file2` applies the `-r 24` option to `file2`. To get a list of options, refer to the more verbose [FFmpeg documentation](//ffmpeg.org/ffmpeg-all.html).
 
 **Video Transcoding**
 
-`ffmpeg -i input -c:v video_codec -b:v video_bitrate -c:a audio_codec -b:a audio_bitrate output`
+```bash
+ffmpeg -i [input] -c:v [video_codec] -b:v [video_bitrate] -c:a [audio_codec] -b:a [audio_bitrate] output
+```
 
 | Option               | Meaning                                                     |
 |----------------------|-------------------------------------------------------------|
@@ -51,14 +53,20 @@ To be filled.
 | `-b:a audio_bitrate` | **b**itrate for the automatically selected **a**udio stream |
 
 #### Transmux a video
-`ffmpeg -i input -c copy output`
+
+```bash
+ffmpeg -i [input] -c copy [output]
+```
 
 | Option    | Meaning                       |
 |-----------|-------------------------------|
 | `-c copy` | set the **c**odec to **copy** |
 
 #### Filter a video
-`ffmpeg -i input -c:v video_encoder -c:a audio_codec (...) -vf filter_name output`
+
+```bash
+ffmpeg -i [input] -c:v [video_encoder] -c:a [audio_codec] (...) -vf [filter_name] output
+```
 
 | Option            | Meaning                                         |
 |-------------------|-------------------------------------------------|

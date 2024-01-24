@@ -29,29 +29,29 @@ Choose your operating system there, or you can try using your package manager.
 
 ## Usage
 
-x264 has been praised for its simple, easy-to-use, and no fuss settings. Here are some examples:
+x264 has been praised for its simple, no-fuss settings.
 
-Simple Y4M input with CRF 20 and raw ``264`` bitstream output:
-```bash
+Here are some examples:
+
+```bash title="Simple raw Y4M input with CRF 20 and raw 264 bitstream output"
 x264 --crf 20 -o output.264 input.y4m
 ```
 
-Preset slow, CRF 20, Y4M input:
-```bash
+```bash title="Preset slow, CRF 20, Y4M input"
 x264 --preset slow --crf 20 -o output.264 input.y4m
 ```
 
-FFmpeg piping:
-```bash
+These next couple of examples utilize [FFmpeg](../utilities/ffmpeg.mdx) to pipe video into x264.
+
+```bash title="FFmpeg piping"
 ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | x264 --preset slow --crf 20 --demux y4m - -o output.264
 ```
 
-FFmpeg piping with MKV output:
-```bash
+```bash title="FFmpeg piping, MKV output"
 ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | x264 --preset slow --crf 20 --demux y4m - -o output.mkv
 ```
 :::note Output Containers
-x264 can output ``264``, MKV, FLV (Flash Video), and MP4 (If compiled with GPAC or L-SMASH support).
+x264 can output ``264``, MKV, FLV (Flash Video), and MP4 (If compiled with GPAC or L-SMASH support). For more information about what containers are, see the ["Terminology" section on containers](../introduction/terminology.mdx#container).
 :::
 
 :::caution
@@ -60,19 +60,19 @@ x264 will use Haali Matroska Muxer for MKV outputs, which has seeking issues. It
 
 ## Recommendations
 
-As x264 is made to "just work", so there is little to modify in terms of advanced parameters. The general guideline is to just make it as slow as you can bear it.
+As x264 is made to "just work", there aren't many advanced parameters to modify. The general guideline is to encode as slowly as you can tolerate.
 
-### Lowering presets
+### Preset
 
 ``--preset veryslow``
 
-The most obvious option, set the preset to the slowest bearable option. You can use ``placebo`` if you have a beefy CPU.
+The most obvious way to increase fidelity per bit is to allow the encoder to spend more effort, and therefore time, encoding. This preset is decently slow, but preset ``placebo`` is even slower.
 
-### Increase threads
+### Threads
 
 ``--threads X``
 
-By default, x264 uses 12 threads. If you have more than 12, increase it to your CPU's maximum and x264 will completely saturate it.
+It is recommended to increase this value to your CPU's thread count. In most cases, x264 should be able to completely saturate most consumer CPUs.
 
 ### Open GOP
 
@@ -80,24 +80,32 @@ By default, x264 uses 12 threads. If you have more than 12, increase it to your 
 
 Enables Open GOP (Group of Pictures), where each GOP can [reference one another](https://ottverse.com/closed-gop-open-gop-idr/), thus improving compression with little speed loss. For unknown reasons it is disabled by default in x264.
 
-### AQ Mode 3
+### AQ Mode
 
 ``--aq-mode 3``
 
 In short, will make x264 bias to dark areas and spend more bitrate there, thus dark scenes will look less bad. Basically no speed loss.
 
 
-### Increasing reference frames
+### Reference Frames
+
 ``--bframes 8 --ref 12``
 
 These parameters are responsible for the amount of reference frames x264 will use for compression, the more the better. Maximum of 16, will definitely increase compute time the higher you go.
 
+### MB Tree
+
+``--no-mbtree``
+
+This option disables mb-tree rate control. Many claim that mb-tree rate control only assists in x264's ability to score well on metrics like [PSNR](../metrics/PSNR.mdx), and may harm visual quality.
 
 
-## Tips and tricks
+### Lossless Encoding
 
-1. x264 is a great alternative when you need to encode lossless video outside of using something like FFV1, utvideo, etc. To do that just encode with ``--qp 0``, using slower presets will decrease the size even further.
+x264 can also encode lossless video, allowing it to compete with lossless video codecs like [FFV1](../video/FFV1.mdx) and [UT Video](../video/utvideo.mdx). To encode lossless video, use ``--qp 0``. Slower presets will decrease the size even further while the video remains lossless.
 
-:::info Why not CRF 0?
-Because CRF automatically adjusts the **quantization parameters** to achieve the desired quality. QP in the other hand, which stands for **Quantization Parameter**, you get full control over the quality you'll get. In this case, all-intra or lossless.
+Keep in mind that lossless H.264 can be very difficult to decode if you do not use the `ultrafast` preset, so it may be worth passing the `--tune fastdecode` parameter to ensure faster decoding.
+
+:::info Why QP 0 instead of CRF 0?
+CRF automatically adjusts a number of quantization parameters to achieve a desired quality output. QP stands for *Quantization Parameter*, and allows full control over the resulting video quality. In this case, all-intra or lossless, using QP is necesasry, but for lossy encoding CRF will produce better visual fidelity per bit.
 :::

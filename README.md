@@ -21,7 +21,7 @@ A community maintained wiki for all things encoding.
 2. Test your changes locally before making a commit:
 ```bash
 % yarn
-% npx docusaurus start
+% yarn start
 ```
 
 3. Push changes to `main` branch:
