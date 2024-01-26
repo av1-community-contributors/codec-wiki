@@ -5,6 +5,102 @@ sidebar_position: 1
 
 # VMAF
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
 :::
+
+Short for Video Multimethod Assessment Fusion, VMAF is a full reference video appeal metric mainly developed by netflix.
+
+
+## Installation and usage
+
+Vmaf comes as a part of [libvmaf](https://github.com/Netflix/vmaf),
+there are two common ways to use it:
+* ffmpeg filter
+* in standalone binary form
+
+### Standalone binary
+
+Grab the latest build from a GitHub release [over here](https://github.com/Netflix/vmaf/releases) for your operating system
+Now you can:
+```bash
+/path/to/vmaf[.exe] --reference refrence.y4m --distorted distorted.y4m
+```
+:::tip ...vmaf exists but is not an executable file. 
+You might need to `chmod +x /path/to/vmaf`
+:::
+Explainer on command line flags can be found [here](https://github.com/Netflix/vmaf/blob/master/libvmaf/tools/README.md)  
+The disadvantage of using the bin is that you need .yuv|y4m files, you can that overcome by using named pipes
+Simple example using ffmpeg as a decoder:
+```bash
+# create the pipes
+mkfifo ref.pipe
+mkfido dist.pipe
+
+# run these each in a new terminal, order docent matter
+ffmpeg -v error -i ref.mkv -strict -1 -f yuv4mpegpipe - > ref.pipe
+ffmpeg -v error -i dist.mkv -strict -1 -f yuv4mpegpipe - > dist.pipe
+
+# after starting the two ffmpeg processes,
+# start the vmaf in a new terminal
+/path/to/vmaf --reference ref.pipe --distorted dist.pipe
+
+# delete the pipes after usage
+rm ref.pipe dist.pipe
+```
+The Advantages of this are:
+* no need for a ffmpeg build with `--enable-libvmaf`
+* clear and simple usage of vmaf's various options, like `--aom_ctc`
+
+Disadvantages are:
+* difficult/award to use without a wrapper script
+
+
+### FFmpeg filter
+
+A much simpler and straight forward way is using the ffmpeg integration,
+Grab a build of ffmpeg with libvmaf enabled,
+or make sure your ffmpeg is compiled with libvmaf (look for --enable-libvmaf in `ffmpeg -buildconf`),
+after that you just:
+```bash
+ffmpeg -i distorted.mkv -i reference.mkv -lavfi libvmaf -f null -
+```
+More in depth here:
+[vmaf github repo](https://github.com/Netflix/vmaf/blob/master/resource/doc/ffmpeg.md), [ffmpeg wiki](https://ffmpeg.org/ffmpeg-filters.html#libvmaf)
+
+## Scoring
+scores range from 0 to 100, and are best interpreted in a linear way,
+100 meaning perfect quality, 0 meaning not recognisable,
+more info [in the Best Practices section here](https://netflixtechblog.com/vmaf-the-journey-continues-44b51ee9ed12)  
+It aligns with mean opinion scores (MOS) really well at low/medium bitrates,
+as stated [in this benchmark](https://videoprocessing.ai/benchmarks/video-quality-metrics_both.html)
+
+## Some weaknesses
+
+* Newer codecs like AV1 and VVC introduce new kinds of artifacting that v0.6.2
+(current model as of Jan 2024) doesn't recognise,
+that's why its performance might degrade, for example, high motion scenes being affected badly
+* It's bad at "transparent" levels of quality, kinds of quality that the average viewer might not notice
+* Synthetic grain throws off scores, this issue is not isolated to vmaf, but it should be noted regardless
+:::tip With ffmpeg you can disable application of synthetic grain
+place `-filmgrain 0` before `-i` in the above ffmpeg commands, limited to decoding with dav1d
+TODO: replace this tip with an export_side_data solution
+:::  
+* As of January 2024, it doesn't work on HDR content, nothing prevents you from feeding it un-tonemapped PQ but scores will be off
+* In contrast with SSIMULACRA2, it focuses on appeal, not necessarily on fidelity. They often align, but not always.
+* Due to the ML nature, comparing the same video to itself will not always result in a score of 100
+
+
+### Comparing to SSIMULACRA2
+
+One big advantage over SSIMULACRA2 is the inclusion of some temporal information.
+This means that vmaf weights frames that have a lot of motion higher.
+Meanwhile, SSIMULACRA2 based solutions compare each frame to the reference frame individually, since it is an image
+metric at heart.
+Vmaf also wins in speed and general ease of use.
+
+
+# Additional resources
+
+- [Vmaf GitHub repo docs](https://github.com/Netflix/vmaf/tree/master/resource/doc)
+- [Medium Article by netflix](https://netflixtechblog.com/vmaf-the-journey-continues-44b51ee9ed12)
