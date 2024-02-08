@@ -64,10 +64,13 @@ Vmaf comes as a part of [libvmaf](https://github.com/Netflix/vmaf). There are tw
 
     </TabItem>
     <TabItem value="ffmpegfilter" label="FFmpeg Filter">
+
+        If you are not sure if you have VMAF installed, you can check by running `ffmpeg -help` and looking for whether or not the `--enable-libvmaf` flag appears in the banner that is printed to the terminal. If you do not see this, you will need to build ffmpeg from source with the `--enable-libvmaf` flag or grab a pre-compiled build of FFmpeg with the flag enabled.
+
         *Via the [VMAF github repo](https://github.com/Netflix/vmaf/blob/master/resource/doc/ffmpeg.md):*
         ## Using VMAF with FFmpeg
 
-        After [installing](../../libvmaf/README.md#install) `libvmaf`, you can use it with [FFmpeg](http://ffmpeg.org/). Under the FFmpeg directory, configure, build and install FFmpeg with:
+        After installing `libvmaf`, you can use it with [FFmpeg](http://ffmpeg.org/). Under the FFmpeg directory, configure, build and install FFmpeg with:
 
         ```shell script
         ./configure --enable-libvmaf
