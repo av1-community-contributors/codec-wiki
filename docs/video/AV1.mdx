@@ -12,3 +12,36 @@ This section is in need of contributions. If you believe you can help, please se
 AV1 is a royalty-free video compression format designed to succeed [VP9](../video/VP9.mdx). It presently competes with [VP9](../video/VP9.mdx), [VVC](../video/VVC.mdx), and [HEVC](../video/HEVC.mdx). AV1 is computationally more complex than VP9, but is fast to decode due to the mature and efficient dav1d AV1 decoder. AV1 hardware accelerated decoding is also available on a variety of different consumer hardware devices, all of which are enumerated [on Wikipedia](https://en.wikipedia.org/wiki/AV1#Hardware). Standout entries include modern Intel, AMD, & Nvidia integrated & discrete GPUs, Google's Tensor SoC powering the Pixel line, Apple's A17 Pro in the iPhone 15 Pro series, and modern Mediatek & Qualcomm chips. YouTube is currently in the process of transitioning their videos to use AV1.
 
 There are a number of viable AV1 encoding solutions available today. The three best, most ubiquitous, and free implementations are [aomenc](../encoders/aomenc.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), & [rav1e](../encoders/rav1e.mdx).
+
+### Codec String
+
+You may come across a codec string like
+```
+av01.0.09M.08
+```
+Let's break it down
+
+| component | description                                                                                                                                                                                                                                                                                                                                |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `av01`    | Codec string for AV1                                                                                                                                                                                                                                                                                                                       |
+| `0`       | Profile number <table><tr><th>Profile Number</th><th>Description</th></tr><tr><td>0</td><td>main profile, supports YUV 4:2:0 chroma subsampling and 8 or 10 bits of color depth</td></tr><tr><td>1</td><td>high, adds support for 4:4:4 color</td></tr><tr><td>2</td><td>professional, adds 4:2:2 color and 12 bit depth</td></tr></table> |
+| `09`      | Level converted from the X.Y format,<br/>where `X = 2 + (L >> 2)` and `Y = L & 3`. <br/>thus `09` is level 4.1. Reading the [Spec](https://aomediacodec.github.io/av1-spec/#levels) this is 1080p at around 60fps                                                                                                                          |
+| `M`       | Tier, `M` for main, `H` for high, high tier is level 4.0 and up                                                                                                                                                                                                                                                                            |
+| `08`      | Bit depth, `08` is 8 bit, `10` is 10 bit, `12` is 12 bit                                                                                                                                                                                                                                                                                   |
+
+So the above example is an AV1 video with a main profile, level 4.1, 8-bit depth, and main tier.
+Taken from a YouTube 1080p av1 video.
+
+It might also contain additional information like (in order of appearance):
+- a monochrome flag
+- chroma subsampling
+- color primaries
+- transfer characteristics
+- matrix coefficients
+- color range
+
+But those are much rarer to come by.
+Values explained in [The AV1 Spec](https://aomediacodec.github.io/av1-spec/#color-config-semantics)
+
+This section sources [this article on mdn](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter#av1).
+Attributions and copyright licensing by [Mozilla Contributors](https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter/contributors.txt) is licensed under [CC-BY-SA 2.5](https://creativecommons.org/licenses/by-sa/2.5/).
