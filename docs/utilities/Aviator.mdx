@@ -15,7 +15,7 @@ Aviator is available on Flathub as a Flatpak. You can learn how to set up Flatpa
 
 <a href="https://flathub.org/apps/details/net.natesales.Aviator"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
 
-Aviator's rationale behind using Flatpak is to ship its own dependencies & ensure users across every distro have a cohesive experience with the latest up-to-date SVT-AV1 implementation that is best for visual quality.
+Aviator's rationale behind using Flatpak is to ship its own dependencies & ensure users across every distro have a cohesive experience with the latest up-to-date SVT-AV1-PSY implementation that is best for visual quality.
 
 ## Aviator's Defaults
 
@@ -23,12 +23,12 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 ### Perceptual Optimization
 
-Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.com/BlueSwordM/SVT-AV1) maintained for perceptual quality. It includes several unique changes, including a custom [SSIM](../metrics/SSIM.mdx) [RDO](../introduction/psychovisual.mdx) tune that isn't included in mainline SVT-AV1.
+Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.com/gianni-rosato/svt-av1-psy) dubbed SVT-AV1-PSY maintained for perceptual quality. It includes several unique changes, including a custom [SSIM](../metrics/SSIM.mdx)-based [RDO](../introduction/psychovisual.mdx) tune that isn't included in mainline SVT-AV1. You can read more about SVT-AV1-PSY on the [SVT-AV1](../encoders/SVT-AV1.mdx#community-forks) entry.
 
 Aviator's default FFmpeg command uses the following SVT-AV1 parameters:
 
 ```bash
--c:v libsvtav1 -crf X -preset X -pix_fmt yuv420p10le -svtav1-params film-grain=X:input-depth=10:tune=2:enable-qm=1:scd=1:enable-overlays=1:film-grain-denoise=X
+-c:v libsvtav1 -crf X -preset X -pix_fmt yuv420p10le -svtav1-params film-grain=X:irefresh-type=2:input-depth=10:tune=3:sharpness=1:qm-min=0:keyint=300:aq-mode=2:enable-qm=1:film-grain-denoise=X
 ```
 
 ### Video
@@ -45,7 +45,7 @@ The Grain Synth slider allows you to add artificial grain to your video to mimic
 
 <img width="678" height="567" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_audio.webp" alt="Aviator Audio Settings" loading="lazy" />
 
-The default bitrate for Opus audio is 48kb/s. The audio source can be copied to the output media via that "Copy Audio" switch, & audio with >2 channels can be downmixed to stereo via the appropriately labelled switch. Volume adjustment & normalization are also offered in this section as well; the Volume slider allows you to increase or decrease the output's volume & is measured in decibels, & negative values decrease the volume. The Normalize toggle allows you to normalize your audio's perceived loudness.
+The default bitrate for Opus audio is 80kb/s. The audio source can be copied to the output media via that "Copy Audio" switch, & audio with >2 channels can be downmixed to stereo via the appropriately labelled switch. Volume adjustment & normalization are also offered in this section as well; the Volume slider allows you to increase or decrease the output's volume & is measured in decibels, & negative values decrease the volume. The Normalize toggle allows you to normalize your audio's perceived loudness.
 
 The "Copy Audio" switch disables WebM output due to potential compatibility hiccups & overrides every option on the Audio page to keep the source audio untouched. This option, when enabled, ensures the source audio isn't reencoded.
 
