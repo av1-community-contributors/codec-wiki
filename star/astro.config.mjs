@@ -8,7 +8,7 @@ export default defineConfig({
   integrations: [
     starlight({
       plugins: [starlightBlog()],
-	  favicon: './src/assets/favicon.svg',
+      favicon: "/img/favicon.svg",
       title: "Codec Wiki",
       lastUpdated: true,
       description: "Your Guide to All Things Encoding",
