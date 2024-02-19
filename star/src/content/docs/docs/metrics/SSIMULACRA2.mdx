@@ -1,0 +1,94 @@
+---
+title: SSIMULACRA2
+sidebar:
+  order: 1
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+:::note[Under Maintenance]
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+SSIMULACRA 2 is a visual fidelity metric based on the concept of the multi-scale structural similarity index measure (MS-SSIM), computed in a perceptually relevant color space, adding two other (asymmetric) error maps, and aggregating using two different norms. It is currently the most reputable visual quality metric according to its correlation with subjective results, and is considered a very robust means of comparing encoders. It is debatable whether [Butteraugli](../metrics/butteraugli.mdx) is better for very high fidelity, but SSIMULACRA 2 is considered the best for medium/low fidelity comparisons. Although it does not feature any inter-frame temporal awareness, it is still considered a very strong metric for video fidelity comparison nonetheless.
+
+While a [reference implementation by Cloudinary](https://github.com/cloudinary/ssimulacra2) exists,
+most people will want to use [the rust implementation `ssimulacra2_rs`](https://github.com/rust-av/ssimulacra2).
+
+## Installing
+
+<Tabs>
+    <TabItem value="cargo" label="Cargo" default>
+        To install ssimulacra2_rs using cargo, run this:
+        ```bash
+        cargo install ssimulacra2_rs
+        ```
+    </TabItem>
+    <TabItem value="archlinux" label="Archlinux AUR">
+        On archlinux, you may use the [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) to install.
+        Simply use your favorite AUR helper to install `ssimulacra2_bin-git`
+
+        ```bash
+        paru -S ssimulacra2_bin-git
+        ```
+    </TabItem>
+
+</Tabs>
+
+## Running
+
+### On Images
+
+Comparing images is simple, run this:
+
+```bash
+ssimulacra2_rs image source.png distorted.png
+```
+
+### On Videos
+
+If you want to compare videos, run this:
+
+```bash
+ssimulacra2_rs video source.mkv distorted.mkv
+```
+
+:::tip[Graphical visualization]
+You can optionally output a graph using the `-g` parameter:
+
+```bash
+ssimulacra2_rs video source.mkv distorted.mkv -g
+```
+
+:::
+
+#### Multithreading
+
+Multithreading with ssimulacra2_rs works, but it scales badly.
+This is likely due to memory bandwidth limitations.  
+However, the speedup is worth it.
+
+To run multithreaded, use the `--frame-threads` or `-f` parameters.
+For example, to run with 16 threads:
+
+```bash
+ssimulacra2_rs video source.mkv distorted.mkv -f 16
+```
+
+:::note[Thread amount]
+You should set the amount of threads to half of your actual thread count, as going any higher won't make a difference.
+:::
+
+:::warning[Memory limitation]
+If you have a small amount of system memory, you may encounter out of memory errors while running with multi-threading.
+If that's the case, you need to lower the amount of threads.
+:::
+
+## Scoring
+
+The score that ssimulacra2 outputs is simple:
+
+- Very high quality: `90` and above
+- High quality: `70` to `90`
+- Medium quality: `50` to `70`
+- Low quality: Below `50`

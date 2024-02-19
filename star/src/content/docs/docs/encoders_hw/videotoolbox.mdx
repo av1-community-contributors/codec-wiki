@@ -1,0 +1,50 @@
+---
+title: VideoToolbox
+sidebar:
+  order: 4
+---
+
+
+
+:::danger[Help Wanted]
+This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::
+
+Apple's VideoToolbox is a low-level framework that provides direct access to hardware encoders and decoders. It offers services for video compression and decompression, as well as conversion between raster image formats stored in CoreVideo pixel buffers. The VideoToolbox encoder works by compressing video data for various applications such as low-latency conferencing, live streaming, and offline transcoding. It supports hardware encoding on most Macs from 2011 and later, and uses Apple's Media Engine on devices with Apple T2 chips or Apple Silicon.
+
+The encoder can be configured to optimize encoding for specific applications, and it supports various video codecs including [H.264](../video/AVC.mdx), [H.265](../video/HEVC.mdx), with support for H.265 8-bit and 10-bit encoding. It is worth noting that the VideoToolbox encoder is designed for applications that require direct access to hardware encoders and decoders.
+
+Apple's VideoToolbox framework also supports hardware accelerated video decoding for a number of video codecs. As of the Apple M3, these include [H.264](../video/AVC.mdx), [H.265](../video/HEVC.mdx), [ProRes](../video/prores.mdx), ProRes RAW, and [AV1](../video/AV1.mdx).
+
+## Usage
+
+Encoding with Videotoolbox on macOS is possible via [FFmpeg](../utilities/ffmpeg.mdx), a versatile command line utility, or Handbrake, a GUI for video encoding.
+
+### FFmpeg
+
+To use H.264 or H.265 (HEVC) hardware encoding in macOS via VideoToolbox, just use the encoder `-c:v h264_videotoolbox` or `-c:v hevc_videotoolbox` for H.264 or HEVC respectively. 
+
+Here are some example commands for encoding with VideoToolbox on Apple Silicon via FFmpeg:
+
+```bash title="H.264 encoding (high profile)"
+ffmpeg -i input.mkv -c:v h264_videotoolbox -profile 100 -q:v [0-100] output.mp4
+```
+
+```bash title="8-bit HEVC encoding (main profile)"
+ffmpeg -i input.mkv -c:v hevc_videotoolbox -profile 1 -q:v [0-100] -tag:v hvc1 output.mp4
+```
+
+```bash title="10-bit HEVC encoding (main10 profile)"
+ffmpeg -i input.mkv -c:v hevc_videotoolbox -profile 2 -q:v [0-100] -tag:v hvc1 output.mp4
+```
+
+Just run `ffmpeg -help encoder=hevc_videotoolbox` or `ffmpeg -help encoder=h264_videotoolbox` for more info.
+
+### Handbrake
+
+To be filled.
+
+*Sources*
+(1) Video Toolbox | Apple Developer Documentation. https://developer.apple.com/documentation/videotoolbox.
+(2) HandBrake Documentation — Apple VideoToolbox. https://handbrake.fr/docs/en/latest/technical/video-videotoolbox.html.
+(3) Apple's T2 chip makes a giant difference in video encoding for most .... https://appleinsider.com/articles/19/04/09/apples-t2-chip-makes-a-giant-difference-in-video-encoding-for-most-users.

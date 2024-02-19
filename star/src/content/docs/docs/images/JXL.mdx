@@ -1,0 +1,206 @@
+---
+title: JPEG-XL
+sidebar:
+  order: 7
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+JPEG-XL (JXL) is a compression format for images that was developed by the Joint Photographic Experts Group (JPEG) in 2020. It is designed to provide improved compression efficiency compared to the traditional [JPEG](./JPEG.mdx) format, while still maintaining image quality. JPEG-XL uses a combination of techniques such as perceptual color encoding, advanced entropy coding, and a new image prediction method to achieve its improved compression performance. It also has a lossless JPEG recompression mode, where an existing JPEG file can be turned into a JXL that can be decoded for a bit-for-bit exact replica of the original JPEG.
+
+## Performance Checklist
+
+Lossless? _Yes_
+
+Lossy? _Yes_
+
+Supported Bit Depths:
+_Up to 32 BPC_
+
+HDR/Wide Gamut? _Yes_
+
+Animation? _Yes_
+
+Transparency? _Yes_
+
+Progressive Decode? _Yes_
+
+Royalty Free? _Yes_
+
+## Format Breakdown
+
+JPEG-XL has a number of standout features that make it an appealing image codec to work with for many use cases. From the [JPEG-XL Info page](https://jpegxl.info), JXL has the following features:
+
+- **Best lossless image compression**: It offers about 35% smaller file sizes than PNG (50% smaller for HDR).
+- **High-fidelity lossy image compression**: JPEG XL provides about 60% smaller file sizes than JPEG for the same visual quality.
+- **Progressive decoding**: This allows an image to be displayed in lower quality before the entire file has been downloaded, improving user experience on slow connections.
+- **Lossless JPEG transcoding**: JPEG images can be converted to JPEG XL without any mathematical loss, and the resulting file is about 20% smaller.
+- **Designed for both photographic and synthetic images**: JPEG XL works well with a wide range of image types, including photos, graphics, and illustrations.
+- **Fast software encoding and decoding**: The codec is designed to be efficient and fast, enabling quick image loading and saving.
+- **Full support for wide gamut and HDR**: JPEG XL supports a wide range of colors and high dynamic range, making it suitable for modern displays.
+- **Perceptually optimizing reference encoder**: The encoder is designed to optimize image quality based on how humans perceive images.
+
+### Lossless Compression
+
+JPEG-XL offers excellent lossless compression capabilities. While lossless WebP was an improvement over PNG for 8-bit lossless image encoding, JPEG-XL manages not only to outdo lossless WebP in encoding efficiency but also be more versatile for bit depths greater than 8-bit (a category PNG previously dominated). 16-bit lossless imagery, especially HDR images that are becoming more popular & rarely utilize 8-bit color depth, are where JPEG-XL shines, and it is the only codec to compete with PNG in that regard while providing better coding efficiency.
+
+Example: JPEG-XL compresses [this 16-bit AdobeRGB PNG](https://imgsaver.com/images/2023/10/03/16bit.png) better than PNG. Using: `cjxl 16bit.png 16bit.jxl -d 0.0 -e 9 -I 100 -g 3 -E 11`
+
+16-bit PNG: `1533373` bytes.
+16-bit JXL: `1211029` bytes.
+
+### Lossy Compression
+
+JPEG-XL is also adept at lossy compression, especially at quality levels that we as humans care about. It promises to be around 60% better than JPEG. While video-based codecs like AVIF can be competitive when given lots of CPU time, JPEG-XL is both fast and efficient for medium to high fidelity photographic imaging.
+
+### Supported Bit Depth(s)
+
+JPEG-XL supports up to 32 bits per channel of bit depth, making it future proof for the increasingly popular HDR photos coming out of smartphones. There is essentially zero downside to encoding high bit depth with JXL relative to the resulting encode's size. Considering many smartphones take HDR photos now, JXL offers a compelling pipeline for these photos to make their way to the Web in the future especially as companies like Adobe & Apple have already embraced the new codec.
+
+### Progressive Decode
+
+JPEG-XL provides actual progressive decode support that you can experiment with here on a supported browser like Safari, Waterfox, Thorium, Mercury, or any browser on iOS.
+
+Progressive decode is a feature only JPEG is able to offer a real implementation of, rendering low frequency transform coefficients before the rest of the image arrives to allow an image to display before the entire thing has been sent over the network. Blurhashes do not replace this technology, but rather compliment it, allowing another layer of progressive decode that can be used even before the image begins to load progressively. This is an important feature to improve the user experience on websites featuring large images, or on any website if your Internet connection isn't strong.
+
+### Lossless JPEG Re-compression
+
+An incredibly unique JPEG-XL feature is lossless JPEG re-compression, or the ability to take a JPEG input and provide an output with a smaller filesize (on average, 20% smaller) that is pixel-for-pixel identical. This is why companies like Meta have endorsed JPEG-XL, as it offers a path forward for the existing JPEGs on the Internet.
+
+### Industry Support
+
+From the JPEG-XL Wikipedia page:
+
+> Besides Cloudinary and Google originally, throughout JPEG XL's preliminary implementation in web browsers, various representatives of well-known industry brand names have publicly voiced support for JPEG XL as their preferred choice, including Facebook, Adobe, Intel and the Video Electronics Standards Association, The Guardian, Flickr and SmugMug, Shopify, the Krita Foundation, and Serif Ltd.
+
+Apple also features ecosystem-wide JPEG-XL support as of iOS 17 & macOS Sonoma.
+
+### Other Features
+
+JPEG-XL has the potential to replace popular formats like TIFF for authoring workflows due to its broad feature set. From the JXL Wikipedia, some additional features include:
+
+- Image dimensions of over a billion (2^30-1) pixels on each side.
+- Up to 4099 channels, including support for alpha transparency
+- There can be multiple frames with zero duration, allowing support for layers in graphics software
+- Animation support, allowing JXL to rival GIF
+- Images can be stored in tiles to reduce the time needed to decode them.
+- Graceful quality degradation across a large range of bitrates means quality loss isn't as abrupt as with older formats.
+- Perceptually optimized reference encoder which uses a perceptual color space, adaptive quantization, and conservative default settings.
+- Support for wide color gamut and HDR
+- Efficient encoding and decoding without requiring specialized hardware: JPEG XL is about as fast to encode and decode as old JPEG using libjpeg-turbo and an order of magnitude faster to encode and decode compared to HEIC with x265. It is also parallelizable.
+- Royalty-free format with an open-source reference implementation available on GitHub.
+
+## Encoders
+
+JPEG-XL has a couple of noteworthy encoders currently available to work with. Because JPEG-XL is so new, most encoders aren't yet intelligent enough to take advantage of the whole format yet. Here's a quote from Jon Sneyers in the JPEG-XL discord that sums it up nicely:
+
+> Encode side: 80% or so of the coding tools are used in one way or another by the encoder (the 20% is splines and super large VarDCT blocks, and also the things that are not used by default without using special experimental options, such as delta palette and noise). But the coding tools that are used, are typically used in a specific, limited way that doesn't come anywhere close to exhausting the bitstream expressivity.
+
+Sneyers is talking about libjxl's `cjxl` encoder, which will be discussed further below.
+
+### libjxl
+
+The reference [libjxl](https://github.com/libjxl/libjxl) implementation has the capability to both decode and encode JPEG-XL image files. Both are discussed below.
+
+<Tabs>
+    <TabItem value="enc" label="Encoding" default>
+        
+        libjxl's encoder `cjxl` has more options to play around with. It takes a few primary arguments, distance (`-d`), quality (`-q`), and effort (`-e`).
+
+        **Distance and quality**
+
+        Distance and quality are two ways of specifying *how much loss* you are willing to tolerate, and as such, they are mutually exclusive, as they pull the same levers under the hood.
+        * Distance is designed to map to how 'close' one must be to the source to notice any loss. It is represented as a scale between 0.0 & 25.0. 0.0 is **mathematically lossless**, every pixel will have the exact same value as the source. 1.0 is designed to be **visually lossless**, look the same at a normal viewing distance, and higher values have more loss.
+        * Quality is designed to roughly map to [JPEG](./JPEG.mdx)'s quality argument. A range 0-100, where 100 is **mathematically lossless**, 90 is intended to be **visually lossless**, and 0 is almost unrecognizable as the original image.
+
+        **Effort**
+
+        Effort is similar to `cpu-used` in video encoding. It specifies the amount of effort the encoder will make in order to get the smallest file size it can. It takes the form of a range 1-9, where higher numbers will spend more resources to get diminishing returns in terms of smaller size, while lower values do the opposite, leaving file size on the table for faster encoding.
+
+        ```bash title="Encoding with effort 9 and distance 1.0"
+        cjxl -e 9 -d 1.0 example.png example.jxl
+        ```
+
+        ```bash title="This, by default uses lossless JPEG compression."
+        cjxl example.jpg example.jxl
+        ```
+
+    </TabItem>
+    <TabItem value="dec" label="Decoding">
+        Decoding a `.jxl` image is straightforward with libjxl's decoder, `djxl`:
+
+        ```bash
+        djxl example.jxl example.png
+        ```
+        `djxl` can decode to pixels via pipes, png, apng for animated jxl, jpg, ppm, and pfm.
+
+        By default, if the `.jxl` file was encoded with lossless jpeg recompression, `djxl` will rebuild the exact jpeg file that was originally compressed. To avoid this, and create a new jpeg file:
+        ```bash
+        djxl -j example.jxl example.jpg
+        ```
+        **Keep in mind this is now a lossy process as `djxl` will decode to pixels, then encode a new `.jpg` with those pixels.**
+    </TabItem>
+    <TabItem value="build" label="Building">
+        A full build guide is provided in the [libjxl build instructions](https://github.com/libjxl/libjxl/blob/main/BUILDING.md) in the GitHub repo. This guide is simplified, and is only focused on building a working efficient encoder & decoder.
+
+        These instructions should work for macOS and Linux, although macOS support isn't guaranteed.
+
+        ```bash title="1. Clone the repo"
+        git clone https://github.com/libjxl/libjxl.git --recursive --shallow-submodules
+        ```
+
+        ```bash title="2. Install dependencies. May have to run these commands with root"
+        apt install cmake pkg-config libbrotli-dev clang # Debian Linux
+        pacman -Syu cmake pkgconf brotli clang # Arch Linux
+        brew install cmake pkg-config brotli # macOS
+        ```
+
+        ```bash title="3. Set CC & CXX variables before building (Recommended)"
+        export CC=clang CXX=clang++
+        ```
+
+        ```bash title="4. cjxl & djxl will be available in the build/tools directory."
+        cd libjxl && mkdir build && cd build
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-O3 -march=native" -DCMAKE_C_FLAGS="-O3 -march=native" -DBUILD_TESTING=OFF -DJPEGXL_WARNINGS_AS_ERRORS=OFF -DJPEGXL_ENABLE_SJPEG=OFF ..
+        cmake --build . -- -j$(nproc)
+        ```
+
+        This will build `cjxl` and `djxl` with O3 optimization for your CPU architecture on Linux or macOS. Again, be aware that macOS support is not a priority. Via the libjxl OS X build guide:
+
+        > OSX builds have "best effort" support, i.e. build might not work at all, some tests may fail and some sub-projects are excluded from build.
+    </TabItem>
+
+</Tabs>
+
+### libjxl-tiny
+
+[libjxl-tiny](https://github.com/libjxl/libjxl-tiny) contains a simpler encoder implementation of JPEG XL, aimed at photographic images without an alpha channel. The goal is to guide hardware implementations of the encoder where support for the full set of encoding tools is not feasible. The color management is outside the scope of this library, the encoder input is given as a portable float map (PFM) in the linear sRGB colorspace, where individual sample values can be outside the \[0.0, 1.0\] range for out-of-gammut colors. For more details, see the [overview of the coding tools](https://github.com/libjxl/libjxl-tiny/blob/main/doc/coding_tools.md).
+
+The last commit was ten months ago, so it is uncertain whether libjxl-tiny could be considered active.
+
+### Hydrium
+
+[Hydrium](https://github.com/Traneptora/hydrium) is a fast, ultra-low-memory, streaming JPEG XL encoder written in portable C. It is maintained by Traneptora.
+
+### zune-jpegxl
+
+[zune-jpegxl](https://github.com/etemesi254/zune-image/tree/dev/crates/zune-jpegxl) is a simple, fast and fully safe modular JXL encoder written in Rust. It is maintained by etemesi254.
+
+zune-jpegxl has the following features:
+
+- Lossless encoding
+- 8 bit and 16 bit support
+- Grayscale and RGBA encoding
+- Threading capabilities
+
+{}
+
+Sources:
+
+- [JXL Wikipedia](https://en.wikipedia.org/wiki/JPEG_XL)
+- [JPEGXL.info: Why JXL](https://jpegxl.info/why-jxl.html)
+- [Apple JXL Announcement](https://webkit.org/blog/14205/news-from-wwdc23-webkit-features-in-safari-17-beta/#images)
+- [JPEG XL: How It Started, How It's Going](https://cloudinary.com/blog/jpeg-xl-how-it-started-how-its-going)
+- [The Case for JPEG XL](https://cloudinary.com/blog/the-case-for-jpeg-xl)
+- [Time for Next-Gen Codecs to Dethrone JPEG](https://cloudinary.com/blog/time_for_next_gen_codecs_to_dethrone_jpeg)
+- [Image Codec Comparison](https://giannirosato.com/blog/post/image-comparison/)

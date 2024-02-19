@@ -1,0 +1,134 @@
+---
+title: VVenC
+sidebar:
+  order: 9
+---
+
+
+
+<picture>
+    <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/VVenC_Spam.avif?token=GHSAT0AAAAAACEZPDXI3OYO3Z4Q7LU3Z52EZHY7FMA" type="image/avif" />
+    <img src="https://autumn.revolt.chat/attachments/wU4lo6SU-hRjZSVeqd9vCOeAskthYXmiWHaXUTjyTa/VVenC_Spam.webp"
+alt="vvencapp spamming the terminal output with progress per-picture-order-count cause god knows why" width="XX" height="YY" loading="lazy" />
+</picture> 
+
+VVenC is an open source command line application for encoding H.266/VVC written in C++ and developed by Fraunhofer Heinrich-Hertz-Institute (HHI).
+
+:::note[General support]
+There is currently no need for encoding VVC unless you are into bleeding edge codecs, a developer, video engineer, experimentations, academic papers, or an employee at Fraunhofer HHI. The general public won't bother if they can't play it on their crappy TV set top boxes.
+:::
+
+
+
+## Installation
+
+**Arch Linux users:** Check AUR.
+
+:::caution
+Compilation requires CMake
+:::
+
+:::tip
+The following build procedure should work across all common operating systems
+:::
+
+```bash
+git clone https://github.com/fraunhoferhhi/vvenc.git
+cd vvenc
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build .
+```
+Binaries will be available in ``bin/release-static/``
+
+
+
+## FFmpeg Integration
+
+Although not officially supported, you can compile your own FFmpeg binary with ``libvvenc`` and ``libvvdec``. The tutorial can be found in the [official VVenC wiki](https://github.com/fraunhoferhhi/vvenc/wiki/FFmpeg-Integration) ([archive](https://web.archive.org/web/20230509115800/https://github.com/fraunhoferhhi/vvenc/wiki/FFmpeg-Integration)), I do not want to include it here because some things change every so often and I'm not paid to keep them updated.
+
+
+
+## Usage
+
+There are two encoders, the simple encoder (``vvencapp``) and the full-featured expert mode encoder (``vvencFFapp``) which is based on the VTM configuration scheme (good luck figuring that out). VVenC used to only accept YUV files input until they added Y4M also (Thank the LORD)
+
+!!! YUV vs Y4M
+YUV does not carry any of the original video's metadata, which means you'll have to manually input all the necessary parameters such as frame rates, resolution, bit depth, etc. Y4M takes care all of this
+!!!
+
+A standard input would look like this:
+```bash
+vvencapp -i input.y4m --qp 20 -o output.266
+```
+
+Enhanced, preset slow + qpa + YUV420P10:
+```bash
+vvencapp -i input.y4m --preset slow --qpa on --qp 20 -c yuv420_10 -o output.266
+```
+
+With FFmpeg piping:
+```bash
+ffmpeg -hide_banner -loglevel error -i input.mkv -pix_fmt yuv420p10le -strict -1 -f yuv4mpegpipe - | vvencapp -i - --y4m --preset medium --qpa on --qp 20 -c yuv420_10 -o output.266
+```
+
+
+:::danger
+For whatever reason, VVenC currently does not support input resolutions below 540p. Don't know why so ask the devs.
+:::
+:::note[QPA]
+VVenC by default operates with QP (Quantization Parameter), which is basically fixed quality. To enable "CRF-like" mode you need to enable QPA
+
+note for nerds: it modifies the QP both in a spatial and temporal manner combined with temporal RDO.
+:::
+
+
+
+## Muxing
+
+Since VVenC only outputs raw ``.266`` bitstream files, you can't just shove audio and subtitle streams in there. Instead you can remux them using [GPAC MP4Box](https://github.com/gpac/gpac) **nightly/beta/git**. 
+
+You can find all pre-built binaries for Windows, MacOS, and Ubuntu (Linux) right [here](https://gpac.wp.imt.fr/downloads/gpac-nightly-builds), Arch Linux users can find mp4box/GPAC in the AUR, and those who aren't listed here can find the build instructions [here](https://github.com/gpac/gpac/wiki/Build-Introduction). It is recommended to do a minimal build since most of the time you don't really need the extra stuff.
+
+
+
+## VVdeC
+
+VVdeC is the software decoding implementation for decoding/playing VVC files developed by Fraunhofer HHI. All features of the VVC Main10 features are supported.
+
+### Installation
+
+**Arch Linux users:** Check AUR.
+
+:::caution
+Compilation requires CMake
+:::
+
+:::tip
+The following build procedure should work across all common operating systems
+:::
+
+```bash
+git clone https://github.com/fraunhoferhhi/vvdec.git
+cd vvdec
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build .
+```
+Binaries will be available in ``bin/release-static/``
+
+
+
+## Decoding
+
+There are several ways to decode VVC. One of them made simple by the [VVCEasy project](https://github.com/MartinEesmaa/VVCEasy) by Martin Eesmaa. Or you can try the manual way by piping into several programs, MP4Box beta/nightly/git, VVdeC, and a video player of choice summonable via CLI (MPV, VLC, ffplay) is required
+```bash
+mp4box input.mp4 -raw vvc1:output=temp.266 && vvdecapp -v 0 -b temp.266 -o - | ffmpeg -video_size 1920x804 -framerate 24 -pixel_format yuv420p10le -f rawvideo -i - -i input.mp4 -c copy -map 0:v -map 1:a -f nut - | mpv -
+```
+
+Adjust the **double** ``input.mp4``, ``-video_size`` for resolution, ``-framerate``, ``-pixel_format``, and ``mpv`` (Video player) accordingly, if not then your video will just play garbled glitches.
+
+:::note[temp.266]
+You might see a new file appearing called ``temp.266`` upon running the command, do not panic. This is completely normal as ``mp4box`` needs to output the raw bitstream so ``vvdec`` will be able to decode it properly.

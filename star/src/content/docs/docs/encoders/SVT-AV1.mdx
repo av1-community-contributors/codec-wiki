@@ -1,0 +1,141 @@
+---
+title: SVT-AV1
+sidebar:
+  order: 4
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+
+
+:::note[Under Maintenance]
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+SVT-AV1 (Scalable Video Technology for AV1) is an AV1-compliant software encoder/decoder library. Jointly developed by Intel and Netflix, SVT-AV1 is written almost entirely in C with some parts written in C++ and Assembly.
+
+This entry discusses the SVT-AV1 encoder, also known as the "Production" AV1 encoder (while [aomenc](../encoders/aomenc.mdx) is the "reference" AV1 encoder), & refers to SVT-AV1 as such. SVT-AV1 is known for its parallelization, high coding efficiency, & active development. SVT-AV1 scales across multiple CPU cores much more effectively than aomenc or [rav1e](../encoders/rav1e.mdx), so the use of tools like [Av1an](../utilities/av1an.mdx) is less helpful albeit still helpful for scene detection.
+
+## Community Forks
+
+Currently, there is only one noteworthy community fork of SVT-AV1 called SVT-AV1-PSY.
+
+### SVT-AV1-PSY
+
+SVT-AV1-PSY is a community fork of SVT-AV1 that strives to improve the perceptual fidelity and quality of life provided by the encoder. The goal of this project is to create the best encoding implementation for perceptual quality with AV1, and it aims to surpass previous community forks of [aomenc](./aomenc.mdx#choosing-forks) in speed and visual quality.
+
+SVT-AV1-PSY has a number of feature additions to the mainline SVT-AV1 encoder as well as modified defaults that aim to make it easier to produce a more perceptually optimal bistream. For a full list of the encoder's feature additions and modifications to defaults, see the [project's README](https://github.com/gianni-rosato/svt-av1-psy/blob/master/README.md#feature-additions).
+
+SVT-AV1-PSY is used by default in [Aviator](../utilities/Aviator.mdx) and can be used in [rAV1ator CLI](../utilities/rav1ator-cli.mdx) by using the pre-compiled binaries available with the tool or by building a binary yourself.
+
+SVT-AV1-PSY is a superset of SVT-AV1, meaning any valid SVT-AV1 command will work with SVT-AV1-PSY given the modified defaults do not conflict with the settings provided.
+
+## FFmpeg
+
+SVT-AV1 is available in FFmpeg via ``libsvtav1``, to check if you have it, run ``ffmpeg -h encoder=libsvtav1``. You can input non-FFmpeg standard SVT-AV1 parameters via ``-svtav1-params``.
+
+## Building
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        *A precompiled AVX2-optimized binary of SVT-AV1-PSY can be installed for x86_64 Linux via [rAV1ator CLI](../utilities/rav1ator-cli.mdx). However, it is always recommended to build from source.*
+
+        To build SVT-AV1 from source, first clone the desired SVT-AV1 repository & enter the build directory.
+
+        ```bash title="Clone mainline SVT-AV1"
+        git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
+        git reset --hard 59645eea34e2815b627b8293aa3af254eddd0d69 # Reset to release 1.8.0
+        cd SVT-AV1/Build/linux
+        ```
+
+        ```bash title="Clone SVT-AV1-PSY"
+        git clone https://github.com/gianni-rosato/svt-av1-psy
+        cd SVT-AV1/Build/linux
+        ```
+
+        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires cmake version 3.16 or higher and either gcc or clang. It is recommended to use clang when building SVT-AV1.
+
+        ```bash title="Build release"
+        ./build.sh release
+        ```
+
+        ```bash title="Statically build just the encoder with clang and enable link-time optimization"
+        ./build.sh jobs=8 all cc=clang cxx=clang++ no-dec enable-lto static native
+        ```
+
+        The compiled binaries will be in the Bin/Release directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
+
+        If you'd like to build from the latest release (1.8.0 at the time of writing - last updated 11 Feb 2024) please run `git reset --hard 59645eea34e2815b627b8293aa3af254eddd0d69` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
+
+        If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO (and LTO, or link-time optimization) by following this script:
+
+        ```bash title="Bulding SVT-AV1 with profile guided optimization"
+        git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
+        cd SVT-AV1/Build/linux
+        ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-videos=/dev/shm release
+        ```
+
+        If you wish to store videos elsewhere or provide custom parameters to the SvtAv1EncApp binary, try this script:
+
+        ```bash
+        git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
+        cd SVT-AV1/Build/linux
+        ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-compile-gen release
+        ../../Bin/Release/SvtAv1EncApp # Run this binary as many times as you'd like with arguments of your choice to collect data
+        ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-compile-use release
+        ```
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 
+    </TabItem>
+</Tabs>
+
+## Encoding
+
+### Strengths
+
+SVT-AV1's greatest strength is its parallelization capability, where it outclasses other AV1 encoders by a significant margin. SVT-AV1's parallelization techniques do not involve tiling & don't harm video quality, & can comfortably utilize up to 16 cores given 1080p source video. This is while maintaining competitive coding efficiency to mainline aomenc. Perceptually, mainline SVT-AV1 is outperformed by well-tuned community forks of aomenc, but according to many the gap has begun to close with the introduction of SVT-AV1-PSY.
+
+### Weaknesses
+
+SVT-AV1 is strongest on x86 CPUs, & while ARM NEON assembly is [available](https://gitlab.com/AOMediaCodec/SVT-AV1/-/commit/ba13fac241f1b54954935f2cb200efc07f3de13a) and has been slowly improving since its introduction in version 1.8.0, SVT-AV1 still underperforms on ARM. For this reason, it is not a good cross-architecture CPU benchmark. SVT-AV1's support for various AV1 features is also limited; it only supports up to 4:2:0 chroma subsampling with no support for 12-bit color, and it does not support scene change detection (there are no plans to implement this, either). The smallest possible video that SVT-AV1 can produce is 64x64.
+
+### Encoder Optimization
+
+Aside from build optimizations for speed, there is further tweaking to be done to the `SvtAv1EncApp` binary parameters when encoding. The following applies to mainline SVT-AV1, but does not apply to SVT-AV1-PSY.
+
+- `--film-grain` & `--film-grain-denoise`
+
+Most live-action sources feature hard-to-compress digital noise that is easily smoothed out by AV1 compression. To add this grain back, or even denoise through the encoder and then add grain, it is possible to use the `--film-grain` parameter to specify an amount of film grain to add to the encode (& `--film-grain-denoise` to specify how to denoise the input video before encoding for potentially better appeal). Denoising a video always removes fine details, so sticking with just `--film-grain` is recommended in most cases. According to [SVT-AV1 documentation](https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/CommonQuestions.mdx#practical-advice-on-grain-synthesis), a level of 8 should be used for live-action content with a normal amount of grain while a level of 4 works well for hand-drawn animation or other smoother-looking sources that still stand to benefit from some grain synthesis.
+
+- `--input-depth 10`
+
+10-bit output from AV1 encoding is always desirable for coding efficiency, even if your source is 8-bit. This option only produces a 10-bit AV1 bitstream if the source provided to the encoder is 10-bit.
+
+- `--tune 2`
+
+There are three tunes in mainline SVT-AV1: Tune 1 is for [PSNR](../metrics/PSNR.mdx) [RDO](../introduction/psychovisual.mdx), Tune 2 is for [SSIM](../metrics/SSIM.mdx) RDO, & Tune 0 is a [psychovisual](../introduction/psychovisual.mdx) tune labeled VQ. It has been common practice to lean away from the PSNR tune, as it is not designed for visual quality but rather to perform better on the PSNR metric which is widely considered to be inconsistent with our human perception of fidelity. Using the VQ tune is a safe bet for now, but many believe the newer SSIM tune provides better visual fidelity.
+
+- `--enable-qm 1`
+
+Enables quantization matrices, disabled by default. Improves coding efficiency mainly by improving encoding speed while producing similar quality video.
+
+- `--qm-min 0`
+
+Sets the minimum flatness of quantization matrices to 0, down from the default 8. This is recommended. The maximum quantization matrix flatness is 15 by default, and should be left alone
+
+- `--keyint [FPS*10]` 
+
+Similar to `--kf-max-dist` in [vpxenc](../encoders/vpxenc.mdx), this tells the encoder when to place keyframes. Because SVT-AV1 doesn't have scene detection, this isn't the maximum distance between keyframes, but rather a fixed interval for placing keyframes. If using Av1an, set to -1 to disable keyframe insertion as Av1an handles that instead.
+
+- `--irefresh-type 2`
+
+Intra refresh is specified through this option, & lets the user decide between Closed GOP & Open GOP. GOP stands for Group of Pictures. Open GOP allows GOPs to [reference one another](https://ottverse.com/closed-gop-open-gop-idr/), but support for this feature is currently incomplete. Therefore, it is recommended to use Closed GOP for the time being via `--irefresh-type 2` until this is rectified.
+
+- `--preset X`
+
+SVT-AV1 can be used in 14 different presets, labeled -1 through 13. Preset -1 is the slowest, but provides the best coding efficiency; it is also dubbed a research preset that is not recommended for regular use. Preset 13 is the fastest, and is also not recommended for regular use as it makes serious trade-offs to achieve unrealistically fast speeds at the cost of the encoder's coding efficiency. Using presets 2 through 8 is the best course of action for non-realtime applications if you desire reasonable speed, while 9 through 12 are useful for real-time encoding at 1080p or lower, even on low-end consumer computer hardware.
+
+- `--crf X`
+
+CRF is the best way to target quality for optimal visual fidelity. VBR & CBR lose efficiency due to their inherently limited rate control capabilities.

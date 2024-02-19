@@ -1,0 +1,43 @@
+---
+title: tar
+sidebar:
+  order: 9
+---
+
+:::danger[Help Wanted]
+This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::
+
+tar, or Tape ARchive, is a archiving format and utility first developed for Version 7 Unix in 1977. It's original purpose was to collate files into one that can be stored on tape. Similarly, today it is used to bring many files together into a "tarball", which can be compressed with any general data compression algorithm.
+
+## Usage
+
+:::note
+This guide has been written for GNU tar on linux, however it should be applicable to BSD tar, macOS tar, and the tar command in powershell on Windows.
+:::
+
+### Create a tar archive
+
+```bash
+tar -cf {archive name} {files listed here}
+```
+
+You can use `tar` to compress your archive, for example into a `.tar.gz` or `.tar.xz` archive. To do this, you either can either use a flag such as `-z`, `-j`, or `-J` ([gzip](./gzip.mdx), [bzip2](./bzip2.mdx), [xz](../data/xz.mdx)), or you can use `-a` ('automatic'), which allows it to intuit what algorithm you want from the file extension, such as `archive.tar.xz` for an xz compressed tarball.
+
+GNU tar can use these compression algorithms
+
+- gzip (.gz)
+- bzip2 (.bz)
+- xz (.xz)
+- lzip (.lz)
+- lzma (.lzma)
+- lzop (.lzo)
+- zstd (.zstd)
+
+### Extract a tar archive
+
+```bash
+tar -xf {tarball}.tar -C {directory to extract to}
+```
+
+tar can extract from it's supported compressed formats, such as `archive.tar.xz` automatically, with no extra flags.

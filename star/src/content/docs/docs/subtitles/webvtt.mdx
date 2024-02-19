@@ -1,0 +1,33 @@
+---
+title: WebVTT
+---
+
+WebVTT, or Web Video Text Tracks, is the format for subtitles on the web. It is used with the [HTML \<track\> element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track), or embedded into a webm container.
+
+## Structure
+
+WebVTT is a simple, text-based format, based on SRT. All files start with the string
+`WEBVTT`, optionally, some text, then two new lines. That's where the
+data we're interested in starts.
+
+### Cue
+
+A WebVTT file is basically a bunch of cues. They can have a line with
+an ID, then they have to have a line specifying from where to where
+the cue should be displayed like this: `STARTTIME -> ENDTIME [optional
+settings go here]`, then all the text to be displayed goes after
+it. That text can have some HTML-like formatting in it. To learn about
+them, see [the documentation](https://developer.mozilla.org/en-US/docs/Web/API/WebVTT_API#webvtt_cues).
+
+## Example
+
+```
+WEBVTT
+
+00:01.000 --> 00:04.000
+- Never drink liquid nitrogen.
+
+00:05.000 --> 00:09.000
+- It will perforate your stomach.
+- You could die.
+```

@@ -1,0 +1,57 @@
+---
+title: HM
+sidebar:
+  order: 13
+---
+
+
+
+:::caution[Pending Review]
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
+:::
+
+HM is the original [H.265](../video/HEVC.mdx) reference encoder, predating alternatives like [x265](../encoders/x265.mdx). In the modern day, it joins other MPEG reference encoders such as [JM](../encoders/JM.mdx) & [VTM](../encoders/VTM.mdx) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages. x264 is more efficient than JM.
+
+HM is capable of producing higher quality streams than highly tuned x265, even at excruciatingly slow speeds. This is only a theoretical advantage, though, as HM is incapable of placing keyframes automatically with scene detection & would need a chunking too reminiscent of [Av1an](../utilities/av1an.mdx) to do this. For videos containing few enough frames where keyframe placement isn't a concern, HM is better in practice than x265 at the expense of a massive dropoff in speed. HM doesn't have any threading capabilities & is much slower than even x265 placebo.
+
+## Building
+
+```bash
+git clone https://vcgit.hhi.fraunhofer.de/jvet/HM
+cd HM/
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make -j$(nproc)
+```
+
+The binary `TAppEncoderStatic` or `TAppEncoder` can be found within the cloned directories, & can be copied to `/usr/local/bin` for encoding. Decoding & other functions of the reference codec implementation aren't covered in this entry.
+
+## Usage
+
+Here is a sample command: `TAppEncoderStatic -i input.yuv -b out.265 -c ~/HM/cfg/encoder_randomaccess_main10.cfg -wdt 1280 -hgt 720 -fr 50 -f 500 -q 27 -xPS 0`
+
+Make sure only to use only YUV input when encoding with HM. Each parameter does the following:
+
+- `-i input.yuv -b out.265`
+
+Specifies a raw YUV input file & an output raw h265 bitstream. To mux into an MP4 container, it is recommended that you use [mp4box](../utilities/mp4box.mdx) instead of muxing with [FFmpeg](../utilities/ffmpeg.mdx).
+
+- `-c [path/to/config]`
+
+Specifies the desired path to your HM configuration file. This makes it easier to encode without having to manually specify a plethora of settings.
+
+- `-wdt 1280 -hgt 720`
+
+Sets the input & output width & height.
+
+- `-fr 50 -f 500`
+
+Sets the framerate (FPS) & the number of frames to encode. In this case, we are encoding 500 frames of a video that is to be played back at 50fps.
+
+- `-q 27`
+
+Sets a quality target for the encoder.
+
+- `-xPS 0`
+
+Zero clue what this does. If someone has an idea, please contribute!

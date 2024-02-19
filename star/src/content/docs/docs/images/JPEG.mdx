@@ -1,0 +1,78 @@
+---
+title: JPEG
+sidebar:
+  order: 1
+---
+
+:::note[Under Maintenance]
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+:::caution[Pending Review]
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
+:::
+
+JPEG (Joint Photographic Experts Group) compression is a widely used method for reducing the size of digital images while preserving visual quality. It's based on the principles of lossy compression, which means that some image data is discarded to achieve a smaller filesize.
+
+## Performance Checklist
+
+Lossless? _No_
+
+Lossy? _Yes_
+
+Supported Bit Depth:
+_8 BPC_
+
+HDR/Wide Gamut? _Kinda_
+
+Animation? _No_
+
+Transparency? _No_
+
+Progressive Decode? _Yes_
+
+Royalty Free? _Yes_
+
+## Compression
+
+Learning how JPEG compresses images is immensely helpful for understanding how other compression methods work in other codecs. It is definitely worth reading to get a useful background in understanding concepts like entropy coding, the DCT, and color spaces other than RGB. Here's a step-by-step explanation of how JPEG compression works:
+
+#### Color Space Conversion
+
+Most digital images are originally in the RGB (Red, Green, Blue) color space. The first step in JPEG compression is to convert the image to the YCbCr color space. Y represents the luminance (brightness), while Cb and Cr represent the chrominance (color information). The Cb & Cr components are subsampled to a quarter of the resolution of the original image, meaning the resulting color space is chroma subsampled with _4:2:0_ subsampling.
+
+#### Image Tiling
+
+The image is divided into smaller blocks or tiles, typically 8x8 pixels each. Each of these blocks will be processed separately.
+
+#### Discrete Cosine Transform (DCT)
+
+For each 8x8 block, a mathematical transformation called the Discrete Cosine Transform is applied. This transformation converts the pixel values into a set of frequency components, taking spatial data and transforming it to the frequency domain. The DCT is applied to each color channel in the YCbCr color space. This algorithm is a particularly good choice for image (and music/speech) compression because it has high energy compaction relative to our understanding of images & their perceptual quality. High energy compaction means the DCT is able to represent a signal with a small number of significant coefficients, in this case mainly in the lower frequencies.
+
+#### Quantization
+
+After the DCT, the frequencies are quantized in a table representing frequency coefficients & their corresponding frequencies. Less perceptually important details can be omitted to reduce filesize by discarding coefficients in the table that correspond to less visually salient frequencies. This is "lossy" compression, and is the key step in achieving a high compression ratio while still maintaining an image that looks reasonable. The quantization table used in this step can vary in the number of frequencies it attempts to retain, affecting the trade-off between compression & image quality.
+
+#### Zigzag Scanning
+
+The quantized coefficients are then reordered using a zigzag pattern. This is done to prepare the data for the next step.
+
+#### Run-Length Encoding
+
+The zigzag-ordered coefficients are run-length encoded. This means that sequences of zeroes are compressed into a shorter representation. For example, if there are many consecutive zeroes in the data, they can be represented as (0, 10) instead of listing ten individual zeroes.
+
+#### Entropy Encoding
+
+The run-length encoded data is further compressed using entropy encoding. JPEG uses Huffman coding, which assigns shorter codes to more frequently occurring values in the table of DCT coefficients, reducing the overall file size.
+
+#### Saving the File
+
+The compressed luminance and chrominance data, along with information about color space conversion, quantization tables, and EXIF data, are saved in the JPEG file format.
+
+#### Decoding
+
+When you open a JPEG image, the reverse process occurs. The file is decoded, and the DCT coefficients are dequantized, the inverse DCT is applied, and the image is converted back to the RGB color space to be displayed on a screen.
+
+It's important to note that JPEG compression is **_lossy_**, meaning that some image quality is discarded in the pursuit of smaller file sizes. This makes it different than codecs designed for lossless compression like [PNG](../images/PNG.mdx), [WebP](../images/WebP.mdx)'s lossless mode, and [JPEG-XL](../images/JXL.mdx)'s lossless mode. The degree of compression and the quality of the compressed image can be adjusted through settings when saving a JPEG, allowing for a trade-off between file size & image fidelity.
+
+While JPEG is certainly not the most state of the art lossy image codec compared to its newer and (usually) better successors like [JPEG-XL](./JXL.mdx) (an actual direct successor) & [AVIF](../images/AVIF.mdx), it enjoys near universal compatibility with (likely) most utilities you would work with in your everyday life that have anything to do with images.

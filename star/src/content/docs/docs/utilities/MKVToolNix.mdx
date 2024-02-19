@@ -1,0 +1,36 @@
+---
+title: MKVToolNix
+sidebar:
+  order: 4
+---
+
+MKVToolNix is FOSS GUI frontend to a set of tools (mkvmerge, mkvinfo, mkvpropedit, mkvextract) to create, alter and inspect Matroska files under Linux, other \*NIXes and Windows.
+
+<picture>
+  <source
+    srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/mkvtoolnix-gui-workload.avif"
+    type="image/avif"
+  />
+  <img
+    src="https://raw.githubusercontent.com/av1-community-contributors/images/main/mkvtoolnix-gui-workload.webp"
+    alt="MKVToolNix Workload"
+  />
+</picture>
+
+## Installation
+
+Fortunately, Moritz Bunkus (Creator) is sane enough to provide downloads for pretty much all popular desktop operating systems.
+
+- Windows & Mac: [MKVToolNix site](https://mkvtoolnix.download/downloads.html).
+- Linux: [Install as a Flatpak](https://flathub.org/apps/org.bunkus.mkvtoolnix-gui) or check your package manager.
+
+## Usage
+
+Drag and drop media files (or use "Add source files") to the application and modify, remux, demux, add streams, drop streams, anything and when done set your output destination and click "Start multiplexing" to start writing the output.
+
+## Tips and tricks
+
+1. You can import unencrypted BDMV (`index.bdmv`) or Blu-ray playlist files into MKVToolNix and it will prompt you to select which stream you would want to import.
+2. You can set a WebM output in Output > Miscellaneous > "Create WebM compliant file"
+3. You can split videos in multiple ways in Output > Splitting. Best of all? No freeze frames unlike in FFmpeg and no re-encoding required.
+4. You can edit metadata without remuxing (Albeit rather limited) in the "Header Editor".
