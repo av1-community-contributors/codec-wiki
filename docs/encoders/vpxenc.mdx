@@ -3,6 +3,9 @@ title: vpxenc
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # vpxenc
 
 :::info Under Maintenance
@@ -11,34 +14,39 @@ The content in this entry is incomplete & is in the process of being completed.
 
 vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.mdx) & [VP8](../video/VP8.mdx) video codecs. It is capable of encoding & decoding both formats, where vpxenc is the multipurpose encoder. VP9 competes with [HEVC](../video/HEVC.mdx) (h265) & [AVC](../video/AVC.mdx) (h264) in coding efficiency, and has been superseded by [AV1](../video/AV1.mdx). VP8 competes with AVC. By default, vpxenc isn't as competitive as it could be, but even when used properly, most tests show that h265 offers slightly better quality per bit with efficient encoders like [x265](../encoders/x265.mdx).
 
-## Building
+## Installation
 
-**Linux & macOS**
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        To build libvpx from source:
+        ```bash
+        git clone https://chromium.googlesource.com/webm/libvpx
+        cd libvpx
+        ./configure
+        make -j [# of CPU threads]
+        ```
 
-To build libvpx from source:
-```bash
-git clone https://chromium.googlesource.com/webm/libvpx
-cd libvpx
-./configure
-make -j [# of CPU threads]
-```
+        It may be worth digging through the `configure` options, which can be listed by running `./configure -h`. Keeping in mind some flags might be redundant with defaults, here's an example of a tweaked configuration (without VP8 support) for efficient performance on an Apple Silicon Mac running macOS Ventura:
+        ```bash
+        ./configure --disable-vp8 --target=arm64-darwin22-gcc --disable-docs --enable-webm-io --enable-vp9-postproc --enable-vp9-highbitdepth --extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native" --enable-postproc
+        ```
 
-It may be worth digging through the `configure` options, which can be listed by running `./configure -h`. Keeping in mind some flags might be redundant with defaults, here's an example of a tweaked configuration (without VP8 support) for efficient performance on an Apple Silicon Mac running macOS Ventura:
-```bash
-./configure --disable-vp8 --target=arm64-darwin22-gcc --disable-docs --enable-webm-io --enable-vp9-postproc --enable-vp9-highbitdepth --extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native" --enable-postproc
-```
+        From the build, a binary will be produced called `vpxenc`. You can copy this build to `/usr/local/bin` or execute it directly in the directory, shown below:
 
-From the build, a binary will be produced called `vpxenc`. You can copy this build to `/usr/local/bin` or execute it directly in the directory, shown below:
+        ```bash
+        ./vpxenc --help | grep vp9 -C 3
 
-```bash
-./vpxenc --help | grep vp9 -C 3
+        Included encoders:
 
-Included encoders:
+            vp9    - WebM Project VP9 Encoder v1.13.0 (default)
 
-    vp9    - WebM Project VP9 Encoder v1.13.0 (default)
-
-        Use --codec to switch to a non-default encoder.
-```
+                Use --codec to switch to a non-default encoder.
+        ```
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 
+    </TabItem>
+</Tabs>
 
 ## VP8
 

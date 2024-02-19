@@ -3,19 +3,75 @@ label: Aviator
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Aviator
 
-Aviator is a GUI application designed for encoding [AV1](../video/AV1.mdx) video & Opus audio with [SVT-AV1](../encoders/SVT-AV1.mdx), [libopus](../audio/Opus.mdx), & [ffmpeg](../utilities/ffmpeg.mdx) on Linux systems in a user-friendly, intuitive manner. Aviator's primary focus is ease-of-use, while still striving to offer optimal quality per bit through smart defaults implemented via its SVT-AV1 encoder.
+Aviator is a GUI application designed for encoding [AV1](../video/AV1.mdx) video & Opus audio with [SVT-AV1](../encoders/SVT-AV1.mdx), [libopus](../audio/Opus.mdx), & [ffmpeg](../utilities/ffmpeg.mdx) on Linux systems in a user-friendly, intuitive manner. Aviator's primary focus is ease-of-use, while still striving to offer optimal quality per bit through a smart default encoding configuration implemented via the SVT-AV1-PSY encoder.
 
 <img width="640" height="360" src="https://raw.githubusercontent.com/gianni-rosato/aviator/main/assets/aviator_splash2.avif" alt="Aviator Splash"/>
 
 ## Installation
 
-Aviator is available on Flathub as a Flatpak. You can learn how to set up Flatpak on your distro of choice [here](https://flatpak.org/setup/).
+<Tabs>
+    <TabItem value="unixlike" label="Linux">
+        Aviator is available on Linux through Flathub as a Flatpak. You can learn how to set up Flatpak on your distro of choice [here](https://flatpak.org/setup/). Please do not use Aviator through the AUR.
 
-<a href="https://flathub.org/apps/details/net.natesales.Aviator"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
+        <a href="https://flathub.org/apps/details/net.natesales.Aviator"><img width="200" alt="Download on Flathub" src="https://flathub.org/assets/badges/flathub-badge-en.png"/></a>
 
-Aviator's rationale behind using Flatpak is to ship its own dependencies & ensure users across every distro have a cohesive experience with the latest up-to-date SVT-AV1-PSY implementation that is best for visual quality.
+        If Flatpak is already set up and you'd prefer to install Aviator from the terminal, you can run the following commmand:
+
+        ```bash
+        flatpak install flathub net.natesales.Aviator
+        ```
+
+        Flatpak was chosen for Aviator because it allows Aviator to ship its own sandboxed dependencies, ensuring every Linux user has a cohesive experience. One major benefit is the latest stable SVT-AV1-PSY implementation is always included, and Flatpak Aviator won't use your system's SVT-AV1 implementation which may be incompatible with Aviator's custom parameters.
+
+        If you would like to build Aviator from source, you may do so via the following commands. Ensure you have the right dependencies; if not, `make` will warn you and you can install them as you see what you're missing.
+
+        ```bash
+        git clone https://github.com/gianni-rosato/aviator
+        cd aviator
+        make
+        ```
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+            :::caution Partial Support
+Windows support is provided on a "best-effort" basis via **WSL2**. Compatibility hiccups will almost certainly be encountered should you decide to run Aviator on Windows.
+:::
+
+        Aviator is supported on a "best-effort" basis on Windows via WSL2. In order to set up a WSL2 Arch Linux environment, see the [rAV1ator CLI](../utilities/rav1ator-cli.mdx#windows) WSL2 tutorial for Windows 11.
+
+        Once WSL2 is set up, install Flatpak in your Linux environment by follwing the steps below. **Always be careful when running commands with `sudo` copied from the Internet, including the commands below.**
+
+        ```bash
+        sudo pacman -Syu # Update your system
+        sudo pacman -S flatpak # Install flatpak
+        sudo systemctl enable --now dbus # Start dbus
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo # Add flathub repo if it hasn't already been added
+        ```
+        Finally, you can verify that Flatpak has actually been installed by running `flatpak --version` and checking that the version string is valid.
+
+        Now, Aviator requires a couple of special Flatpak dependencies most commonly found on GNOME Linux distros.
+
+        ```bash
+        sudo flatpak install org.gnome.Sdk # Select option 15
+        sudo flatpak install org.gnome.Platform # Select option 14
+        ```
+        Finally, you can install Aviator.
+
+        ```bash
+        sudo flatpak install flathub net.natesales.Aviator
+        ```
+        You can run Aviator by executing the following command:
+
+        ```bash
+        flatpak run net.natesales.Aviator
+        ```
+        Now, you should be all set! Happy encoding!
+    </TabItem>
+</Tabs>
 
 ## Aviator's Defaults
 
@@ -25,7 +81,7 @@ Hovering over most user configurable options in Aviator will produce a helpful t
 
 Aviator doesn't use mainline SVT-AV1, but rather uses [a fork](https://github.com/gianni-rosato/svt-av1-psy) dubbed SVT-AV1-PSY maintained for perceptual quality. It includes several unique changes, including a custom [SSIM](../metrics/SSIM.mdx)-based [RDO](../introduction/psychovisual.mdx) tune that isn't included in mainline SVT-AV1. You can read more about SVT-AV1-PSY on the [SVT-AV1](../encoders/SVT-AV1.mdx#community-forks) entry.
 
-Aviator's default FFmpeg command uses the following SVT-AV1 parameters:
+Aviator's default FFmpeg command uses the following encoding parameters, some of which are redundant with defaults:
 
 ```bash
 -c:v libsvtav1 -crf X -preset X -pix_fmt yuv420p10le -svtav1-params film-grain=X:irefresh-type=2:input-depth=10:tune=3:sharpness=1:qm-min=0:keyint=300:aq-mode=2:enable-qm=1:film-grain-denoise=X
@@ -59,4 +115,4 @@ The container your video is stored in is associated with the file extension. Avi
 
 ## Credits
 
-Actively developed by [Gianni Rosato](https://github.com/gianni-rosato/).
+Aviator is actively developed by [Gianni Rosato](https://github.com/gianni-rosato/).

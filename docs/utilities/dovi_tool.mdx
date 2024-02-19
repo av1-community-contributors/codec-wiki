@@ -3,43 +3,47 @@ label: dovi_tool
 sidebar_position: 9
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # dovi_tool
 
 **dovi_tool** is a command line tool written in Rust combining multiple utilities for working with Dolby Vision.
 
-
-
 ## Installation
 
-- Download pre-built binaries from [here](https://github.com/quietvoid/dovi_tool/releases)
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        You can download official pre-built binaries for Linux & macOS from [the GitHub Releases](https://github.com/quietvoid/dovi_tool/releases), or you may compile the tool yourself via the instructions below.
 
-or
-- Compile yourself (Rust must be installed, minimum v1.64.0 at the time of writing)
+        Ensure you have Rust installed.
 
-```bash
-git clone https://github.com/quietvoid/dovi_tool.git
-cd dovi_tool
-RUSTFLAGS="-C target-cpu=native" cargo build --release
-```
+        ```bash
+        git clone https://github.com/quietvoid/dovi_tool.git
+        cd dovi_tool
+        RUSTFLAGS="-C target-cpu=native" cargo build --release
+        ```
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        You can download official pre-built binaries for Windows from [the GitHub Releases](https://github.com/quietvoid/dovi_tool/releases), or you may compile the tool yourself via the instructions below.
 
-on Windows:
-```bash
-git clone https://github.com/quietvoid/dovi_tool.git
-cd dovi_tool
-set RUSTFLAGS=-C target-cpu=native 
-cargo build --release
-```
+        Ensure you have Rust installed.
 
-
+        ```pwsh
+        git clone https://github.com/quietvoid/dovi_tool.git
+        cd dovi_tool
+        set RUSTFLAGS=-C target-cpu=native 
+        cargo build --release
+        ```
+    </TabItem>
+</Tabs>
 
 ## Usage
 
-```bash
+```bash title="General usage"
 dovi_tool [OPTIONS] <SUBCOMMAND>
 ```
 
-To get more detailed options for a subcommand
-
-```bash
+```bash title="Get more options for a subcommand"
 dovi_tool <SUBCOMMAND> --help
 ```

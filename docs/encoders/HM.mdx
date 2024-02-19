@@ -13,7 +13,9 @@ HM is the original [H.265](../video/HEVC.mdx) reference encoder, predating alter
 
 HM is capable of producing higher quality streams than highly tuned x265, even at excruciatingly slow speeds. This is only a theoretical advantage, though, as HM is incapable of placing keyframes automatically with scene detection & would need a chunking too reminiscent of [Av1an](../utilities/av1an.mdx) to do this. For videos containing few enough frames where keyframe placement isn't a concern, HM is better in practice than x265 at the expense of a massive dropoff in speed. HM doesn't have any threading capabilities & is much slower than even x265 placebo.
 
-## Building
+## Installation
+
+These build instructions are valid for Linux & macOS.
 
 ```bash
 git clone https://vcgit.hhi.fraunhofer.de/jvet/HM
