@@ -335,7 +335,7 @@ The moment you've all been waiting for, let's just get into it. Here's an exampl
 av1an -x 300 -i input.mkv -w 4 -e aom -c mkvmerge --resume -m lsmash --photon-noise=10 --set-thread-affinity=2 --verbose -a " -an " -f " -an " -v " --bit-depth=10 --cpu-used=4 --end-usage=q --cq-level=24 --threads=2 --tile-columns=0 --tile-rows=0 --lag-in-frames=64 --tune-content=psy --tune=ssim --enable-keyframe-filtering=1 --disable-kf --kf-max-dist=9999 --enable-qm=1 --deltaq-mode=0 --aq-mode=0 --quant-b-adapt=1 --enable-fwd-kf=0 --arnr-strength=1 --sb-size=dynamic --enable-dnl-denoising=0 " -o "output.mkv"
 ```
 
-:::info Parameter Meta
+:::note[Parameter Meta]
 It is strongly recommended to join the [AV1 Discord server](https://discord.gg/vpREHAvYvh) to get the latest updates on what to use and which to set, as it's the only easily reachable place for everything AV1 & encoding tips in general.
 :::
 Now let's dissect it one-by-one
