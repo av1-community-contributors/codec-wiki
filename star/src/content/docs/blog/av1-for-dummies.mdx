@@ -36,7 +36,7 @@ Given all of the different operating systems that people use on a day to day bas
 1. Install [NMKODER](https://github.com/n00mkrad/nmkoder) which is a GUI front-end to av1an with all dependencies installed.
 2. You're done, you can skip to the encoding part
 
-:::danger Almost abandonware
+:::danger[Almost abandonware]
 Since Nmkoder already ships everything by default and its last release was 29th March 2022. You need to manually update all encoders and tools to get better encoding speeds. Missing out on updates will result in your encodes being sub-optimal.
 :::
 
@@ -67,7 +67,7 @@ The script will download outdated version encoders and tools such as `aom-av1-ps
 5. Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases) (SELECT LATEST AND CLICK THE "ASSETS" DROPDOWN)
 6. Download **shared libraries** FFmpeg from [gyan.dev](https://www.gyan.dev/ffmpeg/builds)
 7. Download a pre-built fork of Aomenc ([aom-av1-lavish](https://github.com/Clybius/aom-av1-lavish/tree/Endless_Merging)) which has neat stuff such as sane defaults, new tunes, optimizations, etc. This can be downloaded for Windows [here](https://autumn.revolt.chat/attachments/download/-2EiZW1edcT9anApFZ1PJBEber-pJ6z02NiQBjbr28) _(Current as of Sept 6, 2023)_
-   :::info
+   :::note
    If you opt to compile aomenc yourself, you can view the instructions on how to do that [here](https://wiki.x266.mov/docs/encoders/aomenc/#installation).
    :::
 8. Move Av1an, FFmpeg **(Including the FFmpeg DLLs)**, and aomenc to somewhere preferable, eg `C:\Encoding`.
@@ -198,7 +198,7 @@ Notice how it says `AOMedia Project AV1 Encoder Psy` instead of `AOMedia Project
 
 ## Linux
 
-:::info
+:::note
 Yet again, try using Arch. It's way easier.
 :::
 
@@ -393,7 +393,7 @@ Now let's dissect it one-by-one
     />
   </picture>{" "}
 
-:::note Tile usage
+:::note[Tile usage]
 Do NOT use tiles for 1080p and below, use 1 `tile-columns` at 1440p (2K), 2 `tile-columns` and 1 `tile-rows` for 2160p (4K)
 :::
 
@@ -403,7 +403,7 @@ Do NOT use tiles for 1080p and below, use 1 `tile-columns` at 1440p (2K), 2 `til
 
 - `--tune-content=psy --tune=ssim` As the name suggests they are tunes that affect the video output, for the better, and for the worst
 
-:::info Tunes to use
+:::note[Tunes to use]
 Set `tune-content` to `animation` if you're encoding above `cq-level=30` A.K.A lower quality, despite it's name
 Set `tune-content` to `psy` for everything else, **do not use if you encode above `cq-level=30`**
 For `tune`, this is a bit tricky. For now, the meta seems to be `ssim`, but back then it was `lavish` which is considered THE best tune because it's based on [butteraugli](https://github.com/google/butteraugli). Now it's fallen behind because its more blurry than `ssim`, and before that it was `butteraugli`, and then `ipq_vmaf_psy`, and finally just `ipq`.
@@ -426,7 +426,7 @@ If you use any of the VMAF tunes, **you need to specify `--vmaf-model-path=` to 
 
 - `--enable-dnl-denoising=0` Disables the encoder's built-in denoising technique when grain synthesis is enabled, you can optionally set it to 1 when you have a pretty noisy video since it works quite well.
 
-:::info Concatenation Error on Linux
+:::note[Concatenation Error on Linux]
 Run `ulimit -n 200000`, resume, and it should concatenate just fine. If it still errors, head to the encode directory > encode, and run `mkvmerge @../options.json`
 :::
 
