@@ -9,6 +9,7 @@ export default defineConfig({
     starlight({
       plugins: [starlightBlog()],
       favicon: "/img/favicon.svg",
+      customCss: ['./src/styles/custom.css',],
       title: "Codec Wiki",
       lastUpdated: true,
       description: "Your Guide to All Things Encoding",
