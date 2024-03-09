@@ -4,57 +4,66 @@ sidebar:
   order: 5
 date: 2023-05-09
 ---
-
-
+import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 rav1e is a command line application for encoding AV1 written in Rust & Assembly co-developed by Xiph.org and Mozilla.
 
 rav1e is available in FFmpeg via `librav1e`. You can check if you have it by running `ffmpeg -h encoder=librav1e`. You can input non-FFmpeg standard rav1e parameters via `-rav1e-params`. Please keep in mind that unless you build FFmpeg yourself, you are using the most vanilla version of rav1e.
 
+## Installation
 
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
 
-## Building
+        Official pre-built rav1e binaries can be found on the [releases page](https://github.com/xiph/rav1e/releases) in rav1e's Github repository. Unofficially, the [rAV1ator CLI](../utilities/rav1ator-cli.mdx) command line tool can automatically download and install rav1e to `/usr/local/bin`. rav1e can also be installed with Cargo by running `cargo install rav1e`. 
 
-### Linux/macOS
-
-Pre-built binaries can be found in the [releases page](https://github.com/xiph/rav1e/releases) on Github. rav1e can also be installed with Cargo by running `cargo install rav1e`. 
-
-:::caution
+        :::caution[Stable Release]
 For stability & a proper version number, please reset the source to the correct release commit. In the releases page, click the icon to the right of the release tag & copy the commit in the url bar. Then, in the cloned rav1e directory, `git reset --hard [commit hash]`
 :::
 
-Here are instructions for resetting to release 0.7.0 (latest as of 30 Dec 2023). Omit the `git reset` command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
+        Here are instructions for resetting to release 0.7.1 (latest as of 19 Feb 2024) and building. Omit the `git reset` command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
 
-```bash
-git clone https://github.com/xiph/rav1e.git
-cd rav1e
-git reset --hard c4603c75dc593c1ad7c4b6a741e22bd3ea602be5
-RUSTFLAGS="-C target-cpu=native" cargo build --release
-```
+        ```bash
+        git clone https://github.com/xiph/rav1e.git
+        cd rav1e
+        git reset --hard a8d05d0c43826a465b60dbadd0ab7f1327d75371
+        RUSTFLAGS="-C target-cpu=native" cargo build --release
+        ```
 
-When done, the binary can be found in `/target/release`. You can then `cp /target/release/rav1e /usr/local/bin` or wherever you desire the binary to go.
+        When done, the binary can be found in `/target/release`. You can then copy the binary wherever you desire it to go, like by doing `cp /target/release/rav1e /usr/local/bin` .
 
-### Windows
-```powershell
-git clone https://github.com/xiph/rav1e.git
-cd rav1e
-git reset --hard c4603c75dc593c1ad7c4b6a741e22bd3ea602be5
-set RUSTFLAGS=-C target-cpu=native
-cargo build --release
-```
-When done, the binary can be found in ``target/release``
+        ### Patched Installation with HDR10+ support
 
-**Installation with HDR10+ support**
+        rav1e currently has an [unmerged pull request](https://github.com/xiph/rav1e/pull/3000) by quietvoid, the person behind [hdr10plus_tool](../utilities/hdr10plus_tool.mdx) and [dovi_tool](../utilities/dovi_tool.mdx). The PR adds a new parameter called `--hdr10plus-json` for HDR10+ JSON dynamic metadata input. To merge it locally, do the following:
 
-rav1e currently has an [unmerged pull request](https://github.com/xiph/rav1e/pull/3000) by quietvoid, the person behind ``hdr10plus_tool`` and ``dovi_tool``. The PR adds a new parameter called ``--hdr10plus-json`` for HDR10+ JSON dynamic metadata input. To merge it locally, do the following:
+        ```bash
+        git clone https://github.com/xiph/rav1e.git
+        cd rav1e
+        git reset --hard [release commit]
+        git fetch origin pull/3000/head:HDR10+
+        ```
+        Now the patch should be applied, and you may build as usual.
 
-```bash
-git clone https://github.com/xiph/rav1e.git
-cd rav1e
-git reset --hard [release commit]
-git fetch origin pull/3000/head:HDR10+
-```
-now the patch should be applied, build as usual
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        If you would not like to build from source, official pre-built rav1e binaries can be found on the [releases page](https://github.com/xiph/rav1e/releases) in rav1e's Github repository.
+
+         :::info Stable Release
+For stability & a proper version number, please reset the source to the correct release commit. In the releases page, click the icon to the right of the release tag & copy the commit in the url bar. Then, in the cloned rav1e directory, `git reset --hard [commit hash]`
+:::
+
+        Here are instructions for resetting to release 0.7.1 (latest as of 19 Feb 2024) and building. Omit the `git reset` command to use the latest git, if you have a *specific* reason to use the latest git instead of an official tagged release.
+
+        ```powershell
+        git clone https://github.com/xiph/rav1e.git
+        cd rav1e
+        git reset --hard a8d05d0c43826a465b60dbadd0ab7f1327d75371
+        set RUSTFLAGS=-C target-cpu=native
+        cargo build --release
+        ```
+        When done, the binary can be found in `target/release` 
+    </TabItem>
+</Tabs>
 
 ### AV1
 

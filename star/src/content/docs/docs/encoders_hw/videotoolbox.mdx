@@ -4,10 +4,8 @@ sidebar:
   order: 4
 ---
 
-
-
-:::danger[Help Wanted]
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::note[Under Maintenance]
+The content in this entry is incomplete & is in the process of being completed.
 :::
 
 Apple's VideoToolbox is a low-level framework that provides direct access to hardware encoders and decoders. It offers services for video compression and decompression, as well as conversion between raster image formats stored in CoreVideo pixel buffers. The VideoToolbox encoder works by compressing video data for various applications such as low-latency conferencing, live streaming, and offline transcoding. It supports hardware encoding on most Macs from 2011 and later, and uses Apple's Media Engine on devices with Apple T2 chips or Apple Silicon.
@@ -22,7 +20,7 @@ Encoding with Videotoolbox on macOS is possible via [FFmpeg](../utilities/ffmpeg
 
 ### FFmpeg
 
-To use H.264 or H.265 (HEVC) hardware encoding in macOS via VideoToolbox, just use the encoder `-c:v h264_videotoolbox` or `-c:v hevc_videotoolbox` for H.264 or HEVC respectively. 
+To use H.264 or H.265 (HEVC) hardware encoding in macOS via VideoToolbox, just use the encoder `-c:v h264_videotoolbox` or `-c:v hevc_videotoolbox` for H.264 or HEVC respectively.
 
 Here are some example commands for encoding with VideoToolbox on Apple Silicon via FFmpeg:
 
@@ -44,7 +42,7 @@ Just run `ffmpeg -help encoder=hevc_videotoolbox` or `ffmpeg -help encoder=h264_
 
 To be filled.
 
-*Sources*
+_Sources_
 (1) Video Toolbox | Apple Developer Documentation. https://developer.apple.com/documentation/videotoolbox.
 (2) HandBrake Documentation — Apple VideoToolbox. https://handbrake.fr/docs/en/latest/technical/video-videotoolbox.html.
 (3) Apple's T2 chip makes a giant difference in video encoding for most .... https://appleinsider.com/articles/19/04/09/apples-t2-chip-makes-a-giant-difference-in-video-encoding-for-most-users.
