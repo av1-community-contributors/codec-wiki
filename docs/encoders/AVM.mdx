@@ -5,6 +5,23 @@ sidebar_position: 12
 
 # AVM
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+The AVM video codec is the reference implementation for a future codec from the Alliance for Open Media, the organization behind [AV1](../video/AV1.mdx). From the [Git repo](https://gitlab.com/AOMediaCodec/avm):
+
+> AVM (AOM Video Model) is the reference software for next codec from Alliance for Open Media
+
+The codebase is under the Clear BSD license.
+
+The AVM codec is currently in development and is not yet ready for production use. Not much has been documented or tested, though there is some material available.
+
+## Rumors
+
+Some things about the new encoding implementation can be confirmed via the codebase, but none of those changes are final until the codec is standardized and officially released.
+
+Some rumors about the codec include:
+
+- The name of the codec is going to be AV2, superseding AV1
+- The codec will be based on AV1, with certain backwards compatibility features available
+    - Hardware decoding implementations could be implemented at no cost (no royalties) by utilizing GPU shaders and existing AV1 decoding hardware.
+- AOM's strategy will be to release codecs "mid-cycle" relative to ISO/ITU's release schedule, meaning it is likely that "AV2" will compete with [VVC](../video/VVC.mdx), not [ECM](../video/ECM.mdx).
+- A quantizer scale of 0-255 will be standard.
+- AVM tries to address some issues with high-fidelity AV1 encoding by introducing a better denoiser to mitigate [mosquito noise](../introduction/video-artifacts.mdx#mosquito-noise).
