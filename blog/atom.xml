@@ -58,74 +58,74 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <p>First of all, here are the efficiency graphs:</p>
 </li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <p>This could be too much information.</p>
 <ul>
 <li>Now the same graphs but focusing on the "high quality" range (CRF8 -&gt; 23):</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Same again but without presets 9 to 13 for better clarity:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Now for the "low quality" range (CRF28 -&gt; 43):</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Same but without presets 9 to 13 for better clarity:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li><strong>Let's now see speed comparisons between all presets:</strong></li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed_overall.webp" alt="speed_overall" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed_overall.webp" alt="speed_overall" class="img_ev3q"></p>
 <p>As we can see, preset -1 is so abysmally slow it makes the graph unusable
 (BTW, notice the <code>1e6</code> in the lower right corner, it is obviously not encoding at 1 to 4 ms, but at 1 000 000 to 4 000 000 ms)</p>
 <ul>
 <li>Here is what it looks like with a logarithmic scale:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li><strong>Now the speed graphs but with SSIMU2 on the y-axis instead of BPP: (logarithmic scale)</strong></li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Here are speeds graphs for preset 1 to 6 with a linear scale:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <p>One interpretation we can have is that <strong>presets 2 to 4</strong> have actually pretty close scores (pretty much the same at HQ, 2 points at max in the low quality range) but <strong>preset 2</strong> is <strong>2x slower than preset 4</strong>. The quality gap between <strong>preset 2</strong> and <strong>preset 1</strong> is even narrower but the speed penalty is also ~2x.</p>
 <p>That makes it hard to recommend <strong>preset 1</strong>, while <strong>preset 3</strong> is in a strange middle ground between <strong>2</strong> and <strong>4</strong> where it makes little sense to choose it over those two: it's better to choose <strong>preset 2</strong> for the higher efficiency at 1.5x slower speeds, or <strong>preset 4</strong> for the 1.33 to 1.5x higher speeds. At least the option exists.</p>
 <p>A similar observation can be made between <strong>preset 5</strong> and <strong>6</strong>. They can be so close in scores in many samples (especially at HQ) while also being close in speeds that <strong>preset 5</strong> becomes rather obsolete most of the time.</p>
@@ -145,35 +145,35 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li><strong>Let's compare the efficiency of every tunes:</strong></li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Now let's focus on the "high quality" range (CRF8 -&gt; 23):</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>And the "low quality" range (CRF28 -&gt; 43):</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>And here is the speed difference:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Graphs comparing the tunes individually between each others will be made available soon.</li>
 <li>The image comparisons will make the conclusion quite more nuanced, stay tuned (heheh) for that.</li>
@@ -190,19 +190,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>tiles</strong> here are both slightly harmful and slower.</p>
 </blockquote>
@@ -210,19 +210,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Except for the Jigokuraku clip, <strong>aq-mode 0</strong> is harmful in the eyes of SSIMU2, while being slower at low CRF levels, and sometimes a match or faster at high CRF levels.</p>
 </blockquote>
@@ -230,19 +230,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>aq-mode 1</strong> fares closer to <strong>aq-mode 2</strong> than <strong>aq-mode 0</strong> did, both in quality and speed, but is still overall inferior according to SSIMU2</p>
 </blockquote>
@@ -250,19 +250,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>According to SSIMU2, disabling CDEF barely impact efficiency. But as its a pretty demanding tool, there's a slight speed benefit of having it disabled too. I advise you to take these results with a grain of salt until the image comparisons, because in anime particularly, CDEF <em>can</em> be beneficial for the line-art.</p>
 </blockquote>
@@ -270,19 +270,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>Dynamic GoP control</strong> yields bit-perfect results in all clips except for Blue Lock and Jigokuraku. There is no speed benefit to disabling it except in clips where it is in use. Let's not jump to conclusions too easily, the image comparisons will tell if it's "safe" to keep the setting disabled at all times or not.</p>
 </blockquote>
@@ -290,19 +290,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>Deblocking loop filter</strong> can be slightly beneficial in some scenarios. In reverse, it is never harmful, so it is recommended to keep it default.</p>
 </blockquote>
@@ -310,19 +310,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>fast-decode 1</strong> is pretty harmful in the Fate clip and slightly harmful in the rest. There is a speed benefit of enabling it though.</p>
 </blockquote>
@@ -330,19 +330,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Finally something interesting to analyse!</p>
 </blockquote>
@@ -356,53 +356,53 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="--lookahead-60-vs-default---lookahead--1-auto"><code>--lookahead 60</code> vs default <code>--lookahead -1</code> (auto)<a href="https://wiki.x266.mov/blog/svt-av1-deep-dive#--lookahead-60-vs-default---lookahead--1-auto" class="hash-link" aria-label="Direct link to --lookahead-60-vs-default---lookahead--1-auto" title="Direct link to --lookahead-60-vs-default---lookahead--1-auto">​</a></h3>
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="--lookahead-120-max-vs-default---lookahead--1-auto"><code>--lookahead 120</code> (max) vs default <code>--lookahead -1</code> (auto)<a href="https://wiki.x266.mov/blog/svt-av1-deep-dive#--lookahead-120-max-vs-default---lookahead--1-auto" class="hash-link" aria-label="Direct link to --lookahead-120-max-vs-default---lookahead--1-auto" title="Direct link to --lookahead-120-max-vs-default---lookahead--1-auto">​</a></h3>
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>lookahead</strong> seems to behave strangely when set...</p>
 </blockquote>
@@ -418,19 +418,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p><strong>overlays</strong> do not seem to either improve efficiency or performance.</p>
 </blockquote>
@@ -438,19 +438,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Enabling <strong>quantization matrices</strong> alone increase efficiency at "high quality" with no real speed impact.</p>
 </blockquote>
@@ -458,19 +458,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Setting <strong>qm-min</strong> to <strong>0</strong> on top of enabling <strong>quantization matrices</strong> can be beneficial in some clips at no added compute time.</p>
 </blockquote>
@@ -479,19 +479,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Even though the efficiencies are very similar, nothing is bit-perfect here. So according to SSIMU2, the <strong>loop restoration filter</strong> isn't necessarily useful. However, just like CDEF, it's a pretty demanding tool, so disabling it yields some performance improvements. Let's take these with a grain of salt until the image comparisons.</p>
 </blockquote>
@@ -501,19 +501,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_blame.webp" alt="scm1-efficiency-1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_bluelock.webp" alt="scm1-efficiency-2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_fate.webp" alt="scm1-efficiency-3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_jigokuraku.webp" alt="scm1-efficiency-4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_kaguya.webp" alt="scm1-efficiency-5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_blame.webp" alt="scm1-efficiency-1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_bluelock.webp" alt="scm1-efficiency-2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_fate.webp" alt="scm1-efficiency-3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_jigokuraku.webp" alt="scm1-efficiency-4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_kaguya.webp" alt="scm1-efficiency-5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Interestingly enough, <strong>screen content tools</strong> seem to improve efficiency according to SSIMU2, at the cost of a huge performance regression. After the image comparisons are published, I will conduct additional testing on this.</p>
 </blockquote>
@@ -521,19 +521,19 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 <ul>
 <li>Efficiency graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <ul>
 <li>Speed graphs:</li>
 </ul>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
-<p><img loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_blame.webp" alt="1" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_bluelock.webp" alt="2" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_fate.webp" alt="3" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_jigokuraku.webp" alt="4" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_kaguya.webp" alt="5" class="img_ev3q"></p>
 <blockquote>
 <p>Disabled <strong>temporal filtering</strong> <em>can</em> sometimes improve efficiency slightly at "high quality", however it is very much clip dependent. It also improves performance slightly. The image comparisons will give another perspective to these results.</p>
 </blockquote>
@@ -584,12 +584,12 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
         <link href="https://wiki.x266.mov/blog/embedding-the-un-embeddable"/>
         <updated>2023-10-29T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Revealing the secrets of those websites that allow you to embed entire movies, AV1, and videos over 500MB on Discord.]]></summary>
-        <content type="html"><![CDATA[<p><img loading="lazy" alt="Feature image" src="https://wiki.x266.mov/assets/images/discord-embed-blog-image-2bcaf4f73f5fa33664328756753f3041.webp" width="1920" height="1080" class="img_ev3q">
+        <content type="html"><![CDATA[<p><img decoding="async" loading="lazy" alt="Feature image" src="https://wiki.x266.mov/assets/images/discord-embed-blog-image-2bcaf4f73f5fa33664328756753f3041.webp" width="1920" height="1080" class="img_ev3q">
 <strong>A 567.14 MB, 12 min 11 s, 2K (2,048 x 858), VP9 + Opus, 6.51 Mbps average, Blender short film "Cosmos Laundromat"</strong></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="a-scenario">A Scenario<a href="https://wiki.x266.mov/blog/embedding-the-un-embeddable#a-scenario" class="hash-link" aria-label="Direct link to A Scenario" title="Direct link to A Scenario">​</a></h2>
 <p>While chatting in your favorite Discord servers &amp; group chats, you may see a friend send a weird link. You might even consider it suspicious on first glance. It is a video featuring an image of a movie poster with a play button that is almost begging to be clicked. Naturally, you click it.</p>
 <p>It loads for a second, and to your surprise it is a full-length, 90-minute (sometimes even two hour)-long unauthorized copy of a movie. If you don't know exactly what is going on, you probably sit there dumbfounded as a pixel perfect HD movie plays back. You may have expected a stereotypically muddy, blocky, laggy shitpost, but this has defied your expectations.</p>
-<p><img loading="lazy" alt="stolen.shoes" src="https://wiki.x266.mov/assets/images/stolenshoes-puss-842a1f9165b7571d293a74be89da25c2.webp" width="1088" height="318" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="stolen.shoes" src="https://wiki.x266.mov/assets/images/stolenshoes-puss-842a1f9165b7571d293a74be89da25c2.webp" width="1088" height="318" class="img_ev3q"></p>
 <p>The truth is, there are <em>multiple</em> site that do this. Currently, there are five at the time of writing. Below is a list the ones I am currently familiar with:</p>
 <ul>
 <li><a href="https://stolen.shoes/" target="_blank" rel="noopener noreferrer">https://stolen.shoes</a></li>
@@ -644,9 +644,9 @@ These interactive sites usually deploy a live script, like a Javascript framewor
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="discovery">Discovery<a href="https://wiki.x266.mov/blog/embedding-the-un-embeddable#discovery" class="hash-link" aria-label="Direct link to Discovery" title="Direct link to Discovery">​</a></h3>
 <p>On 23rd June 2022, a Discord user <em>Clybius</em> on the AV1 Community server asked people for <a href="https://wiki.x266.mov/docs/video/VP9" target="_blank" rel="noopener noreferrer">VP9</a> or <a href="https://wiki.x266.mov/docs/video/AVC" target="_blank" rel="noopener noreferrer">H.264</a> videos that were over 100 MB in size. At the time the current 500 MB nitro tier did not exist. They then decided to use a 59 minute 1080p sample video of nature scenery from around the world with a thumbnail featuring a GIF of a waterfall to test the exploit. It worked.</p>
 <p>He tried shortly afterward with <a href="https://wiki.x266.mov/docs/video/AV1" target="_blank" rel="noopener noreferrer">AV1</a>. Eureka, it also worked:</p>
-<p><img loading="lazy" alt="AV1" src="https://wiki.x266.mov/assets/images/clybius-av1-28dcfefe8d58784301332b8119d2e926.webp" width="497" height="421" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="AV1" src="https://wiki.x266.mov/assets/images/clybius-av1-28dcfefe8d58784301332b8119d2e926.webp" width="497" height="421" class="img_ev3q"></p>
 <p>Clybius confirmed that this could be patched if discovered. He cites having had the idea from the Dwayne Johnson example above, but forgetting about it for a couple of months. So, it seems this entire concept stemmed from a silly rickroll.</p>
-<p><img loading="lazy" alt="Dwayne" src="https://wiki.x266.mov/assets/images/clybius-dwayne-15341f187cb8e7dbfd5c4ee00451eabd.webp" width="1108" height="98" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Dwayne" src="https://wiki.x266.mov/assets/images/clybius-dwayne-15341f187cb8e7dbfd5c4ee00451eabd.webp" width="1108" height="98" class="img_ev3q"></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="the-experiments--interactive-site">The Experiments &amp; Interactive Site<a href="https://wiki.x266.mov/blog/embedding-the-un-embeddable#the-experiments--interactive-site" class="hash-link" aria-label="Direct link to The Experiments &amp; Interactive Site" title="Direct link to The Experiments &amp; Interactive Site">​</a></h3>
 <p>After the discovery of AV1 embedding, experimentation brought about the discovery that <em>any</em> video codec will work as long as the user can decode/play the codec and the container/extension is an MP4, MOV, or WebM. These are all traditionally web-compatible containers. If you're interested in learning about containers, please see the <a href="https://wiki.x266.mov/docs/introduction/terminology#container" target="_blank" rel="noopener noreferrer">Containers</a> section on the <a href="https://wiki.x266.mov/docs/introduction/terminology" target="_blank" rel="noopener noreferrer">Terminology</a> page.</p>
 <p>This applies to HEVC, ProRes, <a href="https://wiki.x266.mov/docs/audio/AAC#xhe-aac" target="_blank" rel="noopener noreferrer">xHE-AAC</a>, and other bizarre codecs that are rarely seen on the Web.</p>
@@ -656,15 +656,15 @@ These interactive sites usually deploy a live script, like a Javascript framewor
 <ul>
 <li>The first instance featured the DreamWorks sequel of "Puss in Boots (2011)", "Puss in Boots: The Last Wish (2022)". A 1080p video sourced from a streaming site was the first wake up call that attracted attention to the existence of these embed sites. This example used <code>stolen.shoes</code>.</li>
 </ul>
-<p><img loading="lazy" alt="puss" src="https://wiki.x266.mov/assets/images/stolenshoes-puss-842a1f9165b7571d293a74be89da25c2.webp" width="1088" height="318" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="puss" src="https://wiki.x266.mov/assets/images/stolenshoes-puss-842a1f9165b7571d293a74be89da25c2.webp" width="1088" height="318" class="img_ev3q"></p>
 <ul>
 <li>The second instance was when highly-anticipated animated film "The Super Mario Bros. Movie (2023)" produced by Illumination, Universal Studios, and Nintendo was spread around Discord. It was first spotted as a Cam (A camera recording by someone in theaters), then as it went out on streaming services a different link appeared but spread faster and with upgraded 1080p quality. Both used <code>stolen.shoes</code> as the embed site.</li>
 </ul>
-<p><img loading="lazy" alt="mario" src="https://wiki.x266.mov/assets/images/stolenshoes-mario-6de3b4071d4c09064d7323fec40530f4.webp" width="1307" height="335" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="mario" src="https://wiki.x266.mov/assets/images/stolenshoes-mario-6de3b4071d4c09064d7323fec40530f4.webp" width="1307" height="335" class="img_ev3q"></p>
 <ul>
 <li>The third instance is very recent as of the day this was posted. A streaming-service sourced "Five Nights at Freddy's (2023)" was spread around since the movie released both in theaters and streaming service (Peacock) day one, and it gained steam extremely fast as most people had not seen it yet. Currently, this illegal novelty is gaining <a href="https://www.reddit.com/r/discordapp/comments/17hx45y/is_discordnfp_an_ip_grabber/" target="_blank" rel="noopener noreferrer">hundreds of upvotes within the r/discordapp subreddit</a>. The copy seems to be a compressed 720p encode. This example used <code>discord.nfp.is</code>.</li>
 </ul>
-<p><img loading="lazy" alt="fnaf" src="https://wiki.x266.mov/assets/images/discordnfpis-fnaf-dab5b24a63605605e7c7882d20a992a3.webp" width="1044" height="409" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="fnaf" src="https://wiki.x266.mov/assets/images/discordnfpis-fnaf-dab5b24a63605605e7c7882d20a992a3.webp" width="1044" height="409" class="img_ev3q"></p>
 <p>Note the ones listed here are the ones that I saw become extremely popular. There may be lesser known links that have been spread around privately or just did not cause enough noise for me to notice. Some less popular examples I've noticed, featuring more illicit copyrighted content distribution:</p>
 <ul>
 <li>Top Gun Maverick (2022)</li>
@@ -690,7 +690,7 @@ These interactive sites usually deploy a live script, like a Javascript framewor
         <updated>2023-09-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[This guide will show you how to encode in AV1 the *right* and *optimal* way.]]></summary>
         <content type="html"><![CDATA[<p>This guide will show you how to encode in AV1 the <em>right</em> and <em>optimal</em> way. Yes, you using standalone <code>libaom</code>, <code>libsvtav1</code>, and <code>librav1e</code> from FFmpeg or even piping <code>yuv4mpeg</code> into <strong>mainline</strong> aomenc are all unoptimal.</p>
-<p><img loading="lazy" alt="Compare" src="https://wiki.x266.mov/assets/images/compare-guide-6feb966fbd9d73be4a3097c41691c4ad.webp" width="1045" height="588" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Compare" src="https://wiki.x266.mov/assets/images/compare-guide-6feb966fbd9d73be4a3097c41691c4ad.webp" width="1045" height="588" class="img_ev3q"></p>
 <p>In this guide, we'll be installing Av1an for chunked encoding and infinite threading, because the current state of AV1 encoders, except for <a href="https://wiki.x266.mov/docs/encoders/SVT-AV1" target="_blank" rel="noopener noreferrer">SVT-AV1</a>, unfortunately lacks threading and will only use very low amount of cores, which hampers speeds. The only caveat to this approach is <strong>RAM consumption</strong>, encoding 2160p (4K) with <a href="https://wiki.x266.mov/docs/encoders/aomenc" target="_blank" rel="noopener noreferrer">aomenc</a> with 4 workers could take upwards of <strong>16GB</strong> of RAM! So do keep this in mind.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="installing-the-tools">Installing the Tools<a href="https://wiki.x266.mov/blog/av1-encoding-for-dummies#installing-the-tools" class="hash-link" aria-label="Direct link to Installing the Tools" title="Direct link to Installing the Tools">​</a></h2>
 <p>Given all of the different operating systems that people use on a day to day basis and the various different encoding workflows that exist, there are a number of ways to do this.</p>
@@ -713,7 +713,7 @@ These interactive sites usually deploy a live script, like a Javascript framewor
 <ol>
 <li>
 <p>Install <strong>Python 3.10.x, this will change so consult from the</strong> <a href="http://www.vapoursynth.com/doc/installation.html" target="_blank" rel="noopener noreferrer">Vapoursynth website</a> <strong>if you're reading this from the future</strong> from <a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener noreferrer">here</a> and select "Windows Installer 64-bit". Upon installation check the tick for adding Python to PATH like so
-<img loading="lazy" alt="Python PATH" src="https://wiki.x266.mov/assets/images/python-path-a89fc4fe6c6eb4c2ea0a7610dd2cf09a.webp" width="672" height="417" class="img_ev3q">)</p>
+<img decoding="async" loading="lazy" alt="Python PATH" src="https://wiki.x266.mov/assets/images/python-path-a89fc4fe6c6eb4c2ea0a7610dd2cf09a.webp" width="672" height="417" class="img_ev3q">)</p>
 </li>
 <li>
 <p>Download and install Vapoursynth from <a href="https://github.com/vapoursynth/vapoursynth/releases" target="_blank" rel="noopener noreferrer">here</a> and select "VapourSynth64-RXX.exe"</p>
@@ -970,14 +970,14 @@ If you use any of the VMAF tunes, <strong>you need to specify <code>--vmaf-model
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="fire--forget">Fire &amp; Forget<a href="https://wiki.x266.mov/blog/site-optimization#fire--forget" class="hash-link" aria-label="Direct link to Fire &amp; Forget" title="Direct link to Fire &amp; Forget">​</a></h2>
 <p>First, we'll illustrate what <em>not</em> to do, which is fortunately not incredibly difficult to avoid. Taking an image straight out of your editing software at a massive size will often bloat the size &amp; resolution to something that isn't generally usable for a website regardless of the codec you're using &amp; its quality per bit. It can be argued there are specific use cases that demand incredible resolution &amp; fidelity coexist on the Web, but we won't be covering those here. Here's an example of a bloated image:</p>
 <p><em>exported straight from Darktable at JPEG q90, with no scaling</em></p>
-<p><img loading="lazy" alt="bloated_jpeg" src="https://wiki.x266.mov/assets/images/_DSC8466-d51a7e87bed86d101412ba728ebc6be2.jpg" width="5470" height="3656" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="bloated_jpeg" src="https://wiki.x266.mov/assets/images/_DSC8466-d51a7e87bed86d101412ba728ebc6be2.jpg" width="5470" height="3656" class="img_ev3q"></p>
 <p><strong>2.2 MB</strong></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="massive-improvement">Massive Improvement<a href="https://wiki.x266.mov/blog/site-optimization#massive-improvement" class="hash-link" aria-label="Direct link to Massive Improvement" title="Direct link to Massive Improvement">​</a></h2>
 <p>The easiest way to have a large improvement without doing much work is to simply resize the image before serving it. Even if you exported a lossy JPEG, resizing should remove a lot of artifacts. The way to perceive a worst-case for an image's size on a site is to inspect the image element's width &amp; height, which should give us an estimate of how large we should make our image. Any larger than this value is unreasonable since we're overfilling the element's size for no reason &amp; the image is being scaled down anyway.</p>
-<p><img loading="lazy" alt="box-size-mac" src="https://wiki.x266.mov/assets/images/box-size-mac-f49e702b0cb4a531f65283ad604d4b4c.avif" class="img_ev3q">
+<p><img decoding="async" loading="lazy" alt="box-size-mac" src="https://wiki.x266.mov/assets/images/box-size-mac-f49e702b0cb4a531f65283ad604d4b4c.avif" width="2940" height="1840" class="img_ev3q">
 <em>Inspect Element in Firefox. The Mac used to take this screenshot has a relatively high display resolution of 2560x1664. Because Macs scale things differently, we're probably going to want to double the horizontal resolution here.</em></p>
 <p>The width is the most important value here, so our new image is going to be exported with a width of 1699 pixels. This new image, encoded at JPEG q90 with <code>cjpegli</code>, looks like this:</p>
-<p><img loading="lazy" alt="smaller_jpeg" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-48eaf650a417558ea976bf40eee82f67.jpg" width="1699" height="1136" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="smaller_jpeg" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-48eaf650a417558ea976bf40eee82f67.jpg" width="1699" height="1136" class="img_ev3q"></p>
 <p>Obviously, there's lost fidelity compared to the original, but considering this is <em>so much smaller</em>, it is worth the trade-off for many. It is also worth noting we are using an improved jpeg encoder in the form of <code>cjpegli</code>, although that is secondary to the resize. If it doesn't look as good as you want it to, you can always scale the resolution up a bit, though currently, it looks plenty passable for its size.</p>
 <p>2.2 MB -&gt; <strong>233 kB</strong></p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="lazy-loading">Lazy Loading<a href="https://wiki.x266.mov/blog/site-optimization#lazy-loading" class="hash-link" aria-label="Direct link to Lazy Loading" title="Direct link to Lazy Loading">​</a></h3>
@@ -991,20 +991,20 @@ If you use any of the VMAF tunes, <strong>you need to specify <code>--vmaf-model
 <p>Here is a JXL falling back to an AVIF falling back to a WebP falling back to a JPEG. Pretty intense to have this many fallbacks unless you're really after the ultimate compression ratio, but it is certainly an option. AVIF &amp; JPEG alone will probably be enough for most.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="compression-efficacy">Compression Efficacy<a href="https://wiki.x266.mov/blog/site-optimization#compression-efficacy" class="hash-link" aria-label="Direct link to Compression Efficacy" title="Direct link to Compression Efficacy">​</a></h3>
 <p>Let's look at how our image examples compare to the original with our new codec selection. We'll be aiming for high visual fidelity, so around the same quality as our initial JPEG encoded with <code>cjpegli</code> (which scores ~<code>83.01</code> with the <a href="https://wiki.x266.mov/docs/metrics/SSIMULACRA2">SSIMULACRA2</a> visual fidelity metric).</p>
-<p><img loading="lazy" alt="smaller_jxl" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-492a0639fb771671738062a57b2015a2.jxl" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="smaller_jxl" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-492a0639fb771671738062a57b2015a2.jxl" class="img_ev3q"></p>
 <p><strong>137.0 kB</strong> <em>JPEG-XL image, encoded with <code>cjxl lossless.png out.jxl -d 1.49 -e 9</code>. Score: ~<code>83.04</code></em> <em>3.06s user time</em></p>
-<p><img loading="lazy" alt="smaller_avif" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-452ed8f5a33da727be398450e7e580a3.avif" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="smaller_avif" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-452ed8f5a33da727be398450e7e580a3.avif" width="1699" height="1136" class="img_ev3q"></p>
 <p><strong>124.8 kB</strong> <em>AVIF image, encoded with <code>avifenc -c aom -s 4 -j 8 -d 10 -y 444 --min 1 --max 63 -a end-usage=q -a cq-level=16 -a tune=ssim lossless.png out.avif</code>. Score: ~<code>83.03</code></em> <em>7.54s user time</em></p>
 <p>JXL also supports lossless transcoding of JPEG images. This means every pixel is identical, the image just has a smaller filesize than the original JPEG; if you can use JXL, you can transcode existing JPEGs losslessly on your site &amp; save some bandwidth that way. The JPEG transcode below gives a higher SSIMULACRA2 score than the original for some reason, but I'll chalk that up to a decoding inconsistency between how the <code>ssimulacra2</code> program decodes JPEG &amp; JXL. Either way, the scores are fairly close.</p>
-<p><img loading="lazy" alt="smaller_jxl_jpeg-recomp" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-recomp-f3af6d54a8c1c62cda0c2d3ba048e1fc.jxl" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="smaller_jxl_jpeg-recomp" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-recomp-f3af6d54a8c1c62cda0c2d3ba048e1fc.jxl" class="img_ev3q"></p>
 <p><strong>189.4 kB</strong> <em>JPEG-XL image from JPEG, encoded with <code>cjxl input.jpg input-recomp.jxl -d 0.0 -e 9 --brotli_effort=11</code>. Score: ~<code>84.92</code> (???)</em> <em>0.67s user time</em></p>
 <p>The final trick we can use, while not a new codec at all, still increases quality per bit. Encoding an XYB JPEG with <code>cjpegli</code> encodes with the perceptual XYB colorspace using an ICC profile to modify the original JPEG colors, avoiding JPEG's normal YCbCr which isn't perceptually optimized for the human visual system. Using XYB, we can afford identical quality with less bitrate than normal JPEG. This has universal compatibility, but not every application understands how to handle the XYB color profile (although color-managed modern browsers should be fine).</p>
-<p><img loading="lazy" alt="smaller_jpeg_xyb" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-xyb-0372077e225cf7b460ec9238bb2a65f9.jpg" width="1699" height="1136" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="smaller_jpeg_xyb" src="https://wiki.x266.mov/assets/images/_DSC8466-smaller-xyb-0372077e225cf7b460ec9238bb2a65f9.jpg" width="1699" height="1136" class="img_ev3q"></p>
 <p><strong>208.3 kB</strong> <em>XYB JPEG, encoded with <code>cjpegli lossless.png out.jpg --xyb -d 1.155</code>. Score: ~<code>83.04</code></em> <em>0.10s user time</em></p>
 <p>In this particular instance, AVIF seems to be the overall winner. This isn't always the case due to JXL's superiority at higher fidelity &amp; with more detailed images, but according to SSIMULACRA2, AVIF has the best quality per bit with this image. You can use your own eyes to further clarify your choice, though. It is worth mentioning that as these were encoded from a 16-bit source PNG, the JXL image is the only one that maintains the full original bit depth, &amp; AVIF isn't fast to encode.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="responsive-images">Responsive Images<a href="https://wiki.x266.mov/blog/site-optimization#responsive-images" class="hash-link" aria-label="Direct link to Responsive Images" title="Direct link to Responsive Images">​</a></h2>
 <p>Displaying an image that is too large for a viewport is a waste of bandwidth, &amp; displaying an image that's too small for the viewport leaves fidelity to be desired. Luckily, we have the <a href="https://ausi.github.io/respimagelint/" target="_blank" rel="noopener noreferrer">Responsive Image Linter</a> that can help us figure out which image sizes we should be using.</p>
-<p><img loading="lazy" alt="responsive_image_linter" src="https://wiki.x266.mov/assets/images/responsive_image_linter-178eb56c12557c53a2b129dd75925fe9.avif" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="responsive_image_linter" src="https://wiki.x266.mov/assets/images/responsive_image_linter-178eb56c12557c53a2b129dd75925fe9.avif" width="2308" height="670" class="img_ev3q"></p>
 <p>In our fire &amp; forget example, we see that we are serving an image that is far too large. We already know that, but now we can see that given various viewport sizes we could be serving images that have respective widths of 270px, 958px, 1350px, 1660px, &amp; 1916px to optimize for delivery to a variety of different devices. Here's how we'd write that in HTML:</p>
 <div class="language-html codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-html codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">picture</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">source</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">type</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">image/jxl</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">srcset</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">/img_270.jxl 270w, /img_958.jxl 958w, /img_1350.jxl 1350w, /img_1660.jxl 1660w, /img_1916.jxl 1916w</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">sizes</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">source</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">type</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">image/avif</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">srcset</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">/img_270.avif 270w, /img_958.avif 958w, /img_1350.avif 1350w, /img_1660.avif 1660w, /img_1916.avif 1916w</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">sizes</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token tag punctuation" style="color:#393A34">&lt;</span><span class="token tag" style="color:#00009f">img</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">width</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">1699</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">height</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">1136</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">alt</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">alt text</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">srcset</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">/img_270.jpg 270w, /img_958.jpg 958w, /img_1350.jpg 1350w, /img_1660.jpg 1660w, /img_1916.jpg 1916w</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">sizes</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">(min-width: 2000px) 1916px, (min-width: 1700px) 1660px, (min-width: 1400px) 1350px, (min-width: 1000px) 958px, calc(100vw - 24px)</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag attr-name" style="color:#00a4db">src</span><span class="token tag attr-value punctuation attr-equals" style="color:#393A34">=</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag attr-value" style="color:#e3116c">/fallback.jpg</span><span class="token tag attr-value punctuation" style="color:#393A34">"</span><span class="token tag" style="color:#00009f"> </span><span class="token tag punctuation" style="color:#393A34">/&gt;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token tag punctuation" style="color:#393A34">&lt;/</span><span class="token tag" style="color:#00009f">picture</span><span class="token tag punctuation" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>It is worth noting that this example above &amp; the example below aren't perfect implementations of a responsive image given the conditions of this site, but the general concept still applies. Some things to note:</p>

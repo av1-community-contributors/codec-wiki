@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcodec_wiki=self.webpackChunkcodec_wiki||[]).push([[3657],{4718:e=>{e.exports=JSON.parse('{"label":"video","permalink":"/blog/tags/video","allTagsPath":"/blog/tags","count":3,"unlisted":false}')}}]);
