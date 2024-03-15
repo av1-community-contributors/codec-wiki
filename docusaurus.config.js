@@ -135,11 +135,11 @@ const config = {
             items: [
               {
                 label: 'Prologue',
-                to: '/docs/introduction/prologue',
+                to: 'https://wiki.x266.mov/docs/introduction/prologue',
               },
               {
                 label: 'AV1',
-                to: '/docs/video/AV1',
+                to: 'https://wiki.x266.mov/docs/video/AV1',
               },
             ],
           },
@@ -148,15 +148,15 @@ const config = {
             items: [
               {
                 label: 'Vapoursynth',
-                href: '/docs/filtering/Vapoursynth',
+                href: 'https://wiki.x266.mov/docs/filtering/Vapoursynth',
               },
               {
                 label: 'Deband',
-                href: '/docs/filtering/deband',
+                href: 'https://wiki.x266.mov/docs/filtering/deband',
               },
               {
                 label: 'Denoise',
-                href: '/docs/filtering/denoise',
+                href: 'https://wiki.x266.mov/docs/filtering/denoise',
               },
             ],
           },
@@ -169,7 +169,7 @@ const config = {
               },
               {
                 label: 'Terms of Use',
-                href: '/docs/terms-of-use',
+                href: 'https://wiki.x266.mov/docs/terms-of-use',
               },
               {
                 label: 'Privacy Policy',
