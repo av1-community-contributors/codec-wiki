@@ -138,8 +138,8 @@ const config = {
                 to: 'https://wiki.x266.mov/docs/introduction/prologue',
               },
               {
-                label: 'AV1',
-                to: 'https://wiki.x266.mov/docs/video/AV1',
+                label: 'AAC',
+                to: 'https://wiki.x266.mov/docs/audio/AAC',
               },
             ],
           },
