@@ -19,6 +19,55 @@ By default it is not very good for high fidelity content due to the amount of fi
 
 x265 is available in FFmpeg via `libx265`, to check if you have it, run `ffmpeg -h encoder=libx265`.
 
+## Suggested settings for high quality HD film encoding
+The x265 defaults and presets include some settings that are counterproductive for high quality encoding, so it is hard to get a high quality and efficient encode out of x265. That said, with careful tuning it is possible to beat x264 in grain handling, detail preservation and compression efficiency. Some suggested settings include:
+
+`--preset slow --aq-mode 1 --qg-size 8 --pbratio 1.2 --no-sao --ctu 32`
+
+For ffmpeg: `-preset slow -x265-params aq-mode=1:qg-size=8:pbratio=1.2:sao=0:ctu=32`
+
+These settings focus on detail preservation and graceful grain handling (but not grain preservation at all costs). Each option is explained below
+
+### --preset slow
+Preset `slow` has a good balance of speed and quality. It is only 2x to 3x as slow as x264's preset slower. Preset `slower` is more than twice as slow as `slow`, and presets `slower` and higher include options that attempt to increase sharpenss at the cost of more roughness and more artifacts. The artifacts and roughness force you to increase bitrate until you may as well go back to x264. The biggest culprit of `slower` producing worse quality than `slow` are:
+
+#### --rd 4 &rarr; --rd 6
+--rd 6 interacts badly with psy-rd and it is responsible for the directional prediction artifacts ("microbanding") that plague the higher presets. The reason is that --rd 6 uses the full RDO metric including psy-rd to choose the intra mode in P and B frames, whereas --rd 4 only uses SAD (sum of absolute differences) to choose the intra mode in P and B frames. [1] Using psy-rd to select the intra mode can cause the encoder to favour variance matching over minimizing error, which produces distinctive directional prediction artifacts from naked directional intra predictions at low bitrates. When psy-rd is not used, --rd 6 is better than --rd 4, but when psy-rd is used, --rd 6 can produce results that defy common sense.
+
+Image comparison: 1. [--rd 4](/img/x265-rd4.webp), 2. [--rd 6](/img/x265-rd6.webp). All other settings equal. --rd 6 had slightly higher bitrate. Notice the microbanding on the man's chin in the --rd 6 version.
+
+[1] code reference: compressInterCU_rd5_6 calls checkIntra while compressInterCU_rd0_4 calls checkIntraInInter.
+
+#### --bframes 4 &rarr; --bframes 8
+x265 only supports 2 level b pyramid, so a mini-GOP looks like this: PbbbBbbbP. In this example there are 7 b frames. The middle B frame is at the first pyramid level and it uses the P frames as reference. The other b frames are at the second pyramid level and they use the P and B frames as reference. Increasing the --bframes setting has two effects:
+1. It increases the distance between high quality frames (P and B).
+2. It causes cutree (mbtree) to boost the quality of the referenced frames (P and B) even more because there are more b frames using the P and B frames as reference, increasing the quality difference between the P/B frames and the b frames.
+
+Both of these cause bad grain handling because they increase the chance of grain pulsing and sticky grain, where the grain is only encoded/updated in the P and B frames and the b frames will motion-compensate the grain along with the moving objects, keep the grain stationary without updating them, or lose the grain altogether.
+
+### --aq-mode 1
+AQ mode 1 is the simplest and most reliable of the AQ modes, and it is the same as x264's AQ mode 1. In AQ mode 1, a block's QP offset depends on the block's own variance and nothing else. The other AQ modes try to be clever but end up being harder to understand and less consistent. In my testing, AQ mode 1 produced less blur in dark areas than AQ modes 2 and 3. AQ mode 1 is x264's default.
+
+### --qg-size 8
+--qg-size sets the spatial resolution of AQ. For example, the default --qg-size 32 means QP adjustment is done for every 32x32 group of pixels. 32x32 may be ok for 4K but it's too big for HD, so it will cause grainless halos to appear around sharp edges, especially if you raise AQ strength. --qg-size 8 eliminates this artifact.
+
+### --pbratio 1.2
+pbratio sets the QP offset between pyramid levels and the default is 1.3. In x265, the fixed QP offset between pyramid levels and the QP offset from cutree are added together. This is unlike x264 where mbtree replaces pbratio (forces it to 1). Here we reduce pbratio slightly to reduce grain pulsing, sticky grain and temporal non-uniformity in general. Note that reducing pbratio can reduce compression efficiency at low bitrates, which is why x265 does not disable pbratio when cutree is enabled.
+
+### --no-sao
+SAO is a spatial denoise filter introduced in HEVC that's meant to remove DCT noise, but it is heavy-handed and causes a lot of blur. The blur may be beneficial for animated content, but it is very counterproductive for everything else. Even at low-ish bitrates, it can do more damage than good.
+
+### --ctu 32
+This is somewhat of a performance optimization. At HD resolutions, the number of CTU rows is too low for WPP to fully utilize today's high core count processors. By reducing the CTU size (max block size) from 64x64 to 32x32, the number of threads that can be utilized is doubled. For 4K, 64x64 blocks help with compression efficiency but for high quality HD it's not important because large blocks are mostly useful for smooth gradients, which high quality encodes shouldn't have a lot of. If anything, limiting the block size also limits the size of artifacts when the enocder makes a mistake.
+
+## Other interesting settings
+
+### --rdoq-level 0 --psy-rdoq 0
+
+Note: --psy-rdoq 0 is implied by --rdoq-level 0. I'm only listing it here to be more explicit.
+
+Disabling RDOQ makes x265 behave more like x264. At lower bitrates, the picture gets softer instead of rougher and artifacts are less in-your-face. Grain gets spottier but more consistent from frame to frame, which is similar to how x264 handles grain at lower bitrates. The downside of disabling RDOQ is less sharpness and less detail preservation. These settings may be useful at lower bitrates where the default RDOQ settings produce roughness and pulsing grain.
+
 ## Installation
 
 **Pre-built binary (Recommended):**
