@@ -5,6 +5,27 @@ sidebar_position: 13
 
 # YUView
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+<picture>
+    <source srcset="/img/yuview.avif" type="image/avif" />
+    <img src="/img/yuview.webp" alt="YUView Window" />
+</picture>
+<br/><br/>
+
+[YUView](https://github.com/IENT/YUView) is a free and open source, cross-platform software developed by [IENT](https://github.com/IENT/) (Institut für Nachrichtentechnik) for working, playing, and analyzing YUV files. 
+Though it supports more than YUV thanks to FFmpeg and other third party decoders while providing a lot of options for [HEVC](/docs/video/HEVC) internal visualizations such as slice index and transform depth.
+
+The software is built with QT and written in C++.
+
+
+## Installation
+
+IENT provides the complete set of binaries for all major desktop operating systems on their GitHub [releases](https://github.com/IENT/YUView/releases/). So pick and choose your OS there.
+
+For Linux, YUView is in the official repo on Ubuntu and the AUR (Arch User Repository) for Arch Linux. But they do provide an AppImage in their releases and a [Flatpak](https://flathub.org/apps/de.rwth_aachen.ient.YUView).
+
+For those who want to compile from source instead, they provided a tutorial [here](https://github.com/IENT/YUView/wiki/Compile-YUView).
+
+
+## Usage
+
+Open a file via the "File" > "Open File" tab on the top left or by pressing Ctrl + O, you may import multiple files. After that, you can start analyzing the file such as viewing motion vectors, isolating chroma to Cb for YCbCr, etc. 

@@ -1,10 +1,185 @@
 ---
 title: SVT-HEVC
-sidebar_position: 7
+sidebar_position: 10
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # SVT-HEVC
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+[SVT-HEVC](https://github.com/OpenVisualCloud/SVT-HEVC) (Scalable Video Technology for HEVC) is an open source [H.265 / HEVC](/docs/video/HEVC) software encoder developed by Intel made specifically to **only support x86**. As the name suggests, it is part of the "[Scalable Video Technology](https://www.intel.com/content/www/us/en/developer/articles/technical/scalable-video-technology.html)" project lineup by Intel.
+
+The encoder is written in C with some parts in Assembly and licensed under **BSD+Patent**.
+
+:::info
+It is recommended to use [x265](/docs/encoders/x265) instead as it performs much better in quality.
 :::
+
+## FFmpeg
+
+SVT-HEVC is only available in FFmpeg when it is compiled with their provided [plugin](https://github.com/OpenVisualCloud/SVT-HEVC/tree/master/ffmpeg_plugin). Otherwise it is via `libsvt_hevc`, to check if you have it, run `ffmpeg -h encoder=libsvt_hevc`.
+
+
+## Supported Color Space
+
+SVT-HEVC supports the following color spaces:
+
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+
+
+## Installation
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        To build SVT-AV1 from source, first clone the SVT-HEVC repository & enter the build directory.
+
+        ```bash title="Clone SVT-HEVC and cd"
+        git clone https://github.com/OpenVisualCloud/SVT-HEVC
+        cd SVT-HEVC/Build/linux
+        ```
+
+        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires CMake version 3.5.1 or higher and either GCC or Clang. It is recommended to use Clang when building SVT-HEVC.
+
+        ```bash title="Build release"
+        ./build.sh release
+        ```
+
+        ```bash title="Statically build release"
+        ./build.sh static release
+        ```
+
+        The compiled binaries will be in the `Bin/Release` directory.
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 
+    </TabItem>
+</Tabs>
+
+## Usage
+
+### Normal usage
+```bash title="Simple Y4M input with QP 20, and raw 265 bitstream output"
+SvtHevcEncApp -i input.y4m -q 20 -b output.265
+```
+
+```bash title="Preset 4, CRF 20, Y4M input"
+SvtHevcEncApp -i input.y4m -q 20 -encMode 4 -b output.265
+```
+
+```bash title="FFmpeg piping"
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | SvtHevcEncApp -i stdin -q 20 -encMode 4 -b output.265
+```
+
+:::danger
+SVT-HEVC currently does not have the ability to detect EOF (End of File) within Y4M pipes ([issue](https://github.com/OpenVisualCloud/SVT-HEVC/issues/634#issuecomment-1434911798)), so the encode process will go on indefinitely until your drive is full.
+The only known solution is to manually set the number of frames to encode via `-n`.
+:::
+
+### Encoding HDR
+
+```bash
+SvtHevcEncApp -i input.y4m -q 20 -encMode 4 -hdr -max-cll XXX -max-fall XXX -master-display G(0.265,0.690)B(0.150,0.060)R(0.680,0.320)WP(0.3127,0.3290)L(1000,0.0100) -b output.265
+```
+Remember sure to adjust the HDR metadata accordingly.
+
+### Encoding with Dolby Vision
+
+The ability to encode with Dolby Vision via RPU file is surprisingly present within SVT-HEVC, although it is limited to Profile 8.1.
+```bash
+SvtHevcEncApp -i input.y4m -q 20 -encMode 4 -hdr -dolby-vision-rpu RPUFile.bin -dolby-vision-profile 81 -max-cll XXX -max-fall XXX -master-display G(0.265,0.690)B(0.150,0.060)R(0.680,0.320)WP(0.3127,0.3290)L(1000,0.0100) -b output.265
+```
+Remember sure to adjust the HDR metadata accordingly.
+
+
+## List of all configuration parameters
+
+As with every SVT line-up, they redirect you to read their "User Guide" instead of presenting what each and every parameter do in the `--help` page.
+The table below is an exact copy from their user guide taken from [GitHub](https://github.com/OpenVisualCloud/SVT-HEVC/blob/master/Docs/svt-hevc_encoder_user_guide.md) for backup purposes. Feel free to read them. 
+
+
+| **Encoder Parameter as shown in the configuration file** | **Command Line parameter** | **Range** | **Default** | **Description** |
+| --- | --- | --- | --- | --- |
+| **Channel Number** | -nch | [1 - 6] | 1 | Number of encode instances |
+| **ConfigFile** | -c | any string | null | Configuration file path |
+| **InputFile** | -i | any string | null | Input file path and name |
+| **StreamFile** | -b | any string | null | Output bitstream file path and name |
+| **ErrorFile** | -errlog | any string | stderr | Error log displaying configuration or encode errors |
+| **ReconFile** | -o | any string | null | Output reconstructed yuv used for debug purposes. **Note:** using this feature will affect the speed of the encoder significantly. This should only be used for debugging purposes. |
+| **UseQpFile** | -use-q-file | [0, 1] | 0 | When set to 1, overwrite the picture qp assignment using qp values in QpFile |
+| **QpFile** | -qp-file | any string | null | Path to qp file |
+| **SegmentOvFile** | -segment-ov-file | any string | null | Path to segment override file which will allow for sharpness improvement and bit rate reduction on a per segment basis. Refer to config/SVTSegmentOvFile.txt for details. |
+| **EncoderMode** | -encMode | [0 - 11] | 7 | A preset defining the quality vs density tradeoff point that the encoding is to be performed at. (e.g. 0 is the highest quality mode, 11 is the highest density mode). Section 3.4 outlines the preset availability per resolution |
+| **EncoderBitDepth** | -bit-depth | [8, 10] | 8 | Specifies the bit depth of input video |
+| **EncoderColorFormat** | -color-format | [1, 2, 3] | 1 | Specifies the chroma subsampling of input video(1: 420, 2: 422, 3: 444) |
+| **CompressedTenBitFormat** | -compressed-ten-bit-format | [0, 1] | 0 | Offline packing of the 2bits: requires two bits packed input (0: OFF, 1: ON) |
+| **SourceWidth** | -w | [64 - 8192] | 0 | Input source width |
+| **SourceHeight** | -h | [64 - 4320] | 0 | Input source height |
+| **FrameToBeEncoded** | -n | [0 - 2^31 -1] | 0 | Number of frames to be encoded, if number of frames is > number of frames in file, the encoder will loop to the beginning and continue the encode. 0 encodes the full clip. |
+| **BufferedInput** | -nb | [-1, 1 to 2^31 -1] | -1 | number of frames to preload to the RAM before the start of the encode. If -nb = 100 and –n 1000 --> the encoder will encode the first 100 frames of the video 10 times. Use -1 to not preload any frames.  This parameter is best used to eliminate the impact of disk reading on encoding speed and is most noticeable when frames sizes are 4k or 8k.  Because frames are repeated when value specified (-nb) is less than the total frame count (-n), you should expect bitstreams to be different. |
+| **Profile** | -profile | [1,2] | 2 | 1: Main, 2: Main 10 |
+| **Tier** | -tier | [0, 1] | 0 | 0: Main, 1: High |
+| **Level** | -level | [1, 2, 2.1,3, 3.1, 4, 4.1, 5, 5.1, 5.2, 6, 6.1, 6.2] | 0 | 0 to 6.2 [0 for auto determine Level] |
+| **FrameRate** | -fps | [0 - 2^64 -1] | 60 | If the number is less than 1000, the input frame rate is an integer number between 1 and 60, else the input number is in Q16 format (shifted by 16 bits) [Max allowed is 240 fps]. If FrameRateNumerator and FrameRateDenominator are both !=0 the encoder will ignore this parameter |
+| **FrameRateNumerator** | -fps-num | [0 - 2^64 -1] | 0 | Frame rate numerator e.g. 6000 When zero, the encoder will use –fps if FrameRateDenominator is also zero, otherwise an error is returned |
+| **FrameRateDenominator** | -fps-denom | [0 - 2^64 -1] | 0 | Frame rate denominator e.g. 100 When zero, the encoder will use –fps if FrameRateNumerator is also zero, otherwise an error is returned |
+| **Injector** | -inj | [0,1] | 0 | Enable injection of input frames at the specified framerate (0: OFF, 1: ON) |
+| **InjectorFrameRate** | -inj-frm-rt | [1 - 240] | 60 | Frame Rate used for the injector. Recommended to match the encoder speed. |
+| **SpeedControlFlag** | -speed-ctrl | [0,1] | 0 | Enables the Speed Control functionality to achieve the real-time encoding speed defined by –fps. When this parameter is set to 1 it forces –inj to be 1 and -inj-frm-rt to be set to –fps. |
+| **InterlacedVideo** | -interlaced-video | [0,1] | 0 | 1 : encoder will signal interlaced signal in the stream \<br>0 : assumes progressive signal |
+| **SeparateFields** | -separate-fields | [0,1] | 0 | 1 : Interlaced input, application will separate top and bottom fields and encode it as progressive. \<br>0 : Treat video as progressive video |
+| **HierarchicalLevels** | -hierarchical-levels | [0 – 3] | 3 | 0 : Flat\<br>1: 2-Level Hierarchy\<br>2: 3-Level Hierarchy\<br>3: 4-Level Hierarchy\<br>Minigop Size = (2^HierarchicalLevels) \<br>(e.g. 3 == > 7B pyramid, 2 ==> 3B Pyramid)\<br>Refer to Appendix A.1 |
+| **BaseLayerSwitchMode** | -base-layer-switch-mode | [0,1] | 0 | 0 : Use B-frames in the base layer pointing to the same past picture\<br>1 : Use P-frames in the base layer\<br>Refer to Appendix A.1 |
+| **PredStructure** | -pred-struct | [0 – 2] | 2 | 0: Low Delay P\<br>1: Low Delay B\<br>2: Random Access\<br>Refer to Appendix A.1 |
+| **IntraPeriod** | -intra-period | [-2 - 255] | -2 | Distance between Intra Frame inserted. \<br>-1 denotes no intra update. \<br>-2 denotes auto. |
+| **IntraRefreshType** | -irefresh-type | [-1,N] | -1 | -1: CRA (Open GOP)\<br>>=0: IDR (Closed GOP, N is headers insertion interval, 0 supported if CQP, >=0 supported if VBR)\<br>Refer to Appendix A.3 |
+| **QP** | -q | [0 - 51] | 32 | Initial quantization parameter for the Intra pictures used when RateControlMode 0 (CQP) |
+| **LoopFilterDisable** | -dlf | [0, 1] | 0 | When set to 1 disables the Deblocking Loop Filtering |
+| **SAO** | -sao | [0,1] | 1 | When set to 0 the encoder will not use the Sample Adaptive Filter |
+| **UseDefaultMeHme** | -use-default-me-hme | [0, 1] | 1 | 0 : Overwrite Default ME HME parameters\<br>1 : Use default ME HME parameters, dependent on width and height |
+| **HME** | -hme | [0,1] | 1 | Enable HME, 0 = OFF, 1 = ON |
+| **SearchAreaWidth** | -search-w | [1 - 256] | Depends on input resolution | Motion vector search area width |
+| **SearchAreaHeight** | -search-h | [1 - 256] | Depends on input resolution | Motion vector search area height |
+| **ConstrainedIntra** | -constrd-intra | [0,1] | 0 | Allow the use of Constrained Intra, when enabled, this features yields to sending two PPSs in the HEVC Elementary streams \<br>0 = OFF, 1 = ON |
+| **RateControlMode** | -rc | [0,1] | 0 | 0 : CQP , 1 : VBR |
+| **TargetBitRate** | -tbr | Any Number | 7000000 | Target bitrate in bits / second. Only used when RateControlMode is set to 1 |
+| **vbvMaxrate** | -vbv-maxrate | Any Number | 0 | VBVMaxrate in bits / second. Only used when RateControlMode is set to 1 |
+| **vbvBufsize** | -vbv-bufsize | Any Number | 0 | VBV BufferSize in bits / second. Only used when RateControlMode is set to 1 |
+| **vbvBufInit** | -vbv-init | [0 - 100] | 90 | Sets the initial percentage size that the VBV buffer is filled to |
+| **hrdFlag** | -hrd | [0,1] | 0 | Sets the HRD (Hypothetical Reference Decoder) Flag in the encoded stream, 0 = OFF, 1 = ON When<br/>hrdFlag is set to 1, vbvMaxrate and vbvBufsize must be greater than 0 |
+| **MaxQpAllowed** | -max-qp | [0 - 51] | 48 | Maximum QP value allowed for rate control use. Only used when RateControlMode is set to 1. Has to be >= MinQpAllowed |
+| **MinQpAllowed** | -min-qp | [0 - 50] | 10 | Minimum QP value allowed for rate control use. Only used when RateControlMode is set to 1. Has to be < MaxQpAllowed |
+| **LookAheadDistance** | -lad | [0 - 250] | Depending on BRC mode | When RateControlMode is set to 1 it&#39;s best to set this parameter to be equal to the Intra period value (such is the default set by the encoder).  When CQP is chosen, then a (2 \* minigopsize +1) look ahead is recommended. |
+| **SceneChangeDetection** | -scd | [0,1] | 1 | Enables or disables the scene change detection algorithm \<br> 0 = OFF, 1 = ON |
+| **BitRateReduction** | -brr | [0,1] | 0 | Enables visual quality algorithms to reduce the output bitrate with minimal or no subjective visual quality impact. \<br>0 = OFF, 1 = ON |
+| **ImproveSharpness** | -sharp | [0,1] | 0 | This is a visual quality knob that allows the use of adaptive quantization within the picture and enables visual quality algorithms that improve the sharpness of the background. This feature is only available for 4k and 8k resolutions \<br> 0 = OFF, 1 = ON |
+| **VideoUsabilityInfo** | -vid-info | [0,1] | 0 | Enables or disables sending a vui structure in the HEVC Elementary bitstream. 0 = OFF, 1 = ON |
+| **HighDynamicRangeInput** | -hdr | [0,1] | 0 | When set to 1, signals HDR10 input in the output HEVC elementary bitstream and forces VideoUsabilityInfo to 1. \<br>0 = OFF, 1 = ON |
+| **AccessUnitDelimiter** | -ua-delm | [0,1] | 0 | SEI message, 0 = OFF, 1 = ON |
+| **BufferingPeriod** | -pbuff | [0,1] | 0 | SEI message, 0 = OFF, 1 = ON |
+| **PictureTiming** | -tpic | [0,1] | 0 | SEI message, 0 = OFF, 1 = ON. \<br>If 1, VideoUsabilityInfo should be also set to 1. |
+| **RegisteredUserData** | -reg-user-data | [0,1] | 0 | SEI message, 0 = OFF, 1 = ON |
+| **UnregisteredUserData** | -unreg-user-data | [0,1] | 0 | SEI message, 0 = OFF, 1 = ON |
+| **RecoveryPoint** | -recovery-point | [0,1] | 0 | SEI message, 0 = OFF, 1 = ON |
+| **TemporalId** | -temporal-id | [0,1] | 1 | 0 = OFF\<br>1 = Insert temporal ID in NAL units |
+| **AsmType** | -asm | [0,1] | 1 | Assembly instruction set \<br>(0: C Only, 1: Automatically select highest assembly instruction set supported) |
+| **LogicalProcessors** | -lp | [0, total number of logical processor] | 0 | The number of logical processor which encoder threads run on.Refer to Appendix A.2 |
+| **FirstLogicalProcessor** | -flp | [0, the index of last logical processor] | 0 | The index of first logical processor which encoder threads run on.Refer to Appendix A.2 |
+| **TargetSocket** | -ss | [-1,1] | -1 | For dual socket systems, this can specify which socket the encoder runs on.  Refer to Appendix A.2 |
+| **ThreadCount** | -thread-count | [0,N] | 0 | The number of threads to get created and run, 0 = AUTO |
+| **SwitchThreadsToRtPriority** | -rt | [0,1] | 1 | Enables or disables threads to real time priority, 0 = OFF, 1 = ON (only works on Linux) |
+| **FPSInVPS** | -fpsinvps | [0,1] | 1 | Enables or disables the VPS timing info, 0 = OFF, 1 = ON |
+| **TileRowCount** | -tile_row_cnt | [1,22] | 1 | Tile count in the Row |
+| **TileColumnCount** | -tile_col_cnt | [1,20] | 1 | Tile count in the column |
+| **TileSliceMode** | -tile_slice_mode | [0,1] | 0 | Per slice per tile, only valid for multi-tile |
+| **UnrestrictedMotionVector** | -umv | [0,1] | 1 | Enables or disables unrestricted motion vectors\<br>0 = OFF(motion vectors are constrained within frame or tile boundary)\<br>1 = ON.\<br>For MCTS support, set -umv 0 with valid TileRowCount and TileColumnCount |
+| **MaxCLL** | -max-cll | [0 , 2^16-1] | 0 | Maximum content light level (MaxCLL) as required by the Consumer Electronics Association 861.3 specification. Applicable for HDR content. If specified, signaled only when HighDynamicRangeInput is set to 1 |
+| **MaxFALL** | -max-fall | [0 , 2^16-1] | 0 | Maximum Frame Average light level (MaxFALL) as required by the Consumer Electronics Association 861.3 specification. Applicable for HDR content. If specified, signaled only when HighDynamicRangeInput is set to 1 |
+| **UseMasterDisplay** | -use-master-display | [0,1] | 0 | Enables or disables the MasterDisplayColorVolume\<br>0 = OFF\<br>1 = ON |
+| **MasterDisplay** | -master-display | For R, G, B and whitepoint [0, 2^16-1]. For max, min luminance [0, 2^32-1] | 0 | SMPTE ST 2086 mastering display color volume SEI info, specified as a string. The string format is “G(%hu,%hu)B(%hu,%hu)R(%hu,% hu)WP(%hu,%hu)L(%u,%u)” where %hu are unsigned 16bit integers and %u are unsigned 32bit integers. The SEI includes X, Y display primaries for RGB channels and white point (WP) in units of 0.00002 and max, min luminance (L) values in units of 0.0001 candela per meter square. Applicable for HDR content. Example for a P3D65 1000-nits monitor,G(13250,34500)B(7500,3 000)R(34000,16000)WP(15635,16 450)L(10000000,1) |
+| **DolbyVisionRpuFile** | -dolby-vision-rpu | any string | null | Path to the file containing Dolby Vision RPU metadata |
+| **DolbyVisionProfile** | -dolby-vision-profile | 8.1 or 81 | 0 | Generate bitstreams confirming to the specified Dolby Vision profile 8.1. When specified, enables HighDynamicRangeInput automatically. Applicable only for 10-bit input content. MasterDisplay should be set for using dolby vision profile 81. Pass the dynamic metadata through DolbyVisionRpuFile option |
+| **NaluFile** | -nalu-file | any string | null | Path to the file containing CEA 608/708 metadata. Text file should contain the userSEI in POC order as per below format: `<POC><space><PREFIX><space><NALUNITTYPE>/<SEITYPE><space><SEI Payload>`. Currently only PREFIX_SEI messages are supported |

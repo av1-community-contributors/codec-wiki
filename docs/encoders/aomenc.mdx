@@ -1,6 +1,7 @@
 ---
 title: aomenc
-sidebar_position: 3
+sidebar_position: 4
+keywords: [AV1, encoding, video encoding, AOM AV1]
 ---
 
 import Tabs from '@theme/Tabs';
@@ -8,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 # aomenc
 
-aomenc or **libaom** is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.
+[aomenc](https://aomedia.googlesource.com/aom/), AOM-AV1, or just **libaom** is a command line application for encoding AV1 written in C and Assembly developed by AOMedia, which is also the reference encoder for AV1.
 
 
 
@@ -33,19 +34,56 @@ aomenc is available in FFmpeg via ``libaom-av1``, check if you have it by runnin
 Since FFmpeg encoder libraries come as the most default, barebones as possible (Therefore mainline aomenc), it is not recommended to use it. Unless you build it yourself.
 :::
 
+## Supported Color Space
 
-## Installation & Building
+aomenc supports the following color spaces:
 
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUV422P          | 4:2:2              | 8-bit                 |
+| YUV444P          | 4:4:4              | 8-bit                 |
+| GBRP             | -                  | 8-bit                 |
+| GRAY8            | -                  | 8-bit                 |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+| YUV422P10LE      | 4:2:2              | 10-bit                |
+| YUV444P10LE      | 4:4:4              | 10-bit                |
+| GBRP10LE         | -                  | 10-bit                |
+| GRAY10LE         | -                  | 10-bit                |
+| YUV420P12LE      | 4:2:0              | 12-bit                |
+| YUV422P12LE      | 4:2:2              | 12-bit                |
+| YUV444P12LE      | 4:4:4              | 12-bit                |
+| GBRP12LE         | -                  | 12-bit                |
+| GRAY12LE         | -                  | 12-bit                |
+
+
+## Installation
+
+The compilation parts of this installation will assume aom-av1-lavish as the default fork of choice.
 <Tabs>
     <TabItem value="linux" label="Linux" default>
-        Linux has no prebuilt binaries so you'll have to compile yourself. CMake, Perl, GNU Make, and nasm (assuming x64, if x86 use yasm) will be needed for compilation.
+        **aomenc should be available in your distribution's package manager.**
+        
+        But if you want to compile the community forks, you can also do that. CMake, Perl, GNU Make, and nasm (assuming x64, if x86 use yasm) will be needed for compilation.
 
-        ```bash
+        ```bash title="Clone the aom-av1-lavish repo Endless_Merging branch, cd and create build folder"
         git clone https://github.com/Clybius/aom-av1-lavish -b Endless_Merging
         cd aom-av1-lavish && mkdir -p aom_build && cd aom_build
+        ```
+        
+        ```bash title="CMake configuration"
         cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
+        ```
+        The CMake config above will statically build aomenc while disabling docs (which requires Doxygen), extra tunes, tests, and decoders. While also applying native CPU optimizations to help speed up the encoder. 
+
+        ```bash title="Compile the encoder"
         make -j$(nproc)
-        sudo make install
+        ```
+        The resulting binary will be in the same folder you are on (`aom_build`).
+
+        Or, optionally, you can install it to your system, which may need elevated permissions.
+        ```bash 
+        make install
         ```
 
         Alternatively, a precompiled AVX2-optimized binary can be installed for Linux via [rAV1ator CLI](../utilities/rav1ator-cli.mdx).
@@ -154,27 +192,24 @@ Since FFmpeg encoder libraries come as the most default, barebones as possible (
 
 ### AV1 Encoding
 
-Simple Y4M input with CQ 22, 1 pass, and raw `.ivf` bitstream output:
-```bash
-aomenc --end-usage=q --cq-level=32 --bit-depth=10 --passes=1 --ivf -o output.ivf input.y4m
-```
-
-Pipe from FFmpeg:
-```bash
-ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=1 --ivf -o output.ivf
-```
-
-Pipe from FFmpeg, 2-pass:
-```bash
-ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=2 --pass=1 --fpf-log=aom-pass.log  --ivf -o output.ivf
-```
-```bash
-ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=2 --pass=2 --fpf-log=aom-pass.log  --ivf -o output.ivf
-```
-
 :::info
 The way aomenc was developed requires 2-pass to take full advantage of its efficiency which include better rate controls and encoding features. So always use 2 passes when encoding.
 ::: 
+
+```bash title="Simple Y4M input with CQ 22, 1 pass, and raw ivf bitstream output"
+aomenc --end-usage=q --cq-level=32 --bit-depth=10 --passes=1 --ivf -o output.ivf input.y4m
+```
+
+```bash title="Pipe from FFmpeg"
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=1 --ivf -o output.ivf
+```
+
+```bash title="Pipe from FFmpeg, 2-pass, pass 1"
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=2 --pass=1 --fpf-log=aom-pass.log  --ivf -o output.ivf
+```
+```bash title="Pipe from FFmpeg, 2-pass, pass 2"
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc - --end-usage=q --cq-level=32 --bit-depth=10 --passes=2 --pass=2 --fpf-log=aom-pass.log  --ivf -o output.ivf
+```
 
 ### AVIF Encoding
 
@@ -194,21 +229,21 @@ Where:
 
 ## Recommendations
 
-aomenc unfortunately lacks the ability to take advantage of multiple threads, so therefore a tool like [Av1an](/docs/utilities/av1an.mdx) will be needed for parallelization. The parameters shown will be biased towards Av1an usage, so if you plan on using standalone aomenc then adjust as needed.
+aomenc unfortunately lacks the ability to take advantage of multiple threads, so therefore a tool like [Av1an](/docs/utilities/av1an.mdx) will be needed for parallelization. The parameters shown will be biased towards Av1an and aom-av1-lavish usage, so if you plan on using standalone aomenc then adjust as needed.
 
 Here are some recommended parameters:
 
 `--bit-depth=10 --cpu-used=4 --end-usage=q --cq-level=24 --threads=2 --tile-columns=0 --tile-rows=0 --lag-in-frames=64 --tune-content=psy --tune=ssim --enable-keyframe-filtering=1 --disable-kf --kf-max-dist=9999 --enable-qm=1 --deltaq-mode=0 --aq-mode=0 --quant-b-adapt=1 --enable-fwd-kf=0 --arnr-strength=1 --sb-size=dynamic --enable-dnl-denoising=0 --denoise-noise-level=8`
 
-Now let's break it down shall we.
+Now let's break it down.
 
-- ``--bit-depth=10`` We're using 10bit because it makes the video smaller and reduces banding.
+- `--bit-depth=10` We're using 10bit because weird linear algebra allows the video to become smaller and reduces banding.
 
-- ``--cpu-used=4`` This is the preset which ranges from 0-9, you can go to 3 if you want more efficiency, 2 if you have a lot of time, 4 is the sweet spot, and 6 if you want speed. Don't go above 6 (Worst efficiency) or even 0 (It would take WEEKS to finish).
+- `--cpu-used=4` This is the preset which ranges from 0-9, you can go to 3 if you want more efficiency, 2 if you have a lot of time, 4 is the sweet spot, and 6 if you want speed. Don't go above 6 (Worst efficiency) or even 0 (It would take WEEKS to finish).
 
-- ``--end-usage=q --cq-level=24`` This specifies that we are going to use a knockoff version of CRF level similar to x264/x265 encoders, in this case CRF 24.
+- `--end-usage=q --cq-level=24` This specifies that we are going to use a knockoff version of CRF level similar to x264/x265 encoders, in this case CRF 24.
 
-- ``--tile-columns=0 --tile-rows=0`` This is the tiles options, where the encoder splits the videos into tiles to encode faster. See the image below (Yellow lines):
+- `--tile-columns=0 --tile-rows=0` This is the tiles options, where the encoder splits the videos into tiles to encode faster. See the image below (Yellow lines):
 
 <picture>
     <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/tiling_av1.avif?token=GHSAT0AAAAAACEZPDXIZARY5MGSTJW4SI22ZHY636A" type="image/avif" />
@@ -221,37 +256,38 @@ Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``
 If you would like an easy way to calculate the necessary number of tiles for your video, you can use [the AV1 Encoding Calculator](https://autocompressor.net/tools/av1-calculator) online or run [this local tile calculator](https://github.com/gianni-rosato/av1-tile-calc).
 :::
 
-- ``--lag-in-frames=64`` Similar to x264/x265 `rc-lookahead`. Sets a number of frames to look ahead for frametype and ratecontrol, allowing for better compression decision making. Setting to a value greater than 64 is generally not considered useful.
+- `--lag-in-frames=64` Similar to x264/x265 `rc-lookahead`. Sets a number of frames to look ahead for frametype and ratecontrol, allowing for better compression decision making. Setting to a value greater than 64 is generally not considered useful.
  
-- ``--aq-mode=0`` adaptive quantization mode, a mostly debatable area nowadays. 0 is better most of the time but some say 1 is also good.
+- `--aq-mode=0` adaptive quantization mode, a mostly debatable area nowadays. 0 is better most of the time but some say 1 is also good.
 
-- ``--tune-content=psy --tune=ssim`` As the name suggests they are tunes that affect the video output, for the better, and for the worst.
+- `--tune-content=psy --tune=ssim` As the name suggests they are tunes that affect the video output, for the better, and for the worst.
 :::info
-Do not use `tune-content=psy` if you encode live action above ``cq-level=30``.
+Do not use `tune-content=psy` if you encode live action above `cq-level=30`.
 :::
 :::info
-If you use any of the VMAF tunes, you need to specify ``--vmaf-model-path=`` to where you put VMAF models in.
+If you use any of the VMAF tunes, you need to specify `--vmaf-model-path=` to where you put VMAF models in.
 :::
 
-- ``--enable-keyframe-filtering=1`` We're setting it to 1 because of compatibility reasons, 2 is more efficient but there are seeking issues and FFmpeg can't input it.
+- `--enable-keyframe-filtering=1` We're setting it to 1 because of compatibility reasons, 2 is more efficient but there are seeking issues and FFmpeg can't input it.
 
-- ``--sb-size=dynamic`` Allows the encoder to use 128x128 block partitioning besides 64x64 which gives an efficiency boost.
+- `--sb-size=dynamic` Allows the encoder to use 128x128 block partitioning besides 64x64 which gives an efficiency boost.
 
-- ``--deltaq-mode=0`` set to 0 b its better
+- `--deltaq-mode=0` set to 0 b its better
 
-- ``--arnr-strength=1`` Controls how strong the filtering (smoothing) will be, always been a hot topic. Most agree on the default of 4. Others think 1 is good for 3D Pixar CGI-like and 2D animation and 4 for live action content, and a higher value for lower bitrate encodes.
+- `--arnr-strength=1` Controls how strong the filtering (smoothing) will be, always been a hot topic. Most agree on the default of 4. Others think 1 is good for 3D Pixar CGI-like and 2D animation and 4 for live action content, and a higher value for lower bitrate encodes.
 
-- ``--disable-kf --enable-fwd-kf=0`` We're disabling keyframes cause Av1an already did scene detection, so we wont have to. Plus it speeds things up.
+- `--disable-kf --enable-fwd-kf=0` We're disabling keyframes cause Av1an already did scene detection, so we wont have to. Plus it speeds things up.
 
-- ``--kf-max-dist=9999`` Maximum keyframe interval, we're setting it at the highest possible value since Av1an's scene detection keyframe interval is already 240 by default
+- `--kf-max-dist=9999` Maximum keyframe interval, we're setting it at the highest possible value since Av1an's scene detection keyframe interval is already 240 by default
 
-- ``--enable-chroma-deltaq=1 --enable-qm=1 --quant-b-adapt=1`` Parameters that give you free efficiency boost, ignore it.
+- `--enable-chroma-deltaq=1` --enable-qm=1 --quant-b-adapt=1`` Parameters that give you free efficiency boost, ignore it.
 
-- ``--enable-dnl-denoising=0`` Disables the encoder's built-in denoising technique when grain synthesis is enabled, you can optionally set it to 1 when you have a pretty noisy video since it works quite well (NLMeans is the denoiser used).
+- `--enable-dnl-denoising=0` Disables the encoder's built-in denoising technique when grain synthesis is enabled, you can optionally set it to 1 when you have a pretty noisy video since it works quite well (NLMeans is the denoiser used).
 
-- ``--denoise-noise-level=8`` AV1 grain synthesis, which is a technique where the encoder puts fake grain in so it looks more natural and potentially hiding video artifacts (cause grain is hard to encode and explodes bitrate usage because of their randomness). Don't attempt to use it at high values (>12) since it creates noticeable grain patterns.
-:::info Alternative
-You can use photon noise tables as an alternative, which is also conveniently available in Av1an as `--photon-noise=X`
+- `--denoise-noise-level=8` AV1 grain synthesis, which is a technique where the encoder puts fake grain in so it looks more natural and potentially hiding video artifacts (cause grain is hard to encode and explodes bitrate usage because of their randomness). Don't attempt to use it at high values (>12) since it creates noticeable grain patterns.
+
+:::info 
+You can use photon noise tables as an alternative via `--film-grain-table`, which is also conveniently available in Av1an as `--photon-noise=X`
 :::
 
 ## Tips & Tricks

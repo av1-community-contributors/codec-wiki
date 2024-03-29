@@ -1,12 +1,86 @@
 ---
 title: Kvazaar
-sidebar_position: 6
+sidebar_position: 11
 ---
 
 # Kvazaar
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+[Kvazaar](https://github.com/ultravideo/kvazaar) is an open-source [H.265 / HEVC](/docs/video/HEVC) software encoder Written in C, developed by [Ultra Video Group](https://ultravideo.fi/) and licensed under BSD 3-clause. 
+
+[uvg266](/docs/encoders/uvg266) (Developed by the same group) uses Kvazaar as base for encoding to the [VVC](/docs/video/VVC) codec.
+
+:::info
+It is recommended to use [x265](/docs/encoders/x265) instead as it performs much better in both quality and speed.
 :::
 
-Kvazaar is an open-source HEVC encoder licensed under 3-clause BSD developed by the Ultra Video Group (UVG). Written in C and Assembly.
+## FFmpeg
+
+Kvazaar is available in FFmpeg via ``libkvazaar``, to check if you have it, run ``ffmpeg -h encoder=libkvazaar``. You can input non-FFmpeg standard Kvazaar parameters via ``-kvazaar-params``.
+
+You may need to download "Full" builds. As most of the time, this encoder is not included.
+
+
+## Supported Color Space
+
+Kvazaar supports the following color spaces:
+
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+
+
+## Installation
+
+### Arch Linux
+
+Kvazaar is available on both pacman (`kvazaar`) and the Arch User Repository (AUR) as `kvazaar-git`.
+
+### Compiling
+
+Ultra Video Group does not ship any pre-built binaries of their encoders except for their [AppVeyor CI](https://ci.appveyor.com/project/Ultravideo/kvazaar), but AppVeyor deletes build artifacts after a month, so most of the time you'll have to compile Kvazaar yourself. 
+
+Windows users are recommended to compile via MinGW-W64 which comes with [MSYS2](https://msys2.org/). Please be advised **the usage of Clang for compiling in this situation is heavily recommended**
+due to disabled AVX2 optimizations because of a known GCC issue from 2012 (MinGW environments-exclusive). To do this, run `CC=clang ./configure` during autoconf.
+
+:::caution
+Compilation requires GNU Automake, Autoconf, Libtool, and M4.
+:::
+
+```bash
+git clone --recursive https://github.com/ultravideo/kvazaar.git
+cd kvazaar
+./autogen.sh
+./configure
+make -j$(nproc)
+```
+
+Binaries will be available in `src`, or you can run `make install` on Linux to install (May need elevated permissions).
+
+### Using CMake for 10-bit support
+
+You will need to use CMake to specify a flag to be able to encode 10-bit with the encoder, by default Kvazaar ships with only 8-bit.
+
+```bash
+git clone --recursive https://github.com/ultravideo/kvazaar.git
+cd kvazaar/build
+cmake .. -DCMAKE_C_FLAGS="-DKVZ_BIT_DEPTH=10"
+make -j$(nproc)
+```
+:::warning
+Encoding 10-bit with Kvazaar is significantly slower as the developers only prioritized SIMD optimizations for 8-bit, and can get quite buggy.
+:::
+
+## Usage
+
+```bash title="Simple Y4M input with QP 20 and raw 265 bitstream output"
+kvazaar -i input.y4m --input-file-format y4m --qp 20 -o output.265
+```
+
+```bash title="Preset slow, CRF 20, Y4M input"
+kvazaar -i input.y4m --input-file-format y4m --qp 20 --preset slow -o output.265
+```
+
+```bash title="FFmpeg piping"
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | kvazaar -i - --input-file-format y4m --qp 20 --preset slow -o output.265
+```

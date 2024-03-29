@@ -1,6 +1,6 @@
 ---
 title: vpxenc
-sidebar_position: 3
+sidebar_position: 8
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,41 +12,225 @@ import TabItem from '@theme/TabItem';
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.mdx) & [VP8](../video/VP8.mdx) video codecs. It is capable of encoding & decoding both formats, where vpxenc is the multipurpose encoder. VP9 competes with [HEVC](../video/HEVC.mdx) (h265) & [AVC](../video/AVC.mdx) (h264) in coding efficiency, and has been superseded by [AV1](../video/AV1.mdx). VP8 competes with AVC. By default, vpxenc isn't as competitive as it could be, but even when used properly, most tests show that h265 offers slightly better quality per bit with efficient encoders like [x265](../encoders/x265.mdx).
+vpxenc is part of the libvpx library for working with the [VP9](../video/VP9.mdx) & [VP8](../video/VP8.mdx) video codecs. It is capable of encoding & decoding both formats, where vpxenc is the multipurpose encoder. VP9 competes with [HEVC](../video/HEVC.mdx) (h265) & [AVC](../video/AVC.mdx) (h264) in coding efficiency, and has been superseded by [AV1](../video/AV1.mdx). VP8 competes with AVC. 
 
-## Installation
+By default, vpxenc isn't as competitive as it could be, but even when used properly, most tests show that h265 offers slightly better quality per bit with efficient encoders like [x265](../encoders/x265.mdx).
 
-<Tabs>
-    <TabItem value="unixlike" label="Linux & macOS">
-        To build libvpx from source:
-        ```bash
-        git clone https://chromium.googlesource.com/webm/libvpx
-        cd libvpx
-        ./configure
-        make -j [# of CPU threads]
-        ```
 
-        It may be worth digging through the `configure` options, which can be listed by running `./configure -h`. Keeping in mind some flags might be redundant with defaults, here's an example of a tweaked configuration (without VP8 support) for efficient performance on an Apple Silicon Mac running macOS Ventura:
-        ```bash
-        ./configure --disable-vp8 --target=arm64-darwin22-gcc --disable-docs --enable-webm-io --enable-vp9-postproc --enable-vp9-highbitdepth --extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native" --enable-postproc
-        ```
+## FFmpeg
 
-        From the build, a binary will be produced called `vpxenc`. You can copy this build to `/usr/local/bin` or execute it directly in the directory, shown below:
+vpxenc is available in FFmpeg via `libvpx` for **VP8** and `libvpx-vp9` for **VP9**, to check if you have it, run `ffmpeg -h encoder=libvpx` or `ffmpeg -h encoder=libvpx-vp9`.
+Non-FFmpeg standard VP8/VP9 parameters are **not** supported.
 
-        ```bash
-        ./vpxenc --help | grep vp9 -C 3
 
-        Included encoders:
+## Supported Color Space
 
-            vp9    - WebM Project VP9 Encoder v1.13.0 (default)
+vpxenc supports the following color spaces:
 
-                Use --codec to switch to a non-default encoder.
-        ```
-    </TabItem>
-    <TabItem value="windows" label="Windows">
-        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 
-    </TabItem>
-</Tabs>
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUVA420P         | 4:2:0              | 8-bit (Alpha Channel) |
+| YUV422P          | 4:2:2              | 8-bit                 |
+| YUV440P          | 4:4:0              | 8-bit                 |
+| YUV444P          | 4:4:4              | 8-bit                 |
+| GBRP             | -                  | 8-bit                 |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+| YUV422P10LE      | 4:2:2              | 10-bit                |
+| YUV440P10LE      | 4:4:0              | 10-bit                |
+| YUV444P10LE      | 4:4:4              | 10-bit                |
+| GBRP10LE         | -                  | 10-bit                |
+| YUV420P12LE      | 4:2:0              | 12-bit                |
+| YUV422P12LE      | 4:2:2              | 12-bit                |
+| YUV440P12LE      | 4:4:0              | 12-bit                |
+| YUV444P12LE      | 4:4:4              | 12-bit                |
+| GBRP12LE         | -                  | 12-bit                |
+
+
+## Installing (Binary)
+
+Windows builds are available on Lastrosade's [website](https://jeremylee.sh/bins/) and can be downloaded [here](https://jeremylee.sh/bins/vpx.7z).
+
+For Linux and MacOS, it may be be available when searching "vpxenc" or "libvpx" in their respective package managers.
+
+
+## Compiling (Windows/MacOS/Linux)
+
+Windows users are recommended to compile via MinGW-W64 which comes with [MSYS2](https://msys2.org/).
+
+nasm/yasm, and the GNU build tools (make, configure) are required for this operation.
+
+### Cloning
+First, cloning
+```bash
+git clone https://chromium.googlesource.com/webm/libvpx
+cd libvpx
+mkdir build && cd build
+```
+
+### ./configure file
+Now here comes the annoying part, the configure file have really bad defaults. So you will need to adjust them, here are some recommended options you should use:
+
+```bash
+./configure --cpu=native --extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native" --as=auto --enable-vp9-highbitdepth --enable-libyuv --enable-webm-io --enable-vp9 --enable-runtime-cpu-detect --enable-internal-stats --enable-postproc --enable-vp9-postproc --enable-static --disable-shared --enable-vp9-temporal-denoising --disable-unit-tests --disable-docs --enable-multithread
+```
+
+Now let's break down what each of them do.
+
+
+- `--cpu=native`
+Native CPU optimizations.
+
+- `--extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native"`
+More native CPU optimizations for faster encoding.
+
+- `--as=auto`
+Set the assembler to auto, so it can choose between `yasm` and `nasm`.
+
+- `--enable-vp9-highbitdepth`
+Enables high bit depth (>=10 bits) when encoding VP9.
+
+- `--enable-libyuv`
+Enables YUV4MPEG input support (IMPORTANT), otherwise it will only accept RAW.
+
+- `--enable-webm-io`
+Enables input and output support for WebM container.
+
+- `--enable-vp9`
+Enables VP9 encoding support.
+
+- `--enable-runtime-cpu-detect`
+Enables runtime CPU detection.
+
+- `--enable-internal-stats`
+Enables internal statistics for the encoder for debug purposes.
+
+- `--enable-postproc`
+Enables postprocessing stuff for better video quality.
+
+- `--enable-vp9-postproc`
+Enables VP9-specific postprocessing stuff for better video quality.
+
+- `--enable-static`
+Enables static builds.
+
+- `--disable-shared`
+Disables shared builds.
+
+- `--enable-vp9-temporal-denoising`
+Disables spatial denoising for VP9 and enables temporal instead.
+
+- `--disable-unit-tests`
+Disables unit tests, unless you want to test the encoder as a developer. This should be disabled.
+
+- `--disable-docs`
+Disables documentation, as enabling this also requires doxygen.
+
+- `--enable-multithread`
+Enables the usage of multiple CPU threads for encoding and decoding.
+
+
+### Other ./configure options
+
+There are other options you may want use to either speed up compiliation or drop unwanted features.
+
+1. `--disable-vp8 --disable-vp9-decoder --disable-vp8-decoder` 
+Disables VP8 encoding and `vpxdec` (decoder) to be compiled.
+
+2. `--enable-small`
+Prioritizes smaller encoder binary size over encoding speed.
+
+3. `--target=`
+Enables target compilation for a specific operating system or CPU architecture. There's a lot of them. Here's an exhaustive list of all of them based on the configure file:
+```bash
+arm64-android-gcc
+arm64-darwin-gcc
+arm64-darwin20-gcc
+arm64-darwin21-gcc
+arm64-darwin22-gcc
+arm64-darwin23-gcc
+arm64-linux-gcc
+arm64-win64-gcc
+arm64-win64-vs15
+arm64-win64-vs16
+arm64-win64-vs16-clangcl
+arm64-win64-vs17
+arm64-win64-vs17-clangcl
+armv7-android-gcc
+armv7-darwin-gcc
+armv7-linux-rvct
+armv7-linux-gcc
+armv7-none-rvct
+armv7-win32-gcc
+armv7-win32-vs14
+armv7-win32-vs15
+armv7-win32-vs16
+armv7-win32-vs17
+armv7s-darwin-gcc
+armv8-linux-gcc
+loongarch32-linux-gcc
+loongarch64-linux-gcc
+mips32-linux-gcc
+mips64-linux-gcc
+ppc64le-linux-gcc
+sparc-solaris-gcc
+x86-android-gcc
+x86-darwin8-gcc
+x86-darwin8-icc
+x86-darwin9-gcc
+x86-darwin9-icc
+x86-darwin10-gcc
+x86-darwin11-gcc
+x86-darwin12-gcc
+x86-darwin13-gcc
+x86-darwin14-gcc
+x86-darwin15-gcc
+x86-darwin16-gcc
+x86-darwin17-gcc
+x86-iphonesimulator-gcc
+x86-linux-gcc
+x86-linux-icc
+x86-os2-gcc
+x86-solaris-gcc
+x86-win32-gcc
+x86-win32-vs14
+x86-win32-vs15
+x86-win32-vs16
+x86-win32-vs17
+x86_64-android-gcc
+x86_64-darwin9-gcc
+x86_64-darwin10-gcc
+x86_64-darwin11-gcc
+x86_64-darwin12-gcc
+x86_64-darwin13-gcc
+x86_64-darwin14-gcc
+x86_64-darwin15-gcc
+x86_64-darwin16-gcc
+x86_64-darwin17-gcc
+x86_64-darwin18-gcc
+x86_64-darwin19-gcc
+x86_64-darwin20-gcc
+x86_64-darwin21-gcc
+x86_64-darwin22-gcc
+x86_64-darwin23-gcc
+x86_64-iphonesimulator-gcc
+x86_64-linux-gcc
+x86_64-linux-icc
+x86_64-solaris-gcc
+x86_64-win64-gcc
+x86_64-win64-vs14
+x86_64-win64-vs15
+x86_64-win64-vs16
+x86_64-win64-vs17
+generic-gnu
+```
+
+For **Windows** compilation with MinGW you may need to use `--target=x86_64-win64-gcc` and `--target=arm64-darwin22-gcc` for **MacOS**.
+
+
+### Running GNU make
+
+After successfully running the configure command above, run `make -j $(nproc)` to start compiling with your CPU count. The resulting binary will be called `vpxenc` and you can copy it wherever you like.
 
 ## VP8
 
@@ -102,7 +286,10 @@ This tells the encoder to have a maximum number of frames between keyframes. It 
 
 - `--cpu-used=3` 
 
-This is where the biggest balance of quality to speed is with libvpx-vp9. This is similar to presets in x264 and x265, except the lower the number, the slower the encoder takes. Using `--cpu-used=3` & below enables RDO, which increases quality at the expense of speed. Another note: --cpu-used=5 and above are *slower* in the 1st pass, so it isn't recommended to use them anyway.
+This is where the biggest balance of quality to speed is with libvpx-vp9. This is similar to presets in x264 and x265, except the lower the number, the slower the encoder takes. Using `--cpu-used=3` & below enables RDO, which increases quality at the expense of speed.
+:::info
+`--cpu-used=5` and above are *slower* in the 1st pass, so it isn't recommended to use them anyway.
+:::
 
 - `--auto-alt-ref=6`
 

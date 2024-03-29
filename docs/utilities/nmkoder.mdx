@@ -5,6 +5,35 @@ sidebar_position: 7
 
 # NMKODER
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+<picture>
+    <source srcset="/img/nmkoder.avif" type="image/avif" />
+    <img src="/img/nmkoder.webp" alt="NMKODER Window" />
+</picture>
+<br/><br/>
+
+[NMKODER](https://github.com/n00mkrad/nmkoder) is a free and open source, **Windows-only** GUI software developed by [N00MKRAD](https://github.com/n00mkrad). Built around FFmpeg, FFprobe, and Av1an 
+for video encoding, muxing, and analysis such as concatenation, metrics calculation, and bitrate plotting. Though most people use this for the [Av1an](/docs/utilities/av1an) functionality.
+
+The software is written in C# and built with WinForms.
+
+:::danger Abandonware
+NMKODER have not been updated for years, it is not recommended to use this. But you can attempt to replace the provided binaries (aomenc.exe, etc) with new ones to technically "update" this.
 :::
+
+## Installation
+
+You can download it from the GitHub [releases](https://github.com/n00mkrad/nmkoder/releases) page (the 7z file). Extract it to wherever after it's finished downloading, open the folder, and click the exe file.
+
+The entire software is portable, so you can share the folder with anyone and they'll have no problem with running it.
+
+## Usage
+
+NMKODER is really straightforward to use and consists of multiple tabs for each functionality. There is a drop zone on the left for drag-and-drop video files.
+
+- "File List" is for imported files.
+- "Track List" is for A/V tracks.
+- "Quick Convert" tab is for conversion with FFmpeg.
+- "AV1AN" is what it exactly says.
+- "Utilities" is for helpful tools such as colorspace/HDR metadata transferring, metric calculation, etc.
+
+After configuring everything, click on the "Start" button to start encoding.

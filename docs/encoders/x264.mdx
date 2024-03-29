@@ -13,8 +13,30 @@ x264 has great fine detail retention which makes it perfect for high fidelity co
 
 ## FFmpeg
 
-x264 is available in FFmpeg via ``libx264``, to check if you have it, run ``ffmpeg -h encoder=libx264``. You can input non-FFmpeg standard x264 parameters via ``-x264-params``.
+x264 is available in FFmpeg via `libx264`, to check if you have it, run `ffmpeg -h encoder=libx264`. You can input non-FFmpeg standard x264 parameters via `-x264-params`.
 
+
+## Supported Color Space
+
+x264 supports the following color spaces:
+
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUVJ420P         | 4:2:0              | 8-bit (Full range)    |
+| YUV422P          | 4:2:2              | 8-bit                 |
+| YUVJ422P         | 4:2:2              | 8-bit (Full range)    |
+| YUV444P          | 4:4:4              | 8-bit                 |
+| YUVJ444P         | 4:4:4              | 8-bit (Full range)    |
+| NV12             | Semi-planar        | 8-bit                 |
+| NV16             | Semi-planar        | 8-bit                 |
+| NV21             | Semi-planar        | 8-bit (reversed)      |
+| GRAY8            | -                  | 8-bit                 |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+| YUV422P10LE      | 4:2:2              | 10-bit                |
+| YUV444P10LE      | 4:4:4              | 10-bit                |
+| GBRP10LE         | -                  | 10-bit                |
+| GRAY10LE         | -                  | 10-bit                |
 
 
 ## Installation

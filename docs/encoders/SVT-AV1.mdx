@@ -1,6 +1,6 @@
 ---
 title: SVT-AV1
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 import Tabs from '@theme/Tabs';
@@ -12,13 +12,13 @@ import TabItem from '@theme/TabItem';
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-SVT-AV1 (Scalable Video Technology for AV1) is an AV1-compliant software encoder/decoder library. Jointly developed by Intel and Netflix, SVT-AV1 is written almost entirely in C with some parts written in C++ and Assembly.
+SVT-AV1 (Scalable Video Technology for AV1) is an AV1-compliant software encoder/decoder library. Jointly developed by Intel and Netflix, SVT-AV1 is written almost entirely in C with some parts written in C++ and Assembly. As the name suggests, it is part of the "[Scalable Video Technology](https://www.intel.com/content/www/us/en/developer/articles/technical/scalable-video-technology.html)" project lineup by Intel.
 
 This entry discusses the SVT-AV1 encoder, also known as the "Production" AV1 encoder (while [aomenc](../encoders/aomenc.mdx) is the "reference" AV1 encoder), & refers to SVT-AV1 as such. SVT-AV1 is known for its parallelization, high coding efficiency, & active development. SVT-AV1 scales across multiple CPU cores much more effectively than aomenc or [rav1e](../encoders/rav1e.mdx), so the use of tools like [Av1an](../utilities/av1an.mdx) is less helpful albeit still helpful for scene detection.
 
 ## Community Forks
 
-Currently, there is only one noteworthy community fork of SVT-AV1 called SVT-AV1-PSY.
+Currently, there is only one noteworthy community fork of SVT-AV1 called [SVT-AV1-PSY](https://github.com/gianni-rosato/svt-av1-psy).
 
 ### SVT-AV1-PSY
 
@@ -32,7 +32,18 @@ SVT-AV1-PSY is a superset of SVT-AV1, meaning any valid SVT-AV1 command will wor
 
 ## FFmpeg
 
-SVT-AV1 is available in FFmpeg via ``libsvtav1``, to check if you have it, run ``ffmpeg -h encoder=libsvtav1``. You can input non-FFmpeg standard SVT-AV1 parameters via ``-svtav1-params``.
+SVT-AV1 is available in FFmpeg via `libsvtav1`, to check if you have it, run `ffmpeg -h encoder=libsvtav1`. You can input non-FFmpeg standard SVT-AV1 parameters via `-svtav1-params`.
+
+
+## Supported Color Space
+
+SVT-AV1 supports the following color spaces:
+
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+
 
 ## Installation
 
@@ -53,7 +64,7 @@ SVT-AV1 is available in FFmpeg via ``libsvtav1``, to check if you have it, run `
         cd SVT-AV1/Build/linux
         ```
 
-        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires cmake version 3.16 or higher and either gcc or clang. It is recommended to use clang when building SVT-AV1.
+        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires CMake version 3.16 or higher and either GCC or Clang. It is recommended to use clang when building SVT-AV1.
 
         ```bash title="Build release"
         ./build.sh release
@@ -63,7 +74,7 @@ SVT-AV1 is available in FFmpeg via ``libsvtav1``, to check if you have it, run `
         ./build.sh jobs=8 all cc=clang cxx=clang++ no-dec enable-lto static native
         ```
 
-        The compiled binaries will be in the Bin/Release directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
+        The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
 
         If you'd like to build from the latest release (1.8.0 at the time of writing - last updated 11 Feb 2024) please run `git reset --hard 59645eea34e2815b627b8293aa3af254eddd0d69` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
 

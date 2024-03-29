@@ -1,17 +1,17 @@
 ---
-title: AVM
-sidebar_position: 12
+label: AVM
+sidebar_position: 15
 ---
 
 # AVM
 
-The AVM video codec is the reference implementation for a future codec from the Alliance for Open Media, the organization behind [AV1](../video/AV1.mdx). From the [Git repo](https://gitlab.com/AOMediaCodec/avm):
+> AVM (AOM Video Model) is the reference software for next codec from Alliance for Open Media.
 
-> AVM (AOM Video Model) is the reference software for next codec from Alliance for Open Media
+[AVM](https://gitlab.com/AOMediaCodec/avm), or **A**OM **V**ideo **M**odel is the reference implementation for a future codec from the Alliance for Open Media, the organization behind [AV1](../video/AV1.mdx). 
+The codebase is under the Clear BSD license and currently only produces `av01` bitstreams.
 
-The codebase is under the Clear BSD license.
+The AVM codec is currently in development and is not yet ready for production use. Not much has been documented or tested.
 
-The AVM codec is currently in development and is not yet ready for production use. Not much has been documented or tested, though there is some material available.
 
 ## Rumors
 
@@ -21,7 +21,60 @@ Some rumors about the codec include:
 
 - The name of the codec is going to be AV2, superseding AV1
 - The codec will be based on AV1, with certain backwards compatibility features available
-    - Hardware decoding implementations could be implemented at no cost (no royalties) by utilizing GPU shaders and existing AV1 decoding hardware.
+- Hardware decoding implementations could be implemented at no cost (no royalties) by utilizing GPU shaders and existing AV1 decoding hardware.
 - AOM's strategy will be to release codecs "mid-cycle" relative to ISO/ITU's release schedule, meaning it is likely that "AV2" will compete with [VVC](../video/VVC.mdx), not [ECM](../video/ECM.mdx).
 - A quantizer scale of 0-255 will be standard.
 - AVM tries to address some issues with high-fidelity AV1 encoding by introducing a better denoiser to mitigate [mosquito noise](../introduction/video-artifacts.mdx#mosquito-noise).
+
+
+## Installation
+
+### Arch Linux
+
+AVM is available in the Arch User Repository (AUR) as `avm` and `avm-git`.
+
+### Compiling
+
+Since this encoder is under heavy development, there are no pre-built binaries provided, so you will need to compile yourself. 
+Windows users are recommended to compile via MinGW-W64 which comes with [MSYS2](https://msys2.org/).
+
+:::caution
+Compilation requires CMake, Nasm, and Perl. 
+:::
+
+```bash
+git clone https://gitlab.com/AOMediaCodec/avm.git
+cd avm/build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=0
+make -j$(nproc)
+```
+
+Since this is a huge project, compiling will take a while depending on your CPU. 
+
+The resulting binary will be called `aomenc`, the same name that encodes content to AV1. 
+It will be available in the same folder (`build`), or you can run `make install` on Linux to install (May need elevated permissions).
+
+## Usage
+
+:::tip
+To convert `cq-level` in aomenc and `crf` in SVT-AV1 to AVM's QP values, multiply by 4. For example, `--cq-level 20` equals to `--quantizer 60`.
+:::
+
+Simple Y4M input with QP 65, and `ivf` output:
+```bash
+aomenc --qp=65 -o output.ivf input.y4m
+```
+
+Preset level 6 (higher is faster), QP 65, Y4M input:
+```bash
+aomenc --qp=65 --cpu-used=6 -o output.ivf input.y4m
+```
+
+FFmpeg piping:
+```bash
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | aomenc --qp=65 --cpu-used=6 -o output.ivf -
+```
+
+## aomdec 
+
+You will need the `aomdec` binary you also compiled to be able to play your encoded video, as there are **zero** video players currently in the whole world that can play your encoded content.

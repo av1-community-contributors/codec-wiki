@@ -14,67 +14,76 @@ import TabItem from '@theme/TabItem';
     <img src="https://autumn.revolt.chat/attachments/K3OhOCAy9bkUCkImek_q3-t6q3zctbn9SbWW-_RI19/av1an_96_workers.webp" alt="Av1an with 96 workers" />
 </picture>
 
+<br/><br/>
 Av1an is a video encoding framework. It can increase your encoding speed and improve CPU utilization by running multiple encoder processes in parallel. Target quality, VMAF plotting, and more, available to take advantage for video encoding.
 
-## Prerequisites
-Since Av1an is just a tool that helps with parallelization, you'll need to have the following installed for the entire thing to work: 
-- Rust
-- Python (Required for [Vapoursynth](/docs/filtering/vapoursynth.mdx), currently needs 3.11, this may change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html))
-- FFmpeg
-- [MKVToolNix](../utilities/MKVToolNix.mdx) (mkvmerge)
-- Vapoursynth
-- L-SMASH (Vapoursynth plugin)
-- FFMS2 (Vapoursynth plugin, optional)
-- [VMAF](../metrics/VMAF.mdx) (For target VMAF, optional)
-- Any of the supported encoders ([aomenc](../encoders/aomenc.mdx), [rav1e](../encoders/rav1e.mdx), [SVT-AV1](../encoders/SVT-AV1.mdx), [vpxenc](../encoders/vpxenc.mdx), [x264](../encoders/x264.mdx), [x265](../encoders/x265.mdx))
-
-## Installation
-### Microsoft Windows
-**GUI:**
-1. Install [Nmkoder](../utilities/nmkoder.mdx) which is a GUI front-end to av1an with all dependencies installed
-2. You're done!
-
-:::danger Outdated Software
-Since Nmkoder already ships everything by default and it's last release was 29th March 2022. You need to manually update EVERYTHING (``av1an.exe``, ``aomenc.exe``, etc) to get performance optimizations, better speeds, and more settings. Missing out on updates will result in your encodes being sub-optimal.
+The only downside to this, is that RAM usage increases significantly with each "worker" you add, so if you have a low amount of RAM (< 8GB), this might not be that useful to you. 
+:::caution
+Av1an does not ship with any dependencies except for it's Docker image, so you will have to provide them on your own.
 :::
 
+## Prerequisites
 
-**Pre-built binary, bleeding edge [Recommended]:**
+You will need Python, [FFmpeg](/docs/filtering/ffmpeg) and [Vapoursynth](/docs/filtering/Vapoursynth) to be installed regardless of your current operating system.
+## Installation
 
-- Download Av1an from [here](https://github.com/master-of-zen/Av1an/releases), select "Latest" and click the "Assets" dropdown. Put it in [PATH](https://www.maketecheasier.com/what-is-the-windows-path)
+### Windows
 
-### MacOS
+#### Script
+Windows users can use this [script](https://github.com/Hishiro64/av1an-win-script) which installs everything needed in a single portable folder. Do note that you will need to update the dependencies manually once installed. 
 
-To be filled.
+#### Pre-built Binary
+Av1an is available as a pre-built binary under the "[latest](https://github.com/master-of-zen/Av1an/releases/tag/latest)" tag on GitHub releases, you can simply download that and place it wherever you want.
+
+#### Compile from Source
+To compile from source, it is easier to use mingw-w64 which comes with [MSYS2](https://msys2.org). Once installed, open MinGW64 and run the following:
+```bash
+pacman -Syuu; pacman -S cmake git nasm python3 mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake base-devel mingw-w64-x86_64-ffmpeg mingw-w64-x86_64-rust mingw-w64-x86_64-lld mingw-w64-x86_64-clang mingw-w64-x86_64-make
+```
+
+Then, before you do anything further. Download Vapoursynth **portable** (`VapourSynth64-Portable-RXX.7z`) from its GitHub [release page](https://github.com/vapoursynth/vapoursynth/releases). Make sure the version you chose is compatible with the current MinGW64 Python version. For example, R65 supports 3.8 and 3.11, the version from Pacman (currently) is 3.11, so you should choose that.
+
+After downloading, open the 7z file and head to `\sdk\lib64`, copy all the libraries from there to MinGW64's `lib` directory, this usually resides in `C:\msys64\mingw64\lib`.
+
+Now finally, resume your session and run the following:
+```bash
+git clone https://github.com/master-of-zen/Av1an
+cd Av1an
+RUSTFLAGS="-C target-cpu=native" cargo build --release
+```
+
+The binary will be available in `C:\msys64\home\USER\Av1an\target\release`. The `USER` part is your Windows username.
+
+### macOS
+
+#### Using MacPorts
+Av1an is available in the MacPorts repository, to install just simply run:
+```bash
+port install av1an
+```
+
+#### Compile from Source
+You need to have Git, Nasm, and Rust to be installed first. You can achieve this by using [Homebrew](https://brew.sh/) or similar.
+```bash
+git clone https://github.com/master-of-zen/Av1an
+cd Av1an
+RUSTFLAGS="-C target-cpu=native" cargo build --release
+```
+Binary is located in `Av1an/target/release`, you can optionally place it somewhere like `/usr/local/bin`.
 
 ### Linux
 
-**The Easy Way:** 
+#### Package Managers
+Av1an is available in the package manager of some distributions such as Arch Linux. If not, you can skip to the next part every Linux user is familiar with.
 
-Install [rAV1ator](../utilities/rAV1ator.mdx), a GUI frontend for Av1an & the rust-based rav1e encoder.
-:::note
-Keep in mind Aviator only ships with **SVT-AV1** and rAV1ator with **rav1e** instead of Aomenc/AOM-AV1.
-:::
-
-**The compiling route:**
-
-Prerequisites: 
-- Vapoursynth
-- FFmpeg
-- MKVToolNix (mkvmerge)
-- Git
-- Perl
-- Nasm
-- Rust (Use rustup on Debian/Ubuntu, as the package manager version is horribly outdated)
-- Highway (libhwy)
-
+#### Compile from Source
+Just like macOS, you need to have Git, Nasm, and Rust to be installed. Can be achieved by either using your package manager or Rustup for Rust.
 ```bash
 git clone https://github.com/master-of-zen/Av1an.git
 cd Av1an
 RUSTFLAGS="-C target-cpu=native" cargo build --release
 ```
-
-after done, the binary will be located in ``target/release``, copy it to somewhere like ``/usr/bin`` or ``/usr/local/bin``
+Binary is located in `Av1an/target/release`, you can optionally place it somewhere like `/usr/local/bin` or `/usr/bin`.
 
 ### Docker
 The following examples assume the file you want to encode is in your current working directory.
@@ -112,7 +121,26 @@ docker run --privileged -v "/c/Users/masterofzen/Videos":/videos --user $(id -u)
 The ``--user`` flag is required on Linux to avoid permission issues with the docker container not being able to write to the location, if you get permission issues ensure your user has access to the folder that you are using to encode.
 :::
 
+:::caution
+The Docker image ships with the default dependencies.
+::: 
+
+## Installing Dependencies
+
+You will need a chunk method installed as the built-in ones are very slow.
+
+
 ## Troubleshooting
 
-1. mkvmerge "Open file error" on Linux - Run ``ulimit -n 20000``
-2. Gray screen flashing for a single frame in output - Create a lossless intermediary with x264 ``-qp 0``
+### "Error: The file 'XXXXX.ivf' could not be opened for reading: open file error." with mkvmerge on Linux
+Since mkvmerge opens all the encoded chunks at once, this obviously hits the default open file descriptor limit of 1024 on longer videos.
+You can temporarily increase it with `ulimit -n 20000` to allow opening 20,000 files at once in that session.  
+
+### Gray screen flashing for a single frame in output
+This is a unique problem with Av1an. Since Av1an does random seeking for chunks, traditional keyframe-based decoding methods 
+such as L-SMASH and FFMS2 may fail and result in a gray frame. There are currently only two known methods to solve this:
+
+1. Create a lossless intermediary with x264 `-qp 0`, this always fixes all related seeking issues but will result in a huge file due to it's lossless nature.
+2. Using a linear-decoding chunk method such as `bestsource`, the downside to this is it's mega slow. Tests shown encode speeds drop by a whopping 10-15x slower.
+3. Using `dgdecnv` chunk method. `dgdecnv` and `DGIndexNV` is a proprietary CUVID-accelerated Vapoursynth "Source" decoder created by [Donald Alan Graft](https://www.rationalqm.us/) where `DGIndexNV` is the standalone program for seeking and `dgdecnv` is the Vapoursynth plugin itself.
+It is especially made with random seeking in mind which makes it perfect for Av1an. Only downside is you need an NVIDIA GPU and `DGIndexNV` only supports x86_64 platforms.

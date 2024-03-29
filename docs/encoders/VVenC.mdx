@@ -1,6 +1,6 @@
 ---
 title: VVenC
-sidebar_position: 9
+sidebar_position: 12
 ---
 
 import Tabs from '@theme/Tabs';
@@ -77,8 +77,6 @@ VVenC is an open source command line application for encoding [H.266/VVC](../vid
 
 There are two encoders, the simple encoder (`vvencapp`) and the full-featured expert mode encoder (`vvencFFapp`) which is based on the [VTM](./VTM.mdx) configuration scheme. VVenC used to only accept YUV files input until support was added for Y4M.
 
-YUV does not carry any of the original video's metadata, which means you'll have to manually input all the necessary parameters such as frame rates, resolution, bit depth, etc. Y4M takes care all of this automatically.
-
 Here are some examples:
 
 ```bash title="Standard VVenC input"
@@ -97,63 +95,4 @@ VVenC currently does not support input resolutions below 540p. In addition, VVen
 :::info QPA
 VVenC by default operates with QP (Quantization Parameter), which is basically fixed quality. For "CRF-like" rate control, QPA is enabled by default
 QPA (provided by --qpa) enables perceptually motivated QP adaptation based on [XPSNR](../metrics/XPSNR.mdx). QPA modifies the QP value on the fly spatially and temporally as well as enabling temporal RDO.
-:::
-
-## Muxing
-
-Since VVenC only outputs raw ``.266`` bitstream files, you can't just shove audio and subtitle streams in there. Instead you can remux them using [GPAC MP4Box](https://github.com/gpac/gpac) **nightly/beta/git**. 
-
-You can find all pre-built binaries for Windows, MacOS, and Ubuntu (Linux) right [here](https://gpac.wp.imt.fr/downloads/gpac-nightly-builds), Arch Linux users can find mp4box/GPAC in the AUR, and those who aren't listed here can find the build instructions [here](https://github.com/gpac/gpac/wiki/Build-Introduction). It is recommended to do a minimal build since most of the time you don't really need the extra stuff.
-
-## VVdeC
-
-VVdeC is the software decoding implementation for decoding/playing VVC files developed by Fraunhofer HHI. All features of the VVC Main10 features are supported. Currently (as of 19 Feb 2024), VVdeC is both more feature rich and much faster than FFmpeg's ffvvc decoder, though it is nearly infeasible for any VVC decoder implementation to be faster/more efficient than the highly optimized dav1d AV1 decoder.
-
-### Installation
-<Tabs>
-    <TabItem value="unixlike" label="Linux & macOS">
-        Arch Linux users may check the AUR for the `vvdec` and `vvdec-git` packages.
-
-        Compilation from source as shown belowe requires CMake.
-
-        ```bash
-        git clone https://github.com/fraunhoferhhi/vvdec.git
-        cd vvdec
-        mkdir build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release
-        cmake --build .
-        ```
-        Binaries will be available in `bin/release-static/`
-
-        For FFmpeg integration, see the installation section for VVenC earlier in this entry.
-    </TabItem>
-    <TabItem value="windows" label="Windows">
-        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx).
-    </TabItem>
-</Tabs>
-
-## Decoding
-
-There are several ways to decode VVC. Some are made simple by the [VVCEasy project](https://github.com/MartinEesmaa/VVCEasy) by Martin Eesmaa. If you have a newer version of FFmpeg since ffvvc was implemented, or you've built FFmpeg with libvvdec as shown above, it is as simple as running `ffplay` assuming the right FFplay binary is in your PATH:
-
-```bash title="FFplay VVC video"
-ffplay input.mp4
-```
-Extending this to MPV, if you've built MPV from source using a VVC MPV build script ([1](https://github.com/gianni-rosato/mpv-build-vvc/)) ([2](https://github.com/MartinEesmaa/mpv-build)), it is also a one-command solution assuming the right MPV binary is in your PATH:
-
-```bash title="VVC video playing through MPV"
-mpv input.mp4
-```
-
-The more manual process to play back VVC video is to pipe into several programs; [MP4Box](../utilities/mp4box.mdx) beta/nightly/git, VVdeC, and a video player of choice summonable via CLI (MPV, VLC, ffplay) are required.
-
-```bash title="MP4Box -> VVdeC --> FFmpeg (without libvvdec support)"
-mp4box input.mp4 -raw vvc1:output=temp.266 && vvdecapp -v 0 -b temp.266 -o - | ffmpeg -video_size 1920x804 -framerate 24 -pixel_format yuv420p10le -f rawvideo -i - -i input.mp4 -c copy -map 0:v -map 1:a -f nut - | mpv -
-```
-
-Adjust the **double** ``input.mp4``, ``-video_size`` for resolution, ``-framerate``, ``-pixel_format``, and ``mpv`` (Video player) accordingly, if not then your video will just play garbled glitches.
-
-:::info Temp File
-You might see a new file appearing called ``temp.266`` upon running the command. This is completely normal as ``mp4box`` needs to output the raw bitstream so ``vvdec`` will be able to decode it properly.
 :::

@@ -1,10 +1,74 @@
 ---
 title: uvg266
-sidebar_position: 10
+sidebar_position: 13
 ---
 
 # uvg266
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+[uvg266](https://github.com/ultravideo/uvg266/) is an open-source software encoder for encoding to the [H.266 / VVC](/docs/codec/VVC) codec. Developed by the [Ultra Video Group](https://ultravideo.fi/), written in C and licensed under BSD 3-clause.
+The encoder is based on [Kvazaar](/docs/encoders/Kvazaar), their open source [HEVC](/docs/video/HEVC) encoder solution.
+
+## Installation
+
+### Arch Linux
+
+uvg266 is available in the Arch User Repository (AUR) as `uvg266` and `uvg266-git`.
+
+### Compiling
+Ultra Video Group does not ship any pre-built binaries of their encoders so you'll have to compile them yourself. 
+
+Windows users are recommended to compile via MinGW-W64 which comes with [MSYS2](https://msys2.org/).
+
+:::caution
+Compilation requires GNU Make and CMake 
 :::
+
+:::tip
+The following build procedure should work across all common operating systems. Using Clang instead of GCC works.
+
+You may add `-DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_C_FLAGS_INIT="-flto=8 -static"` in CMake for better performance.
+:::
+
+```bash
+git clone https://github.com/ultravideo/uvg266.git
+cd uvg266/build
+cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=0
+make -j 8
+```
+
+Binaries will be available in the same folder (`build`), or you can run `make install` on Linux to install (May need elevated permissions).
+
+### 10-bit Support
+
+You need to compile with `-DUVG_BIT_DEPTH=10` in the CMake `-DCMAKE_C_FLAGS` option to enable support for encoding 10-bit videos.
+
+For example:
+```bash
+-DCMAKE_C_FLAGS="-DUVG_BIT_DEPTH=10"
+```
+With native optimizations:
+```bash
+-DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt -DUVG_BIT_DEPTH=10"
+```
+
+:::warning
+Encoding 10-bit with uvg266 is significantly slower as the developers only prioritized SIMD optimizations for 8-bit, and can get really buggy.
+:::
+
+## Usage
+
+```bash title="Simple Y4M input with QP 20 and raw 266 bitstream output"
+uvg266 -i input.y4m --input-file-format y4m --qp 20 -o output.266
+```
+
+```bash title="Preset slow, CRF 20, Y4M input"
+uvg266 -i input.y4m --input-file-format y4m --qp 20 --preset slow -o output.266
+```
+
+```bash title="FFmpeg piping"
+ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | uvg266 -i - --input-file-format y4m --qp 20 --preset slow -o output.266
+```
+
+## Troubleshooting
+
+1. `Could not find a strategy for crc32c_8x8!` - You're out of luck, uvg266 failed to initialize its block partitioning strategy for your specific CPU instruction set, so you **can't use the encoder or encode that specific video**.

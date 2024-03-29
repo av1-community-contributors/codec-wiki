@@ -1,5 +1,6 @@
 ---
 title: rav1e
+keywords: [AV1, encoding, video encoding]
 sidebar_position: 5
 ---
 
@@ -8,9 +9,31 @@ import TabItem from '@theme/TabItem';
 
 # rav1e
 
-rav1e is a command line application for encoding AV1 written in Rust & Assembly co-developed by Xiph.org and Mozilla.
+[rav1e](https://github.com/xiph/rav1e) is an open source command line application for encoding AV1 written in Assembly & Rust, co-developed by Xiph.org and Mozilla and licensed under BSD-2 Clause.
 
-rav1e is available in FFmpeg via `librav1e`. You can check if you have it by running `ffmpeg -h encoder=librav1e`. You can input non-FFmpeg standard rav1e parameters via `-rav1e-params`. Please keep in mind that unless you build FFmpeg yourself, you are using the most vanilla version of rav1e.
+## FFmpeg
+
+rav1e is available in FFmpeg via `librav1e`, to check if you have it, run `ffmpeg -h encoder=librav1e`. You can input non-FFmpeg standard rav1e parameters via `-rav1e-params`.
+
+
+## Supported Color Space
+
+rav1e supports the following color spaces:
+
+| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+|------------------|:------------------:|-----------------------|
+| YUV420P          | 4:2:0              | 8-bit                 |
+| YUVJ420P         | 4:2:0              | 8-bit (Full range)    |
+| YUV422P          | 4:2:2              | 8-bit                 |
+| YUVJ422P         | 4:2:2              | 8-bit (Full range)    |
+| YUV444P          | 4:4:4              | 8-bit                 |
+| YUVJ444P         | 4:4:4              | 8-bit (Full range)    |
+| YUV420P10LE      | 4:2:0              | 10-bit                |
+| YUV422P10LE      | 4:2:2              | 10-bit                |
+| YUV444P10LE      | 4:4:4              | 10-bit                |
+| YUV420P12LE      | 4:2:0              | 12-bit                |
+| YUV422P12LE      | 4:2:2              | 12-bit                |
+| YUV444P12LE      | 4:4:4              | 12-bit                |
 
 ## Installation
 
@@ -67,23 +90,26 @@ For stability & a proper version number, please reset the source to the correct 
     </TabItem>
 </Tabs>
 
-### AV1
+## Usage
 
 For AV1 encoding, rav1e has very sane defaults. It is very hard to go wrong with parameters if you modify as few as possible.
 
-Basic usage:
-```bash
+:::tip
+To convert `cq-level` in aomenc and `crf` in SVT-AV1 to rav1e's quantizer values, multiply by 4. For example, `--cq-level 20` equals to `--quantizer 60`.
+:::
+
+```bash title="Basic usage"
 rav1e -i input.y4m -o output.ivf --quantizer 60 --photon-noise 8
 ```
 
-Basic usage with FFmpeg piping, 10bit input:
-```bash
+```bash title="Basic usage with FFmpeg piping, 10bit input"
 ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - -o output.ivf --quantizer 80 --photon-noise 8
 ```
 
-Basic usage with FFmpeg piping, 10bit input and assuming 4K:
-```bash
+```bash title="Basic usage with FFmpeg piping, 10bit input and assuming 4K"
 ffmpeg -i input.mkv -pix_fmt yuv420p10le -strict -2 -f yuv4mpegpipe - | rav1e - -o output.ivf --quantizer 68 --tile-columns 2 --tile-rows 1 --photon-noise 8
 ```
 
-1. Use 2x1 tiles or ``tile-columns 2`` and ``tile-rows 1`` for 4K (2160p) encoding, this will help with both encoding and decoding.
+## Tips & Tricks
+
+1. Use 2x1 tiles or `tile-columns 2` and `tile-rows 1` for 4K (2160p) encoding, this will help with both encoding and decoding speeds.

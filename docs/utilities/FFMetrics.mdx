@@ -5,8 +5,28 @@ sidebar_position: 8
 
 # FFMetrics
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+
+<picture>
+    <source srcset="/img/ffmetrics.avif" type="image/avif" />
+    <img src="/img/ffmetrics.webp" alt="FFmetrics Window" />
+</picture>
+<br/><br/>
+
+FFMetrics is a proprietary Windows-only graphical user interface (GUI) for FFmpeg that allows you to calculate and visualize video quality metric results with graphs. PSNR, SSIM, and VMAF are the only options.
+
+
+## Installation
+
+:::caution
+You need to have FFmpeg in your system PATH in order to use this. and `--enable-libvmaf` is required for VMAF calculation support. 
 :::
 
-FFMetrics is a graphical user interface (GUI) for FFmpeg that allows you to visualize video quality metrics. You can select files without using the command line, and FFMetrics will calculate and visualize the PSNR, SSIM, and VMAF quality metrics for all of them in one go using graphs and numbers.
+Download the program from their GitHub homepage [releases](https://github.com/fifonik/FFMetrics/releases), pick whichever version you'd like to download and extract to your preferred folder.
+Run the exe file to launch.
+
+## Usage
+
+Use the "Browse" button to insert your reference (source) video and "Add files" to add your distorted (encoded) video(s). Tick the checkboxes to choose the metric calculations you'd like to run.
+Custom VMAF models can be chosen via "VMAF options" and once you're done just click "Start", the program will automatically generate graphs live for each score. 
+
+Depending on your CPU. This process might take a while.
