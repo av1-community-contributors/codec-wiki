@@ -1,3 +1,5 @@
+import { CarouselGenerator } from '../src/utils/ImageCarousel.mdx';
+
 ---
 title: "Encoding Animation with SVT-AV1: A Deep Dive"
 description: "With the recent release of SVT-AV1 1.8.0, how does it stack up for encoding animation?"
@@ -57,65 +59,148 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
 
 - First of all, here are the efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={[
+    {
+      src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_blame.webp',
+      alt: 'Blame!.h264 Efficiency Graph',
+    },
+    {
+      src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_bluelock.webp',
+      alt: 'BlueLock.h264 Efficiency Graph',
+    },
+    {
+      src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_fate.webp',
+      alt: 'Fate.h264 Efficiency Graph',
+    },
+    {
+      src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_jigokuraku.webp',
+      alt: 'Jigokuraku.h264 Efficiency Graph',
+    },
+    {
+      src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-graphs/SVT4_kaguya.webp',
+      alt: 'Kaguya.h264 Efficiency Graph',
+    },
+  ]}
+/>
 
 This could be too much information.
 
 - Now the same graphs but focusing on the "high quality" range (CRF8 -> 23):
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_blame.webp',
+        alt: 'blame High Quality Efficiency Graph',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_bluelock.webp',
+        alt: 'bluelock High Quality Efficiency Graph',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_fate.webp',
+        alt: 'fate High Quality Efficiency Graph',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_jigokuraku.webp',
+        alt: 'jigokuraku High Quality Efficiency Graph',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq/SVT4_kaguya.webp',
+        alt: 'kaguya High Quality Efficiency Graph',
+      },
+    ]
+  }
+/>
 
 - Same again but without presets 9 to 13 for better clarity:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-highq-slow/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Now for the "low quality" range (CRF28 -> 43):
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Same but without presets 9 to 13 for better clarity:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/svt-efficiency-lowq-slow/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - **Let's now see speed comparisons between all presets:**
 
@@ -126,39 +211,90 @@ As we can see, preset -1 is so abysmally slow it makes the graph unusable
 
 - Here is what it looks like with a logarithmic scale:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-bpp/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - **Now the speed graphs but with SSIMU2 on the y-axis instead of BPP: (logarithmic scale)**
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-log-ssimu2/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Here are speeds graphs for preset 1 to 6 with a linear scale:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/speed-linear-bpp/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 One interpretation we can have is that **presets 2 to 4** have actually pretty close scores (pretty much the same at HQ, 2 points at max in the low quality range) but **preset 2** is **2x slower than preset 4**. The quality gap between **preset 2** and **preset 1** is even narrower but the speed penalty is also ~2x.
 
@@ -182,51 +318,119 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
 
 - **Let's compare the efficiency of every tunes:**
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Now let's focus on the "high quality" range (CRF8 -> 23):
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-highq/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - And the "low quality" range (CRF28 -> 43):
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-efficiency-lowq/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - And here is the speed difference:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tunes-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Graphs comparing the tunes individually between each others will be made available soon.
 - The image comparisons will make the conclusion quite more nuanced, stay tuned (heheh) for that.
@@ -249,27 +453,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tile-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __tiles__ here are both slightly harmful and slower.
 
@@ -277,27 +515,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > Except for the Jigokuraku clip, __aq-mode 0__ is harmful in the eyes of SSIMU2, while being slower at low CRF levels, and sometimes a match or faster at high CRF levels.
 
@@ -305,27 +577,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/aq-mode1-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __aq-mode 1__ fares closer to __aq-mode 2__ than __aq-mode 0__ did, both in quality and speed, but is still overall inferior according to SSIMU2
 
@@ -333,27 +639,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/cdef-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > According to SSIMU2, disabling CDEF barely impact efficiency. But as its a pretty demanding tool, there's a slight speed benefit of having it disabled too. I advise you to take these results with a grain of salt until the image comparisons, because in anime particularly, CDEF *can* be beneficial for the line-art.
 
@@ -361,27 +701,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dg-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __Dynamic GoP control__ yields bit-perfect results in all clips except for Blue Lock and Jigokuraku. There is no speed benefit to disabling it except in clips where it is in use. Let's not jump to conclusions too easily, the image comparisons will tell if it's "safe" to keep the setting disabled at all times or not.
 
@@ -389,27 +763,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/dlf-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __Deblocking loop filter__ can be slightly beneficial in some scenarios. In reverse, it is never harmful, so it is recommended to keep it default.
 
@@ -417,27 +825,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/fast-decode-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __fast-decode 1__ is pretty harmful in the Fate clip and slightly harmful in the rest. There is a speed benefit of enabling it though.
 
@@ -445,27 +887,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/irefresh-type1-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > Finally something interesting to analyse!
 - __irefresh-type 1__ is either a match or beneficial compared to __irefresh-type 2__ at high CRF levels.
@@ -477,79 +953,180 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_kaguya.webp)
-
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 ### `--lookahead 60` vs default `--lookahead -1` (auto)
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead60-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 ### `--lookahead 120` (max) vs default `--lookahead -1` (auto)
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku'
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya'
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/lookahead120-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __lookahead__ seems to behave strangely when set...
 - __lookahead 0__ shifts quality around a lot and it is difficult to draw conclusions but there's a clear speed drawback of disabling lookahead.
@@ -561,27 +1138,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/overlays-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > __overlays__ do not seem to either improve efficiency or performance.
 
@@ -589,27 +1200,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > Enabling __quantization matrices__ alone increase efficiency at "high quality" with no real speed impact.
 
@@ -617,27 +1262,61 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_blame.webp',
+        alt: 'SVT4_qm1_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_bluelock.webp',
+        alt: 'SVT4_qm1_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_fate.webp',
+        alt: 'SVT4_qm1_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_jigokuraku.webp',
+        alt: 'SVT4_qm1_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-efficiency/SVT4_qm1_kaguya.webp',
+        alt: 'SVT4_qm1_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_blame.webp',
+        alt: 'SVT4_qm1_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_bluelock.webp',
+        alt: 'SVT4_qm1_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_fate.webp',
+        alt: 'SVT4_qm1_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_jigokuraku.webp',
+        alt: 'SVT4_qm1_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/qm-min-speed/SVT4_qm1_kaguya.webp',
+        alt: 'SVT4_qm1_kaguya',
+      },
+    ]
+  }
+/>
 
 > Setting __qm-min__ to __0__ on top of enabling __quantization matrices__ can be beneficial in some clips at no added compute time.
 
@@ -647,27 +1326,61 @@ I will re-tests many QMs ranges in the future, but I doubt it changed much from 
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/restoration-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > Even though the efficiencies are very similar, nothing is bit-perfect here. So according to SSIMU2, the __loop restoration filter__ isn't necessarily useful. However, just like CDEF, it's a pretty demanding tool, so disabling it yields some performance improvements. Let's take these with a grain of salt until the image comparisons.
 
@@ -679,27 +1392,61 @@ In all the clips, the results are bit-perfect and there is no notable performanc
 
 - Efficiency graphs:
 
-![scm1-efficiency-1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_blame.webp)
-
-![scm1-efficiency-2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_bluelock.webp)
-
-![scm1-efficiency-3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_fate.webp)
-
-![scm1-efficiency-4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_jigokuraku.webp)
-
-![scm1-efficiency-5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/scm1-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > Interestingly enough, __screen content tools__ seem to improve efficiency according to SSIMU2, at the cost of a huge performance regression. After the image comparisons are published, I will conduct additional testing on this.
 
@@ -707,27 +1454,61 @@ In all the clips, the results are bit-perfect and there is no notable performanc
 
 - Efficiency graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-efficiency/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 - Speed graphs:
 
-![1](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_blame.webp)
-
-![2](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_bluelock.webp)
-
-![3](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_fate.webp)
-
-![4](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_jigokuraku.webp)
-
-![5](https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_kaguya.webp)
+<CarouselGenerator
+  imageData={
+    [
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_blame.webp',
+        alt: 'SVT4_blame',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_bluelock.webp',
+        alt: 'SVT4_bluelock',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_fate.webp',
+        alt: 'SVT4_fate',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_jigokuraku.webp',
+        alt: 'SVT4_jigokuraku',
+      },
+      {
+        src: 'https://raw.githubusercontent.com/av1-community-contributors/images/main/svt-trix-blogpost/tf-speed/SVT4_kaguya.webp',
+        alt: 'SVT4_kaguya',
+      },
+    ]
+  }
+/>
 
 > Disabled __temporal filtering__ *can* sometimes improve efficiency slightly at "high quality", however it is very much clip dependent. It also improves performance slightly. The image comparisons will give another perspective to these results.
 
