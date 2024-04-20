@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-# Psycho-visual
+# Psychovisual
 
 :::info Under Maintenance
 The content in this entry is incomplete & is in the process of being completed.
@@ -17,8 +17,8 @@ The content in this entry may not be entirely accurate, & is pending further rev
 -- Kokomins' x265 [guide](https://kokomins.wordpress.com/2019/10/10/anime-encoding-guide-for-x265-and-why-to-never-use-flac)
 
 
-## In English
+## Breakdown
 
-Encoders favor blurring out fine details whenever possible because that is what's mathematically correct, but the human eye prefers them to look sharp. Just like how Tiktok users say "16K quality" whenever an oversharpened image of a waifu upscaled using AI is posted. But the encoder says "hell no wtf" because it doesn't "fit" correctly with the other blocks. But "Psycho-visual" options that exist combat this by giving some needed "confidence" to the encoder that it's okay to put in the wrong blocks.
+Traditionally, encoders prioritize blurring out fine details to maintain performance on simple metrics like [PSNR](../metrics/PSNR.mdx), but the human visual system is much more complex. This discrepancy can lead to encoders rejecting sharp blocks that don't fit perfectly with adjacent blocks, resulting in a loss of detail. Psychovisual options address this issue by providing the encoder with the necessary "confidence" to incorporate these sharper blocks, even if they don't strictly adhere to metric performance.
 
-Although blurring also have their benefits especially at lower bitrates, because at that point there's not much detail to retain from the original source form, you do prefer to look at a blurry picture than a blocky DCT mess right? As always, setting psycho-visual options too high is also bad. Experiment and find the sweet spot for your type of content.
+Blurring can be beneficial at lower bitrates to help reduce the visibility of blocking artifacts, and it is generally preferable to view a slightly blurry image rather than a blocky one with distracting artifacts. However, it is essential to strike a balance when setting psychovisual options, as over-reliance on these settings can also have negative consequences. Experimentation is key to finding the optimal sweet spot for specific types of content.
