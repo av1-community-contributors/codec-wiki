@@ -33,8 +33,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   yarn:
-    specifier: ^1.22.22
-    version: 1.22.22
+    specifier: ^2.4.3
+    version: 2.4.3
 
 devDependencies:
   '@docusaurus/module-type-aliases':
@@ -9226,11 +9226,10 @@ packages:
     engines: {node: '>= 6'}
     dev: false
 
-  /yarn@1.22.22:
-    resolution: {integrity: sha512-prL3kGtyG7o9Z9Sv8IPfBNrWTDmXB4Qbes8A9rEzt6wkJV8mUvoirjU0Mp3GGAU06Y0XQyA3/2/RQFVuK7MTfg==}
-    engines: {node: '>=4.0.0'}
+  /yarn@2.4.3:
+    resolution: {integrity: sha512-HQ8VJL8v1Tlq+VVzcohmYw7dHtZ6VUB4/b2oHRGQc6Xv00AQjVk4C6cyqu4iHRI4esfgIi8S9doOm1d3Z3MlPA==}
+    engines: {node: '>=10'}
     hasBin: true
-    requiresBuild: true
     dev: false
 
   /yocto-queue@0.1.0:
