@@ -32,14 +32,17 @@ A more complete guide is available at the [FFmpeg Compilation Guide](https://tra
 - Run `make install`. May require root.
 
 ### Windows
-To be filled.
+
+There are no official binaries for FFmpeg on Windows, but you can download third-party binaries:
+- by [gyan.dev](https://www.gyan.dev/ffmpeg/builds/)
+- by [BtbN](https://github.com/BtbN/FFmpeg-Builds/releases)
 
 # Using FFmpeg
-`ffmpeg` is the primary command-line tool of FFmpeg. It takes 0 or more bitstreams as inputs & outputs.
+`ffmpeg` is the primary command-line tool of FFmpeg. It takes 0 or more files as inputs & outputs.
 
 `ffmpeg`'s command-line arguments are positional, meaning it matters where you put each option. Each input and output has its own arguments. For example, `ffmpeg -r 24 -i file1 file2` applies the `-r 24` option to the input `file1`, interpreting the video as having that frame rate, while `ffmpeg -i file1 -r 24 file2` applies the `-r 24` option to `file2`. To get a list of options, refer to the more verbose [FFmpeg documentation](//ffmpeg.org/ffmpeg-all.html).
 
-**Video Transcoding**
+#### Transcode a video
 
 ```bash
 ffmpeg -i [input] -c:v [video_codec] -b:v [video_bitrate] -c:a [audio_codec] -b:a [audio_bitrate] output
@@ -47,9 +50,9 @@ ffmpeg -i [input] -c:v [video_codec] -b:v [video_bitrate] -c:a [audio_codec] -b:
 
 | Option               | Meaning                                                     |
 |----------------------|-------------------------------------------------------------|
-| `-c:v video_encoder`   | **c**odec for the automatically selected **v**ideo stream   |
+| `-c:v video_encoder` | **c**odec for the automatically selected **v**ideo stream   |
 | `-b:v video_bitrate` | **b**itrate for the automatically selected **v**ideo stream |
-| `-c:a audio_codec`   | **c**odec for the automatically selected **a**udio stream   |
+| `-c:a audio_encoder` | **c**odec for the automatically selected **a**udio stream   |
 | `-b:a audio_bitrate` | **b**itrate for the automatically selected **a**udio stream |
 
 #### Transmux a video
@@ -71,6 +74,14 @@ ffmpeg -i [input] -c:v [video_encoder] -c:a [audio_codec] (...) -vf [filter_name
 | Option            | Meaning                                         |
 |-------------------|-------------------------------------------------|
 | `-vf filter_name` | set the **v**ideo **f**ilter to **filter_name** |
+
+#### Container selection
+
+FFmpeg will usually select the appropriate container based on the file extension of the output. If it doesn't detect the correct container, you can specify it with `-f`.
+
+| Option           | Meaning                               |
+|------------------|---------------------------------------|
+| `-f format_name` | set the **f**ormat to **format_name** |
 
 *References:*
 *[^multimediawiki-howtos]: [HOWTO Search Results - MultimediaWiki](//wiki.multimedia.cx/index.php?search=HOWTO&title=Special%3ASearch&go=Go)*
