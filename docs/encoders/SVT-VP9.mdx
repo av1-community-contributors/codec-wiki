@@ -5,6 +5,43 @@ sidebar_position: 9
 
 # SVT-VP9
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
 :::
+
+SVT-VP9 is a [VP9](../video/VP9.mdx) encoder developed by Intel.<br/>
+Like [its](../encoders/SVT-HEVC.mdx) [siblings](../encoders/SVT-AV1.mdx) in the SVT encoder family, it scales very well on multicore processors by default.
+
+The [reference encoder](../encoders/vpxenc.mdx) beats it in rate control flexibility and supports 10-bit color,<br/>but SVT-VP9 is much faster out of the box.
+
+## FFmpeg
+There are patches bundled in the SVT-VP9 source code for an FFmpeg plugin that adds the `libsvt_vp9` encoder.<br/>
+One must recompile FFmpeg with the plugin patch applied to take advantage of it.<br/>
+(An easy way to do so on Windows is using [media-autobuild_suite](https://github.com/m-ab-s/media-autobuild_suite).)
+
+Operation is not too different from the SVT-AV1 FFmpeg integration. Your commands will generally look like this:<br/>
+`ffmpeg -i video.mp4 -c:v libsvt_vp9 -qp 38 -tune ssim -preset 7 -g 255 video_vp9.webm`
+
+
+<details>
+<summary>Parameters</summary>
+
+| Parameter           | Description |
+|------------------|-------------|
+| -qp              | Quantizer value, higher = lower quality. Range is 1..51 in current patches, but -qmin/-qmax can be set as high as 69 for extreme low bitrates. |
+| -preset          | Speed preset. Range is 0..9, with 9 being fastest and default. |
+| -tune            | Quality metric. Can be "vq" (default), "ssim" or "vmaf". |
+| -g               | Size of the Group of Pictures. Range is -2..255, with -1 = no intraframe updates ever, -2 = "auto".<br/>We recommend you set it as high as possible for encode efficiency. |
+| -rc              | Rate control mode.<br/>Can be "cqp" (Constant Quantizer, default), "vbr" (Variable Bitrate) or "cbr" (Constant Bitrate).<br/>(Consider using **vpxenc's two-pass mode** if you really need to match a target bitrate.) |
+| -level           | Encoder level. Range is 1..6. Generally better not to set it. |
+| -socket          | Index of the CPU socket to use. By default it's -1, which uses "all available processors". |
+
+</details>
+
+## Supported Color Space
+
+SVT-VP9 only supports 8-bit yuv420p.
+
+## Usage
+### Standalone
+To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 
