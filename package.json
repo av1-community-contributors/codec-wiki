@@ -15,20 +15,20 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
-    "@docusaurus/core": "^3.1.1",
-    "@docusaurus/preset-classic": "^3.1.1",
+    "@docusaurus/core": "^3.2.1",
+    "@docusaurus/preset-classic": "^3.2.1",
     "@easyops-cn/docusaurus-search-local": "latest",
-    "@mdx-js/react": "^3.0.0",
-    "antd": "^5.16.0",
-    "clsx": "^1.2.1",
+    "@mdx-js/react": "^3.0.1",
+    "antd": "^5.16.4",
+    "clsx": "^2.1.1",
     "plugin-image-zoom": "latest",
-    "prism-react-renderer": "^2.1.0",
-    "react": "^18.0.2",
-    "react-dom": "^18.0.2",
-    "yarn": "^1.22.19"
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.1.1"
+    "@docusaurus/module-type-aliases": "^3.2.1"
   },
   "browserslist": {
     "production": [
