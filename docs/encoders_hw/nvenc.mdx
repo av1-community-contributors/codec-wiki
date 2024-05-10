@@ -5,6 +5,18 @@ sidebar_position: 1
 
 # NVENC
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::caution Pending Review
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
 :::
+
+NVENC for NVIDIA GPUs is a dedicated hardware video encoding engine integrated into NVIDIA's graphics processors. It allows applications to leverage dedicated multimedia encoding hardware to accelerate video encoding tasks, significantly improving performance when compared to CPU-based software encoding. It competes with similar frameworks like Intel's [QSV](./qsv.mdx) & AMD's [AMF](./amf.mdx).
+
+The primary purpose of NVENC is to offload the computationally intensive video encoding workloads from the CPU to the dedicated multimedia hardware on the GPU, thereby freeing up CPU resources for other tasks. This is particularly beneficial in scenarios where fast video encoding is required, such as screen recording, streaming, & video conferencing.
+
+NVENC supports a range of popular video codecs, including [H.264](../video/AVC.mdx) , [H.265](../video/HEVC.mdx), [VP9](../video/VP9.mdx), and more recently [AV1](../video/AV1.mdx) on their latest GPUs. It provides hardware-accelerated encoding capabilities for these codecs, typically achieving real-time or faster than real-time encoding performance, depending on resolution, bitrate, and hardware capability.
+
+While NVENC excels in encoding speed, it generally sacrifices some compression efficiency compared to modern high-quality CPU-based software encoders at slower presets.
+
+NVENC is designed to be easily integrated into various multimedia frameworks and applications. It is supported by popular tools like [FFmpeg](../utilities/ffmpeg.mdx), OBS Studio, and others, allowing developers to seamlessly leverage GPU-accelerated encoding without the need for low-level programming.
+
+When compared to AMD's AMF and Intel's QSV, NVENC is known for its high encoding performance, low latency, and broad compatibility with NVIDIA GPUs across different platforms. It is particularly popular among game streamers, content creators, and video professionals who require fast encoding speeds for their workflows. In terms of video compression efficiency, NVENC & QSV trade blows while AMF is generally left behind.

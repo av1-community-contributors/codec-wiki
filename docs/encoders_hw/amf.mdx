@@ -5,6 +5,20 @@ sidebar_position: 3
 
 # AMF
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::caution Pending Review
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
 :::
+
+AMF for AMD GPUs allows applications to take advantage of the dedicated video encoding & decoding hardware present in AMD GPUs.
+
+The AMD Advanced Media Framework (AMF) is a low-level API developed by AMD that enables developers to leverage hardware-accelerated video encoding & decoding on AMD GPUs. By utilizing specialized hardware on the GPU's media block, video encoding and decoding tasks can be offloaded from the CPU, resulting in drastic speed & efficiency increases. AMF provides multimedia processing functionality to applications, and competes with Nvidia's [NVENC](./nvenc.mdx) & Intel's [QSV](./qsv.mdx) for similar functionality.
+
+AMF provides support for various video codecs, including [H.264](../video/AVC.mdx) , [H.265](../video/HEVC.mdx), [VP9](../video/VP9.mdx), and more recently [AV1](../video/AV1.mdx) on the latest supported GPUs. The GPU's encoding capabilities are especially useful for compressing video content in real-time, where speed is of greater importance than coding efficiency.
+
+Hardware-accelerated video encoding using AMF usually significantly improves encoding performance at low compression efficiency compared to software-based encoding solutions. It usually allows for higher-quality output at lower bitrates when encoding much faster than real time, such as at 60-200 fps. This is particularly beneficial for applications that require real-time encoding, such as live streaming, video conferencing, and game recording.
+
+However, slower software encoding solutions almost always offer improvements in fidelity per bit compared to hardware encoding. For offline re-encoding & storage, software encoding is generally preferred. AMF in particular is not known for having strong compression efficiency, as it is hampered by AMD's comparably weak media blocks which are usually outperformed by other hardware implementations from Nvidia, Intel, & Apple.
+
+AMF is designed to integrate seamlessly with popular media frameworks and libraries, such as [FFmpeg](../utilities/ffmpeg.mdx) and GStreamer. These frameworks often include AMF support, allowing developers to easily incorporate hardware-accelerated encoding into their applications without the need for low-level API programming.
+
+AMF is compatible with a wide range of AMD GPUs, including both discrete and integrated graphics solutions. It supports various operating systems, including Windows and Linux, making it accessible to developers across different platforms.

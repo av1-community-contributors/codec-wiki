@@ -5,6 +5,16 @@ sidebar_position: 2
 
 # QSV
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::caution Pending Review
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
 :::
+
+QSV (QuickSync Video) is Intel's hardware video encoding/decoding platform integrated into many of their modern CPUs with integrated graphics processors (iGPUs) & their Arc graphics cards. It allows applications to offload video encoding, decoding, and processing tasks to the dedicated media engines on Intel's dedicated multimedia hardware, often providing significant performance gains compared to CPU-based software encoding. QSV competes with similar frameworks like Nvidia's [NVENC](./nvenc.mdx) & AMD's [AMF](./amf.mdx) (Since the transition to Apple Silicon, QSV on Intel Macs competes with Apple's [VideoToolBox](./videotoolbox.mdx) on macOS devices).
+
+The key purpose of QSV is to accelerate video encoding, decoding, and processing workloads by leveraging specialized fixed-function hardware present in Intel's graphics processors. This dedicated hardware is distinct from the general-purpose compute units, and is designed specifically for multimedia tasks. QSV aims to deliver high encoding/decoding performance while operating efficiently.
+
+QSV supports a wide range of video codecs including [H.264](../video/AVC.mdx) , [H.265](../video/HEVC.mdx), [VP9](../video/VP9.mdx), and more recently [AV1](../video/AV1.mdx) on their latest discrete & integrated GPUs. A major advantage of QSV is that it is ubiquitous on most modern Intel CPUs with integrated graphics, making hardware-accelerated video encoding accessible across a wide range of systems. Applications can easily leverage QSV acceleration through APIs like Intel Media SDK, VA-API, or via integration with popular multimedia frameworks like [FFmpeg](../utilities/ffmpeg.mdx), GStreamer, & others.
+
+Hardware-accelerated video encoding with QSV usually significantly improves encoding performance at low compression efficiency compared to software-based encoding solutions. It usually allows for higher-quality output at lower bitrates when encoding much faster than real time, such as at 60-200 fps. This is particularly beneficial for applications that require real-time encoding, such as live streaming, video conferencing, and game recording.
+
+While QSV is not designed for highly efficient offline file encoding, where quality is prioritized over speed. It is worth noting that QSV is almost always better than AMF from AMD & competitive with NVENC from Nvidia in terms of compression efficiency.
