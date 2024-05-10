@@ -12,9 +12,9 @@
   "dependencies": {
     "@astrojs/check": "^0.5.10",
     "@astrojs/starlight": "^0.21.5",
-    "astro": "^4.7.0",
+    "astro": "^4.8.2",
     "sharp": "^0.33.3",
     "starlight-blog": "^0.6.0",
-    "typescript": "5.5.0-dev.20240424"
+    "typescript": "5.5.0-dev.20240426"
   }
 }
