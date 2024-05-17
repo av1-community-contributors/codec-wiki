@@ -1,0 +1,136 @@
+---
+title: Color Primaries
+sidebar_position: 4
+---
+
+# Color Primaries
+
+This section details the first of three settings that are important
+for retaining accurate color when encoding videos, those settings
+being primaries, color matrix, and transfer characteristics.
+
+Color primaries are used to indicate the correct coordinates for the
+red, blue, and green colors. There are historical reasons for
+[why so many standards exist](https://xkcd.com/927/), and this guide
+will not go in depth into history lessons, but will explain what
+primaries are available and when to use each one.
+
+Note that for primaries, matrices, and transfer, you can view the values
+that are set on a video using a tool like [MediaInfo](https://mediaarea.net/en/MediaInfo).
+If there are no values set, the player will need to guess which values
+to use. A safe default assumption for most modern videos is BT.709,
+although this may vary depending on source and resolution for the video.
+It is strongly recommended to set the correct values when encoding.
+
+Each setting has at least one name and exactly one integer value
+representing it--most encoder softwares will accept one or more of the names,
+but some tooling such as Vapoursynth and MKVToolnix accepts the integer values
+instead. The integer values are defined within universal specifications,
+and as such they will be the same across all encoding and playback tools.
+
+### 1: BT.709
+
+BT.709 is the standard used for modern high-definition video, and is a safe default assumption.
+
+This color primary setting is used in the following standards:
+
+- Rec. ITU-R BT.709-6
+- Rec. ITU-R BT.1361-0 conventional colour gamut
+  system and extended colour gamut system (historical)
+- IEC 61966-2-1 sRGB or sYCC
+- IEC 61966-2-4
+- Society of Motion Picture and Television Engineers
+  (SMPTE) RP 177 (1993) Annex B
+
+### 2: Unspecified
+
+This value indicates that no color primary is set for the video, and the player must decide which value to use.
+
+mpv will use the following heuristics in this case:
+
+```
+if matrix == "BT.2020" {
+    "BT.2020"
+} else if matrix == "BT.709" {
+    "BT.709"
+} else if width >= 1280 || height > 576 {
+    "BT.709"
+} else if height == 576 {
+    "BT.470BG"
+} else if height == 480 || height == 488 {
+    "SMPTE 170M"
+} else {
+    "BT.709"
+}
+```
+
+### 4: BT.470M
+
+BT.470M is a standard that was used in analog television systems in the United States.
+
+This color primary setting is used in the following standards:
+
+- Rec. ITU-R BT.470-6 System M (historical)
+- United States National Television System Committee
+  1953 Recommendation for transmission standards for
+  color television
+- United States Federal Communications Commission
+  (2003) Title 47 Code of Federal Regulations 73.682 (a) (20)
+
+### 5: BT.470BG
+
+BT.470BG is a standard that was used for European (PAL) television systems and DVDs.
+
+This color primary setting is used in the following standards:
+
+- Rec. ITU-R BT.470-6 System B, G (historical)
+- Rec. ITU-R BT.601-7 625
+- Rec. ITU-R BT.1358-0 625 (historical)
+- Rec. ITU-R BT.1700-0 625 PAL and 625 SECAM
+
+### 6: SMPTE 170M
+
+SMPTE 170M is a standard that was used for NTSC television systems and DVDs.
+
+- Rec. ITU-R BT.601-7 525
+- Rec. ITU-R BT.1358-1 525 or 625 (historical)
+- Rec. ITU-R BT.1700-0 NTSC
+- SMPTE ST 170 (2004)
+
+### 7: SMPTE 240M
+
+SMPTE 240M was an interim standard used during the early days of HDTV (1988-1998). Its primaries are equivalent to SMPTE 170M.
+
+### 8: Film
+
+This represents generic film using Illuminant C.
+
+### 9: BT.2020
+
+BT.2020 is a standard used for ultra-high-definition video, i.e. 4K and higher. It may be used with or without HDR, as HDR is defined by the transfer characteristics.
+
+This color primary setting is used in the following standards:
+
+- Rec. ITU-R BT.2020-2
+- Rec. ITU-R BT.2100-2
+
+### 10: SMPTE 428
+
+SMPTE 428 is used for D-Cinema Distribution Masters, aka DCDM.
+
+This color primary setting is used in the following standards:
+
+- SMPTE ST 428-1 (2019)
+- (CIE 1931 XYZ as in ISO 11664-1)
+
+### 11: DCI-P3
+
+DCI-P3 is a wide-gamut colorspace used alongside RGB. It is used internally by most HDR monitors on the market.
+
+### 12: Display-P3
+
+Display-P3 is a variant of DCI-P3 developed by Apple because they wanted to be different.
+
+### 22: EBU Tech 3213
+
+Nobody really knows what this is.
