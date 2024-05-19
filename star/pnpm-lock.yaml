@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.7.0
     version: 0.7.0(typescript@5.4.5)
   '@astrojs/starlight':
-    specifier: ^0.23.0
-    version: 0.23.0(astro@4.8.6)
+    specifier: ^0.23.1
+    version: 0.23.1(astro@4.8.6)
   astro:
     specifier: ^4.8.6
     version: 4.8.6(typescript@5.4.5)
@@ -19,7 +19,7 @@ dependencies:
     version: 0.33.4
   starlight-blog:
     specifier: ^0.8.2
-    version: 0.8.2(@astrojs/starlight@0.23.0)(astro@4.8.6)
+    version: 0.8.2(@astrojs/starlight@0.23.1)(astro@4.8.6)
   typescript:
     specifier: ^5.4.5
     version: 5.4.5
@@ -106,7 +106,7 @@ packages:
       remark-parse: 11.0.0
       remark-rehype: 11.1.0
       remark-smartypants: 2.1.0
-      shiki: 1.5.2
+      shiki: 1.6.0
       unified: 11.0.4
       unist-util-remove-position: 5.0.0
       unist-util-visit: 5.0.0
@@ -152,7 +152,7 @@ packages:
   /@astrojs/rss@4.0.5:
     resolution: {integrity: sha512-IyJVL6z09AQtxbgLaAwebT3T5YKe4oTHDesqydJv1KLHw+zEzzMCFuuNsEyxjiqu7df9+DDCpDXLj/WRiEUXvw==}
     dependencies:
-      fast-xml-parser: 4.3.6
+      fast-xml-parser: 4.4.0
       kleur: 4.1.5
     dev: false
 
@@ -164,8 +164,8 @@ packages:
       zod: 3.23.8
     dev: false
 
-  /@astrojs/starlight@0.23.0(astro@4.8.6):
-    resolution: {integrity: sha512-DV7OEWQDVwQNXxBAGwOKd7Fwa0yb0/WamuUcQYhCIIRjFstaJ1KDc2gNOO2m3nHoCwFx4R7hj/WEeXlgHKE1tg==}
+  /@astrojs/starlight@0.23.1(astro@4.8.6):
+    resolution: {integrity: sha512-BMVRpM4suTq4K2plzcISs/t5W3Xw2fHGWhSmF7lg90nps595yHp3j4gFpeukRrynwEhoNu0Bds1zgOBebC3Egg==}
     peerDependencies:
       astro: ^4.8.6
     dependencies:
@@ -925,7 +925,7 @@ packages:
     resolution: {integrity: sha512-aFQBPepv0zhVXqJFAvfQ4vXYv/meJKiqmEEKSxdjAfwXllIV49PDlnGEXmbGYjR4hUQQjbfDgzAbrbfePc3YVQ==}
     dependencies:
       '@expressive-code/core': 0.35.3
-      shiki: 1.5.2
+      shiki: 1.6.0
     dev: false
 
   /@expressive-code/plugin-text-markers@0.35.3:
@@ -1384,8 +1384,8 @@ packages:
     dev: false
     optional: true
 
-  /@shikijs/core@1.5.2:
-    resolution: {integrity: sha512-wSAOgaz48GmhILFElMCeQypSZmj6Ru6DttOOtl3KNkdJ17ApQuGNCfzpk4cClasVrnIu45++2DBwG4LNMQAfaA==}
+  /@shikijs/core@1.6.0:
+    resolution: {integrity: sha512-NIEAi5U5R7BLkbW1pG/ZKu3eb1lzc3/+jD0lFsuxMT7zjaf9bbNwdNyMr7zh/Zl8EXQtQ+MYBAt5G+JLu+5DlA==}
     dev: false
 
   /@types/acorn@4.0.6:
@@ -1741,7 +1741,7 @@ packages:
       rehype: 13.0.1
       resolve: 1.22.8
       semver: 7.6.2
-      shiki: 1.5.2
+      shiki: 1.6.0
       string-width: 7.1.0
       strip-ansi: 7.1.0
       tsconfck: 3.0.3(typescript@5.4.5)
@@ -2277,8 +2277,8 @@ packages:
       micromatch: 4.0.5
     dev: false
 
-  /fast-xml-parser@4.3.6:
-    resolution: {integrity: sha512-M2SovcRxD4+vC493Uc2GZVcZaj66CCJhWurC4viynVSTvrpErCShNcDz1lAho6n9REQKvL/ll4A4/fw6Y9z8nw==}
+  /fast-xml-parser@4.4.0:
+    resolution: {integrity: sha512-kLY3jFlwIYwBNDojclKsNAC12sfD6NwW74QB2CoNGPvtVxjliYehVunB3HYyNi+n4Tt1dAcgwYvmKF/Z18flqg==}
     hasBin: true
     dependencies:
       strnum: 1.0.5
@@ -4152,10 +4152,10 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /shiki@1.5.2:
-    resolution: {integrity: sha512-fpPbuSaatinmdGijE7VYUD3hxLozR3ZZ+iAx8Iy2X6REmJGyF5hQl94SgmiUNTospq346nXUVZx0035dyGvIVw==}
+  /shiki@1.6.0:
+    resolution: {integrity: sha512-P31ROeXcVgW/k3Z+vUUErcxoTah7ZRaimctOpzGuqAntqnnSmx1HOsvnbAB8Z2qfXPRhw61yptAzCsuKOhTHwQ==}
     dependencies:
-      '@shikijs/core': 1.5.2
+      '@shikijs/core': 1.6.0
     dev: false
 
   /signal-exit@3.0.7:
@@ -4211,7 +4211,7 @@ packages:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
     dev: false
 
-  /starlight-blog@0.8.2(@astrojs/starlight@0.23.0)(astro@4.8.6):
+  /starlight-blog@0.8.2(@astrojs/starlight@0.23.1)(astro@4.8.6):
     resolution: {integrity: sha512-oIcc+gMOOR+aN8TQzZQDpstkuIPn1Lm3bG4NaQ8ntWvLueMns/rGXt8EC2/cGnEybYNMhV8/dciHk+2VB56WwQ==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
@@ -4219,7 +4219,7 @@ packages:
       astro: '>=4.2.7'
     dependencies:
       '@astrojs/rss': 4.0.5
-      '@astrojs/starlight': 0.23.0(astro@4.8.6)
+      '@astrojs/starlight': 0.23.1(astro@4.8.6)
       astro: 4.8.6(typescript@5.4.5)
       astro-remote: 0.3.2
       github-slugger: 2.0.0
