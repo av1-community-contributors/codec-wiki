@@ -1,4 +1,6 @@
-import { Carousel, Image } from 'antd';
+import { useColorMode } from '@docusaurus/theme-common'
+import { useState } from 'react';
+import { ConfigProvider, theme, Carousel, Image, Card } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 export const CarouselGenerator = ({imageData}) => {
@@ -24,5 +26,34 @@ export const CarouselGenerator = ({imageData}) => {
         />;
       })}
     </Carousel>
+  );
+};
+
+export const TabbedCarouselGenerator = ({ tabMap }) => {
+  const [activeTabKey, setActiveTabKey] = useState(Object.keys(tabMap)[0]);
+  const {colorMode, setColorMode} = useColorMode();
+
+  const onTabChange = (key) => {
+    setActiveTabKey(key);
+  };
+
+  return(
+    <ConfigProvider
+      theme={{
+        algorithm: colorMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
+      }}
+    >
+      <Card
+        tabList={
+          Object.entries(tabMap).map(([key, tab]) => {
+            return { key, label: tab.label };
+          })
+        }
+        activeTabKey={activeTabKey}
+        onTabChange={onTabChange}
+      >
+        {tabMap[activeTabKey].component}
+      </Card>
+    </ConfigProvider>
   );
 };
