@@ -82,6 +82,8 @@ And more, like CDEF and restoration enabled, overlays and film-grain disabled...
       alt: 'Kaguya.h264 Efficiency Graph',
     },
   ]}
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 This could be too much information.
@@ -113,6 +115,8 @@ This could be too much information.
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Same again but without presets 9 to 13 for better clarity:
@@ -142,6 +146,8 @@ This could be too much information.
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Now for the "low quality" range (CRF28 -> 43):
@@ -171,6 +177,8 @@ This could be too much information.
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Same but without presets 9 to 13 for better clarity:
@@ -200,6 +208,8 @@ This could be too much information.
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - **Let's now see speed comparisons between all presets:**
@@ -236,6 +246,8 @@ As we can see, preset -1 is so abysmally slow it makes the graph unusable
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - **Now the speed graphs but with SSIMU2 on the y-axis instead of BPP: (logarithmic scale)**
@@ -265,6 +277,8 @@ As we can see, preset -1 is so abysmally slow it makes the graph unusable
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Here are speeds graphs for preset 1 to 6 with a linear scale:
@@ -294,6 +308,8 @@ As we can see, preset -1 is so abysmally slow it makes the graph unusable
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 One interpretation we can have is that **presets 2 to 4** have actually pretty close scores (pretty much the same at HQ, 2 points at max in the low quality range) but **preset 2** is **2x slower than preset 4**. The quality gap between **preset 2** and **preset 1** is even narrower but the speed penalty is also ~2x.
@@ -343,6 +359,8 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Now let's focus on the "high quality" range (CRF8 -> 23):
@@ -372,6 +390,8 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - And the "low quality" range (CRF28 -> 43):
@@ -401,6 +421,8 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - And here is the speed difference:
@@ -430,6 +452,8 @@ Except for the tunes, `--preset 4` is set due to its good balance of quality and
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Graphs comparing the tunes individually between each others will be made available soon.
@@ -478,6 +502,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -507,6 +533,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __tiles__ here are both slightly harmful and slower.
@@ -540,6 +568,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -569,6 +599,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Except for the Jigokuraku clip, __aq-mode 0__ is harmful in the eyes of SSIMU2, while being slower at low CRF levels, and sometimes a match or faster at high CRF levels.
@@ -602,6 +634,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -631,6 +665,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __aq-mode 1__ fares closer to __aq-mode 2__ than __aq-mode 0__ did, both in quality and speed, but is still overall inferior according to SSIMU2
@@ -664,6 +700,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -693,6 +731,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > According to SSIMU2, disabling CDEF barely impact efficiency. But as its a pretty demanding tool, there's a slight speed benefit of having it disabled too. I advise you to take these results with a grain of salt until the image comparisons, because in anime particularly, CDEF *can* be beneficial for the line-art.
@@ -726,6 +766,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -755,6 +797,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __Dynamic GoP control__ yields bit-perfect results in all clips except for Blue Lock and Jigokuraku. There is no speed benefit to disabling it except in clips where it is in use. Let's not jump to conclusions too easily, the image comparisons will tell if it's "safe" to keep the setting disabled at all times or not.
@@ -788,6 +832,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -817,6 +863,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __Deblocking loop filter__ can be slightly beneficial in some scenarios. In reverse, it is never harmful, so it is recommended to keep it default.
@@ -850,6 +898,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -879,6 +929,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __fast-decode 1__ is pretty harmful in the Fate clip and slightly harmful in the rest. There is a speed benefit of enabling it though.
@@ -912,6 +964,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -941,6 +995,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Finally something interesting to analyse!
@@ -978,6 +1034,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1007,6 +1065,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 ### `--lookahead 60` vs default `--lookahead -1` (auto)
 
@@ -1037,6 +1097,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1066,6 +1128,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 ### `--lookahead 120` (max) vs default `--lookahead -1` (auto)
@@ -1097,6 +1161,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1126,6 +1192,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __lookahead__ seems to behave strangely when set...
@@ -1163,6 +1231,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1192,6 +1262,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > __overlays__ do not seem to either improve efficiency or performance.
@@ -1225,6 +1297,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1254,6 +1328,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Enabling __quantization matrices__ alone increase efficiency at "high quality" with no real speed impact.
@@ -1287,6 +1363,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1316,6 +1394,8 @@ Keep in mind that I have observed multiple times in the past that __tune 0__ kep
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Setting __qm-min__ to __0__ on top of enabling __quantization matrices__ can be beneficial in some clips at no added compute time.
@@ -1351,6 +1431,8 @@ I will re-tests many QMs ranges in the future, but I doubt it changed much from 
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1380,6 +1462,8 @@ I will re-tests many QMs ranges in the future, but I doubt it changed much from 
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Even though the efficiencies are very similar, nothing is bit-perfect here. So according to SSIMU2, the __loop restoration filter__ isn't necessarily useful. However, just like CDEF, it's a pretty demanding tool, so disabling it yields some performance improvements. Let's take these with a grain of salt until the image comparisons.
@@ -1417,6 +1501,8 @@ In all the clips, the results are bit-perfect and there is no notable performanc
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1446,6 +1532,8 @@ In all the clips, the results are bit-perfect and there is no notable performanc
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Interestingly enough, __screen content tools__ seem to improve efficiency according to SSIMU2, at the cost of a huge performance regression. After the image comparisons are published, I will conduct additional testing on this.
@@ -1479,6 +1567,8 @@ In all the clips, the results are bit-perfect and there is no notable performanc
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 - Speed graphs:
@@ -1508,6 +1598,8 @@ In all the clips, the results are bit-perfect and there is no notable performanc
       },
     ]
   }
+  pixelsAbove={0}
+  pixelsBelow={24}
 />
 
 > Disabled __temporal filtering__ *can* sometimes improve efficiency slightly at "high quality", however it is very much clip dependent. It also improves performance slightly. The image comparisons will give another perspective to these results.
