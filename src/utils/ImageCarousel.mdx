@@ -5,19 +5,11 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 export const CarouselGenerator = ({imageData}) => {
   // Thanks to Nathan Arritt: https://github.com/ant-design/ant-design/issues/12479#issuecomment-1071492637
-  const Arrow = ({ currentSlide, direction, slideCount, ...carouselProps }) =>
-  direction === 'left' ? (
-    <LeftOutlined {...carouselProps} style={{ color: '#fff', fontSize: 24, width: 24, height: 24, zIndex: 1, left: 10 }} />
-  ) : (
-    <RightOutlined {...carouselProps} style={{ color: '#fff', fontSize: 24, width: 24, height: 24, zIndex: 1, right: 10 }} />
-  );
 
   return(
     <Carousel
       // draggable // Image Preview Button prematurely triggers
       arrows
-      prevArrow={<Arrow direction="left" />}
-      nextArrow={<Arrow direction="right" />}
     >
       {imageData.map(datum => {
         return <Image
