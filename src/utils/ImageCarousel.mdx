@@ -1,6 +1,5 @@
-import { useColorMode } from '@docusaurus/theme-common'
 import { useState } from 'react';
-import { ConfigProvider, Flex, theme, Carousel, Image, Card } from 'antd';
+import { Flex, Carousel, Image, Card } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 export const CarouselGenerator = ({ imageData, pixelsAbove, pixelsBelow }) => {
@@ -45,7 +44,6 @@ export const CarouselGenerator = ({ imageData, pixelsAbove, pixelsBelow }) => {
 
 export const TabbedCarouselGenerator = ({ tabMap, pixelsAbove, pixelsBelow }) => {
   const [activeTabKey, setActiveTabKey] = useState(Object.keys(tabMap)[0]);
-  const { colorMode, setColorMode } = useColorMode();
 
   const onTabChange = (key) => {
     setActiveTabKey(key);
@@ -59,29 +57,23 @@ export const TabbedCarouselGenerator = ({ tabMap, pixelsAbove, pixelsBelow }) =>
   }
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: colorMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
-      }}
+    <Flex
+      justify='space-between'
+      vertical={true}
     >
-      <Flex
-        justify='space-between'
-        vertical={true}
+      <div style={{ height: `${pixelsAbove}px` }} />
+      <Card
+        tabList={
+          Object.entries(tabMap).map(([key, tab]) => {
+            return { key, label: tab.label };
+          })
+        }
+        activeTabKey={activeTabKey}
+        onTabChange={onTabChange}
       >
-        <div style={{ height: `${pixelsAbove}px` }} />
-        <Card
-          tabList={
-            Object.entries(tabMap).map(([key, tab]) => {
-              return { key, label: tab.label };
-            })
-          }
-          activeTabKey={activeTabKey}
-          onTabChange={onTabChange}
-        >
-          {tabMap[activeTabKey].component}
-        </Card>
-        <div style={{ height: `${pixelsBelow}px` }} />
-      </Flex>
-    </ConfigProvider>
+        {tabMap[activeTabKey].component}
+      </Card>
+      <div style={{ height: `${pixelsBelow}px` }} />
+    </Flex>
   );
 };
