@@ -1,59 +1,87 @@
 import { useColorMode } from '@docusaurus/theme-common'
 import { useState } from 'react';
-import { ConfigProvider, theme, Carousel, Image, Card } from 'antd';
+import { ConfigProvider, Flex, theme, Carousel, Image, Card } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
-export const CarouselGenerator = ({imageData}) => {
+export const CarouselGenerator = ({ imageData, pixelsAbove, pixelsBelow }) => {
   // Thanks to Nathan Arritt: https://github.com/ant-design/ant-design/issues/12479#issuecomment-1071492637
   const Arrow = ({ currentSlide, direction, slideCount, ...carouselProps }) =>
-  direction === 'left' ? (
-    <LeftOutlined {...carouselProps} style={{ color: '#fff', fontSize: 24, width: 24, height: 24, zIndex: 1, left: 10 }} />
-  ) : (
-    <RightOutlined {...carouselProps} style={{ color: '#fff', fontSize: 24, width: 24, height: 24, zIndex: 1, right: 10 }} />
-  );
+    direction === 'left' ? (
+      <LeftOutlined {...carouselProps} style={{ color: '#fff', fontSize: 24, width: 24, height: 24, zIndex: 1, left: 10 }} />
+    ) : (
+      <RightOutlined {...carouselProps} style={{ color: '#fff', fontSize: 24, width: 24, height: 24, zIndex: 1, right: 10 }} />
+    );
 
-  return(
-    <Carousel
-      // draggable // Image Preview Button prematurely triggers
-      arrows
-      prevArrow={<Arrow direction="left" />}
-      nextArrow={<Arrow direction="right" />}
+  if (!pixelsAbove || pixelsAbove < 0) {
+    pixelsAbove = 0;
+  }
+  if (!pixelsBelow || pixelsBelow < 0) {
+    pixelsBelow = 0;
+  }
+
+  return (
+    <Flex
+      justify='space-between'
+      vertical={true}
     >
-      {imageData.map(datum => {
-        return <Image
-          key={datum.src}
-          src={datum.src}
-        />;
-      })}
-    </Carousel>
+      <div style={{ height: `${pixelsAbove}px` }} />
+      <Carousel
+        // draggable // Image Preview Button prematurely triggers
+        arrows
+        prevArrow={<Arrow direction="left" />}
+        nextArrow={<Arrow direction="right" />}
+      >
+        {imageData.map(datum => {
+          return <Image
+            key={datum.src}
+            src={datum.src}
+          />;
+        })}
+      </Carousel>
+      <div style={{ height: `${pixelsBelow}px` }} />
+    </Flex>
   );
 };
 
-export const TabbedCarouselGenerator = ({ tabMap }) => {
+export const TabbedCarouselGenerator = ({ tabMap, pixelsAbove, pixelsBelow }) => {
   const [activeTabKey, setActiveTabKey] = useState(Object.keys(tabMap)[0]);
-  const {colorMode, setColorMode} = useColorMode();
+  const { colorMode, setColorMode } = useColorMode();
 
   const onTabChange = (key) => {
     setActiveTabKey(key);
   };
 
-  return(
+  if (!pixelsAbove || pixelsAbove < 0) {
+    pixelsAbove = 0;
+  }
+  if (!pixelsBelow || pixelsBelow < 0) {
+    pixelsBelow = 0;
+  }
+
+  return (
     <ConfigProvider
       theme={{
         algorithm: colorMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
       }}
     >
-      <Card
-        tabList={
-          Object.entries(tabMap).map(([key, tab]) => {
-            return { key, label: tab.label };
-          })
-        }
-        activeTabKey={activeTabKey}
-        onTabChange={onTabChange}
+      <Flex
+        justify='space-between'
+        vertical={true}
       >
-        {tabMap[activeTabKey].component}
-      </Card>
+        <div style={{ height: `${pixelsAbove}px` }} />
+        <Card
+          tabList={
+            Object.entries(tabMap).map(([key, tab]) => {
+              return { key, label: tab.label };
+            })
+          }
+          activeTabKey={activeTabKey}
+          onTabChange={onTabChange}
+        >
+          {tabMap[activeTabKey].component}
+        </Card>
+        <div style={{ height: `${pixelsBelow}px` }} />
+      </Flex>
     </ConfigProvider>
   );
 };
