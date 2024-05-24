@@ -31,3 +31,60 @@ aomenc is available in FFmpeg via ``libaom-av1``, check if you have it by runnin
 :::caution Mainline aomenc
 Unless you compile FFmpeg yourself with aom-psy101, you will be using the mainline aomenc. Compiling from source yourself with the aomenc libraries provided by aom-psy101 is the only way to use it with FFmpeg.
 :::
+
+## Installation
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS" default>
+        1. Clone the psy101 repo:
+        ```bash title="Clone the psy101 repo"
+        git clone https://gitlab.com/damian101/aom-psy101 aom
+        cd aom && mkdir aom_build && cd aom_build
+        ```
+
+        2. Configure compilation. The following flags are set to ensure the `aomenc` binary is build for optimal performance:
+        ```bash title="Set CMake flags"
+        cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
+        ```
+
+        3. Compile:
+        ```bash title="Compile"
+        make -j$(nproc)
+        ```
+
+        4. Install to your system. This may require elevated privileges:
+        ```bash title="Install"
+        make install
+        ```
+    </TabItem>
+    <TabItem value="wind" label="Windows">
+        **MSYS2** is the best option for building in Windows, as it provides a Unix-like environment for compilation.
+
+        0. Make sure you have downloaded & installed MSYS2 from [the MSYS2 website](https://www.msys2.org/) before beginning the build process.
+
+        1. Start the UCRT64 console & install the required dependencies:
+        ```bash
+        pacman -S cmake git perl yasm nasm python3 doxygen mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake base-devel
+        ```
+
+        2. Clone the psy101 repo:
+        ```bash title="Clone the psy101 repo"
+        git clone https://gitlab.com/damian101/aom-psy101 aom
+        cd aom && mkdir aom_build && cd aom_build
+        ```
+
+        2. Configure compilation. The following flags are set to ensure the `aomenc` binary is build for optimal performance:
+        ```bash title="Set CMake flags"
+        cmake .. -DBUILD_SHARED_LIBS=0 -DENABLE_DOCS=0 -DCONFIG_TUNE_BUTTERAUGLI=0 -DCONFIG_TUNE_VMAF=0 -DCONFIG_AV1_DECODER=0 -DENABLE_TESTS=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-flto -O3 -march=native" -DCMAKE_C_FLAGS="-flto -O3 -march=native -pipe -fno-plt" -DCMAKE_LD_FLAGS="-flto -O3 -march=native"
+        ```
+
+        3. Compile:
+        ```bash title="Compile"
+        make -j$(nproc)
+        ```
+
+        The resulting binary will be available within the home folder of the location where you installed MSYS2 (usually `C:`). Navigate there, and then to the `aom` folder; the binary should be there.
+
+        Built files should be in the "Debug" folder.
+    </TabItem>
+</Tabs>
