@@ -1,0 +1,33 @@
+---
+title: aom-psy101
+sidebar_position: 19
+keywords: [AV1, encoding, video encoding, AOM AV1]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# aom-psy101
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+Mainline aomenc is unfortunately not perfect. It suffers from bad defaults, a heavy focus on the perceptually flawed [PSNR](../metrics/PSNR.mdx) metric, misleading settings, and other issues. Fortunately, there are a couple of forks developed by the encoding community that were created to combat aomenc's underlying issues.
+
+- [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy) *No longer maintained as of 13th January 2023*
+- [aom-av1-lavish](./aom-av1-lavish.mdx)
+- [aom-psy101](https://gitlab.com/damian101/aom-psy101)
+- [aom-av1ador](https://github.com/porcino/aom-av1ador)
+
+These forks fix up the poor decisions made by the original AOM devs and most importantly introduce new parameters and tunes to help fine-tune the encoder even more.
+
+[aom-psy101](https://gitlab.com/damian101/aom-psy101) is a fork of aomenc that aims to improve the encoding quality and speed of AV1. It is developed by Clybius, a talented AV1 community developer also well-known for working on [SVT-AV1-PSY](./SVT-AV1-PSY.mdx)
+
+## FFmpeg
+
+aomenc is available in FFmpeg via ``libaom-av1``, check if you have it by running ``ffmpeg -h encoder=libaom-av1``. You can input non-FFmpeg standard aomenc parameters via ``-aom-params``.
+
+:::caution Mainline aomenc
+Unless you compile FFmpeg yourself with aom-psy101, you will be using the mainline aomenc. Compiling from source yourself with the aomenc libraries provided by aom-psy101 is the only way to use it with FFmpeg.
+:::

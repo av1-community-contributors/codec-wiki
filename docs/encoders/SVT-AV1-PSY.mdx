@@ -1,0 +1,222 @@
+---
+title: SVT-AV1-PSY
+sidebar_position: 5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# SVT-AV1-PSY
+
+:::info Community Fork
+This entry is about a fork of SVT-AV1 called SVT-AV1-PSY. If you'd like to learn about the mainline SVT-AV1 encoder before reading, visit our [SVT-AV1 wiki entry](./SVT-AV1.mdx).
+:::
+
+SVT-AV1-PSY is a project that aims to enhance the Scalable Video Technology for AV1 Encoder with perceptual enhancements for psychovisually optimal AV1 encoding. The ultimate goal is to create the best encoding implementation for perceptual quality with AV1. The development of this project involves a collaborative effort from a team of dedicated developers and contributors who are committed to improving the perceptual quality of AV1 encoding.
+
+The SVT-AV1-PSY project is maintained by Gianni Rosato, Julio Barba, & Clybius, as well as a number of community contributors including BlueSwordM, the maintainer of the [SVT-AV1-PSY AUR package](https://aur.archlinux.org/packages/svt-av1-psy-git) & the original author of [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy).
+
+The development process involves community testing and optimization to ensure that the encoder and decoder deliver optimal performance. The team uses a variety of tools and methodologies to analyze and improve the performance of the encoder and decoder, including subjective analyses. [SSIMULACRA2](../metrics/SSIMULACRA2.mdx) and [XPSNR](../metrics/XPSNR.mdx) are used extensively for metrics testing, and the team is committed to improving the overall quality and performance of the encoder using these two metrics as general guidelines and benchmarks. However, the stated goal is not to improve metric scores but to improve the overall perceptual quality of the encoder; naturally, changes are often made to SVT-AV1-PSY that end up degrading metric performance in favor of perceptual fidelity per bit.
+
+SVT-AV1-PSY is a superset of SVT-AV1, meaning any valid SVT-AV1 command will work with SVT-AV1-PSY given the modified defaults do not conflict with the settings provided.
+
+SVT-AV1-PSY is used by default in [Aviator](../utilities/Aviator.mdx) and can be used in [rAV1ator CLI](../utilities/rav1ator-cli.mdx) by using the pre-compiled binaries available with the tool or by building a binary yourself.
+
+SVT-AV1-PSY contributors are not in any way affiliated with the Alliance for Open Media or any upstream SVT-AV1 project contributors who have not also contributed to the SVT-AV1-PSY project.
+
+## Micro-Release Framework
+
+SVT-AV1-PSY features additions outside of mainline SVT-AV1 that are often considered to be significant, but don't line up with a major mainline release. Therefore, the SVT-AV1-PSY release framework is different, and the encoder is currently being developed around micro-releases to make this clear.
+
+Micro-releases are tagged with letters starting at `A` to indicate that they contain significant new features and aren't equivalent to mainline releases; for example, `v2.0.0-A` was a micro-release with significant new features exclusive to SVT-AV1-PSY that followed the prior `v2.0.0` release (which came out with PSY + mainline features in tandem with mainline `v2.0.0`). Releases without letters are in-line with mainline SVT-AV1 releases, and may contain significant PSY feature additions as well.
+
+## Feature Additions
+
+SVT-AV1-PSY includes a number of new features that are not present in mainline SVT-AV1. These features are designed to improve the visual quality of AV1 encodes, and offer more flexibility when configuring the encoder for a wide range of encoding scenarios. Many of these changes are being integrated into mainline SVT-AV1 as the project matures.
+
+- `--variance-boost-strength` *1 to 4* (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/merge_requests/2195)**)
+
+Provides control over our augmented AQ Modes 0 and 2 which can utilize variance information in each frame for more consistent quality under high/low contrast scenes. Four curve options are provided, and the default is curve 2. 1: mild, 2: gentle, 3: medium, 4: aggressive
+
+- `--variance-octile` *1 to 8* (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/merge_requests/2195)**)
+
+Controls how "selective" the algorithm is when boosting superblocks, based on their low/high 8x8 variance ratio. A value of 1 is the least selective, and will readily boost a superblock if only 1/8th of the superblock is low variance. Conversely, a value of 8 will only boost if the *entire* superblock is low variance. Lower values increase bitrate. The default value is 6.
+
+- `--enable-alt-curve` *0 and 1*
+
+Enable an alternative variance boost curve, with different bit allocation and visual characteristics. The default is 0.
+
+- `Presets -2 & -3`
+
+Terrifically slow encoding modes for research purposes.
+
+- `Tune 3`
+
+A new tune based on Tune 2 (SSIM) called SSIM with Subjective Quality Tuning. Generally harms metric performance in exchange for better visual fidelity.
+
+- `--sharpness` *-7 to 7*
+
+A parameter for modifying loopfilter deblock sharpness and rate distortion to improve visual fidelity. The default is 0 (no sharpness).
+
+- `--dolby-vision-rpu` *path to file*
+
+Set the path to a Dolby Vision RPU for encoding Dolby Vision video. SVT-AV1-PSY needs to be built with the `enable-libdovi` flag enabled in build.sh (see `./Build/linux/build.sh --help` for more info) (Thank you @quietvoid !)
+
+- `Progress 3`
+
+A new progress mode that provides more detailed information about the encoding process.
+
+- `--fgs-table` *path to file* (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/commit/ae7ce1abc5f3f7913624f728ae123f8b8c1e30de)**)
+
+Argument for providing a film grain table for synthetic film grain (similar to aomenc's '--film-grain-table=' argument).
+
+- `Extended CRF`
+
+Provides a more versatile and granular way to set CRF. Range has been expanded to 70 (from 63) to help with ultra-low bitrate encodes, and can now be set in quarter-step (0.25) increments.
+
+- `--qp-scale-compress-strength` *0 to 3*
+
+Increases video quality temporal consistency, especially with clips that contain film grain and/or contain fast-moving objects.
+
+- `--enable-dlf 2`
+
+Enables a more accurate loop filter that prevents blocking, for a modest increase in compute time (most noticeable at presets 7 to 9)
+
+- `Higher-quality presets for 8K`
+
+Lowers the minimum available preset from 8 to 2 for higher-quality 8K encoding (64 GB of RAM recommended per encoding instance)
+
+- `--frame-luma-bias` *0 to 100*
+
+Enables frame-level luma bias to improve quality in dark scenes by adjusting frame-level QP based on average luminance across each frame
+
+## Modified Defaults
+
+SVT-AV1-PSY has different defaults than mainline SVT-AV1 in order to provide better visual fidelity out of the box. They include:
+
+- Default 10-bit color depth when given a 10-bit input.
+- Disable film grain denoising by default, as it often harms visual fidelity. (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/commit/8b39b41df9e07bbcdbd19ea618762c5db3353c03)**)
+- Default to Tune 2 instead of Tune 1, as it reliably outperforms Tune 1 perceptually.
+- Enable quantization matrices by default.
+- Set minimum QM level to 0 by default.
+- `--enable-variance-boost` enabled by default.
+
+### Other Changes
+
+- `--color-help`
+
+Prints the information found in Appendix A.2 of the user guide in order to help users more easily understand the Color Description Options in SvtAv1EncApp.
+
+- `Micro-Releases`
+
+In order to make SVT-AV1-PSY feature additions more clear, micro-release tags indicate when significant new feature additions have been made. Micro-release tags are letters starting with `A`, so new releases will be tagged as `v#.#.#-A`, `v#.#.#-B`, etc. This is discussed earlier in this entry.
+
+## Installation
+
+Building & installing SVT-AV1-PSY is the same as building & installing mainline SVT-AV1.
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        *A precompiled AVX2-optimized binary of SVT-AV1-PSY can be installed for x86_64 Linux via [rAV1ator CLI](../utilities/rav1ator-cli.mdx). However, it is always recommended to build from source.*
+
+        To build SVT-AV1 from source, first clone the desired SVT-AV1 repository & enter the build directory.
+
+        ```bash title="Clone SVT-AV1-PSY"
+        git clone https://github.com/gianni-rosato/svt-av1-psy
+        cd SVT-AV1/Build/linux
+        ```
+
+        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires CMake version 3.16 or higher and either GCC or Clang. It is recommended to use Clang.
+
+        ```bash title="Build release"
+        ./build.sh release
+        ```
+
+        ```bash title="Statically build just the encoder with clang and enable link-time optimization"
+        ./build.sh jobs=8 all cc=clang cxx=clang++ no-dec enable-lto static native
+        ```
+
+        The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
+
+        If you'd like to build from the latest release (2.1.0 at the time of writing - last updated 23 May 2024) please run `git reset --hard 5471bd78311d70ab4691af1ae54fd80e25f214f5` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
+
+        If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO (and LTO, or link-time optimization) by following this script:
+
+        ```bash title="Bulding SVT-AV1 with profile guided optimization"
+        git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
+        cd SVT-AV1/Build/linux
+        ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-videos=/dev/shm release
+        ```
+
+        If you wish to store videos elsewhere or provide custom parameters to the SvtAv1EncApp binary, try this script:
+
+        ```bash
+        git clone https://gitlab.com/AOMediaCodec/SVT-AV1/
+        cd SVT-AV1/Build/linux
+        ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-compile-gen release
+        ../../Bin/Release/SvtAv1EncApp # Run this binary as many times as you'd like with arguments of your choice to collect data
+        ./build.sh cc=gcc cxx=g++ enable-lto enable-pgo static native jobs=$(nproc) pgo-dir=/dev/shm pgo-compile-use release
+        ```
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        **MSYS2** is the best option for building in Windows, as it provides a Unix-like environment for building SVT-AV1-PSY. This makes the compilation procedure the same as described for Linux & macOS. The full build process is detailed here.
+
+        0. Make sure you have downloaded & installed MSYS2 from [the MSYS2 website](https://www.msys2.org/) before beginning the build process.
+
+        1. Start the UCRT64 console & install the required dependencies:
+        ```bash
+        pacman -Syu --needed git mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-yasm
+        ```
+
+        2. \[Optional\] Clang is the recommended compiler for SVT-AV1 & SVT-AV1-PSY, so you may wish to download it with the following command:
+
+        ```bash
+        pacman -Syu --needed mingw-w64-ucrt-x86_64-clang
+        ```
+
+        3. Now, we may follow the steps for Linux & macOS to complete building. Please note that CMake may require you to include `-G "Ninja"` in any CMake commands.
+
+        ```bash title="Clone SVT-AV1-PSY"
+        git clone https://github.com/gianni-rosato/svt-av1-psy
+        cd SVT-AV1/Build/linux
+        ```
+
+        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires CMake version 3.16 or higher and either GCC or Clang. It is recommended to use Clang, and ideally it will be installed as per Step 2.
+
+        ```bash title="Build release"
+        ./build.sh release
+        ```
+
+        ```bash title="Statically build just the encoder with clang and enable link-time optimization"
+        ./build.sh jobs=8 all cc=clang cxx=clang++ no-dec enable-lto static native
+        ```
+
+        The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
+
+        If you'd like to build from the latest release (2.1.0 at the time of writing - last updated 23 May 2024) please run `git reset --hard 5471bd78311d70ab4691af1ae54fd80e25f214f5` in the cloned directory.
+    </TabItem>
+</Tabs>
+
+## Getting Involved
+
+For more information on SVT-AV1-PSY and this project's mission, see the [PSY Development](Docs/PSY-Development.md) page.
+
+One way to get involved is to use SVT-AV1-PSY in your own AV1 encoding projects, increasing the impact our work has on others! You and your users will also be able to provide feedback on the encoder's overall performance and report any issues you encounter. Your name will also be added to this page.
+
+**Projects Featuring SVT-AV1-PSY:**
+
+- [Aviator](../utilities/Aviator.mdx) ~ an AV1 encoding GUI by @gianni-rosato
+- [rAV1ator CLI](../utilities/rav1ator-cli.mdx) ~ a TUI for video encoding with Av1an by @gianni-rosato
+- [SVT-AV1-PSY on the AUR](https://aur.archlinux.org/packages/svt-av1-psy-git) ~ by @BlueSwordM
+- [SVT-AV1-PSY in CachyOS](https://github.com/CachyOS/CachyOS-PKGBUILDS/pull/144) ~ by @BlueSwordM
+- [Custom Handbrake Builds](https://github.com/vincejv/docker-handbrake) ~ by @vincejv
+- [Staxrip](https://github.com/staxrip/staxrip) ~ a video & audio encoding GUI for Windows by @Dendraspis
+
+## License
+
+Up to v0.8.7, SVT-AV1 is licensed under the BSD-2-clause license and the
+Alliance for Open Media Patent License 1.0. Starting from v0.9, SVT-AV1 is licensed
+under the BSD-3-clause clear license and the Alliance for Open Media Patent
+License 1.0.
+
+SVT-AV1-PSY does not feature license modifications from mainline SVT-AV1.
