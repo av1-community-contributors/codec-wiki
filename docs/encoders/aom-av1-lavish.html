@@ -14,7 +14,7 @@
 <link rel="preload" href="static/fonts/Mona-Sans.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <link rel="preload" href="static/fonts/Monaspace-Neon.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 <script src="https://analytics.x266.mov/js/script.js" defer="defer" data-domain="wiki.x266.mov"></script><link rel="stylesheet" href="/assets/css/styles.d8c3d5e8.css">
-<script src="/assets/js/runtime~main.fd8de807.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.24892d55.js" defer="defer"></script>
 <script src="/assets/js/main.7722874e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -27,7 +27,7 @@
 <li><a href="https://github.com/porcino/aom-av1ador" target="_blank" rel="noopener noreferrer">aom-av1ador</a></li>
 </ul>
 <p>These forks fix up the poor decisions made by the original AOM devs and most importantly introduce new parameters and tunes to help fine-tune the encoder even more.</p>
-<p><a href="https://github.com/Clybius/aom-av1-lavish" target="_blank" rel="noopener noreferrer">aom-av1-lavish</a> is a fork of aomenc that aims to improve the encoding quality and speed of AV1. It is developed by Clybius, a talented AV1 community developer also well-known for working on <a href="/docs/encoders/SVT-AV1-PSY">SVT-AV1-PSY</a></p>
+<p><a href="https://github.com/Clybius/aom-av1-lavish" target="_blank" rel="noopener noreferrer">aom-av1-lavish</a> is a fork of aomenc that aims to improve the encoding quality and speed of AV1. It is developed by <a href="https://github.com/Clybius" target="_blank" rel="noopener noreferrer">Clybius</a>, a talented AV1 community developer also well-known for working on <a href="/docs/encoders/SVT-AV1-PSY">SVT-AV1-PSY</a>.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ffmpeg">FFmpeg<a href="#ffmpeg" class="hash-link" aria-label="Direct link to FFmpeg" title="Direct link to FFmpeg">​</a></h2>
 <p>aomenc is available in FFmpeg via <code>libaom-av1</code>, check if you have it by running <code>ffmpeg -h encoder=libaom-av1</code>. You can input non-FFmpeg standard aomenc parameters via <code>-aom-params</code>.</p>
 <div class="theme-admonition theme-admonition-caution admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>Mainline aomenc</div><div class="admonitionContent_BuS1"><p>Unless you compile FFmpeg yourself with aom-av1-lavish, you will be using the mainline aomenc. Compiling from source yourself with the aomenc libraries provided by aom-av1-lavish is the only way to use it with FFmpeg.</p></div></div>
