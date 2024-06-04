@@ -16,16 +16,6 @@ SVT-AV1 (Scalable Video Technology for AV1) is an AV1-compliant software encoder
 
 This entry discusses the SVT-AV1 encoder, also known as the "Production" AV1 encoder (while [aomenc](../encoders/aomenc.mdx) is the "reference" AV1 encoder), & refers to SVT-AV1 as such. SVT-AV1 is known for its parallelization, high coding efficiency, & active development. SVT-AV1 scales across multiple CPU cores much more effectively than aomenc or [rav1e](../encoders/rav1e.mdx), so the use of tools like [Av1an](../utilities/av1an.mdx) is less helpful albeit still helpful for scene detection.
 
-## Community Forks
-
-Currently, there is only one noteworthy community fork of SVT-AV1 called [SVT-AV1-PSY](./SVT-AV1-PSY.mdx).
-
-### SVT-AV1-PSY
-
-SVT-AV1-PSY is a community fork of SVT-AV1 that strives to improve the perceptual fidelity and quality of life provided by the encoder. The goal of this project is to create the best encoding implementation for perceptual quality with AV1, and it aims to surpass previous community forks of [aomenc](./aomenc.mdx#choosing-forks) in speed and visual quality.
-
-SVT-AV1-PSY has a number of feature additions to the mainline SVT-AV1 encoder as well as modified defaults that aim to make it easier to produce a more perceptually optimal bistream. For a full list of the encoder's feature additions and modifications to defaults, see the [project's README](https://github.com/gianni-rosato/svt-av1-psy/blob/master/README.md#feature-additions).
-
 ## FFmpeg
 
 SVT-AV1 is available in FFmpeg via `libsvtav1`, to check if you have it, run `ffmpeg -h encoder=libsvtav1`. You can input non-FFmpeg standard SVT-AV1 parameters via `-svtav1-params`.
@@ -146,3 +136,13 @@ SVT-AV1 can be used in 14 different presets, labeled -1 through 13. Preset -1 is
 - `--crf X`
 
 CRF is the best way to target quality for optimal visual fidelity. VBR & CBR lose efficiency due to their inherently limited rate control capabilities.
+
+## Community Forks
+
+Currently, there is only one noteworthy community fork of SVT-AV1 called [SVT-AV1-PSY](./SVT-AV1-PSY.mdx).
+
+### SVT-AV1-PSY
+
+SVT-AV1-PSY is a community fork of SVT-AV1 that strives to improve the perceptual fidelity and quality of life provided by the encoder. The goal of this project is to create the best encoding implementation for perceptual quality with AV1, and it aims to surpass previous community forks of [aomenc](./aomenc.mdx#choosing-forks) in speed and visual quality.
+
+SVT-AV1-PSY has a number of feature additions to the mainline SVT-AV1 encoder as well as modified defaults that aim to make it easier to produce a more perceptually optimal bistream. For a full list of the encoder's feature additions and modifications to defaults, see the [project's README](https://github.com/gianni-rosato/svt-av1-psy/blob/master/README.md#feature-additions).
