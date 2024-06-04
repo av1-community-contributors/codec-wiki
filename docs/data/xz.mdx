@@ -9,8 +9,38 @@ sidebar_position: 5
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
 
-XZ is a data compression format based on the Lempel-Ziv-Markov Chain Algorithm (LZMA). The XZ format itself is an improvement on LZMA, allowing for preprocessing filters similar to [7-zip](../data/7z.mdx) to increase the resulting archive's compression ratio.
+XZ is a data compression format and utility based on the Lempel-Ziv-Markov Chain Algorithm (LZMA). The XZ format itself is an improvement on LZMA, allowing for preprocessing filters similar to [7-zip](../data/7z.mdx) to increase the resulting archive's compression ratio.
 
 XZ can only compress one file at a time, so making a [tar](./tar.mdx) archive of the files you'd like to compress (if there are multiple) is necessary when using XZ.
 
 XZ is more widely supported when compared to other data compression formats, seeing support across iOS, macOS, and many Linux distributions by default. To decompress & compress XZ on Windows, you will likely need the 7-Zip archive utility.
+
+## Usage
+This usage is for the `xz` utility on linux, but is applicable to other platforms where xz can be used. It should be noted that `xz`'s default behavior is to delete the original file after it has completed the relevant compression or decompression operation, but this can be stopped with the flag below. An arbitary number of files may be passed to xz and it will individually complete the specified operation on each given file.
+
+### Compression
+```bash
+xz {file}
+```
+This will result in a file named `{file}.xz` being created in the current working directory.
+
+A more advanced variant is listed here:
+```bash
+xz -# --extreme -M 800Mib -T 2 -k {file}
+```
+
+- `-#` is a number between 0 and 9 specifying speed presets, 0 being the fastest and 9 slowest.
+- `--extreme` is an option allowing xz to use more time than the standard preset level.
+- `-M {size}` is an option restricting the memory usage of `xz` either as a percentage of system memory or an absolute amount.
+- `-T {threads}` is an option restricting the number of threads used by `xz`.
+- `-k` prevents xz from deleting the input file.
+
+### Decompression
+```bash
+xz -d {file}.xz
+```
+This decompresses the xz archive to it's original file.
+
+- `-M {size}` is an option restricting the memory usage of `xz` either as a percentage of system memory or an absolute amount.
+- `-T {threads}` is an option restricting the number of threads used by `xz`.
+- `-k` prevents xz from deleting the input file.
