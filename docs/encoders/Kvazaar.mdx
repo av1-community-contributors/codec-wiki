@@ -3,75 +3,87 @@ title: Kvazaar
 sidebar_position: 11
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Kvazaar
 
-[Kvazaar](https://github.com/ultravideo/kvazaar) is an open-source [H.265 / HEVC](/docs/video/HEVC) software encoder Written in C, developed by [Ultra Video Group](https://ultravideo.fi/) and licensed under BSD 3-clause. 
+[Kvazaar](https://github.com/ultravideo/kvazaar) is an open-source [H.265 / HEVC](/docs/video/HEVC) software encoder Written in C, developed by [Ultra Video Group](https://ultravideo.fi/) and licensed under BSD 3-clause.
 
-[uvg266](/docs/encoders/uvg266) (Developed by the same group) uses Kvazaar as base for encoding to the [VVC](/docs/video/VVC) codec.
+[uvg266](/docs/encoders/uvg266) (Developed by the same group) uses Kvazaar as a base for encoding to the [VVC](/docs/video/VVC) codec.
 
-:::info
-It is recommended to use [x265](/docs/encoders/x265) instead as it performs much better in both quality and speed.
-:::
+[x265](/docs/encoders/x265) is generally regarded as having better performance while producing better quality video streams.
 
 ## FFmpeg
 
-Kvazaar is available in FFmpeg via ``libkvazaar``, to check if you have it, run ``ffmpeg -h encoder=libkvazaar``. You can input non-FFmpeg standard Kvazaar parameters via ``-kvazaar-params``.
+Kvazaar is available in [FFmpeg](../utilities/ffmpeg.mdx) via ``libkvazaar``, to check if you have it, run ``ffmpeg -h encoder=libkvazaar``. You can input non-FFmpeg standard Kvazaar parameters via ``-kvazaar-params``.
 
 You may need to download "Full" builds. As most of the time, this encoder is not included.
-
 
 ## Supported Color Space
 
 Kvazaar supports the following color spaces:
 
-| Format           | Chroma Subsampling | Supported Bit Depth(s) |
+| Format           | Chroma Subsampling | Supported Bit Depth(s)|
 |------------------|:------------------:|-----------------------|
 | YUV420P          | 4:2:0              | 8-bit                 |
-| YUV420P10LE      | 4:2:0              | 10-bit                |
+| YUV420P10LE      | 4:2:0              | 10-bit*               |
 
+*10-bit support requires a flag to be set during compilation with CMake.
 
 ## Installation
 
-### Arch Linux
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS" default>
+        For Arch Linux, Kvazaar is available as `kvazaar`. It is also available in the Arch User Repository (AUR) as `kvazaar-git`.
 
-Kvazaar is available on both pacman (`kvazaar`) and the Arch User Repository (AUR) as `kvazaar-git`.
+        Ultra Video Group does not ship any pre-built binaries of their encoders except for their [AppVeyor CI](https://ci.appveyor.com/project/Ultravideo/kvazaar), but AppVeyor deletes build artifacts after a month, so most of the time you'll have to compile Kvazaar yourself. Here are the instructions to do so:
 
-### Compiling
+        ### Autotools
 
-Ultra Video Group does not ship any pre-built binaries of their encoders except for their [AppVeyor CI](https://ci.appveyor.com/project/Ultravideo/kvazaar), but AppVeyor deletes build artifacts after a month, so most of the time you'll have to compile Kvazaar yourself. 
+        0. Compilation requires GNU Automake, Autoconf, Libtool, and M4. Install them via your package manager.
 
-Windows users are recommended to compile via MinGW-W64 which comes with [MSYS2](https://msys2.org/). Please be advised **the usage of Clang for compiling in this situation is heavily recommended**
-due to disabled AVX2 optimizations because of a known GCC issue from 2012 (MinGW environments-exclusive). To do this, run `CC=clang ./configure` during autoconf.
+        1. Clone the repository and its submodules:
+        ```bash
+        git clone --recursive https://github.com/ultravideo/kvazaar.git
+        cd kvazaar
+        ./autogen.sh
+        ./configure
+        make -j$(nproc)
+        ```
 
-:::caution
-Compilation requires GNU Automake, Autoconf, Libtool, and M4.
-:::
+        3. Binaries will be available in `src`, or you can run `make install` on Linux to install (May need elevated permissions).
 
-```bash
-git clone --recursive https://github.com/ultravideo/kvazaar.git
-cd kvazaar
-./autogen.sh
-./configure
-make -j$(nproc)
-```
+        ### CMake (10-bit support)
 
-Binaries will be available in `src`, or you can run `make install` on Linux to install (May need elevated permissions).
+        You will need to use CMake to specify a flag to be able to encode 10-bit with the encoder; by default Kvazaar ships with only 8-bit.
 
-### Using CMake for 10-bit support
+        ```bash
+        git clone --recursive https://github.com/ultravideo/kvazaar.git
+        cd kvazaar/build
+        cmake .. -DCMAKE_C_FLAGS="-DKVZ_BIT_DEPTH=10" # optional 10-bit flag
+        make -j$(nproc)
+        ```
 
-You will need to use CMake to specify a flag to be able to encode 10-bit with the encoder, by default Kvazaar ships with only 8-bit.
+        Be aware that encoding 10-bit HEVC with Kvazaar is significantly slower, as the developers only prioritized SIMD optimizations for 8-bit encoding. Be aware that this implementation can be buggy in general.
+    </TabItem>
+    <TabItem value="wind" label="Windows">
+        Windows users are recommended to compile via MinGW-W64 which comes with [MSYS2](https://msys2.org/). Please be advised **the usage of Clang for compiling in this situation is heavily recommended**
+        due to disabled AVX2 optimizations because of a known GCC issue from 2012 (MinGW environments-exclusive). To do this, run `CC=clang ./configure` during autoconf.
 
-```bash
-git clone --recursive https://github.com/ultravideo/kvazaar.git
-cd kvazaar/build
-cmake .. -DCMAKE_C_FLAGS="-DKVZ_BIT_DEPTH=10"
-make -j$(nproc)
-```
-:::warning
-Encoding 10-bit with Kvazaar is significantly slower as the developers only prioritized SIMD optimizations for 8-bit, and can get quite buggy.
-:::
+        ### MSYS2
+
+        0. Make sure you have downloaded & installed MSYS2 from [the MSYS2 website](https://www.msys2.org/) before beginning the build process.
+
+        1. Start the UCRT64 console & install the required dependencies with the `pacman` package manager
+
+        3. Resume the build process as you would on a Unix-like system. See the "Linux & macOS" tab for more information.
+    </TabItem>
+</Tabs>
 
 ## Usage
+
+Here are some examples of how to use Kvazaar on its own:
 
 ```bash title="Simple Y4M input with QP 20 and raw 265 bitstream output"
 kvazaar -i input.y4m --input-file-format y4m --qp 20 -o output.265
@@ -80,6 +92,8 @@ kvazaar -i input.y4m --input-file-format y4m --qp 20 -o output.265
 ```bash title="Preset slow, CRF 20, Y4M input"
 kvazaar -i input.y4m --input-file-format y4m --qp 20 --preset slow -o output.265
 ```
+
+The command below still uses the `kvazaar` binary, but reads from a YUV4MPEG pipe instead of a file. This is useful for piping FFmpeg output to Kvazaar.
 
 ```bash title="FFmpeg piping"
 ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | kvazaar -i - --input-file-format y4m --qp 20 --preset slow -o output.265
