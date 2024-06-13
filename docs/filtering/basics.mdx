@@ -5,18 +5,65 @@ sidebar_position: 3
 
 # Basics of Filtering with Vapoursynth
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+## Intro to Filters
+
+In order to do filtering, we are going to need some filters. Vapoursynth includes some basic filters, but there are a lot more useful filters
+built by the community that can be incredibly useful to us.
+
+For example, we are going to make use of some of the functions in [vs-tools](https://github.com/Jaded-Encoding-Thaumaturgy/vs-tools).
+If you are on Arch, the recommended way to install this is via the AUR, using the `vapoursynth-plugin-vstools-git` package.
+For other operating systems, it is simpler to install all of the JET plugins at once, using the [vs-jet utility](https://github.com/Jaded-Encoding-Thaumaturgy/vs-jet).
+Note that these do require Python, which you should already have installed if you've installed Vapoursynth. You may have noticed in the previous section
+that all Vapoursynth scripts use Python syntax. It is not necessary to know Python in order to write Vapoursynth scripts, although it can be helpful
+for some more advanced techniques.
+
+## Filter Order
+
+Order matters when applying filters to a video. There are certain actions that must be taken at the very start, and certain actions that are better to be done
+later in a filter chain. The following image shows a recommended order for many of the most common filter actions:
+
+![filter chain](/img/vs2.png)
+
+If this seems a bit complicated at first, that's okay. We will learn about each of these steps one at a time, and when
+each of these filters might be needed.
 
 ## Bit Depth and Colorimetry
 
-TODO
+In most cases, the first action we want to take on a video is to ensure the correct [matrix, primaries, and transfer characteristics](../colorimetry/intro.mdx) are set, and convert the video to 16-bit.
+The colorimetry properties are important for ensuring accurate colors, and 16-bit helps filters to work in higher quality and create fewer artifacts.
+
+The currently recommended way to handle this is with the `vstools.initialize_clip` function. This function will handle both ensuring that colorimetry is set, and converting to 16-bit with appropriate dithering if needed.
+We can add it to a script in the following way:
+
+```python
+import vapoursynth as vs
+core = vs.core
+clip = core.lsmas.LWLibavSource(source="myinput.mkv")
+
+import vstools
+clip = vstools.initialize_clip(clip)
+
+clip.set_output(0)
+```
+
+If the video has existing colorimetry data set on it, `initialize_clip` will keep the existing data. Otherwise, it will assume colorimetry based on the video resolution.
+Usually, those assumptions will be correct. However, there may be cases where we know that the assumptions are incorrect, and we need to set them manually.
+For example, we may have a 4k video that we know was upscaled from a 1080p video, and we want to force BT.709 colorimetry. In that case, we can specify the properties to `initialize_clip`,
+and it will use the properties we specify instead of making guesses.
+
+```python
+from vstools import Primaries, Matrix, Transfer
+clip = vstools.initialize_clip(clip, primaries=Primaries.BT709, matrix=Matrix.BT709, transfer=Transfer.BT709)
+```
 
 ## Cropping
 
 TODO
 
 ## Resizing
+
+TODO
+
+## Trimming
 
 TODO
