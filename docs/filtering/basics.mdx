@@ -109,8 +109,83 @@ Remember to turn off the crop tool in vs-preview, or else we'll be doubling the 
 
 ## Resizing
 
-TODO
+Resizing is the process of changing the resolution of a video, whether that's making it bigger or smaller. Note that although the general idea is that "higher resolution is better",
+we generally don't want to upscale content. This simply makes output videos larger in file size, but doesn't result in an increase in quality, because the higher resolution is artificial.
+However, there are times when you may want or need to resize a video. Unfortunately, this is not as simple as it sounds, because we want to select a high-quality resizing method.
+
+With this section, we'll introduce [slow.pics](https://slow.pics/), a very useful tool for comparing screenshots. Here, we'll be using it to show the differences between various resizers.
+
+Vapoursynth comes with several resizers built-in, which will be the easiest to use. Of these, we'll be showcasing the following:
+
+```python
+clip = clip.resize.Bicubic(1920, 1080)
+clip = clip.resize.Lanczos(1920, 1080)
+clip = clip.resize.Spline36(1920, 1080)
+```
+
+Bicubic is the most widely used resizer. It is very fast and produces decent quality, but may produce less sharpness than more advanced scalers.
+Lanczos produces more sharpness, but may also produce more [ringing](./dehalo.mdx).
+Spline36 uses a spline-based resizing method, and produces results somewhere between Bicubic and Lanczos.
+
+However, using plugins, we have access to some more advanced scalers.
+
+```python
+clip = vskernels.Catrom().scale(clip, 1920, 1080)
+clip = vskernels.Catrom(sigmoid=True).scale(clip, 1920, 1080)
+clip = vskernels.Hermite(linear=True).scale(clip, 1920, 1080)
+clip = vsscale.SSIM().scale(clip, 1920, 1080)
+```
+
+Here we will look at downscalers.
+
+Catrom, short for Catmull-Rom, is a variant of Bicubic which uses different parameters in order to achieve a better balance between sharpness and ringing.
+It is often considered the best of the Bicubic kernels for image quality.
+
+In the second example, you can see that we pass an additional `sigmoid=True` parameter to `Catrom`. This performs the scaling using a sigmoid function, which flattens the ends of the scaling curve to reduce ringing.
+
+The third example here, Hermite, is another variant of Bicubic, and we are passing `linear=True` to perform the rescaling in linear light rather than in gamma light. This kernel is very good in regard to
+not producing ringing, but it does have the effect of thinning line art. Therefore, although some users prefer it, other users dislike it.
+
+Fourth, we have SSIM, which is a downscaler tuned around the SSIM video quality metric. This downscaler is intended to prioritize preserving detail and sharpness when downscaling.
+
+In [this comparison](https://slow.pics/c/mb5Rm3k3), we can see the differences between the different scalers, on an image that was upscaled to 4k by nnedi3, then downscaled back using the scaler noted in the image title.
+Here we have a couple of other [examples](https://slow.pics/c/kQvDOMYh) comparing in particular the [higher-quality scalers](https://slow.pics/c/UVwS62Vs).
+
+Of these, my current recommendation would be `Catrom(sigmoid=True)` for anime, and `SSIM` for live action. Some users may prefer `Hermite(linear=True)` for anime.
+
+For upscaling, we have the following high quality options:
+
+```python
+clip = vskernels.EwaLanczos().scale(clip, 3840, 2160)
+clip = vsaa.Nnedi3().scale(clip, 3840, 2160)
+clip = vsscale.Waifu2x().scale(clip, 3840, 2160)
+```
+
+Ewa-Lanczos is a variant of lanczos intended for high sharpness, making it good for upscaling, where we want an image to look sharper so that it does not appear upscaled.
+
+Nnedi3 is a neural-network-based upscaler which attempts to interpolate every second line to produce a sharp, upscaled image. It is generally safe for use on all content, and produces good results.
+
+Waifu2x is another AI-assisted upscaler, this one tuned specifically on anime. It produces very high quality and sharp images. However, the results of using it on live action content are unknown, so it is recommended to only use it on anime.
+
+[Here](https://slow.pics/c/CpISIk1z) we can see the effects of these upscalers. My current recommendation would be `EwaLanczos` for live action, and `Waifu2x` for anime.
+
+```python
+clip = soifunc.good_resize(clip, 1920, 1080)
+clip = soifunc.good_resize(clip, 1920, 1080, anime=True)
+```
+
+Lastly, we have `soifunc.good_resize`, which is a smart hybrid scaler which automatically chooses the best scaler depending on whether we are upscaling or downscaling,
+and may use a different scaler for chroma than it does for luma for even better quality.
+Note that the scalers chosen by this function may change over time as new knowledge surfaces, and are based on the above recommendations.
+We can also add the `anime=True` parameter (false by default) to change the scalers to be tuned
+more toward the fine line art that is present in anime, rather than the highly detailed elements such as skin and hair that are present in live action.
+
+It is intended to be a wrapper for easy high-quality scaling.
 
 ## Trimming
 
 TODO
+
+```
+
+```
