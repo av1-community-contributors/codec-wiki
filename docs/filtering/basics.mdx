@@ -179,13 +179,28 @@ and may use a different scaler for chroma than it does for luma for even better 
 Note that the scalers chosen by this function may change over time as new knowledge surfaces, and are based on the above recommendations.
 We can also add the `anime=True` parameter (false by default) to change the scalers to be tuned
 more toward the fine line art that is present in anime, rather than the highly detailed elements such as skin and hair that are present in live action.
-
-It is intended to be a wrapper for easy high-quality scaling.
+With these features, it is intended to be an easy-to-use general purpose high-quality upscaler.
 
 ## Trimming
 
-TODO
+Sometimes, we may need to cut out a portion of the video, for example, if we want to encode only the opening theme, or if our source has commercials that we want to remove.
+Vapoursynth supports this using Python's slice syntax.
 
+```python
+clip = clip[1805:3185]
 ```
 
+This snippet will trim the clip to include frames 1805-3184. Note that frame 3185 is _not_ included.
+
+Now, let's say we wanted to _exclude_ this segment. We can do this by making clips of the segments we'd like to keep, and joining them together.
+
+```python
+clip = clip[:1805] + clip[3185:]
+```
+
+This snippet will create trims for the start of the clip to and including frame 1804, and from frame 3185 to the end of the clip. It then joins them together into one clip, in the order we specify.
+If we wanted to reverse the segments, so that segment 2 comes first, we could do that simply by changing the order:
+
+```python
+clip = clip[3185:] + clip[:1805]
 ```
