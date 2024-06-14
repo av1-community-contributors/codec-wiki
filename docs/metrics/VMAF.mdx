@@ -12,17 +12,40 @@ import TabItem from '@theme/TabItem';
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-Short for Video Multimethod Assessment Fusion, VMAF is a full reference video appeal metric mainly developed by netflix.
+Short for Video Multimethod Assessment Fusion, VMAF is a full reference video quality assessment algorithm developed primarily by Netflix.
 
-
-## Installation & Usage
+## Installation
 
 Vmaf comes as a part of [libvmaf](https://github.com/Netflix/vmaf). There are two ways it is commonly used:
 * As an [FFmpeg](../utilities/ffmpeg.mdx) filter
 * As a standalone binary
 
+The instructions below are written for Linux & macOS. On Windows, you can use the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install) to follow along.
+
 <Tabs>
     <TabItem value="bin" label="Standalone Binary">
+
+        In order to build from source, follow the instructions below.
+
+        0. Install the required dependencies via your package manager of choice. The necessary dependencies are `nasm`, `ninja-build`, `doxygen`, & `xxd`.
+
+        1. Clone the repository & enter the corresponding directory
+        ```bash title="Clone & Enter"
+        git clone https://github.com/Netflix/vmaf/
+        cd vmaf/
+        ```
+
+        2. Compile with `meson` & `ninja`
+        ```bash
+        meson setup libvmaf libvmaf/build --buildtype release -Denable_float=true
+        sudo ninja -vC libvmaf/build install
+        ```
+
+        Now, you can run the VMAF binary with the following command:
+        ```bash
+        vmaf --help
+        ```
+
         If you would not like to build from source, you may grab the latest build from the VMAF [GitHub releases](https://github.com/Netflix/vmaf/releases) for your operating system.
 
         Now, you can:
@@ -32,7 +55,7 @@ Vmaf comes as a part of [libvmaf](https://github.com/Netflix/vmaf). There are tw
         ```
 
         **Tip:** If the VMAF binary exists but is not market as executable, you might need to `chmod +x /path/to/vmaf`
-        
+
         Explainer on command line flags can be found [here](https://github.com/Netflix/vmaf/blob/master/libvmaf/tools/README.md)
 
         The disadvantage of using the bin is that you need .yuv|y4m files, you can that overcome by using named pipes
@@ -133,14 +156,14 @@ Vmaf comes as a part of [libvmaf](https://github.com/Netflix/vmaf). There are tw
         2. Escape the colon `:` character by using a backslash `\` (`D\:/mypath/vmaf_v0.6.1.json`)
         3. Then escape that backslash with another backslash (`D\\:/mypath/vmaf_v0.6.1.json`)
         4. The next step will depend on the shell that will run `ffmpeg`:
-            
+
             For PowerShell and Command Prompt, this will be enough and your final `ffmpeg` command line will look something like
             ```powershell
             ./ffmpeg.exe -i dist.y4m -i ref.y4m \
                 -lavfi libvmaf=model_path="D\\:/mypath/vmaf_v0.6.1.json" \
                 -f null -
             ```
-            
+
             :::info Quoting the path
             Note: I only quoted the path part for trivial reasons and in this specific case, it can be unquoted or you can quote the whole part after lavfi starting from `libvmaf` to `json` and it should give the same result due to neither shell treating the `\` as a special character
             :::
@@ -173,7 +196,7 @@ Vmaf comes as a part of [libvmaf](https://github.com/Netflix/vmaf). There are tw
 ## Scoring
 scores range from 0 to 100, and are best interpreted in a linear way,
 100 meaning perfect quality, 0 meaning not recognisable,
-more info [in the Best Practices section here](https://netflixtechblog.com/vmaf-the-journey-continues-44b51ee9ed12)  
+more info [in the Best Practices section here](https://netflixtechblog.com/vmaf-the-journey-continues-44b51ee9ed12)
 It aligns with mean opinion scores (MOS) really well at low/medium bitrates,
 as stated [in this benchmark](https://videoprocessing.ai/benchmarks/video-quality-metrics_both.html)
 
@@ -187,7 +210,7 @@ that's why its performance might degrade, for example, high motion scenes being 
 :::tip With ffmpeg you can disable application of synthetic grain
 place `-filmgrain 0` before `-i` in the above ffmpeg commands, limited to decoding with dav1d
 TODO: replace this tip with an export_side_data solution
-:::  
+:::
 * As of January 2024, it doesn't work on HDR content, nothing prevents you from feeding it un-tonemapped PQ but scores will be off
 * In contrast with SSIMULACRA2, it focuses on appeal, not necessarily on fidelity. They often align, but not always.
 * Due to the ML nature, comparing the same video to itself will not always result in a score of 100
