@@ -126,8 +126,8 @@ However, many users claim this can have negative effects on video quality, espec
 ### Lossless Encoding
 
 x264 can also encode lossless video, allowing it to compete with lossless video codecs like [FFV1](../video/FFV1.mdx) and [UT Video](../video/utvideo.mdx). To encode lossless video, use `--qp 0`. Slower presets will decrease the size even further while the video remains lossless.
-However, when space is not a concern, such as when encoding an intermediate lossless for encoding to a compressed format, x264 can become the fastest lossless codec available, providing super fast encoding and decoding.
-For the absolute fastest encoding and decoding, one can use both `--preset ultrafast` and `--tune fastdecode`. However, `--preset superfast` still provides incredibly fast encoding and decoding speed, with 20-30% space savings for lossless,
+However, when space is not a concern, such as when encoding an intermediate lossless for later encoding to a lossy format, x264 can become the fastest lossless codec available, providing super fast encoding and decoding.
+For the absolute fastest encoding and decoding, one can use both `--preset ultrafast` and `--tune fastdecode`. However, `--preset superfast` still provides incredibly fast encoding and decoding speed, with 20-30% space savings for lossless compared to `ultrafast`,
 so it may be the ideal choice for many users.
 
 :::info Why QP 0 instead of CRF 0?
