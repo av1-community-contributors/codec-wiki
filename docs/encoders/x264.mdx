@@ -94,7 +94,7 @@ The most obvious way to increase fidelity per bit is to allow the encoder to spe
 
 ``--threads X``
 
-It is recommended to increase this value to your CPU's thread count. In most cases, x264 should be able to completely saturate most consumer CPUs.
+This is set to 1.5x the number of available cores by default, and shouldn't need to be adjusted unless you need to reduce the number of threads for some reason. x264's threading is very efficient, and in most cases, x264 should be able to completely saturate most consumer CPUs.
 
 ### Open GOP
 
@@ -119,7 +119,8 @@ These parameters are responsible for the amount of reference frames x264 will us
 
 ``--no-mbtree``
 
-This option disables mb-tree rate control. Many claim that mb-tree rate control only assists in x264's ability to score well on metrics like [PSNR](../metrics/PSNR.mdx), and may harm visual quality.
+This option disables mb-tree rate control. mb-tree rate control is intended to redistribute bitrate to give more bits to frames that have less motion, and less bits to frames that have more motion (because artifacts in those frames will be less noticeable when the video is playing).
+However, many users claim this can have negative effects on video quality, especially when encoding videos that have significant amounts of grain.
 
 
 ### Lossless Encoding
