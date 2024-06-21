@@ -129,5 +129,5 @@ x264 can also encode lossless video, allowing it to compete with lossless video 
 Keep in mind that lossless H.264 can be very difficult to decode if you do not use the `ultrafast` preset, so it may be worth passing the `--tune fastdecode` parameter to ensure faster decoding.
 
 :::info Why QP 0 instead of CRF 0?
-CRF automatically adjusts a number of quantization parameters to achieve a desired quality output. QP stands for *Quantization Parameter*, and allows full control over the resulting video quality. In this case, all-intra or lossless, using QP is necesasry, but for lossy encoding CRF will produce better visual fidelity per bit.
+CRF automatically adjusts a number of quantization parameters to achieve a desired quality output. QP stands for *Quantization Parameter*, and allows full control over the resulting video quality. In this case, all-intra or lossless, using QP is necessary, but for lossy encoding CRF will produce better visual fidelity per bit.
 :::
