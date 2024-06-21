@@ -94,7 +94,7 @@ The most obvious way to increase fidelity per bit is to allow the encoder to spe
 
 ``--threads X``
 
-It is recommended to increase this value to your CPU's thread count. In most cases, x264 should be able to completely saturate most consumer CPUs.
+This is set to 1.5x the number of available cores by default, and shouldn't need to be adjusted unless you need to reduce the number of threads for some reason. x264's threading is very efficient, and in most cases, x264 should be able to completely saturate most consumer CPUs.
 
 ### Open GOP
 
@@ -119,14 +119,16 @@ These parameters are responsible for the amount of reference frames x264 will us
 
 ``--no-mbtree``
 
-This option disables mb-tree rate control. Many claim that mb-tree rate control only assists in x264's ability to score well on metrics like [PSNR](../metrics/PSNR.mdx), and may harm visual quality.
+This option disables mb-tree rate control. mb-tree rate control is intended to redistribute bitrate to give more bits to frames that have less motion, and less bits to frames that have more motion (because artifacts in those frames will be less noticeable when the video is playing).
+However, many users claim this can have negative effects on video quality, especially when encoding videos that have significant amounts of grain.
 
 
 ### Lossless Encoding
 
-x264 can also encode lossless video, allowing it to compete with lossless video codecs like [FFV1](../video/FFV1.mdx) and [UT Video](../video/utvideo.mdx). To encode lossless video, use ``--qp 0``. Slower presets will decrease the size even further while the video remains lossless.
-
-Keep in mind that lossless H.264 can be very difficult to decode if you do not use the `ultrafast` preset, so it may be worth passing the `--tune fastdecode` parameter to ensure faster decoding.
+x264 can also encode lossless video, allowing it to compete with lossless video codecs like [FFV1](../video/FFV1.mdx) and [UT Video](../video/utvideo.mdx). To encode lossless video, use `--qp 0`. Slower presets will decrease the size even further while the video remains lossless.
+However, when space is not a concern, such as when encoding an intermediate lossless for later encoding to a lossy format, x264 can become the fastest lossless codec available, providing super fast encoding and decoding.
+For the absolute fastest encoding and decoding, one can use both `--preset ultrafast` and `--tune fastdecode`. However, `--preset superfast` still provides incredibly fast encoding and decoding speed, with 20-30% space savings for lossless compared to `ultrafast`,
+so it may be the ideal choice for many users.
 
 :::info Why QP 0 instead of CRF 0?
 CRF automatically adjusts a number of quantization parameters to achieve a desired quality output. QP stands for *Quantization Parameter*, and allows full control over the resulting video quality. In this case, all-intra or lossless, using QP is necessary, but for lossy encoding CRF will produce better visual fidelity per bit.
