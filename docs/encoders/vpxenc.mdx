@@ -258,7 +258,7 @@ Enables WebM output for the encoder, and passes the encoder flags set. It is not
 
 - `--good`
 
-This is a sort of quality deadline, the minimum speed the encoder is allowed to go to. It isn't recommended to use `-–best` as it is slow for the quality uplift you get. Do not use RT for anything but real-time encoding.
+This is a sort of quality deadline, the minimum speed the encoder is allowed to go to. It isn't recommended to use `--best` as it is slow for the quality uplift you get. Do not use RT for anything but real-time encoding.
 
 - `--threads=8` 
 
@@ -307,7 +307,7 @@ This setting dictates how much denoising will occur in the alt-ref frames. Lower
 
 - `--aq-mode=0`
 
-Adaptive quantization is the way for an encoder to spend more bits in certain areas to improve [psychovisual fidelity](../introduction/psychovisual.mdx). `-–aq-mode=0` works well on clean content (animation, video games, screen content). `--aq-mode=2` is recommended when you want to give more detail to more complex parts of a video.
+Adaptive quantization is the way for an encoder to spend more bits in certain areas to improve [psychovisual fidelity](../introduction/psychovisual.mdx). `--aq-mode=0` works well on clean content (animation, video games, screen content). `--aq-mode=2` is recommended when you want to give more detail to more complex parts of a video.
 
 - `--frame-boost=1`
 
@@ -323,15 +323,15 @@ Enables row multi-threading in libvpx-vp9. *Always* enable it no matter what, as
 
 - `--bit-depth=10`
 
-Always use 10-bit for maximum efficiency & minimal banding, even with an 8-bit source. Make sure to enable `-–profile=2` as mentioned above.
+Always use 10-bit for maximum efficiency & minimal banding, even with an 8-bit source. Make sure to enable `--profile=2` as mentioned above.
 
 - `--tile-columns=1`
 
-This setting divides the video into tile columns for easier parallelization when encoding & decoding. Setting `-–tile-columns=1`, you will get 2¹ tile columns. Setting it higher is a trade-off between parallelization & coding efficiency, as more tiles means less information your encoder can work with, and this will result in decreased efficiency. Do note there is an upper threshold in regards to the number of tile columns you can get due to the fixed minimum tile width of 256 pixels. So, this means 4 tile columns (2²) for 720p and 1080p, 8 tile columns (2⁴) for 1440p/4k, and so on. If you set a tile column number that is too high, it will drop down to the lowest supported number of tile columns at the input resolution.
+This setting divides the video into tile columns for easier parallelization when encoding & decoding. Setting `--tile-columns=1`, you will get 2¹ tile columns. Setting it higher is a trade-off between parallelization & coding efficiency, as more tiles means less information your encoder can work with, and this will result in decreased efficiency. Do note there is an upper threshold in regards to the number of tile columns you can get due to the fixed minimum tile width of 256 pixels. So, this means 4 tile columns (2²) for 720p and 1080p, 8 tile columns (2⁴) for 1440p/4k, and so on. If you set a tile column number that is too high, it will drop down to the lowest supported number of tile columns at the input resolution.
 
 - `--tile-rows=0`
 
-This setting divides the video into tile rows. This option is different from columns because although it also makes decoding performance higher, it does not scale as well as tile columns & doesn’t increase encoder threading nearly as much. Always use more tile-columns than rows, or leave the number of tile rows at default (0). Leaving the encoder defaults at `-–tile-rows=0` & `–-tile-columns=0` will result in the highest overall coding efficiency possible with these options.
+This setting divides the video into tile rows. This option is different from columns because although it also makes decoding performance higher, it does not scale as well as tile columns & doesn’t increase encoder threading nearly as much. Always use more tile-columns than rows, or leave the number of tile rows at default (0). Leaving the encoder defaults at `--tile-rows=0` & `--tile-columns=0` will result in the highest overall coding efficiency possible with these options.
 
 - `--enable-tpl=1`
 
