@@ -129,52 +129,50 @@ The content in this entry was written by pat-e, or `pate` on Discord. This tutor
 
 1.  Open the Terminal as Administrator:  
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/01_wsl_rv-cli.avif)
-2.  In the Command-Prompt, enter the following to install WSL and (temporary) Ubuntu:  
+2.  In the Command-Prompt, enter the following to install WSL:  
     
     ```pwsh
-    wsl.exe --install
+    wsl.exe --install --no-distribution
     ```
     
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/02_wsl_rv-cli.avifg)  
       
     If the "Host Process for Windows Services" asks for allowing changes, approve it (Press "Yes"):  
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/03_wsl_rv-cli.avif)
-3.  Once the installation of WSL (and Ubuntu as Default) is finished, restart your Computer:  
+3.  Once the installation of WSL is finished, restart your Computer:  
     
     ```pwsh
     shutdown -r -f -t 1
     ```
     
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/04_wsl_rv-cli.avif)
-4.  Once restarted and logged in, WSL will start with Ubuntu and ask for Username and password. Enter whatever you want as this distribution will be removed after the switch to ArchWSL2. Just exit after the Ubuntu is setup:  
-    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/05_wsl_rv-cli.avif)
-5.  From [This GitHub link](https://github.com/sileshn/ArchWSL2), download the latest release of ArchWSL2 in the Releases section:  
+4.  From [This GitHub link](https://github.com/sileshn/ArchWSL2), download the latest release of ArchWSL2 in the Releases section:  
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/06_wsl_rv-cli.avif)
-6.  On your SSD, create a folder where we will place the ArchWSL2 files. This folder **must be kept and never deleted** as this will contain the base files for this distribution. It is advised to use an SSD instead of an HDD. The storage must be local storage, not a network-share or a removable disk. In our example, we will create a folder located at C:\\Stuff\\ArchWSL2;  
+5.  On your SSD, create a folder where we will place the ArchWSL2 files. This folder **must be kept and never deleted** as this will contain the base files for this distribution. It is advised to use an SSD instead of an HDD. The storage must be local storage, not a network-share or a removable disk. In our example, we will create a folder located at C:\\Stuff\\ArchWSL2;  
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/07_wsl_rv-cli.avif)  
       
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/08_wsl_rv-cli.avif)
 
-7.  Extract the downloaded ZIP of "ArchWSL2" into your newly created folder:  
+6.  Extract the downloaded ZIP of "ArchWSL2" into your newly created folder:  
       
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/09_wsl_rv-cli.avif)
 
-8.  Once extracted, start the extracted "Arch.exe":
+7.  Once extracted, start the extracted "Arch.exe":
 
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/10_wsl_rv-cli.avif)
 
-9.  On first start, the program will create a virtual disk (VHDx). Once finished, press "Enter" to continue (it will close the window)
+8.  On first start, the program will create a virtual disk (VHDx). Once finished, press "Enter" to continue (it will close the window)
 
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/11_wsl_rv-cli.avif)  
       
     
-10.  Once the virtual hard disk is created, restart the "arch.exe" again. It will finish some steps and ask for creating a new user-account. **This account is completely separate from your Windows user.** Please remember the username and password you use.
+9.  Once the virtual hard disk is created, restart the "arch.exe" again. It will finish some steps and ask for creating a new user-account. **This account is completely separate from your Windows user.** Please remember the username and password you use.
 
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/12_wsl_rv-cli.avif)  
       
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/13_wsl_rv-cli.avif)
 
-11.  The Window will close and reopen again. As fist step, update all packages. As your account you created earlier is in the sudo-group, you have to enter your password again as confirmation.
+10.  The Window will close and reopen again. As first step, update all packages. As your account you created earlier is in the sudo-group, you have to enter your password again as confirmation.
 
     ```bash
     sudo pacman -Syu
@@ -182,35 +180,11 @@ The content in this entry was written by pat-e, or `pate` on Discord. This tutor
     
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/14_wsl_rv-cli.avif)
 
-12.  Approve the installation of all the updates (Type "y"):
+11.  Approve the installation of all the updates (Type "y"):
 
     ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/15_wsl_rv-cli.avif)
 
-13.  Done... You can now use ArchWSL2.
-
-### Optional: Cleanup of the Ubuntu Distribution
-
-1.  Open the terminal as Administrator, like we did earlier.
-
-    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/16_wsl_rv-cli.avif)
-
-2.  Check the current installed distributions:  
-    ```pwsh
-    wsl --list
-    ```
-    
-    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/17_wsl_rv-cli.avif)
-3.  To remove "Ubuntu" (and therefor make Arch as default), enter the following command:  
-    
-    ```pwsh
-    wsl --unregister ubuntu
-    ```
-    
-    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/18_wsl_rv-cli.avif)
-
-4.  After the removal of Ubuntu, we can list the distributions again and verify that "Arch" is now the default:  
-
-    ![](https://raw.githubusercontent.com/av1-community-contributors/images/main/19_wsl_rv-cli.avif)
+12.  Done... You can now use ArchWSL2.
 
 ### After the Installation and Cleanup, How Do I Start Arch?
 
