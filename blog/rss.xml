@@ -4,10 +4,313 @@
         <title>Codec Wiki Blog</title>
         <link>https://wiki.x266.mov/blog</link>
         <description>Codec Wiki Blog</description>
-        <lastBuildDate>Sun, 19 May 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 24 Jun 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
+        <item>
+            <title><![CDATA[AV1 for Dummies]]></title>
+            <link>https://wiki.x266.mov/blog/av1-for-dummies</link>
+            <guid>https://wiki.x266.mov/blog/av1-for-dummies</guid>
+            <pubDate>Mon, 24 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[AV1 for Dummies is a comprehensive, legible guide on how to get started with AV1 at any experience level. Whether you're on Windows using your first video encoding program, or a seasoned Linux user looking to optimize your encoding pipeline, this guide has you covered.]]></description>
+            <content:encoded><![CDATA[<p>AV1 for Dummies is a comprehensive, legible guide on how to get started with AV1 at any experience level. Whether you're on Windows using your first video encoding program, or a seasoned Linux user looking to optimize your encoding pipeline, this guide has you covered.</p>
+<p><img decoding="async" loading="lazy" alt="Compare" src="https://wiki.x266.mov/assets/images/av1_for_dummies_guide-a83f247bebb2261a1ba671e33ddf1e99.avif" width="2048" height="1080" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="introduction">Introduction<a href="https://wiki.x266.mov/blog/av1-for-dummies#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction">​</a></h2>
+<p><a href="https://wiki.x266.mov/docs/video/AV1" target="_blank" rel="noopener noreferrer">AV1</a> is a royalty-free video codec developed by the Alliance for Open Media. It is designed to replace <a href="https://wiki.x266.mov/docs/video/VP9" target="_blank" rel="noopener noreferrer">VP9</a> and presently competes with <a href="https://wiki.x266.mov/docs/video/VVC" target="_blank" rel="noopener noreferrer">H.266</a>. AV1 is known for its high compression efficiency, which the marketing will have you believe reduces file sizes by up to 50% compared to <a href="https://wiki.x266.mov/docs/video/AVC" target="_blank" rel="noopener noreferrer">H.264</a> and up to 30% compared to <a href="https://wiki.x266.mov/docs/video/HEVC" target="_blank" rel="noopener noreferrer">H.265</a> across the board. It is supported by several major browsers and is widely used across many streaming services and video platforms.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="why-av1">Why AV1?<a href="https://wiki.x266.mov/blog/av1-for-dummies#why-av1" class="hash-link" aria-label="Direct link to Why AV1?" title="Direct link to Why AV1?">​</a></h3>
+<p>Before we dive in, it is important to understand <em>why</em> you may want to use AV1 instead of other codecs. The reality is that AV1 is <em>not</em> better than H.264/5 in every single scenario; video encoding is a complicated field, and the best codec for you will depend on your specific needs. AV1 excels in:</p>
+<ul>
+<li>Low to medium-high fidelity encoding</li>
+<li>Higher resolution encoding</li>
+<li>Encoding content with very little grain or noise</li>
+<li>Slow, non-realtime contexts (e.g. offline encoding)</li>
+</ul>
+<p>The enumeration above still consists of broad strokes, but the point is to understand that AV1 is not a silver bullet. It will not automatically make your videos smaller while preserving your desired quality. To make things more difficult, the <a href="https://wiki.x266.mov/docs/encoders/x264" target="_blank" rel="noopener noreferrer">x264</a> &amp; <a href="https://wiki.x266.mov/docs/encoders/x265" target="_blank" rel="noopener noreferrer">x265</a> encoders are very mature, while AV1 encoding efforts designed to meet the extremely complicated needs of the human eye are still in their infancy.</p>
+<p>This guide focuses almost entirely on tools great for offline, non-realtime encoding for various kinds of content. Streaming is an altogether different application of AV1, and is only covered sparsely here.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="dos--donts">Do's &amp; Don'ts<a href="https://wiki.x266.mov/blog/av1-for-dummies#dos--donts" class="hash-link" aria-label="Direct link to Do's &amp; Don'ts" title="Direct link to Do's &amp; Don'ts">​</a></h3>
+<p>Due to a lot of misunderstandings about codecs and compression, there are a lot of common misconceptions that are held regarding video encoding. We'll start by outlining some bad practices:</p>
+<ul>
+<li><strong>Don't</strong> encode the same video multiple times. This is a common mistake made by people new to video encoding. Every time you encode a video, you lose additional quality due to <em>generation loss</em>. This is because video codecs are lossy, and every time you encode a video, you lose more information. This is why it is important to keep the original video file if you frequently re-encode it.</li>
+<li><strong>Don't</strong> blindly copy settings from others without understanding them. What works for one person's content and workflow may not work for yours. Even the default settings on many encoders are not optimal for most content.</li>
+<li><strong>Don't</strong> assume that higher bitrate equates to better quality. Inefficient encoding can waste bits without improving visual quality, and efficient encoding can make lower bitrate video look drastically better than higher bitrate video using the same codec.</li>
+<li><strong>Don't</strong> assume all encoders/presets/settings/implementations are created equal. Even given two encoding frameworks that use the same underlying encoder, you may achieve different results given encoder version mismatches or subtly different settings used under the hood.</li>
+<li><strong>Don't</strong> use unnecessarily slow presets/speeds unless you have a specific need and ample time. While slower presets improve encoding efficiency most of the time, the quality gains reach a point of diminishing returns beyond a certain point. Use the slowest preset you can tolerate, not the slowest preset available.</li>
+<li><strong>Don't</strong> blindly trust metric scores. It is unfortunate how trusted <a href="https://wiki.x266.mov/docs/metrics/VMAF" target="_blank" rel="noopener noreferrer">VMAF</a> is considering how infrequently it correlates with visual fidelity in practice now that it has become so popular. Even the beloved <a href="https://wiki.x266.mov/docs/metrics/SSIMULACRA2" target="_blank" rel="noopener noreferrer">SSIMULACRA2</a> is not a perfect one-to-one with the human eye.</li>
+</ul>
+<p>Now, let's move on to some <strong>good</strong> practices:</p>
+<ul>
+<li>Experiment with different settings and compare the results.</li>
+<li>Consider your content type when choosing encoding settings. Film, animation, and sports all have different characteristics that benefit from distinct approaches.</li>
+<li>Try to use CRF for offline encoding, as opposed to CBR or VBR. While the latter two are effective for precisely targeting a particular bitrate, CRF is more effective at targeting a specific quality level efficiently.</li>
+<li>Always use 10-bit color, even with an 8-bit source. AV1's internal workings are much more suited to 10-bit color, and you are almost always guaranteed quality improvements with zero compatibility penalty as 10-bit color is part of AV1's baseline profile.</li>
+<li>Consider using grain synthesis for grainy content, as AV1 can struggle with preserving film grain efficiently.</li>
+<li>Keep your encoding software up-to-date; the encoding world moves quickly.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tools">Tools<a href="https://wiki.x266.mov/blog/av1-for-dummies#tools" class="hash-link" aria-label="Direct link to Tools" title="Direct link to Tools">​</a></h2>
+<p>Since writing the last guide, there are now several versatile tools available for AV1 encoding. Below, we've assembled some tables of popular encoding tools and their features.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gui">GUI<a href="https://wiki.x266.mov/blog/av1-for-dummies#gui" class="hash-link" aria-label="Direct link to GUI" title="Direct link to GUI">​</a></h3>
+<p>Here's the key:</p>
+<ul>
+<li><strong>Encoder(s)</strong>: The AV1 encoder(s) the software uses or is able to use. This is between <a href="https://wiki.x266.mov/docs/encoders/SVT-AV1" target="_blank" rel="noopener noreferrer">SVT-AV1</a>, <a href="https://wiki.x266.mov/docs/encoders/aomenc" target="_blank" rel="noopener noreferrer">aomenc</a>, <a href="https://wiki.x266.mov/docs/encoders/rav1e" target="_blank" rel="noopener noreferrer">rav1e</a>, <a href="https://wiki.x266.mov/docs/encoders/SVT-AV1-PSY" target="_blank" rel="noopener noreferrer">SVT-AV1-PSY</a>, and various aomenc forks. We'll get into this more later.</li>
+<li><strong>Ease of Use</strong>: How intuitive the software is, especially for beginners.</li>
+<li><strong>Complexity</strong>: How flexible the software can be for advanced users.</li>
+<li><strong>Efficiency</strong>: How "good" the underlying encoder(s) are. This is more subjective, but tools with bad defaults, misleading options, or slow release cycles won't score well here.</li>
+</ul>
+<table><thead><tr><th>Name</th><th>Platform(s)</th><th style="text-align:center">Encoder(s)</th><th style="text-align:center">Ease of Use</th><th style="text-align:center">Complexity</th><th>Efficiency</th></tr></thead><tbody><tr><td><a href="https://wiki.x266.mov/docs/utilities/Aviator" target="_blank" rel="noopener noreferrer">Aviator</a></td><td>Linux</td><td style="text-align:center">SVT-AV1-PSY</td><td style="text-align:center">●●●●●</td><td style="text-align:center">●○○○○</td><td>●●●●●</td></tr><tr><td><a href="https://wiki.x266.mov/docs/utilities/nmkoder" target="_blank" rel="noopener noreferrer">NMKODER</a></td><td>Windows</td><td style="text-align:center">Any</td><td style="text-align:center">●●●○○</td><td style="text-align:center">●●●●○</td><td>●●○○○</td></tr><tr><td><a href="https://github.com/Av1ation-Association/Av1ation-Creations/releases/" target="_blank" rel="noopener noreferrer">Av1ation Station</a></td><td>Any</td><td style="text-align:center">Any</td><td style="text-align:center">●●●○○</td><td style="text-align:center">●●●●●</td><td>●●●●○</td></tr><tr><td><a href="https://github.com/staxrip/staxrip" target="_blank" rel="noopener noreferrer">StaxRip</a></td><td>Windows</td><td style="text-align:center">Any</td><td style="text-align:center">●●○○○</td><td style="text-align:center">●●●●●</td><td>●●●●○</td></tr><tr><td><a href="https://github.com/Alkl58/NotEnoughAV1Encodes" target="_blank" rel="noopener noreferrer">NEAV1E</a></td><td>Windows</td><td style="text-align:center">Any</td><td style="text-align:center">●●●○○</td><td style="text-align:center">●●●○○</td><td>●●○○○</td></tr><tr><td><a href="https://handbrake.fr/" target="_blank" rel="noopener noreferrer">Handbrake</a></td><td>Any</td><td style="text-align:center">SVT-AV1</td><td style="text-align:center">●●●●○</td><td style="text-align:center">●●○○○</td><td>●●○○○</td></tr><tr><td><a href="https://github.com/cdgriffith/FastFlix" target="_blank" rel="noopener noreferrer">FastFlix</a></td><td>Any</td><td style="text-align:center">Any</td><td style="text-align:center">●●●●○</td><td style="text-align:center">●●●○○</td><td>●●○○○</td></tr><tr><td><a href="https://wiki.x266.mov/docs/utilities/rav1ator" target="_blank" rel="noopener noreferrer">rAV1ator</a></td><td>Linux</td><td style="text-align:center">rav1e</td><td style="text-align:center">●●●●○</td><td style="text-align:center">●●●○○</td><td>●○○○○</td></tr><tr><td><a href="https://autocompressor.net/" target="_blank" rel="noopener noreferrer">Autocompressor</a></td><td>Web</td><td style="text-align:center">SVT-AV1</td><td style="text-align:center">●●●●●</td><td style="text-align:center">●○○○○</td><td>●●●○○</td></tr></tbody></table>
+<p>Our top pics are:</p>
+<ul>
+<li>For beginners: <strong>Aviator</strong>. If you are on Linux and you want zero hassle whatsoever, Aviator is simple but highly effective. As a Flatpak application, it ships a bundled SVT-AV1-PSY binary that is up-to-date, compiled efficiently, and handled with extensively tested defaults. It is hard to go wrong with Aviator even as an advanced user, despite its simplicity.</li>
+<li>For advanced users: <strong>Av1ation Station</strong>. Av1ator Station is thoughtfully designed to be your one-stop shop for video encoding. Even though it is brand new, it has proven itself to be a capable and reliable solution for advanced video encoders that have a lot of settings to tweak and encodes to keep track of.</li>
+<li>For Windows users: <strong>StaxRip</strong>. StaxRip is a long-standing, well-maintained, and highly flexible video encoding tool that supports a plethora of encoders and formats. It comes bundled with SVT-AV1-PSY and is a great choice for Windows users who want a powerful and versatile tool for video encoding.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="cli">CLI<a href="https://wiki.x266.mov/blog/av1-for-dummies#cli" class="hash-link" aria-label="Direct link to CLI" title="Direct link to CLI">​</a></h3>
+<p>In the terminal, advanced encoders can explore a much greater degree of complexity than many GUIs allow. That being said, ease of use is still a consideration when managing complex command-line encoding workflows. Let's begin with the key:</p>
+<ul>
+<li>We're omitting the "Platform(s)" column here, as this section targets Linux users. As a Windows user, WSL has you covered - as a Mac user, you're likely to experience parity with Linux (most of the time).</li>
+</ul>
+<table><thead><tr><th>Name</th><th>Framework(s)</th><th style="text-align:center">Ease of Use</th><th style="text-align:center">Complexity</th><th style="text-align:center">Features</th><th style="text-align:center">Scene Detection</th></tr></thead><tbody><tr><td>SvtAv1EncApp</td><td>None</td><td style="text-align:center">●○○○○</td><td style="text-align:center">●●○○○</td><td style="text-align:center">●○○○○</td><td style="text-align:center">No</td></tr><tr><td><a href="https://wiki.x266.mov/docs/utilities/ffmpeg" target="_blank" rel="noopener noreferrer">FFmpeg</a></td><td>Itself</td><td style="text-align:center">●●○○○</td><td style="text-align:center">●●●●●</td><td style="text-align:center">●●●●○</td><td style="text-align:center">No</td></tr><tr><td><a href="https://wiki.x266.mov/docs/utilities/av1an" target="_blank" rel="noopener noreferrer">Av1an</a></td><td>FFmpeg</td><td style="text-align:center">●○○○○</td><td style="text-align:center">●●●●●</td><td style="text-align:center">●●●○○</td><td style="text-align:center">Yes</td></tr><tr><td><a href="https://wiki.x266.mov/docs/utilities/rav1ator-cli" target="_blank" rel="noopener noreferrer">rAV1ator CLI</a></td><td>Av1an</td><td style="text-align:center">●●●●○</td><td style="text-align:center">●●●●○</td><td style="text-align:center">●●●●○</td><td style="text-align:center">Yes</td></tr><tr><td><a href="https://github.com/kingstefan26/alabamaEncoder" target="_blank" rel="noopener noreferrer">alabamaEncoder</a></td><td>FFmpeg</td><td style="text-align:center">●●○○○</td><td style="text-align:center">●●●●●</td><td style="text-align:center">●●●●●</td><td style="text-align:center">Yes</td></tr></tbody></table>
+<p>Our top picks are:</p>
+<ul>
+<li>For beginners: <strong>rAV1ator CLI</strong>. rAV1ator CLI essentially walks you through the process of writing Av1an commands. It can install binaries for you, save your previous commands, and detect scenes via Av1an. This makes it a great choice for beginners who want to learn the ropes of AV1 encoding without diving into the deep end headfirst. For advanced users, it makes rapidly writing, testing, &amp; cataloging Av1an encoding commands much simpler.</li>
+<li>For advanced users: <strong>alabamaEncoder</strong>. alabamaEncoder is a powerful and flexible tool that allows you to encode video with FFmpeg and AV1. It is highly configurable and supports a mind-bending array of powerful features that would be hard to find elsewhere. While the tool is still new, it is already a great choice for advanced users who want to push the boundaries of what is possible to incorporate into an encoding workflow.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="https://wiki.x266.mov/blog/av1-for-dummies#conclusion" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h3>
+<p>In conclusion, the best AV1 tool for you will depend on your needs and experience level. If you are a beginner, Aviator is a great choice for Linux users, while StaxRip is a good option for Windows users. For advanced users, Av1ation Station is a powerful and versatile tool that can handle numerous encoding tasks. If you prefer the command line, rAV1ator CLI is a great choice for beginners, while alabamaEncoder is a powerful tool for advanced users. No matter which tool you choose, it is hard to go wrong in the modern AV1 encoding landscape when it comes to your utility of choice.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="encoders">Encoders<a href="https://wiki.x266.mov/blog/av1-for-dummies#encoders" class="hash-link" aria-label="Direct link to Encoders" title="Direct link to Encoders">​</a></h2>
+<p>The world of AV1 encoding is diverse and complex, with several open-source encoders available, each bringing its own set of strengths, weaknesses, and unique features to the table. In this section, we'll dive deep into the characteristics of four major AV1 encoders:</p>
+<ol>
+<li>SVT-AV1,</li>
+<li>rav1e,</li>
+<li>aomenc (libaom), and</li>
+<li>SVT-AV1-PSY</li>
+</ol>
+<p>Understanding these encoders is crucial for making informed decisions about what best suits your specific encoding needs.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="svt-av1">SVT-AV1<a href="https://wiki.x266.mov/blog/av1-for-dummies#svt-av1" class="hash-link" aria-label="Direct link to SVT-AV1" title="Direct link to SVT-AV1">​</a></h3>
+<p><a href="https://wiki.x266.mov/docs/encoders/SVT-AV1" target="_blank" rel="noopener noreferrer">SVT-AV1</a> (Scalable Video Technology for AV1) is an AV1 encoder library and application developed by Intel, Netflix, and others. It has gained significant popularity in the encoding community due to its impressive balance of speed, quality, and scalability.</p>
+<p>Links:</p>
+<ul>
+<li>Wiki page: <a href="https://wiki.x266.mov/docs/encoders/SVT-AV1" target="_blank" rel="noopener noreferrer">SVT-AV1</a></li>
+<li>Git repository: <a href="https://gitlab.com/AOMediaCodec/SVT-AV1" target="_blank" rel="noopener noreferrer">https://gitlab.com/AOMediaCodec/SVT-AV1</a></li>
+<li>Documentation: <a href="https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/README.md" target="_blank" rel="noopener noreferrer">https://gitlab.com/AOMediaCodec/SVT-AV1/-/blob/master/Docs/README.md</a></li>
+</ul>
+<ol>
+<li>
+<p><strong>Performance &amp; Scalability</strong></p>
+<ul>
+<li>SVT-AV1 is renowned for its encoding speed, particularly at higher speed presets.</li>
+<li>It leverages parallel processing, making it exceptionally efficient on multi-core systems. Fun fact: SVT-AV1's parallel processing is lossless, so it doesn't compromise quality for speed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Quality-to-Speed Ratio</strong></p>
+<ul>
+<li>SVT-AV1 strikes an impressive balance between encoding speed and output quality.</li>
+<li>At faster presets, it usually outperforms other encoders in quality per unit of encoding time.</li>
+<li>While it may not achieve the absolute highest <em>quality per bit</em> possible, its quality is generally considered impressive for its speed.</li>
+</ul>
+</li>
+<li>
+<p><strong>Flexibility</strong></p>
+<ul>
+<li>SVT-AV1 offers a wide range of encoding options and presets, allowing fine-tuned control over the encoding process.</li>
+<li>It provides 14 presets (0-13), with 0 being the slowest and highest quality, and 13 being the fastest but lowest quality.</li>
+<li>Advanced options allow users to adjust parameters like hierarchical levels, intra-refresh type, and tuning modes.</li>
+</ul>
+</li>
+<li>
+<p><strong>Continuous Development</strong></p>
+<ul>
+<li>SVT-AV1 receives frequent updates and optimizations, with new releases often coming alongside big changes.</li>
+<li>The open-source nature of the project encourages community contributions and rapid feature development.</li>
+</ul>
+</li>
+</ol>
+<p>SVT-AV1 is an excellent choice for a wide range of encoding scenarios. It's particularly well-suited for:</p>
+<ul>
+<li>High-volume encoding operations where speed is crucial</li>
+<li>Live or near-live encoding of high-resolution content</li>
+<li>Scenarios where a balance between quality and encoding speed is required</li>
+<li>Users with multi-core systems who want to leverage their hardware efficiently</li>
+</ul>
+<p>Some downsides include:</p>
+<ul>
+<li>Higher memory usage compared to other encoders</li>
+<li>The developers assess quality via its performance on traditional legacy metrics, which harms its perceptual fidelity ceiling.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rav1e">rav1e<a href="https://wiki.x266.mov/blog/av1-for-dummies#rav1e" class="hash-link" aria-label="Direct link to rav1e" title="Direct link to rav1e">​</a></h3>
+<p><a href="https://wiki.x266.mov/docs/encoders/rav1e" target="_blank" rel="noopener noreferrer">rav1e</a> is an AV1 encoder written in Rust &amp; Assembly. Developed by the open-source community alongside Xiph, it brings a unique approach to AV1 encoding with its focus on safety and correctness.</p>
+<p>Links:</p>
+<ul>
+<li>Wiki page: <a href="https://wiki.x266.mov/docs/encoders/rav1e" target="_blank" rel="noopener noreferrer">rav1e</a></li>
+<li>Git repository: <a href="https://github.com/xiph/rav1e" target="_blank" rel="noopener noreferrer">https://github.com/xiph/rav1e</a></li>
+<li>Documentation: <a href="https://github.com/xiph/rav1e/tree/master/doc#readme" target="_blank" rel="noopener noreferrer">https://github.com/xiph/rav1e/tree/master/doc#readme</a></li>
+</ul>
+<ol>
+<li>
+<p><strong>Safety &amp; Reliability</strong></p>
+<ul>
+<li>Being written in Rust, rav1e emphasizes memory safety and thread safety.</li>
+<li>This focus on safety translates to a more stable and reliable encoding process, with reduced risks of crashes or undefined behavior.</li>
+</ul>
+</li>
+<li>
+<p><strong>High Fidelity</strong></p>
+<ul>
+<li>At high fidelity targets - an area where AV1 usually lacks - rav1e is a strong contender compared to other encoders.</li>
+<li>It excels in preserving fine details and textures, making it a good choice for high-fidelity encoding.</li>
+</ul>
+</li>
+<li>
+<p><strong>Quality</strong></p>
+<ul>
+<li>While not typically matching aomenc or SVT-AV1 in pure compression efficiency, rav1e can produce high-quality output videos.</li>
+<li>It often achieves a good balance between quality and encoding time, especially at medium-speed settings.</li>
+</ul>
+</li>
+<li>
+<p><strong>Perceptually Driven</strong></p>
+<ul>
+<li>rav1e's development is driven by visual fidelity, without relying heavily on metrics.</li>
+<li>This focus on perceptual quality leads to a stronger foundation for future potential improvements in visual quality, as well as making the encoder very easy to use as it does not require excessive tweaking.</li>
+</ul>
+</li>
+</ol>
+<p>rav1e is well-suited for:</p>
+<ul>
+<li>Projects where stability is paramount</li>
+<li>Users who prioritize a community-driven, open-source development approach</li>
+<li>Encoding tasks where a balance between quality and speed is needed, but the absolute fastest speeds are not required</li>
+</ul>
+<p>Some limitations of rav1e include:</p>
+<ul>
+<li>Lagging development compared to other encoders</li>
+<li>Slower encoding speeds compared to SVT-AV1 at similar quality &amp; size</li>
+<li>Fewer advanced options compared to other encoders</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="aomenc-libaom">aomenc (libaom)<a href="https://wiki.x266.mov/blog/av1-for-dummies#aomenc-libaom" class="hash-link" aria-label="Direct link to aomenc (libaom)" title="Direct link to aomenc (libaom)">​</a></h3>
+<p><a href="https://wiki.x266.mov/docs/encoders/aomenc" target="_blank" rel="noopener noreferrer">aomenc</a>, based on the libaom library, is the reference encoder for AV1. Developed by the Alliance for Open Media (AOM), it is the benchmark for AV1 encoding quality and compliance.</p>
+<p>Links:</p>
+<ul>
+<li>Wiki page: <a href="https://wiki.x266.mov/docs/encoders/aomenc" target="_blank" rel="noopener noreferrer">aomenc</a></li>
+<li>Git repository: <a href="https://aomedia.googlesource.com/aom/" target="_blank" rel="noopener noreferrer">https://aomedia.googlesource.com/aom/</a></li>
+</ul>
+<ol>
+<li>
+<p><strong>Encoding Quality</strong></p>
+<ul>
+<li>aomenc is widely regarded as the gold standard for AV1 encoding quality.</li>
+<li>It often achieves high compression efficiency among AV1 encoders, especially at slower speed settings.</li>
+<li>The encoder squeezes out nearly every last bit of efficiency from the AV1 codec, making it ideal for archival purposes or when quality per bit is critical.</li>
+</ul>
+</li>
+<li>
+<p><strong>Encoding Speed</strong></p>
+<ul>
+<li>aomenc is generally the slowest among major AV1 encoders.</li>
+<li>It offers 13 CPU speed levels (0-12), but even at its fastest settings, it's typically slower than other encoders at their slower settings.</li>
+<li>The slow speed is often considered a trade-off for its high compression efficiency.</li>
+</ul>
+</li>
+<li>
+<p><strong>Extensive Options</strong></p>
+<ul>
+<li>As the reference implementation, aomenc offers the most comprehensive encoding options.</li>
+<li>It provides fine-grained control over nearly every aspect of the AV1 encoding process.</li>
+<li>Advanced users can tweak many parameters to optimize for specific content types or encoding scenarios.</li>
+</ul>
+</li>
+<li>
+<p><strong>Flexibility</strong></p>
+<ul>
+<li>Being the reference encoder, aomenc produces highly standards-compliant AV1 bitstreams that take advantage of the full arsenal of AV1 features.</li>
+<li>It supports 4:2:0 and 4:4:4 chroma subsampling, 8- to 12-bit color depth, and various other advanced features that more specialized encoders like SVT-AV1 do not support.</li>
+</ul>
+</li>
+</ol>
+<p>aomenc is ideal for:</p>
+<ul>
+<li>Scenarios where achieving the highest possible quality is the primary goal</li>
+<li>Archival encoding where compression efficiency is crucial</li>
+<li>Research and development in video compression</li>
+<li>Encoding projects where encoding time is not a significant constraint</li>
+</ul>
+<p>Some drawbacks of aomenc include:</p>
+<ul>
+<li>Unresponsive development driven by legacy metrics, leading to slower adoption of new techniques and ignoring improvements communicated by people outside the Google development team</li>
+<li>Cripplingly difficult to use for beginners, with a culture of cargo-culting settings</li>
+<li>Slow encoding speeds compared to other AV1 encoders, which has less of an impact on the quality of the output than it used to compared to maturing encoders like SVT-AV1</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="svt-av1-psy">SVT-AV1-PSY<a href="https://wiki.x266.mov/blog/av1-for-dummies#svt-av1-psy" class="hash-link" aria-label="Direct link to SVT-AV1-PSY" title="Direct link to SVT-AV1-PSY">​</a></h3>
+<p><a href="https://wiki.x266.mov/docs/encoders/svt-av1-psy" target="_blank" rel="noopener noreferrer">SVT-AV1-PSY</a> is a community fork of the SVT-AV1 encoder focused on psychovisual optimizations to enhance perceived visual quality. It aims at closing the distance between SVT-AV1's high speeds and the perceptual quality of aomenc's slow brute force approach.</p>
+<p>Links:</p>
+<ul>
+<li>Wiki page: <a href="https://wiki.x266.mov/docs/encoders/svt-av1-psy" target="_blank" rel="noopener noreferrer">SVT-AV1-PSY</a></li>
+<li>Git repository: <a href="https://github.com/gianni-rosato/svt-av1-psy" target="_blank" rel="noopener noreferrer">https://github.com/gianni-rosato/svt-av1-psy</a></li>
+<li>Documentation: <a href="https://github.com/gianni-rosato/svt-av1-psy/blob/master/Docs/PSY-Development.md" target="_blank" rel="noopener noreferrer">https://github.com/gianni-rosato/svt-av1-psy/blob/master/Docs/PSY-Development.md</a></li>
+</ul>
+<ol>
+<li>
+<p><strong>Perceptual Optimizations</strong></p>
+<ul>
+<li>SVT-AV1-PSY introduces various psychovisual enhancements to improve the perceived quality of encoded video.</li>
+<li>These optimizations often result in output that looks better to the human eye, even if it might not always score as well in objective metrics.</li>
+</ul>
+</li>
+<li>
+<p><strong>Additional Features</strong></p>
+<ul>
+<li>Introduces new options like variance boost, which can help maintain detail in high-contrast scenes.</li>
+<li>Offers alternative curve options for more nuanced control over the encoding process.</li>
+<li>Extends the CRF (Constant Rate Factor) range to 70 (from 63 in mainline SVT-AV1), allowing for extremely low-bitrate encodes.</li>
+<li>Introduces additional tuning options, including a new "SSIM with Subjective Quality Tuning" mode that can improve perceived quality.</li>
+</ul>
+</li>
+<li>
+<p><strong>Visual Fidelity Focus</strong></p>
+<ul>
+<li>Aims to produce more visually pleasing results, sometimes at the expense of metric performance.</li>
+<li>Includes options like sharpness adjustment and adaptive film grain synthesis which can significantly impact the visual characteristics of the output.</li>
+<li>Features modified defaults driven by perceptual quality considerations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Extended HDR Support</strong></p>
+<ul>
+<li>Includes built-in support for Dolby Vision &amp; HDR10+ encoding.</li>
+<li>This makes it particularly useful for encoding HDR content without requiring additional post-processing steps or external tools.</li>
+</ul>
+</li>
+<li>
+<p><strong>Performance</strong></p>
+<ul>
+<li>Based on SVT-AV1, it retains the performance characteristics of its parent encoder.</li>
+<li>Adds super slow presets (-2 and -3) for research purposes and extremely high-quality encoding. These additional presets can be useful for creating reference encodes or applications where encoding time is not a concern.</li>
+</ul>
+</li>
+</ol>
+<p>SVT-AV1-PSY is particularly well-suited for:</p>
+<ul>
+<li>Encoding scenarios where subjective visual quality is prioritized over pure metric performance</li>
+<li>HDR content encoding in Dolby Vision or HDR10+</li>
+<li>Users who want fine-grained control over psychovisual aspects of encoding</li>
+<li>Projects that require a balance between the speed of SVT-AV1 and enhanced visual quality</li>
+<li>Encoding challenging content with complex textures or high-contrast scenes</li>
+</ul>
+<p>Some drawbacks are:</p>
+<ul>
+<li>Everything that applies to SVT-AV1, including the lack of support for 4:4:4 chroma subsampling and 12-bit color depth that are useful in specific scenarios</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion-1">Conclusion<a href="https://wiki.x266.mov/blog/av1-for-dummies#conclusion-1" class="hash-link" aria-label="Direct link to Conclusion" title="Direct link to Conclusion">​</a></h3>
+<p>While SVT-AV1 is known for being fast, aomenc is renowned for its high-quality output, and rav1e is recognized for its safety and reliability, each encoder has strengths and weaknesses. The best encoder for you will depend on your specific needs and priorities.</p>
+<p>As this guide is focused on offline encoding, <strong>SVT-AV1-PSY</strong> combines aomenc's traditional perceptual strength with SVT-AV1's speed. Like rav1e, it is easy to use due to strong default settings that prevent cargo culting, and overall it can be considered the best of all three worlds. It is actively developed by a team of responsive community members, and it is a great choice for most users who want a balance between quality per bit, speed, and ease of use.</p>
+<p>The "best" encoder often depends on your use case, content type, and target audience. It's always worth experimenting with different encoders and settings to find the optimal balance for your needs. Many advanced users even employ multiple encoders in their workflows, choosing the most appropriate tool for each specific task or content type.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="final-conclusion">Final Conclusion<a href="https://wiki.x266.mov/blog/av1-for-dummies#final-conclusion" class="hash-link" aria-label="Direct link to Final Conclusion" title="Direct link to Final Conclusion">​</a></h2>
+<p>The AV1 ecosystem has grown to the point where a single comprehensive guide cannot effectively cover the entire extent of the available tools and techniques for AV1 encoding across <em>every</em> use case. If you want more detail about a particular tool, where to acquire it, or how to compile an encoder, you can find that information throughout the various wiki entries linked on this page.</p>
+<p>Reading can get you far, but it is natural to have questions. Please don't hesitate to connect with the team behind the Codec Wiki and many of these tools via our <a href="https://discord.gg/bbQD5MjDr3" target="_blank" rel="noopener noreferrer">AV1 for Dummies Discord server</a>. We're happy to help you with anything you need, and your questions and feedback help the wiki grow and improve. We hope you enjoy your journey into AV1 encoding, and we wish you the best of luck in your encoding endeavors!</p>]]></content:encoded>
+            <category>video</category>
+            <category>compression</category>
+        </item>
         <item>
             <title><![CDATA[Observing SVT-AV1 v2.1.0's improvements: A New Deep Dive]]></title>
             <link>https://wiki.x266.mov/blog/svt-av1-second-deep-dive</link>
@@ -810,6 +1113,7 @@ These interactive sites usually deploy a live script, like a Javascript framewor
             <pubDate>Sun, 03 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[This guide will show you how to encode in AV1 the *right* and *optimal* way.]]></description>
             <content:encoded><![CDATA[<p>This guide will show you how to encode in AV1 the <em>right</em> and <em>optimal</em> way. Yes, you using standalone <code>libaom</code>, <code>libsvtav1</code>, and <code>librav1e</code> from FFmpeg or even piping <code>yuv4mpeg</code> into <strong>mainline</strong> aomenc are all unoptimal.</p>
+<div class="theme-admonition theme-admonition-danger admonition_xJq3 alert alert--danger"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M5.05.31c.81 2.17.41 3.38-.52 4.31C3.55 5.67 1.98 6.45.9 7.98c-1.45 2.05-1.7 6.53 3.53 7.7-2.2-1.16-2.67-4.52-.3-6.61-.61 2.03.53 3.33 1.94 2.86 1.39-.47 2.3.53 2.27 1.67-.02.78-.31 1.44-1.13 1.81 3.42-.59 4.78-3.42 4.78-5.56 0-2.84-2.53-3.22-1.25-5.61-1.52.13-2.03 1.13-1.89 2.75.09 1.08-1.02 1.8-1.86 1.33-.67-.41-.66-1.19-.06-1.78C8.18 5.31 8.68 2.45 5.05.32L5.03.3l.02.01z"></path></svg></span>Outdated Information</div><div class="admonitionContent_BuS1"><p>While a lot of the information presented in this guide is still relevant and correct, the AV1 ecosystem has changed dramatically since this guide's inception which has demanded a rewrite. Please see the <a href="https://wiki.x266.mov/blog/av1-for-dummies" target="_blank" rel="noopener noreferrer">AV1 for Dummies</a> blog post for more information.</p></div></div>
 <p><img decoding="async" loading="lazy" alt="Compare" src="https://wiki.x266.mov/assets/images/compare-guide-6feb966fbd9d73be4a3097c41691c4ad.webp" width="1045" height="588" class="img_ev3q"></p>
 <p>In this guide, we'll be installing Av1an for chunked encoding and infinite threading, because the current state of AV1 encoders, except for <a href="https://wiki.x266.mov/docs/encoders/SVT-AV1" target="_blank" rel="noopener noreferrer">SVT-AV1</a>, unfortunately lacks threading and will only use very low amount of cores, which hampers speeds. The only caveat to this approach is <strong>RAM consumption</strong>, encoding 2160p (4K) with <a href="https://wiki.x266.mov/docs/encoders/aomenc" target="_blank" rel="noopener noreferrer">aomenc</a> with 4 workers could take upwards of <strong>16GB</strong> of RAM! So do keep this in mind.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="installing-the-tools">Installing the Tools<a href="https://wiki.x266.mov/blog/av1-encoding-for-dummies#installing-the-tools" class="hash-link" aria-label="Direct link to Installing the Tools" title="Direct link to Installing the Tools">​</a></h2>
@@ -871,7 +1175,7 @@ These interactive sites usually deploy a live script, like a Javascript framewor
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">brew update </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> brew upgrade</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">brew </span><span class="token function" style="color:#d73a49">install</span><span class="token plain"> rav1e aom mkvtoolnix ffmpeg</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># Usually you must run MacPorts commands for package installations as root</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">port upgrade outdated</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">port </span><span class="token function" style="color:#d73a49">install</span><span class="token plain"> av1an</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>This is the easiest way to get everything set up &amp; working to produce AV1 video with <code>rav1e</code> or mainline <code>aomenc</code> &amp; Av1an. You can check that things are installed by running the following commands &amp; parsing their output:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">% av1an </span><span class="token parameter variable" style="color:#36acaa">--version</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">av1an </span><span class="token number" style="color:#36acaa">0.4</span><span class="token plain">.1-unstable </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">rev e10880d</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">Release</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">* Compiler</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  rustc </span><span class="token number" style="color:#36acaa">1.70</span><span class="token plain">.0 </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">LLVM </span><span class="token number" style="color:#36acaa">16.0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">* Target Triple</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  aarch64-apple-darwin</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">* Date Info</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  Commit Date:  </span><span class="token number" style="color:#36acaa">2023</span><span class="token plain">-06-25</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">* VapourSynth Plugins</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  systems.innocent.lsmas </span><span class="token builtin class-name">:</span><span class="token plain"> Not found</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  com.vapoursynth.ffms2  </span><span class="token builtin class-name">:</span><span class="token plain"> Not found</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">% rav1e </span><span class="token parameter variable" style="color:#36acaa">--version</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">grep</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"release"</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-C</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain">      </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rav1e </span><span class="token number" style="color:#36acaa">0.6</span><span class="token plain">.6 </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">release</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rustc </span><span class="token number" style="color:#36acaa">1.69</span><span class="token plain">.0 </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">84c898d65 </span><span class="token number" style="color:#36acaa">2023</span><span class="token plain">-04-16</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">built from a </span><span class="token builtin class-name">source</span><span class="token plain"> tarball</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> aarch64-apple-darwin</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">% rav1e </span><span class="token parameter variable" style="color:#36acaa">--version</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">grep</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"release"</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-C</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rav1e </span><span class="token number" style="color:#36acaa">0.6</span><span class="token plain">.6 </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">release</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rustc </span><span class="token number" style="color:#36acaa">1.69</span><span class="token plain">.0 </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">84c898d65 </span><span class="token number" style="color:#36acaa">2023</span><span class="token plain">-04-16</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">built from a </span><span class="token builtin class-name">source</span><span class="token plain"> tarball</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> aarch64-apple-darwin</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">% aomenc </span><span class="token parameter variable" style="color:#36acaa">--help</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">grep</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"AOMedia"</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-C</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Included encoders:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    av1    - AOMedia Project AV1 Encoder </span><span class="token number" style="color:#36acaa">3.6</span><span class="token plain">.1 </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">default</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Use </span><span class="token parameter variable" style="color:#36acaa">--codec</span><span class="token plain"> to switch to a non-default encoder.</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>Notice <code>systems.innocent.lsmas : Not found</code> in the Av1an output. This means you won't be able to use the lsmash chunking method through vapoursynth &amp; may instead have to rely on hybrid chunking, through <code>-m hybrid</code>. This is slower &amp; takes up disk space while encoding, but still works. A sample Av1an command with this basic installation may look like this:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">av1an </span><span class="token parameter variable" style="color:#36acaa">-i</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"input"</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-y</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--resume</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">--verbose</span><span class="token plain"> --split-method av-scenechange </span><span class="token parameter variable" style="color:#36acaa">-m</span><span class="token plain"> hybrid </span><span class="token parameter variable" style="color:#36acaa">-c</span><span class="token plain"> mkvmerge </span><span class="token parameter variable" style="color:#36acaa">-e</span><span class="token plain"> rav1e </span><span class="token parameter variable" style="color:#36acaa">--force</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-v</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">" --tiles 8 -s 4 --quantizer 80 --no-scene-detection"</span><span class="token plain"> --photon-noise </span><span class="token number" style="color:#36acaa">7</span><span class="token plain"> --chroma-noise --pix-format yuv420p10le </span><span class="token parameter variable" style="color:#36acaa">-w</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">8</span><span class="token plain"> </span><span class="token parameter variable" style="color:#36acaa">-o</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">"output.mkv"</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
