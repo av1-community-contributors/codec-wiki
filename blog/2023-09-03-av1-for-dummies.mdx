@@ -20,6 +20,9 @@ This guide will show you how to encode in AV1 the *right* and *optimal* way. Yes
 
 <!--truncate-->
 
+:::danger Outdated Information
+While a lot of the information presented in this guide is still relevant and correct, the AV1 ecosystem has changed dramatically since this guide's inception which has demanded a rewrite. Please see the [AV1 for Dummies](https://wiki.x266.mov/blog/av1-for-dummies) blog post for more information.
+:::
 
 ![Compare](/img/compare-guide.webp)
 
@@ -118,7 +121,7 @@ av1an 0.4.1-unstable (rev e10880d) (Release)
   com.vapoursynth.ffms2  : Not found
 ```
 ```bash
-% rav1e --version | grep "release" -C 1      
+% rav1e --version | grep "release" -C 1
 rav1e 0.6.6 () (release)
 rustc 1.69.0 (84c898d65 2023-04-16) (built from a source tarball) aarch64-apple-darwin
 ```
@@ -362,14 +365,14 @@ Now let's dissect it one-by-one
 <picture>
     <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/tiling_av1.avif?token=GHSAT0AAAAAACEZPDXIZARY5MGSTJW4SI22ZHY636A" type="image/avif" />
     <img src="https://autumn.revolt.chat/attachments/HwhZjoDsdzLZsJM2mjzX7lEDmJn1xcYNdrQqmOxPYW/tiling_av1.jpeg" alt="Tiling" width="1280" height="768" loading="lazy" />
-</picture> 
+</picture>
 
 :::note Tile usage
 Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``tile-columns`` and 1 ``tile-rows`` for 2160p (4K)
 :::
 
 - ``--lag-in-frames=64`` Similar to x264/x265 `rc-lookahead`. Sets a number of frames to look ahead for frametype and ratecontrol, allowing for better compression decision making. Setting to a value greater than 64 is generally not considered useful.
- 
+
 - ``--aq-mode`` adaptive quantization mode, 0 is better most of the time
 
 - ``--tune-content=psy --tune=ssim`` As the name suggests they are tunes that affect the video output, for the better, and for the worst
@@ -377,7 +380,7 @@ Do NOT use tiles for 1080p and below, use 1 ``tile-columns`` at 1440p (2K), 2 ``
 :::info Tunes to use
 Set ``tune-content`` to ``animation`` if you're encoding above ``cq-level=30`` A.K.A lower quality, despite it's name
 Set ``tune-content`` to ``psy`` for everything else, **do not use if you encode above ``cq-level=30``**
-For ``tune``, this is a bit tricky. For now, the meta seems to be ``ssim``, but back then it was ``lavish`` which is considered THE best tune because it's based on [butteraugli](https://github.com/google/butteraugli). Now it's fallen behind because its more blurry than ``ssim``, and before that it was ``butteraugli``, and then ``ipq_vmaf_psy``, and finally just ``ipq``. 
+For ``tune``, this is a bit tricky. For now, the meta seems to be ``ssim``, but back then it was ``lavish`` which is considered THE best tune because it's based on [butteraugli](https://github.com/google/butteraugli). Now it's fallen behind because its more blurry than ``ssim``, and before that it was ``butteraugli``, and then ``ipq_vmaf_psy``, and finally just ``ipq``.
 If you use any of the VMAF tunes, **you need to specify ``--vmaf-model-path=`` to where you put it**.
 :::
 

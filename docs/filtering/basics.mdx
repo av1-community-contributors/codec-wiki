@@ -22,7 +22,7 @@ for some more advanced techniques.
 Order matters when applying filters to a video. There are certain actions that must be taken at the very start, and certain actions that are better to be done
 later in a filter chain. The following image shows a recommended order for many of the most common filter actions:
 
-![filter chain](/img/vs2.png)
+![filter chain](/img/vs2.webp)
 
 If this seems a bit complicated at first, that's okay. We will learn about each of these steps one at a time, and when
 each of these filters might be needed.
@@ -80,20 +80,20 @@ clip.set_output(0)
 
 ## Cropping
 
-![screenshot](/img/crop_1.png)
+![screenshot](/img/crop_1.jpg)
 
 Sometimes, you may encounter a source that has black bars on the sides or on the top and bottom. Generally, we don't like to keep these, and want to remove them. This process is called "cropping".
 
 First, we need to figure out how many pixels to crop from each side. Fortunately, vs-preview has a tool to make this easy. Using this tool, which is found under the "Misc" section in the bottom right
 of the app, allows us to experiment with crop values and find the correct ones without having to reload the Vapoursynth script.
 
-![crop tool](/img/crop_tool.png)
+![crop tool](/img/crop_tool.webp)
 
 Once we flip the tool to "On", we can adjust each of the dimensions until we see the black borders disappear. We want to try to get as exact as possible, although the crop values must be a multiple of 2
 when working with YUV420 video (which is the most common). In this case, we know we want to remove from the top and bottom, so we will adjust those values until we find the right ones. Note that the size of the bars
 may often be the same on both sides, but not always, so do be careful to check both sides.
 
-![zoom tool](/img/zoom_tool.png)
+![zoom tool](/img/zoom_tool.avif)
 
 vs-preview's zoom tool shown here can also be helpful to ensure we've gotten the right values.
 
@@ -105,7 +105,7 @@ clip = clip.std.Crop(0, 0, 138, 138)
 
 Remember to turn off the crop tool in vs-preview, or else we'll be doubling the crops from here on. Now, go ahead and reload the preview with Ctrl+R. No more black bars.
 
-![screenshot](/img/crop_2.png)
+![screenshot](/img/crop_2.jpg)
 
 ## Resizing
 

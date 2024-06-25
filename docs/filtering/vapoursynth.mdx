@@ -5,6 +5,10 @@ sidebar_position: 2
 
 # Vapoursynth
 
+> VapourSynth is an application for video manipulation. Or a plugin. Or a library. It’s hard to tell because it has a core library written in C++ and a Python module to allow video scripts to be created.
+
+*Fredrik Mellbin, creator of VapourSynth*
+
 <picture>
   <source
     srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/vs_edit_script.avif?token=GHSAT0AAAAAACEZPDXJ6SHSUQIMUOGQXQTEZHY7K4A"
@@ -18,16 +22,33 @@ sidebar_position: 2
   />
 </picture>{" "}
 
-"VapourSynth is an application for video manipulation. Or a plugin. Or a library. It’s hard to tell because it has a core library written in C++ and a Python module to allow video scripts to be created."
+# Introduction
 
--- Fredrik Mellbin, creator of VapourSynth
+In the realm of video processing, one will frequently encounter media with various quality issues. These can range from minor imperfections to significant degradation, including:
+
+- Excessive film grain or noise that significantly increases bitrate due to its unpredictable nature
+- Visible banding artifacts
+- Unwanted halos around objects
+- Interlacing issues in older, unrestored footage
+- Telecine artifacts from improper film-to-video conversion
+- And more, on our [video artifacts](../introduction/video-artifacts.mdx) page.
+
+To address these challenges, video filtering techniques are employed. Currently, there are three primary software frameworks used for video filtering:
+
+1. [FFmpeg](../utilities/ffmpeg.mdx)
+2. [VapourSynth](https://vapoursynth.com)
+3. [AviSynth](http://avisynth.nl/index.php/Main_Page)
+
+VapourSynth is designed as a 21st-century upgrade and rewrite of AviSynth, which was originally created by Ben Rudiak-Gould, Edwin van Eggelen, Klaus Post, Richard Berg, and Ian Brabham in May 2000. One of the most attractive features of this complete rewrite is its improved multithreading capability, an area where AviSynth struggled due to its aging infrastructure.
+
+Some longtime AviSynth users are reluctant to switch to VapourSynth, preferring to stick with a familiar workflow. There is nothing wrong with this preference, as both tools have their merits in video processing; that being said, the Codec Wiki's *Filtering* section focuses primarily on VapourSynth (and occaisonally FFmpeg). It is important to note that working with VapourSynth requires a basic understanding of Python, as the filtering process involves scripting.
 
 ## Installation
 
 ### Microsoft Windows
 
-- At the current time of writing, Python 3.12 is required. This will change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html)
-- Download the installer (`.exe`) unless you have a reason for using portable
+- At the time of writing, Python 3.12 is required. This will change in the future so consult from [their website](http://www.vapoursynth.com/doc/installation.html)
+- Download the installer (`.exe`) unless you require portability
 - Install it
 
 ### Arch Linux
