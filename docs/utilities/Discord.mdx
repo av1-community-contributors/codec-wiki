@@ -1,0 +1,91 @@
+---
+title: Discord
+sidebar_position: 14
+---
+
+# Discord
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+:::caution Pending Review
+The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
+:::
+
+This entry is a bit different from others, and may be moved to a blog post in the future. Below are a number of tables that enumerate the codecs Discord supports for local playback (*not* livestreaming). These tables are based on community testing across a number of platforms, and are not exhaustive.
+
+## Key
+
+The key has a number of emojis corresponding to full support, partial support, support with the [Discord embed workaround](https://wiki.x266.mov/blog/embedding-the-un-embeddable), and no support.
+
+- ✅ Full support
+- ⚠️ Partial support
+- 🛠️ Support with the Discord embed workaround
+- ❔ Untested or unknown
+- ❌ No support
+
+If the browser isn't compatible with a particular platform, it will be marked as N/A.
+
+## Video Codecs & Containers
+
+**[H.264](../video/AVC.mdx)** 4:2:0 8-bit lossy | .mp4
+
+| Browser | macOS | Windows | iOS | Android | Linux |
+|---------|:-----:|:-------:|:---:|:-------:|:-----:|
+| Chrome  | ✅     | ✅      | ❔  | ❔       | ✅    |
+| Firefox | ✅     | ✅      | ❔  | ❔       | ✅    |
+| Safari  | ✅     | N/A     | ✅  | N/A      | N/A   |
+| App    | ✅     | ✅      | ✅  | ✅       | ✅    |
+
+**[H.265](../video/HEVC.mdx)** 4:2:0 8-bit lossy | .mp4
+
+| Browser | macOS | Windows | iOS | Android | Linux |
+|---------|:-----:|:-------:|:---:|:-------:|:-----:|
+| Chrome  | ✅     | ⚠️**      | ❔  | ❔       | ❌    |
+| Firefox | ❌     | ⚠️***      | ❔  | ❔       | ❌    |
+| Safari  | ⚠️*     | N/A     | ⚠️*  | N/A      | N/A   |
+| App    | ✅     | ⚠️**      | ⚠️*  | ✅       | ❌    |
+
+\* Only supports H.265 with the `hvcC` box in the MP4 container. These streams can be encoded by adding `-tag:v hvc1` to an FFmpeg encoding command.
+
+\** Requires you have hardware accelerated HEVC decoding support.
+
+\*** Firefox on Windows requires you have hardware accelerated HEVC decoding support and the `media.wmf.hevc.enabled` flag enabled in `about:config`.
+
+**[H.265](../video/HEVC.mdx)** 4:2:0 8-bit lossy | .mov
+
+| Browser | macOS | Windows | iOS | Android | Linux |
+|---------|:-----:|:-------:|:---:|:-------:|:-----:|
+| Chrome  | ✅     | ⚠️**      | ❔  | ❔       | ❌    |
+| Firefox | ❌     | ⚠️***      | ❔  | ❔       | ❌    |
+| Safari  | ⚠️*     | N/A     | ⚠️*  | N/A      | N/A   |
+| App    | ✅     | ⚠️**      | ⚠️*  | ✅       | ❌    |
+
+\* Only supports H.265 with the `hvcC` box in the MOV container. These streams can be encoded by adding `-tag:v hvc1` to an FFmpeg encoding command.
+
+\** Requires you have hardware accelerated HEVC decoding support.
+
+\*** Firefox on Windows requires you have hardware accelerated HEVC decoding support and the `media.wmf.hevc.enabled` flag enabled in `about:config`.
+
+**[H.265](../video/HEVC.mdx)** 4:2:0 10-bit lossy | .mp4
+
+| Browser | macOS | Windows | iOS | Android | Linux |
+|---------|:-----:|:-------:|:---:|:-------:|:-----:|
+| Chrome  | ✅     | ❌      | ❔  | ❔       | ❌    |
+| Firefox | ❌     | ❌       | ❔  | ❔       | ❌    |
+| Safari  | ⚠️*     | N/A     | ⚠️*  | N/A      | N/A   |
+| App    | ✅     | ❌      | ⚠️*  | ✅       | ❌    |
+
+\* Only supports H.265 with the `hvcC` box in the MP4 container. These streams can be encoded by adding `-tag:v hvc1` to an FFmpeg encoding command.
+
+**[H.265](../video/HEVC.mdx)** 4:2:0 10-bit lossy | .mov
+
+| Browser | macOS | Windows | iOS | Android | Linux |
+|---------|:-----:|:-------:|:---:|:-------:|:-----:|
+| Chrome  | ✅     | ❌      | ❔  | ❔       | ❌    |
+| Firefox | ❌     | ❌       | ❔  | ❔       | ❌    |
+| Safari  | ⚠️*     | N/A     | ⚠️*  | N/A      | N/A   |
+| App    | ✅     | ❌      | ⚠️*  | ✅       | ❌    |
+
+\* Only supports H.265 with the `hvcC` box in the MOV container. These streams can be encoded by adding `-tag:v hvc1` to an FFmpeg encoding command.
