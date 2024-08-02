@@ -65,14 +65,14 @@ First, cloning
 ```bash
 git clone https://chromium.googlesource.com/webm/libvpx
 cd libvpx
-mkdir build && cd build
+mkdir libvpx_build && cd libvpx_build
 ```
 
 ### ./configure file
 Now here comes the annoying part, the configure file have really bad defaults. So you will need to adjust them, here are some recommended options you should use:
 
 ```bash
-./configure --cpu=native --extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native" --as=auto --enable-vp9-highbitdepth --enable-libyuv --enable-webm-io --enable-vp9 --enable-runtime-cpu-detect --enable-internal-stats --enable-postproc --enable-vp9-postproc --enable-static --disable-shared --enable-vp9-temporal-denoising --disable-unit-tests --disable-docs --enable-multithread
+../configure --cpu=native --extra-cxxflags="-flto" --extra-cflags="-flto" --as=auto --enable-vp9-highbitdepth --enable-libyuv --enable-webm-io --enable-vp9 --enable-runtime-cpu-detect --enable-internal-stats --enable-postproc --enable-vp9-postproc --enable-static --disable-shared --enable-vp9-temporal-denoising --disable-unit-tests --disable-docs --enable-multithread
 ```
 
 Now let's break down what each of them do.
@@ -81,8 +81,8 @@ Now let's break down what each of them do.
 - `--cpu=native`
 Native CPU optimizations.
 
-- `--extra-cxxflags="-O3 -flto -march=native" --extra-cflags="-O3 -flto -march=native"`
-More native CPU optimizations for faster encoding.
+- `--extra-cxxflags="-flto" --extra-cflags="-flto"`
+More CPU optimizations for faster encoding.
 
 - `--as=auto`
 Set the assembler to auto, so it can choose between `yasm` and `nasm`.
@@ -340,8 +340,8 @@ This option enables a temporal layer model, which helps with coding efficiency. 
 All of these options are only available for the standalone vpxenc program. Here is a sample FFmpeg command line interpretation of the commands above, with some options missing:
 
 ```bash
-ffmpeg -i input.mkv -c:v libvpx-vp9 -pix_fmt yuv420p10le -pass 1 -quality good -threads 4 -profile:v 2 -lag-in-frames 25 -crf 25 -b:v 0 -g 240 -cpu-used 4 -auto-alt-ref 1 -arnr-maxframes 7 -arnr-strength 4 -aq-mode 0 -tile-rows 0 -tile-columns 1 -enable-tpl 1 -row-mt 1 -f null -
-ffmpeg -i input.mkv -c:v libvpx-vp9 -pix_fmt yuv420p10le -pass 2 -quality good -threads 4 -profile:v 2 -lag-in-frames 25 -crf 25 -b:v 0 -g 240 -cpu-used 4 -auto-alt-ref 1 -arnr-maxframes 7 -arnr-strength 4 -aq-mode 0 -tile-rows 0 -tile-columns 1 -enable-tpl 1 -row-mt 1 output.mkv
+ffmpeg -i input.mkv -c:v libvpx-vp9 -pix_fmt yuv420p10le -pass 1 -quality good -threads 4 -profile:v 2 -lag-in-frames 25 -crf 25 -b:v 0 -g 240 -cpu-used 3 -auto-alt-ref 6 -arnr-maxframes 7 -arnr-strength 4 -aq-mode 0 -tune-content default -tile-rows 0 -tile-columns 1 -enable-tpl 1 -row-mt 1 -f null -
+ffmpeg -i input.mkv -c:v libvpx-vp9 -pix_fmt yuv420p10le -pass 2 -quality good -threads 4 -profile:v 2 -lag-in-frames 25 -crf 25 -b:v 0 -g 240 -cpu-used 3 -auto-alt-ref 6 -arnr-maxframes 7 -arnr-strength 4 -aq-mode 0 -tune-content default -tile-rows 0 -tile-columns 1 -enable-tpl 1 -row-mt 1 output.mkv
 ```
 
 Alternatively, you can pass a raw .y4m stream to standalone vpxenc & encode that way.
