@@ -80,39 +80,43 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         ```
     </TabItem>
     <TabItem value="windows" label="Windows">
-        **MSYS2** is the best option for building in Windows, as it provides a Unix-like environment for building SVT-AV1-PSY. This makes the compilation procedure the same as described for Linux & macOS. The full build process is detailed here.
+        **Clang** is the best option for building in Windows, as it results in faster binaries than building with MSYS2 (either GCC/Clang) and MSVC.
 
-        0. Make sure you have downloaded & installed MSYS2 from [the MSYS2 website](https://www.msys2.org/) before beginning the build process.
+        > **Important**: All steps below are for **PowerShell**, **not** Command Prompt, but you can use Command Prompt as long as you change the `$env` command to the Command Prompt equivalent.
 
-        1. Start the UCRT64 console & install the required dependencies:
-        ```bash
-        pacman -Syu --needed git mingw-w64-ucrt-x86_64-toolchain mingw-w64-ucrt-x86_64-cmake mingw-w64-ucrt-x86_64-ninja mingw-w64-ucrt-x86_64-yasm
-        ```
+        0. Make sure you have the following prerequisites before beginning the build process:
+        - [LLVM](https://github.com/llvm/llvm-project/releases/latest)
+        - [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools): Inside Build Tools, select "Desktop development with C++" and under optional, only MSVC and the Windows 11 SDK is needed, feel free to unselect other optionals.
+        - [CMake](https://cmake.org/download)
+        - [NASM](https://nasm.us)
+        - [Git](https://git-scm.com/downloads)
+        - [Ninja](https://github.com/ninja-build/ninja/releases/latest)
 
-        2. \[Optional\] Clang is the recommended compiler for SVT-AV1 & SVT-AV1-PSY, so you may wish to download it with the following command:
-
-        ```bash
-        pacman -Syu --needed mingw-w64-ucrt-x86_64-clang
-        ```
-
-        3. Now, we may follow the steps for Linux & macOS to complete building. Please note that CMake may require you to include `-G "Ninja"` in any CMake commands.
+        1. Clone the SVT-AV1-PSY repository:
 
         ```bash title="Clone SVT-AV1-PSY"
-        git clone https://github.com/gianni-rosato/svt-av1-psy
-        cd SVT-AV1/Build/linux
+        git clone https://github.com/gianni-rosato/svt-av1-psy.git
+        cd svt-av1-psy
         ```
 
-        In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires CMake version 3.16 or higher and either GCC or Clang. It is recommended to use Clang, and ideally it will be installed as per Step 2.
+        2. Configure compilation:
+
+        ```bash title="Configure SVT-AV1-PSY"
+        $env:Path = "C:\Program Files\LLVM\bin;" + $env:Path
+        $env:CC = "clang"
+        $env:CXX = "clang"
+        cmake --fresh -B svt_build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DSVT_AV1_LTO=OFF -DENABLE_AVX512=OFF -DCMAKE_CXX_FLAGS_RELEASE="-flto -DNDEBUG -O2 -march=native" -DCMAKE_C_FLAGS_RELEASE="-flto -DNDEBUG -O2 -march=native"
+        ```
+        **Note**: `-march=znver2` has been found to be the fastest on Windows, even on Ryzen 5000, 7000, and later series CPUs. This is the case even on Intel CPUs, please try `znver2` first, if it doesn't run, then try `-march=native`, `-march=x86-64-v3`, or potentially older Intel architecture, such as `-march=skylake`.
+        **Note**: If your CPU supports AVX512, you can enable it by changing `-DENABLE_AVX512=OFF` to `-DENABLE_AVX512=ON` for better performance.
+
+        3. Compile:
 
         ```bash title="Build release"
-        ./build.sh release
+        ninja -C svt_build
         ```
 
-        ```bash title="Statically build just the encoder with clang and enable link-time optimization"
-        ./build.sh jobs=8 all cc=clang cxx=clang++ no-dec enable-lto static native
-        ```
-
-        The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
+        The compiled binary will be in the `Bin/Release` directory.
     </TabItem>
 </Tabs>
 
