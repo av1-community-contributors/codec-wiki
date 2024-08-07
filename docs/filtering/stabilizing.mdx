@@ -8,3 +8,64 @@ sidebar_position: 7
 :::danger Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
+
+## Overview
+
+Stabilizing is a process of reducing unwanted camera movement and shakes in the video clip. This is particularly important as hard to predict global movement (like from hand-held camera) can decrease overall encoding efficiency. The most popular way of stabilizing video with [FFmpeg](../utilities/ffmpeg.mdx) is to use the [VidStab](https://github.com/georgmartius/vid.stab) library. For that you need a build of FFmpeg compiled with `--enable-libvidstab`.
+
+VidStab actually has two filters within FFmpeg.
+
+```shell
+ffmpeg -hide_banner -filters | grep vidstab
+ ... vidstabdetect     V->V       Extract relative transformations, pass 1 of 2 for stabilization (see vidstabtransform for pass 2).
+ ... vidstabtransform  V->V       Transform the frames, pass 2 of 2 for stabilization (see vidstabdetect for pass 1).
+```
+ The `vidstabdetect` is used for the first pass where the video transformations file (`.trf`) is generated and `vidstabtransform` for the second pass where transformations are actually applied. This implies the stabilization can't be achieved in realtime.
+
+## Usage
+
+To stabilize video using default parameters you need to run two FFmpeg commands:
+```shell
+ffmpeg -i input.mp4 -vf vidstabdetect -f null -
+ffmpeg -i input.mp4 -vf vidstabtransform output.mp4
+```
+
+A file called `transforms.trf` will be created in the directory you run FFmpeg from. After the second step finished you can safely remove it. The resulting `output.mp4` video will now have reduced shakiness.
+
+To stabilize a high framerate video with strong camera movement, set its transformations filename to `a.trf` and increase the output field of view you could use:
+```shell
+ffmpeg -i input.mp4 -vf vidstabdetect=shakiness=8:result=a.trf -f null -
+ffmpeg -i input.mp4 -vf vidstabtransform=smoothing=30:zoom=-5:input=a.trf output.mp4
+```
+
+:::tip
+Remember to set appropriate video/audio codec parameters in the command before `output.mp4`. You must not use `-c:v copy` as the video will be transformed.
+:::
+
+### vidstabdetect parameters
+
+- `result` - Sets output `.trf` file location
+- `shakiness` - The amount of movement reduction where `1` is the least reduction, `10` is the most reduction (highest stabilization) and `5` is the default
+- `accuracy` - The accuracy of movement reduction where `1` is the least accurate, `15` is the most accurate and `15` is also the default. This setting influences CPU usage during detection. FFmpeg actually didn't let me set value lower than `3`. `3` gave me `21 fps` and `15` gave `14 fps`. The process itself is rather CPU intensive.
+
+For description of all possible parameters take a look [here](https://ffmpeg.org/ffmpeg-filters.html#vidstabdetect-1).
+
+### vidstabtransform parameters
+
+- `input` - Sets input `.trf` file location created by `vidstabdetect`
+- `smoothing` - The number of frames in the future and past used for movement estimation where default is `10` (so 10 past and 10 future frames)
+- `zoom` - The amount of zoom expressed in percentage where the default is `0%`. It can be negative which will create zoom-out effect.
+- `interpol` - the type of interpolation used where `bilinear` is the default.
+  - `no` - no interpolation
+  - `linear` - only horizontal
+  - `bilinear` - faster but can result in blurry output
+  - `bicubic` - slower
+
+For description of all possible parameters take a look [here](https://ffmpeg.org/ffmpeg-filters.html#vidstabtransform-1).
+
+
+## Notes
+
+- The process of stabilization is lossly and can reduce the quality of video mainly because of zoom and interpolation used.
+- You might notice overall wobbliness in resulting video file especially with higher stabilization levels. That's just how this filter works.
+- As you'll need to run two passes anyways, you might also consider using two pass encoding as well depending on your use case.
