@@ -1,0 +1,104 @@
+---
+title: Lossless Compression
+sidebar_position: 3
+---
+
+# Lossless Compression
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+Lossless compression is a method of data compression that allows the original data to be perfectly reconstructed from the compressed data. This is particularly important in applications where perfectly preserving the original fidelity of a medium is critical, such as in archiving, generic data compression, & professional media editing. To understand how lossless compression works, we will first delve into the concepts of redundancy, entropy, and specific compression techniques oft used in lossless compression.
+
+### Redundancy & Entropy
+
+The concepts of redundancy & entropy are important to understand as you continue reading.
+
+**Redundancy** refers to the repetitive or predictable elements in data. These elements do not add new information and can be efficiently encoded to reduce the overall data size without losing any information.
+
+**Entropy**, in the context of information theory, is a measure of the unpredictability or randomness of data. Lower entropy implies higher redundancy, implying that the data is theoretically more compressible.
+
+In lossless compression, the goal is to reduce redundancy and encode data as efficiently as possible based on its entropy.
+
+### Techniques in Lossless Compression
+
+1. **Run-Length Encoding (RLE)**:
+   RLE is a simple form of lossless compression where sequences of the same data value (runs) are stored as a single data value and a count. This technique is effective for compressing data with long runs of identical samples, such as silence or constant tones. For example, the sequence `AAAAABBBCC` could be encoded as `5A3B2C`.
+
+2. **Huffman Coding**:
+    Huffman coding is an entropy encoding algorithm used for lossless data compression that works by separating an input into component symbols and replacing each symbol with a code. The algorithm builds a binary tree, with each leaf node representing a symbol separated from the input data, and the path from the root to the leaf representing the binary code for that symbol.
+
+    Huffman coding is effective when the probability distribution of the input characters is known and can be exploited. Imagine you are storing the state of a traffic light; it is either green, yellow, red, or off for maintenance. As the operator, you have determined that it is green 50% of the time, red 40% of the time, yellow 9% of the time, and disabled 1% of the time. Because there are four options, you can accurately represent all of the possible symbols in our example using two bits. Green could be `00`, red `01`, yellow `10`, and off `11`. While assigning two-bit codes accurately conveys the information, we're storing an average of two bits per symbol; we can reduce the average number of bits per symbol by taking the probabilities into account here. We'll assign green to `0` since it appears the most frequently; this is the first leaf on our binary tree. Next, we have the leaves that stem from the `1` code; red can simply be `11`, while yellow can be `100` and the disabled symbol can be represented by `101`. This gives us the following Huffman codes:
+        - Green     (50%): `0`
+        - Red       (40%): `11`
+        - Yellow    ( 9%): `100`
+        - Disabled  ( 1%): `101`
+
+    Represented by the following tree:
+
+        ![Traffic light Huffman tree](https://raw.githubusercontent.com/av1-community-contributors/images/main/color-huffman-tree-svg.svg)
+
+    Now, if we do the math by multiplying the probability by the length of each code and taking the weighted sum:
+        (50% • 1) + (40% • 2) + (9% • 3) + (1% • 3) = **1.6**
+
+    We end up with an average of **1.6 bits per symbol**. Even in our relatively simple example, this shows how Huffman coding can save space quite effectively while still losslessly representing the same information.
+
+3. **Arithmetic Coding**
+   Arithmetic coding is another entropy encoding technique that represents an entire message as a single number in the interval `[0, 1)`. Unlike Huffman coding, which assigns fixed binary codes to component symbols separated from an input, arithmetic coding represents multiple symbols with a single floating-point number *q* which must be within the range `0.0 ≤ q < 1.0`. Arithmetic coding is particularly effective when the probability distribution of the symbols is skewed, as it can produce a more compact representation than Huffman coding. It is usually slower than Huffman coding.
+
+   Let's return to our traffic light example. Let's say you aren't satisfied with our previous Huffman coding result, which has produced an average of 1.6 bits per symbol, and you'd like to use arithmetic coding instead. In arithmetic coding, each of our symbols should first be placed on a range within the interval `[0, 1)` based on its probability. Then, we can narrow down this range as we encode more symbols, eventually arriving at a single number that represents the entire sequence. The steps follow below.
+
+    Let's use the same probabilities from before:
+    - Green     (50%)
+    - Red       (40%)
+    - Yellow    ( 9%)
+    - Disabled  ( 1%)
+
+    We'll assign ranges to each symbol as follows:
+
+    - Green:    `[0.00, 0.50)`
+    - Red:      `[0.50, 0.90)`
+    - Yellow:   `[0.90, 0.99)`
+    - Disabled: `[0.99, 1.00)`
+
+    Now, let's encode a sequence of traffic light states: "Green, Red, Yellow, Green"
+
+    1. Start with the interval `[0, 1)`
+
+    2. First symbol (Green):
+        - `new_low = low + (high - low) • cumulative(s) / total`
+        - `new_high = low + (high - low) • (cumulative(s) + prob(s)) / total`
+        - `new_low = 0 + (0.5 - 0) • 0 / 1.0`
+        - `new_high = 0 + (0.5 - 0) • (0 + 0.5) / 1.0`
+        - Narrow range to `[0.00, 0.50)`
+
+    3. Second symbol (Red):
+        - From previous range: `[0.00, 0.50)`
+        - `new_low = 0 + (0.50 - 0) * 0.50 / 1`
+        - `new_high = 0 + (0.50 - 0) * (0.50 + 0.40) / 1`
+        - Red is in the range `[0.25, 0.45)`
+
+    4. Third symbol (Yellow):
+        - From previous range: `[0.25, 0.45)`
+        - `new_low = 0.25 + (0.45 - 0.25) * (0.50 + 0.40) / 1`
+        - `new_high = 0.25 + (0.45 - 0.25) * (0.50 + 0.40 + 0.09) / 1`
+        - Yellow is in the range `[0.43, 0.448)`
+
+    5. Fourth symbol (Disabled):
+    - From previous range: `[0.43, 0.448)`
+        - `new_low = 0.43 + (0.448 - 0.43) * (0.50 + 0.40 + 0.09) / 1`
+        - `new_low = 0.43 + (0.448 - 0.43) * (0.50 + 0.40 + 0.09 + 0.01) / 1`
+        - Green is in the range `[0.44782, 0.448)`
+
+    The final interval is `[0.44782, 0.448)`. Any number in this range (we'll pick the lower bound, which is inclusive of 0.44782) can represent our entire sequence "Green, Red, Yellow, Disabled".
+
+    To decode, we would start with 0.44782 and use our original probability ranges to determine which symbol it corresponds to, then update the value and repeat the process.
+
+    In this example, we aren't saving any space by using arithmetic coding because our sample is too short to have any pattern to effectively exploit. With longer sequences, arithmetic coding approaches the theoretical entropy limit of **1.408 bits per symbol**: `-(0.50 * log2(0.50) + 0.40 * log2(0.40) + 0.09 * log2(0.09) + 0.01 * log2(0.01)) ≈ 1.408`
+
+    It is important to note that in practice, there often are additional considerations not present in this simplified example with regard to managing precision.
+
+4. **Prediction and Residual Encoding**:
+   Prediction involves using previous data to predict future data. The difference between the predicted and actual data (residual) is encoded instead of the actual data. Linear Predictive Coding (LPC) is a common method where a linear function of previous samples is used to predict the current sample. The residuals typically have lower entropy and can be encoded more efficiently.
+

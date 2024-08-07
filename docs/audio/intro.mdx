@@ -1,0 +1,46 @@
+---
+title: Intro
+description: What is lossless audio? What is lossy audio? What is an audio codec? This entry serves as an intro to digital audio processing.
+keywords: [audio codec, audio, codec, audio encoding, audio decoding, audio compression, audio quality, audio formats, audio file formats, audio file, audio file type, audio file extension, audio file format, audio file types, audio file formats]
+sidebar_position: 1
+---
+
+# Introduction to Lossy & Lossless Audio Compression
+
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
+:::
+
+Digital audio is the representation of sound recorded in, or converted into, digital form. To understand digital audio, it's crucial to grasp some fundamental concepts, including **sampling**, **Nyquist Frequency**, and the **Nyquist-Shannon Sampling Theorem**.
+
+## Sampling & the Nyquist Frequency
+
+**Sampling** is the process of converting a continuous, analog audio signal into a discrete digital signal by measuring the amplitude of the audio signal at uniform intervals. The frequency of this measurement is known as the *sampling rate*, typically measured in samples per second, or Hertz (Hz). For example, audio CDs use a sampling rate of 44,100 Hz, which means the audio signal is sampled 44,100 times every second.
+
+To accurately represent a wave, you need at least two measurements per cycle; one to capture the peak of the wave, and one to capture the trough. If you sample less than twice per cycle, you can't distinguish between different frequencies; this is where the **Nyquist frequency** comes from. Named after Harry Nyquist, the **Nyquist frequency** is *half of the sampling rate of a discrete signal processing system*. For a given sampling rate, the Nyquist frequency represents the highest frequency that can be accurately sampled without introducing errors such as aliasing. For example, with a sampling rate of 48,000 Hz, the Nyquist frequency is 24,000 Hz. Capturing frequencies above the Nyquist frequency for a given system can bring about **aliasing** artifacts. Aliasing occurs where high-frequency components appear as lower frequencies in the sampled signal, distorting the information.
+
+The **Nyquist-Shannon sampling theorem** states that to avoid aliasing, the sampling rate must be at least twice the highest frequency present in the signal. This theorem is crucial for ensuring that the digital representation of the audio signal retains all the information from the original analog signal without distortion.
+
+## Lossless Audio Compression
+
+The main benefit of lossless compression is the preservation of audio quality, making it ideal for professional audio production, archiving, and situations where high fidelity is required. However, lossless files are significantly larger than their lossy counterparts, which can be a drawback for storage and (especially) streaming.
+
+:::note Lossless Compression
+If you would like to dive more deeply into the topic of lossless compression, you can check out the [Lossless Compression](../introduction/lossless.mdx) entry in the Introduction section of the wiki.
+:::
+
+[FLAC](./FLAC.mdx), [WavPack](./WavPack.mdx), & [ALAC](./ALAC.mdx) are examples of popular lossless audio codecs that you are likely to encounter in the wild.
+
+## Lossy Audio Compression
+
+The primary advantage of lossy compression is the significant reduction in file size, making it ideal for streaming, portable devices, and situations where storage space is limited. However, the trade-off is a potential loss in audio quality, which may be noticeable in critical listening environments.
+
+:::note Lossy Compression
+If you would like to dive more deeply into the topic of lossy compression, you can check out the [Lossy Compression](../introduction/lossy.mdx) entry in the Introduction section of the wiki.
+:::
+
+[MP3](./MP3.mdx), [AAC](./AAC.mdx), [Vorbis](./Vorbis.mdx), & [Opus](./Opus.mdx) are some examples of popular lossy audio codecs that you are likely to encounter in the wild.
+
+## Conclusion
+
+Understanding these baseline principles of digital audio processing is essential for informed reading when it comes to the rest of the Audio section of this wiki. We hope this page helped you grasp some of the fundamental concepts that underpin digital audio processing.
