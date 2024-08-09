@@ -3,52 +3,52 @@ title: uavs3e
 sidebar_position: 20
 keywords: [avs3, encoding, video encoding]
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # uavs3e
 
-[uavs3e](https://github.com/uavs3/uavs3e/) is an open-source encoder of [AVS3](/docs/video/AVS3) codec. Developed by the Chinese research institutions such as Peking University Shenzhen Graduate School, Peng Cheng Laboratory and Guangdong Bohua UHD Innovation Corporation.
-The encoder itself is updated rarely so bugs and compilation issues may occur. It supports AMD64 with AVX2, ARM with NEON and LoongArch CPUs.
+`[uavs3e](https://github.com/uavs3/uavs3e/)` is an open-source encoder for the [AVS3](/docs/video/AVS3) codec. It was developed by Chinese research institutions, including Peking University Shenzhen Graduate School, Peng Cheng Laboratory, and Guangdong Bohua UHD Innovation Corporation.
+
+The encoder is infrequently updated, which may lead to bugs & compilation issues. It supports AMD64 with AVX2, ARM with NEON, and LoongArch CPUs.
 
 ## Installation
 
-### Compiling on Linux
-The developers do not ship any pre-built binaries of their encoder so you'll have to compile it yourself.
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        The developers do not provide pre-built binaries of their encoder, so you'll need to compile it yourself.
 
-Windows (VS2017) is also a supported platform although I haven't tested it.
+        Compilation requires GNU Make and CMake. As of August 2024, `uavs3e` doesn't compile with GCC 14. Using Clang 18 instead of GCC resolves this issue.
 
-:::caution
-Compilation requires GNU Make and CMake
-:::
+        ```bash
+        git clone https://github.com/uavs3/uavs3e.git
+        mkdir build/linux && cd build/linux
+        cmake ../.. -DCOMPILE_10BIT=0 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+        make -j 8
+        ```
 
-:::caution
-As of August 2024 uavs3e doesn't compile with GCC 14. Using Clang 18 instead of GCC works.
-:::
+        If you encounter undefined calls to `close` or `lseek64` functions, add the following two lines at the top of the `test/utest.c` file:
 
-```bash
-git clone https://github.com/uavs3/uavs3e.git
-mkdir build/linux; cd build/linux
-cmake ../.. -DCOMPILE_10BIT=0 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-make -j 8
-```
+        ```c
+        #define _LARGEFILE64_SOURCE
+        #include <unistd.h>
+        ```
 
-:::tip
-If you get undefined calls to `close` or `lseek64` functions you need to place the following two lines at the top of `test/utest.c` file.
+        Binaries will be available in the `build/linux` folder. On Linux, you can run `make install` to install the encoder (may require elevated permissions).
 
-```c
-#define _LARGEFILE64_SOURCE
-#include <unistd.h>
-```
-:::
+        ### 10-bit Support
 
-Binaries will be available in the same folder (`build/linux`), or you can run `make install` on Linux to install (May need elevated permissions).
+        To enable 10-bit support, set `-DCOMPILE_10BIT=1` in the CMake command. However, the encoder compiled with this flag has been reported to [cause segmentation faults on some systems](https://github.com/uavs3/uavs3e/issues/53).
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+    To be filled. If you believe you can help, please refer to our [Contribution Guide](../contribution-guide.mdx).
 
-### 10-bit Support
-
-You need to set `-DCOMPILE_10BIT=1` in CMake command for 10 bit support however the encoder compiled with this flag was [segfaulting on my system](https://github.com/uavs3/uavs3e/issues/53).
+    </TabItem>
+</Tabs>
 
 ## Usage
 
-The encoder can't parse `.y4m` files so they need to be converted to raw video (`.yuv`).
+The encoder cannot parse `.y4m` files, so they need to be converted to the raw video (`.yuv`) format.
 
 ```bash title="Simple 8-bit FHD 23.976 fps input with QP 20 and raw avs3 bitstream output"
 uavs3enc -i input.yuv -w 1920 -h 1080 -d 8 --fps_num 24000 --fps_den 1001 -q 20 -o output.avs3
@@ -58,10 +58,10 @@ uavs3enc -i input.yuv -w 1920 -h 1080 -d 8 --fps_num 24000 --fps_den 1001 -q 20 
 uavs3enc -i input.yuv -w 1920 -h 1080 -d 8 --fps_num 24000 --fps_den 1001 -p 120 --wpp_threads 8 --frm_threads 8 --speed_level 2 --rc_type 1 -q 20 -o output.avs3
 ```
 
-uave3e currently [does not support](https://github.com/uavs3/uavs3e/issues/2) piping.
+Currently, uavs3e [does not support piping](https://github.com/uavs3/uavs3e/issues/2).
 
 ## Notes
 
-1. Usable speed presets range from 0 to 4 where 0 is the slowest and 4 is the fastest one.
-2. The encoder can actually be quite competitive even with newest [AV1](/docs/video/av1) and [VVC](/docs/video/vvc) encoders in terms of visual fidelity.
-3. `uavs3d` can be used to decode output bitstream. If you want realtime playback, you need to have [FFmpeg](/docs/utilities/ffmpeg) with `--enable-libuavs3d` compiled.
+1. Usable speed presets range from 0 to 4, where 0 is the slowest and 4 is the fastest.
+2. The encoder can be quite competitive, even compared to the newest [AV1](/docs/video/av1) and [VVC](/docs/video/vvc) encoders in terms of visual fidelity.
+3. `uavs3d` can be used to decode the output bitstream. For real-time playback, you need to have [FFmpeg](/docs/utilities/ffmpeg) compiled with `--enable-libuavs3d`.
