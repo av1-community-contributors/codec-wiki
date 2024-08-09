@@ -8,3 +8,75 @@ sidebar_position: 8
 :::danger Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
+
+## Overview
+
+Denoising involves removing random noise from the video. Such noise can result from film grain, signal interference or simply low light conditions. In any case, noise can greatly reduce compression efficiency especially with older video codecs that don't support film grain synthesis.
+
+In [FFmpeg](../utilities/ffmpeg.mdx) there are two filters made for denoising:
+- [hqdn3d](#hqdn3d)
+- [nlmeans](#nlmeans)
+
+## hqdn3d
+
+hqdn3d is a fast, high quality 3d denoising filter which improves compressibility. Can be applied to images and videos.
+
+### Usage
+
+```shell
+ffmpeg -i input.mp4 -vf hqdn3d output.mp4
+```
+
+The default configuration should be fine for most use cases.
+
+If you still see too much noise you can adjust the `luma_spatial` parameter (other parameters are derived from it by default). Higher `luma_spatial` value will result in stronger denoising. By default it is set to `4`.
+
+```shell
+ffmpeg -i input.mp4 -vf hqdn3d=8 output.mp4
+# which is the same as
+ffmpeg -i input.mp4 -vf hqdn3d=8:6:12:9 output.mp4
+```
+
+:::caution
+Setting `luma_spatial` to larger values could result in ghosting and [banding](../filtering/deband.mdx) artifacts.
+:::
+
+For description of all four parameters take a look [here](https://ffmpeg.org/ffmpeg-filters.html#hqdn3d-1).
+
+## nlmeans
+
+nlmeans uses Non-Local Means algorithm to do denoising. Each pixel is compared to similar pixels based on their surroundings - context. The size of such context is expressed as `r`x`r`.
+
+The filter itself is rather slow slow and doesn't parallelize well. It's recommended to only use it in cases the video contains a lot of noise or denoising needs to be very high quality. In all other cases [hqdn3d](#hqdn3d) will be more efficient.
+
+### Usage
+
+```shell
+ffmpeg -i input.mp4 -vf nlmeans output.mp4
+```
+
+The default configuration should be fine for most use cases.
+
+```shell
+ffmpeg -i input.mp4 -vf nlmeans=s=3.0:r=31:p=15 output.mp4
+```
+
+Stronger denoising with larger research and patch size. Might be useful for ultra high quality denoising in 4K+ resolutions but you might struggle to get more than 0.1 fps.
+
+```shell
+ffmpeg -i input.mp4 -vf nlmeans=s=1.0:r=5:p=3 output.mp4
+```
+
+Prioritize speed over quality (I got 10 fps).
+
+### Parameters
+
+- `s` - Denoising Strength where `1.0` is the lightest and also the default and the strongest is `30.0` although I wouldn't recommend going above `10.0`.
+- `r` - Research Size where `15` is the default, it must be an odd number ranging from `0` to `99`. The higher the value, the slower denoising will be.
+- `p` - Research Size where `7` is the default and, it must be an odd number ranging from `0` to `99`.
+
+For description of all possible parameters take a look [here](https://ffmpeg.org/ffmpeg-filters.html#nlmeans-1).
+
+# Notes
+- [hqdn3d](#hqdn3d) may create visual artifacts like ghosting, banding and blockiness
+- [nlmeans](#nlmeans) creates much less noticable artifacts like cartoonish look but only for very noisy inputs
