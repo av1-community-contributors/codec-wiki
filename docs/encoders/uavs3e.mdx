@@ -22,6 +22,7 @@ The encoder is infrequently updated, which may lead to bugs & compilation issues
 
         ```bash
         git clone https://github.com/uavs3/uavs3e.git
+        cd uavs3e
         mkdir build/linux && cd build/linux
         cmake ../.. -DCOMPILE_10BIT=0 -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
         make -j 8
@@ -41,8 +42,28 @@ The encoder is infrequently updated, which may lead to bugs & compilation issues
         To enable 10-bit support, set `-DCOMPILE_10BIT=1` in the CMake command. However, the encoder compiled with this flag has been reported to [cause segmentation faults on some systems](https://github.com/uavs3/uavs3e/issues/53).
     </TabItem>
     <TabItem value="windows" label="Windows">
-    To be filled. If you believe you can help, please refer to our [Contribution Guide](../contribution-guide.mdx).
+        1. Ensure you have the following prerequisites installed before starting the build process:
+        - [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/): Select "Desktop development with C++".
+        - [Git](https://git-scm.com/download/win)
 
+        2. Open Developer PowerShell for VS 2022.
+
+        3. Run the following commands:
+
+        ```bash
+        git clone https://github.com/uavs3/uavs3e.git
+        cd uavs3e
+        .\version.bat
+        cd build\x86_windows
+        devenv uavs3e.sln /Upgrade
+        msbuild uavs3e.sln /p:Configuration=Release /p:WindowsTargetPlatformVersion=10.0
+        ```
+
+        Binaries will be available in the `bin` folder.
+
+        ### 10-bit Support
+
+        To enable 10-bit support, change the line `#define COMPILE_10BIT 0` to `#define COMPILE_10BIT 1` in the `inc/com_api.h` file.
     </TabItem>
 </Tabs>
 
