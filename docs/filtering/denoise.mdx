@@ -38,7 +38,7 @@ ffmpeg -i input.mp4 -vf hqdn3d=8:6:12:9 output.mp4
 ```
 
 :::caution
-Setting `luma_spatial` to larger values could result in ghosting and [banding](../filtering/deband.mdx) artifacts.
+Setting `luma_spatial` to larger values could result in ghosting and [banding](../introduction/video-artifacts.mdx#bandingcontouring) artifacts.
 :::
 
 For description of all four parameters take a look [here](https://ffmpeg.org/ffmpeg-filters.html#hqdn3d-1).
@@ -78,5 +78,5 @@ Prioritize speed over quality.
 For description of all possible parameters take a look [here](https://ffmpeg.org/ffmpeg-filters.html#nlmeans-1).
 
 # Notes
-- [hqdn3d](#hqdn3d) may create visual artifacts like ghosting, banding and blockiness
-- [nlmeans](#nlmeans) creates much less noticable artifacts like cartoonish look but only for very noisy inputs
+- [hqdn3d](#hqdn3d) may create visual artifacts like ghosting, [banding](../introduction/video-artifacts.mdx#bandingcontouring) and [blocking](../introduction/video-artifacts.mdx#blocking)
+- [nlmeans](#nlmeans) creates much less noticeable artifacts like cartoonish look but only for very noisy inputs
