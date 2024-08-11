@@ -5,6 +5,71 @@ sidebar_position: 1
 
 # XPSNR
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+:::info Under Maintenance
+The content in this entry is incomplete & is in the process of being completed.
 :::
+
+XPSNR is a distortion measurement algorithm for video quality assessment, based on the concept of the peak signal to noise ratio (PSNR), tuned to better reflect human impressions of visual coding quality.
+It is low-complexity metric, meaning that it can be computed quickly (in comparison to other video assessment metrics).
+
+Along with [SSIMULACRA 2](../metrics/SSIMULACRA2.mdx), it is one of the most reputable visual quality metrics according to its correlation with subjective results.
+Unlike SSIMULACRA 2, XPSNR is a video-focused metric, and uses temporal information to compute its score.
+
+The reference implementation by Fraunhofer HHI is a [FFmpeg 7.0 plug-in](https://github.com/fraunhoferhhi/xpsnr).
+For more details about the algorithm and its design, [a scientific paper is available](https://www.itu.int/pub/S-JOURNAL-ICTS.V3I1-2020-8).
+
+## Installation
+
+XPSNR comes as an FFmpeg 7.0 plug-in. The process of installing it is somewhat straightforward:
+
+1. Download the source code for FFmpeg 7.0:
+```bash
+git clone -b release/7.0 https://git.ffmpeg.org/ffmpeg.git ffmpeg
+```
+
+2. Download the code for the XPSNR plug-in:
+```bash
+git clone https://github.com/fraunhoferhhi/xpsnr
+```
+
+3. Copy the plug-in files from XPSNR's code to FFmpeg's:
+```bash
+cp xpsnr/libavfilter/* ffmpeg/libavfilter/
+```
+
+4. Configure and compile FFmpeg:
+```bash
+cd ffmpeg
+./configure ...
+make -j $(nproc)
+```
+
+## Usage
+
+XPSNR is used as an FFmpeg filter, similarly to the built-in PSNR plugin:
+```bash
+./ffmpeg -i ref.mkv -i test.mkv -lavfi xpsnr="stats_file=xpsnr.log" -f null -
+```
+
+## Notes
+
+* Being the reference implementation an FFmpeg plug-in and not a standalone binary is inconvenient for some workflows.
+Currently, there are some attempts at making a [standalone XPSNR binary](https://github.com/gianni-rosato/sxpsnr), although they are not very widespread yet.
+* XPSNR uses a PSNR-like scoring system: a logarithmic scale in range 0..inf.
+This is considerably harder to interpret than other metrics (e.g. [SSIMULACRA 2](../metrics/SSIMULACRA2.mdx) or [VMAF](../metrics/VMAF.mdx));
+and the threshold to what constitutes good quality is content-dependent.
+(Preliminary testing seems to indicate that anything above a XPSNR score of 42.00 is visually lossless.)
+* XPSNR scores are computed independently for the luma (Y) and two chroma (U, V) components of videos,
+thus actually providing 3 scores.
+Although the developers argue that using the minimum of these 3 scores as "definitive score"
+(i.e. better correlates to human impressions),
+some people in the community prefer using a weighted sum: `(4 * XPSNR_Y + XPSNR_U + XPSNR_V) / 6`.
+
+## Comparing to SSIMULACRA 2
+
+The main advantage of XPSNR over SSIMULACRA 2 is that it is considerably faster to compute.
+XPSNR can achieve real-time speeds for 1080p 24 fps video, making it more convenient to quickly compare test encodes.
+
+Regarding their visual assessment capabilities, XPSNR and SSIMULACRA 2 seem to complement each other quite well,
+having both their own strong points and weak points with specific video content.
+If possible, using both at the same time provides great benefits for video quality assessment and comparison.
