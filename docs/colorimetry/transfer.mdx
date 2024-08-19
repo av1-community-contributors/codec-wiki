@@ -11,16 +11,23 @@ the Transfer Characteristics to determine how to convert from a compressed
 video to a video that is in linear light, as well as converitng a linear 
 light video to a compressed video. These functions are known as EOTF, OETF, or OOTF.
 
+Note that in some transfer functions like sRGB, you need to undo the OETF. The 
+specification defines how to encode sRGB, and how a display should decode it,
+but not how to convert it back to linear light. In cases like these, it is typical
+to simply undo the encoding with an inverse transfer function, instead of using the 
+function the display is to use.
+
 This luminance can often be refered to as gamma, however due to the term gamma also 
 being used to refer to a myriad of other things, it is better to avoid this term when
 possible.
 
 Integer values much like with primaries are often used to define universal consants in
 the transfer functions. Transfer functions can either be absolute functions which
-specify the peak and minumum luminance, or be realtive functions which specify 
+specify the peak and minumum luminance, or be relative functions which specify 
 how to display a pixel within a range between maximum and minimum intensity.
-These transfer functions typical have a nominal reference brightness, but this
-is more of a suggestion rather then a hard requirement. Commonly seen with sRGB.
+These transfer functions typically have a nominal reference brightness, but this
+can be more of a suggestion rather then a hard requirement in some cases. Commonly 
+seen with sRGB.
 
 The following values are available:
 
