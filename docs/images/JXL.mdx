@@ -1,14 +1,14 @@
 ---
-title: JPEG-XL
+title: JPEG XL
 sidebar_position: 7
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# JPEG-XL
+# JPEG XL
 
-JPEG-XL (JXL) is a compression format for images that was developed by the Joint Photographic Experts Group (JPEG) in 2020. It is designed to provide improved compression efficiency compared to the traditional [JPEG](./JPEG.mdx) format, while still maintaining image quality. JPEG-XL uses a combination of techniques such as perceptual color encoding, advanced entropy coding, and a new image prediction method to achieve its improved compression performance. It also has a lossless JPEG recompression mode, where an existing JPEG file can be turned into a JXL that can be decoded for a bit-for-bit exact replica of the original JPEG.
+JPEG XL (JXL) is a compression format for images that was developed by the Joint Photographic Experts Group (JPEG) in 2020. It is designed to provide improved compression efficiency compared to the traditional [JPEG](./JPEG.mdx) format, while still maintaining image quality. JPEG XL uses a combination of techniques such as perceptual color encoding, advanced entropy coding, and a new image prediction method to achieve its improved compression performance. It also has a lossless JPEG recompression mode, where an existing JPEG file can be turned into a JXL that can be decoded for a bit-for-bit exact replica of the original JPEG.
 
 ## Performance Checklist
 
@@ -31,7 +31,7 @@ Royalty Free? *Yes*
 
 ## Format Breakdown
 
-JPEG-XL has a number of standout features that make it an appealing image codec to work with for many use cases. From the [JPEG-XL Info page](https://jpegxl.info), JXL has the following features:
+JPEG XL has a number of standout features that make it an appealing image codec to work with for many use cases. From the [JPEG XL Info page](https://jpegxl.info), JXL has the following features:
 
 - **Best lossless image compression**: It offers about 35% smaller file sizes than PNG (50% smaller for HDR).
 - **High-fidelity lossy image compression**: JPEG XL provides about 60% smaller file sizes than JPEG for the same visual quality.
@@ -44,42 +44,42 @@ JPEG-XL has a number of standout features that make it an appealing image codec 
 
 ### Lossless Compression
 
-JPEG-XL offers excellent lossless compression capabilities. While lossless WebP was an improvement over PNG for 8-bit lossless image encoding, JPEG-XL manages not only to outdo lossless WebP in encoding efficiency but also be more versatile for bit depths greater than 8-bit (a category PNG previously dominated). 16-bit lossless imagery, especially HDR images that are becoming more popular & rarely utilize 8-bit color depth, are where JPEG-XL shines, and it is the only codec to compete with PNG in that regard while providing better coding efficiency.
+JPEG XL offers excellent lossless compression capabilities. While lossless WebP was an improvement over PNG for 8-bit lossless image encoding, JPEG XL manages not only to outdo lossless WebP in encoding efficiency but also be more versatile for bit depths greater than 8-bit (a category PNG previously dominated). 16-bit lossless imagery, especially HDR images that are becoming more popular & rarely utilize 8-bit color depth, are where JPEG XL shines, and it is the only codec to compete with PNG in that regard while providing better coding efficiency.
 
-Example: JPEG-XL compresses [this 16-bit AdobeRGB PNG](https://imgsaver.com/images/2023/10/03/16bit.png) better than PNG. Using: `cjxl 16bit.png 16bit.jxl -d 0.0 -e 9 -I 100 -g 3 -E 11`
+Example: JPEG XL compresses [this 16-bit AdobeRGB PNG](https://imgsaver.com/images/2023/10/03/16bit.png) better than PNG. Using: `cjxl 16bit.png 16bit.jxl -d 0.0 -e 9 -I 100 -g 3 -E 11`
 
 16-bit PNG: `1533373` bytes.
 16-bit JXL: `1211029` bytes.
 
 ### Lossy Compression
 
-JPEG-XL is also adept at lossy compression, especially at quality levels that we as humans care about. It promises to be around 60% better than JPEG. While video-based codecs like AVIF can be competitive when given lots of CPU time, JPEG-XL is both fast and efficient for medium to high fidelity photographic imaging.
+JPEG XL is also adept at lossy compression, especially at quality levels that we as humans care about. It promises to be around 60% better than JPEG. While video-based codecs like AVIF can be competitive when given lots of CPU time, JPEG XL is both fast and efficient for medium to high fidelity photographic imaging.
 
 ### Supported Bit Depth(s)
 
-JPEG-XL supports up to 32 bits per channel of bit depth, making it future proof for the increasingly popular HDR photos coming out of smartphones. There is essentially zero downside to encoding high bit depth with JXL relative to the resulting encode's size. Considering many smartphones take HDR photos now, JXL offers a compelling pipeline for these photos to make their way to the Web in the future especially as companies like Adobe & Apple have already embraced the new codec.
+JPEG XL supports up to 32 bits per channel of bit depth, making it future proof for the increasingly popular HDR photos coming out of smartphones. There is essentially zero downside to encoding high bit depth with JXL relative to the resulting encode's size. Considering many smartphones take HDR photos now, JXL offers a compelling pipeline for these photos to make their way to the Web in the future especially as companies like Adobe & Apple have already embraced the new codec.
 
 ### Progressive Decode
 
-JPEG-XL provides actual progressive decode support that you can experiment with here on a supported browser like Safari, Waterfox, Thorium, Mercury, or any browser on iOS.
+JPEG XL provides actual progressive decode support that you can experiment with here on a supported browser like Safari, Waterfox, Thorium, Mercury, or any browser on iOS.
 
 Progressive decode is a feature only JPEG is able to offer a real implementation of, rendering low frequency transform coefficients before the rest of the image arrives to allow an image to display before the entire thing has been sent over the network. Blurhashes do not replace this technology, but rather compliment it, allowing another layer of progressive decode that can be used even before the image begins to load progressively. This is an important feature to improve the user experience on websites featuring large images, or on any website if your Internet connection isn't strong.
 
 ### Lossless JPEG Re-compression
 
-An incredibly unique JPEG-XL feature is lossless JPEG re-compression, or the ability to take a JPEG input and provide an output with a smaller filesize (on average, 20% smaller) that is pixel-for-pixel identical. This is why companies like Meta have endorsed JPEG-XL, as it offers a path forward for the existing JPEGs on the Internet.
+An incredibly unique JPEG XL feature is lossless JPEG re-compression, or the ability to take a JPEG input and provide an output with a smaller filesize (on average, 20% smaller) that is pixel-for-pixel identical. This is why companies like Meta have endorsed JPEG XL, as it offers a path forward for the existing JPEGs on the Internet.
 
 ### Industry Support
 
-From the JPEG-XL Wikipedia page:
+From the JPEG XL Wikipedia page:
 
 > Besides Cloudinary and Google originally, throughout JPEG XL's preliminary implementation in web browsers, various representatives of well-known industry brand names have publicly voiced support for JPEG XL as their preferred choice, including Facebook, Adobe, Intel and the Video Electronics Standards Association, The Guardian, Flickr and SmugMug, Shopify, the Krita Foundation, and Serif Ltd.
 
-Apple also features ecosystem-wide JPEG-XL support as of iOS 17 & macOS Sonoma.
+Apple also features ecosystem-wide JPEG XL support as of iOS 17 & macOS Sonoma.
 
 ### Other Features
 
-JPEG-XL has the potential to replace popular formats like TIFF for authoring workflows due to its broad feature set. From the JXL Wikipedia, some additional features include:
+JPEG XL has the potential to replace popular formats like TIFF for authoring workflows due to its broad feature set. From the JXL Wikipedia, some additional features include:
 
 - Image dimensions of over a billion (2^30-1) pixels on each side.
 - Up to 4099 channels, including support for alpha transparency
@@ -94,7 +94,7 @@ JPEG-XL has the potential to replace popular formats like TIFF for authoring wor
 
 ## Encoders
 
-JPEG-XL has a couple of noteworthy encoders currently available to work with. Because JPEG-XL is so new, most encoders aren't yet intelligent enough to take advantage of the whole format yet. Here's a quote from Jon Sneyers in the JPEG-XL discord that sums it up nicely:
+JPEG XL has a couple of noteworthy encoders currently available to work with. Because JPEG XL is so new, most encoders aren't yet intelligent enough to take advantage of the whole format yet. Here's a quote from Jon Sneyers in the JPEG XL discord that sums it up nicely:
 
 > Encode side: 80% or so of the coding tools are used in one way or another by the encoder (the 20% is splines and super large VarDCT blocks, and also the things that are not used by default without using special experimental options, such as delta palette and noise). But the coding tools that are used, are typically used in a specific, limited way that doesn't come anywhere close to exhausting the bitstream expressivity.
 
@@ -102,7 +102,7 @@ Sneyers is talking about libjxl's `cjxl` encoder, which will be discussed furthe
 
 ### libjxl
 
-The reference [libjxl](https://github.com/libjxl/libjxl) implementation has the capability to both decode and encode JPEG-XL image files. Both are discussed below.
+The reference [libjxl](https://github.com/libjxl/libjxl) implementation has the capability to both decode and encode JPEG XL image files. Both are discussed below.
 
 <Tabs>
     <TabItem value="enc" label="Encoding" default>
