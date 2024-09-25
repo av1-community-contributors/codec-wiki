@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
-    "@docusaurus/core": "^3.5.0",
-    "@docusaurus/preset-classic": "^3.5.0",
+    "@docusaurus/core": "^3.5.2",
+    "@docusaurus/preset-classic": "^3.5.2",
     "@easyops-cn/docusaurus-search-local": "latest",
     "@mdx-js/react": "^3.0.1",
     "antd": "^5.16.4",
@@ -28,7 +28,7 @@
     "yarn": "^1.22.22"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.5.0"
+    "@docusaurus/module-type-aliases": "^3.5.2"
   },
   "browserslist": {
     "production": [
