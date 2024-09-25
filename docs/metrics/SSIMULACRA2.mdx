@@ -58,7 +58,7 @@ ssimulacra2_rs video source.mkv distorted.mkv -g
 :::
 #### Multithreading
 Multithreading with ssimulacra2_rs works, but it scales badly.
-This is likely due to memory bandwidth limitations.  
+This is likely due to memory bandwidth limitations.
 However, the speedup is worth it.
 
 To run multithreaded, use the `--frame-threads` or `-f` parameters.
@@ -74,11 +74,34 @@ You should set the amount of threads to half of your actual thread count, as goi
 If you have a small amount of system memory, you may encounter out of memory errors while running with multi-threading.
 If that's the case, you need to lower the amount of threads. 
 :::
+#### Frame skipping
+SSIMULACRA 2 is, at its core, an image quality assessment metric, not a video quality one.
+This means that it does not use any temporal information when applied to videos; just the independent scores of each individual frame.
+Consequently, it can be applied to a subset of a video's frames, instead of to all of them, to obtain a meaningful estimate of the score in a reduced time.
+
+To run ssimulacra2_rs with frame skip enabled, use the `--increment` or `-i` parameters.
+For example, to compute the score for every 3rd frame:
+```bash
+ssimulacra2_rs video source.mkv distorted.mkv -i 3
+```
+
+:::info Frame skip amount
+To avoid biased score estimates, it is recommended to sample frames using an odd value as increment.
+Prime numbers further reduce the likelihood of sampling bias.
+Thus increments of 3, 5, 7, 11 or 13 frames are good options to compute score estimates with little deviation to the true score.
+
+In any case, powers of two (2, 4, 8, 16...) should be avoided as increment, due to the way video encoders deal with temporal layers.
+:::
+
 
 ## Scoring
-The score that ssimulacra2 outputs is simple:
+The score that SSIMULACRA 2 outputs is simple: a number in range -inf..100. According to the developers of the metric, for image quality assessment, SSIMULACRA 2 scores correlate to subjective visual quality as follows:
 
 - Very high quality: `90` and above
 - High quality: `70` to `90`
 - Medium quality: `50` to `70`
 - Low quality: Below `50`
+
+For video quality assessment, however, the scores need not be as high for similar subjective visual quality correlation.
+For example, it is believed that an average score of around `80` corresponds to a "visually lossless" video.
+Nevertheless, this has not been thoroughly verified.
