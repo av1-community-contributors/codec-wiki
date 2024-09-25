@@ -9,4 +9,125 @@ sidebar_position: 8
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
 
-WavPack is an open-source lossless audio codec with support for lossless & lossy compression with a unique hybrid compression mode for compressing a lossy audio stream alongside a lossless reference.
+WavPack is an open-source lossless audio codec with support for lossless & lossy compression with a unique hybrid compression mode for compressing a lossy audio stream alongside a lossless reference. Created by David Bryant in 1998, it gained a lot of software support, although not as much as [FLAC](../audio/FLAC.mdx).
+
+Compressed file size is somewhat between [FLAC](../audio/FLAC.mdx) and heavier state-of-art lossless audio compressors like TAK, OptimFrog or SAC. Compared to [FLAC](../audio/FLAC.mdx), WavPack usually gives a lower bitrate at the expense of slightly more resource usage.
+
+## Features
+
+WavPack is one of the most robust and feature-rich lossless audio codecs. Some notable features include:
+
+- [Hybrid mode](#hybrid-mode)
+- Support for 1-32 bit integer/floating point audio streams
+- Muxable into Matroska `.mkv` container
+- Multichannel with up to 4096 channels
+- APEv2/ID3v1 tagging format
+- RIFF chunks support
+- Multithreaded encoding/decoding
+- Error detection using CRC32 checksums and optionally also MD5 hash of original audio data
+
+## Hybrid Mode
+
+Hybrid Mode is not to be confused with hybrid codecs like [Opus](../audio/Opus.mdx). WavPack uses the same algorithm for both lossy and lossless mode. When using lossy mode, the encoder transmits only the unary magnitude and the sign bit of Recursive Golomb encoded residuals. During decoding, those data points can be further enhanced if the correction file is provided.
+
+WavPack can produce 2 output files when using Hybrid Mode. The main `.wv` file with truncated (lossy) residuals and a `.wvc` correction file containing the enhancement layer. When both files are provided to the decoder, it should be able to recreate original audio data. Otherwise, if only the `.wv` file is available, the decoder will decode lossy audio stream.
+
+## Format Breakdown
+
+Like in many lossless audio codecs, WavPack only encodes the prediction error value. In the default `fast` mode, prediction is just extrapolation of the previous two samples. More sophisticated predictors are used with higher encoding modes.
+Due to poor performance, unpredictability, and other problems with floating-point arithmetic in CPUs of its time, WavPack only uses integer arithmetic even when operating on IEEE float data. Nowadays, many of those issues were addressed, however it could still make porting WavPack to chips with no FPU support much easier.
+
+The encoding process consists of 3 main steps:
+
+- Joint stereo processing - Converts the stereo channels to the standard difference and average, removing inter-channel correlations.
+
+- Multipass decorrelation - Includes multiple prediction passes where the number of passes and predictor type depend on the selected encoding mode, removing intra-channel correlations between neighboring audio samples.
+
+- Entropy coding the residuals with Recursive Golomb Coding - Instead of Rice Coding, the author proposed a new technique that combines Golomb and Elias gamma code to better address the nature of audio data.
+
+## Encoders
+
+### wavpack
+
+```bash title="Default options"
+wavpack input.wav -o out.wv
+```
+
+```bash title="Fast, lowest compression, md5 hash"
+wavpack input.wav -f -m -o out.wv
+```
+
+```bash title="Very slow, highest compression, 8 threads"
+wavpack input.wav -hh -x6 --threads=8 -o out.wv
+```
+
+```bash title="Lossy, slow, 240kbps"
+wavpack input.wav -b240 -h -x3 -o out.lsy.wv
+```
+
+```bash title="Highest hybrid compression, very slow, 4bps"
+wavpack input.wav -b4 -cc -hh -x6 -o out.hyb.wv
+```
+
+`wvunpack` can be used to decode resulting `.wv` files, however most major [media players](../video-players.mdx) like MPV or VLC already have (limited) WavPack support.
+
+Options:
+
+- `-f` Faster encode/decode at the expense of larger file size
+- `-h` Slower encode/decode with higher compression
+- `-hh` Slowest encode/decode with highest compression
+
+- `-x0` Disable extra filters
+- `-x3` Try all predefined filters, slow, higher compression
+- `-x6` Generate custom filters, very slow, best compression
+
+- `-b240` Enable lossy mode, set bitrate to `240kbps` (acceptable range is `24`-`9600` but it won't get lower than `2 bits per sample`)
+- `-b4` Enable lossy mode, set `bits per sample` to `4` (acceptable range is `2`-`23.9`)
+
+- `-c` Enable hybrid mode (will produce `.wv` and `.wvc` file)
+- `-cc` Enable and optimize for hybrid mode, might lower decoding speed and hurt quality
+
+- `-m` Include MD5 hash of original audio data in the output file
+- `--threads=8` Use `8` threads (acceptable range is `1`-`12`)
+
+For more detailed description of all available options, see the [manual](https://www.wavpack.com/wavpack_doc.html).
+
+### FFmpeg
+
+[FFmpeg](../utilities/ffmpeg.mdx) has its own native WavPack encoder and decoder. It used to also support `libwavpack` with `--enable-libwavpack`, however it was [removed](https://hydrogenaud.io/index.php/topic,120038.0.html) due to interface incompleteness.
+
+The native encoder is single-threaded and doesn't support neither Lossy or [Hybrid](#hybrid-mode) Mode. It uses the `-compression_level` parameter to control speed to compression ratio.
+
+```bash title="Fastest, lowest compression"
+ffmpeg -i input.wav -compression_level 0 out.wv
+```
+
+```bash title="Slowest, highest compression"
+ffmpeg -i input.wav -compression_level 8 out.wv
+```
+
+For all possible parameters, consult the [FFmpeg documentation](https://www.ffmpeg.org/ffmpeg-codecs.html#wavpack).
+
+## Adoption issues
+
+As of 2024, WavPack has been largely superseded by [FLAC](../audio/FLAC.mdx), which became the de facto standard for lossless audio on the Web and in Hardware.
+
+The implementation of WavPack in media software is often incomplete. FFmpeg doesn't support [Hybrid Mode](#hybrid-mode), and other media players usually don't support it either. There are also [issues](https://www.reddit.com/r/ffmpeg/comments/tpptoi/using_hybrid_wavpack_in_video/) with its support in the `.mkv` container.
+
+Without this feature, WavPack doesn't provide much benefit over already widespread [FLAC](../audio/FLAC.mdx). The compressed file might be slightly smaller, however music streaming companies tend to choose well-standardized FLAC which also has the benefit of `DRM` support in the `.mp4` container (apparently very important thing on the modern web).
+
+Even if [Hybrid Mode](#hybrid-mode) had better software support, the minimum lossy setting is `2 bits per sample`. That translates to around `200kbps` with stereo audio track which is quite high. The quality of WavPack lossy mode is also somewhat lacking compared to modern lossy codecs such as [Opus](../audio/Opus.mdx) or [AAC](../audio/AAC.mdx) because it doesn't utilize any psychoacoustic model.
+
+## Notes
+- WavPack was one of the first compressed lossless audio codecs preceding Monkey's Audio (2000), [FLAC](../audio/FLAC.mdx) (2001), OptimFROG (2002) and [ALAC](../audio/ALAC.mdx) (2004).
+- OptimFROG Dualstream is a feature of OptimFROG codec serving a similar purpose to WavPack Hybrid, however it was introduced much later.
+- Apparently there are some devices with WavPack [Hardware Support](https://hydrogenaud.io/index.php/topic,119143.0.html).
+
+**References:**
+- [WavPack Compression Techniques](https://www.wavpack.com/WavPack.pdf)
+- [WavPack Technical Document](https://www.wavpack.com/technical.htm)
+- [Old WavPack File Format Specification](https://web.archive.org/web/20160705230053/http://www.wavpack.com/file_format.txt)
+- [Hydrogenaudio Wiki](https://wiki.hydrogenaud.io/index.php?title=WavPack)
+- [Multimedia.cx Wiki](https://wiki.multimedia.cx/index.php/WavPack)
+- [Wikipedia](https://en.wikipedia.org/wiki/WavPack)
+- [FFmpeg WavPack Source](https://ffmpeg.org/doxygen/3.3/wavpackenc_8c_source.html)

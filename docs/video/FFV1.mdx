@@ -9,17 +9,15 @@ sidebar_position: 12
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
 
-FFV1 ([rfc9043](https://datatracker.ietf.org/doc/html/rfc9043)) is a lossless intra-frame video codec designed for archival use & preservation. Created by Michael Niedermayer it is part of the [FFmpeg](../utilities/ffmpeg.mdx) project. The codec supports wide range of color spaces. It can work with YUV and RGB content also including alpha channel with color depths ranging from 8 to 16 bits (only up to 14 in case of RGB). It has good parallelization support and achieves very high compression ratios compared to other lossless video encoders such as [UT Video](../video/utvideo.mdx) albeit at the cost of being more resource hungry.
+FFV1 ([rfc9043](https://datatracker.ietf.org/doc/html/rfc9043)) is a lossless intra-frame video codec designed for archival use and preservation. Created by Michael Niedermayer, it is part of the [FFmpeg](../utilities/ffmpeg.mdx) project. The codec supports a wide range of color spaces, works with YUV and RGB content including alpha channel of color depths ranging from 8 to 16 bits (only up to 14 in case of RGB). It has good parallelization support and achieves very high compression ratios compared to other lossless video encoders such as [UT Video](../video/utvideo.mdx), albeit at the cost of being more resource-hungry.
 
 ## History
 
-In 2003 the codec was merged into FFmpeg however the bistream specification was frozen in 2006 (officially FFV1 version 0). Later in 2009 came version 1 covering more bideo bit depths.
+In 2003, the codec was merged into FFmpeg; however, the bitstream specification was frozen in 2006 (officially FFV1 version 0). Later, in 2009, version 1 came out, covering more video bit depths. Version 2 never got its release, existing only in experimental form.
 
-Version 2 never got its release, it existed only in experimental form.
+The third bitstream version was frozen in 2013 and is still the latest as of 2024. It added multithreading support and frame integrity checking.
 
-The 3rd bistream version was frozen in 2013 and it's still the latest as of 2024. It added multithreading support and frame integrity checking.
-
-There is a 4th version [coming](https://datatracker.ietf.org/doc/draft-ietf-cellar-ffv1-v4/) which might bring better support for color spaces, compression improvements and [maybe](https://mailarchive.ietf.org/arch/msg/cellar/gFydpu8BKAgzspvy6Mvbpsrg5yY/) proper inter-frame prediction.
+There is a fourth version [coming](https://datatracker.ietf.org/doc/draft-ietf-cellar-ffv1-v4/) which might bring better support for color spaces, compression improvements, and maybe proper inter-frame prediction.
 
 ## Usage
 
@@ -36,22 +34,23 @@ ffmpeg -i input.mkv -c:v ffv1 -g 1 -slices 16 -slicecrc 1 -context 1 -coder 2 ou
 ```
 
 ### Options
-- `slices` - Slices divide frame into multiple parts that can be encoded and decoded in parallel. Can only be one of: [`4`, `6`, `9`, `12`, `16`, `24`, `30`] where `4` is the default.
-- `slicecrc` - Setting it to `1` will enable decoder to detect errors in the bitstream. Must be enabled for archival use. Can be eitner `0` or `1`.
-- `context` - Setting it to `1` will make encoder use larger context size which usually leads to better compression. Can be eitner `0` or `1`.
+- `slices` - Slices divide the frame into multiple parts that can be encoded and decoded in parallel. Can only be one of: [`4`, `6`, `9`, `12`, `16`, `24`, `30`], where `4` is the default.
+- `slicecrc` - Setting it to `1` will enable the decoder to detect errors in the bitstream. Must be enabled for archival use. Can be either `0` or `1`.
+- `context` - Setting it to `1` will make the encoder use a larger context size, which usually leads to better compression. Can be either `0` or `1`.
 - `coder` - Sets entropy coding method:
   - `0` - Golomb-Rice (faster, default)
   - `1` - Range Coder (used for higher bit depths and better compression)
   - `2` - Range Coder with custom state transition table (almost the same as `1`)
-- `g` - Sets `GOP size`. Must be `1` for archival use. [see below](#intra-frame-only-catch)
+- `g` - Sets GOP size. Must be `1` for archival use. [See below](#intra-frame-only-catch)
 
-## intra-frame only catch
+## Intra-frame only catch
 
-Intra-frame only codecs do not use common *inter*-frame video coding techniques such as [motion compensation](#TODO), reusing parts of surrounding frames or adapting encoding context based on them. Every frame is independent from one another. Common Intra-frame only codecs may include Motion JPEG (Lossy), Motion JPEG 2000 (Both) or [UT Video](../video/utvideo.mdx) (Lossless).
+Intra-frame codecs do not use well known inter-frame video coding techniques such as motion compensation, reusing parts of surrounding frames or adapting encoding context based on them. Every frame is independent from one another. Common intra-frame codecs include Motion JPEG (Lossy), Motion JPEG 2000 (Both), and [UT Video](../video/utvideo.mdx) (Lossless).
 
-If you're careful reader you might have noticed that setting `GOP size` isn't a common characteristic amongst intra-frame only codecs.
+If you're a careful reader, you might have noticed that setting `GOP size` isn't a common characteristic among intra-frame codecs.
 
-In fact FFV1 can be considered an intra-frame codec only if `GOP size` is set to `1`. When it's larger than that, its context model depends on other frames found within the `GOP` which contradicts the definition of intra-frame only codec. The main reason why it's strongly recommended to set `GOP size` to `1` for archival purposes is that if one frame gets somehow corrupted, we only lost one frame. If `GOP size` was big we could loose much larger part of the video.
+In fact, FFV1 can be considered an intra-frame codec only if the `GOP size` is set to `1`. When it's larger than that, its context model depends on other frames found within the GOP, which contradicts the definition of intra-frame video codec. That is why it's highly advised to set `GOP size` to `1` for archiving. This way, if a single frame gets damaged, you'll
+only lose that frame. If `GOP size` was large, you might lose much bigger part of the video.
 
 References:
 - [Wikipedia](https://en.wikipedia.org/wiki/FFV1)
@@ -59,4 +58,3 @@ References:
 - [FFmpeg Docs](https://trac.ffmpeg.org/wiki/Encode/FFV1)
 - [This Thread](https://forum.shotcut.org/t/exporting-as-ffv1-change-form-to-support-lossless-parameters/41230/19?page=2)
 - [This Question](https://video.stackexchange.com/questions/24874/what-does-the-context-parameter-mean-when-using-ffv1-in-ffmpeg)
-

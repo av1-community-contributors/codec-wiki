@@ -11,9 +11,9 @@ This section is in need of contributions. If you believe you can help, please se
 
 ## Overview
 
-Stabilizing is a process that reduces unwanted camera movement and shakes in a video clip. This is particularly important, as unpredictable global movement (such as that from a handheld camera) can decrease overall encoding efficiency. The most popular way to stabilize video with [FFmpeg](../utilities/ffmpeg.mdx) is to use the [VidStab](https://github.com/georgmartius/vid.stab) library. To do this, you need a build of FFmpeg compiled with `--enable-libvidstab`.
+Stabilizing is the process of reducing unwanted camera movement and shakes in video clips using [FFmpeg](../utilities/ffmpeg.mdx). This improves overall encoding efficiency by minimizing unpredictable global movement, such as that from handheld cameras. The recommended method for stabilizing videos with FFmpeg is to use the VidStab library, which requires a build of FFmpeg compiled with `--enable-libvidstab`.
 
-VidStab actually has two filters within FFmpeg.
+VidStab offers two filters within FFmpeg:
 
 ```shell
 ffmpeg -hide_banner -filters | grep vidstab
@@ -21,20 +21,20 @@ ffmpeg -hide_banner -filters | grep vidstab
  ... vidstabtransform  V->V       Transform the frames, pass 2 of 2 for stabilization (see vidstabdetect for pass 1).
 ```
 
-The `vidstabdetect` filter is used for the first pass, where the video transformations file (`.trf`) is generated, and `vidstabtransform` is used for the second pass, where transformations are actually applied. This implies that stabilization cannot be achieved in real-time.
+The `vidstabdetect` filter is used in the first pass to generate a video transformations file (`.trf`), while `vidstabtransform` is employed in the second pass to apply those transformations.
 
 ## Usage
 
-To stabilize a video using default parameters, you need to run two FFmpeg commands:
+To stabilize a video using default parameters, follow these two steps:
 
 ```shell
 ffmpeg -i input.mp4 -vf vidstabdetect -f null -
 ffmpeg -i input.mp4 -vf vidstabtransform output.mp4
 ```
 
-A file called `transforms.trf` will be created in the directory where you run FFmpeg. After the second step is finished, you can safely remove it. The resulting `output.mp4` video will now have reduced shakiness.
+After running the first command, a `transforms.trf` file will be created in the directory where you executed FFmpeg. Once the stabilization process is complete, you can safely delete this file. The resulting `output.mp4` video will have reduced shakiness.
 
-To stabilize a high-framerate video with strong camera movement, set its transformations filename to `a.trf`, and increase the output field of view. You can use the following commands:
+For stabilizing high-framerate videos with strong camera movement:
 
 ```shell
 ffmpeg -i input.mp4 -vf vidstabdetect=shakiness=8:result=a.trf -f null -
@@ -42,32 +42,32 @@ ffmpeg -i input.mp4 -vf vidstabtransform=smoothing=30:zoom=-5:input=a.trf output
 ```
 
 :::tip
-Remember to set appropriate video/audio codec parameters in the command before `output.mp4`. You must not use `-c:v copy`, as the video will be transformed.
+Remember to set appropriate video/audio codec parameters in the command before `output.mp4`. You must not use `-c:v copy`, as the video will undergo transformations.
 :::
 
 ### vidstabdetect Parameters
 
-- `result`: Sets the output `.trf` file location
-- `shakiness`: The amount of movement reduction, where `1` is the least reduction, `10` is the most reduction (highest stabilization), and `5` is the default
-- `accuracy`: The accuracy of movement reduction, where `1` is the least accurate, `15` is the most accurate, and `15` is also the default. This setting influences CPU usage during detection. FFmpeg does not allow setting a value lower than `3`. `3` gave a processing speed of `21 fps`, and `15` gave `14 fps`. The process itself is rather CPU-intensive.
+- `result` - Sets the output `.trf` file location
+- `shakiness` - Adjusts movement reduction, with `1` being the least and `10` the most reduction (highest stabilization). Default is `5`.
+- `accuracy` - Controls movement reduction accuracy. Lower values use less CPU but may be less accurate. FFmpeg's minimum allowed value is `3`. Processing speed was approximately `21 fps` at `3` and `14 fps` at `15`.
 
-For a description of all possible parameters, take a look [here](https://ffmpeg.org/ffmpeg-filters.html#vidstabdetect-1).
+For a complete list of parameters, refer to the [vidstabdetect documentation](https://ffmpeg.org/ffmpeg-filters.html#vidstabdetect-1).
 
 ### vidstabtransform Parameters
 
-- `input`: Sets the input `.trf` file location created by `vidstabdetect`
-- `smoothing`: The number of frames in the future and past used for movement estimation, where the default is `10` (so 10 past and 10 future frames)
-- `zoom`: The amount of zoom expressed in percentage, where the default is `0%`. It can be negative, which will create a zoom-out effect.
-- `interpol`: The type of interpolation used, where `bilinear` is the default.
-  - `no`: No interpolation
-  - `linear`: Only horizontal
-  - `bilinear`: Faster but can result in blurry output
-  - `bicubic`: Slower
+- `input` - Specifies the input `.trf` file created by `vidstabdetect`
+- `smoothing` - Determines the number of frames considered for future and past movement estimation. Default is `10`.
+- `zoom` - Adjusts the zoom percentage, with `0%` being the default. Negative values create a zoom-out effect.
+- `interpol` - Sets the type of interpolation used:
+  - `no` - No interpolation
+  - `linear` - Only horizontal
+  - `bilinear` - Faster but may result in blurry output (default)
+  - `bicubic` - Slower
 
-For a description of all possible parameters, take a look [here](https://ffmpeg.org/ffmpeg-filters.html#vidstabtransform-1).
+See the [vidstabtransform documentation](https://ffmpeg.org/ffmpeg-filters.html#vidstabtransform-1) for more details.
 
 ## Notes
 
-- The process of stabilization is lossy and can reduce the quality of the video, mainly due to the zoom and interpolation used.
-- You might notice overall wobbliness in the resulting video file, especially with higher stabilization levels. This is just how this filter works.
-- As you will need to run two passes anyway, you might also consider using two-pass encoding, depending on your use case.
+- Stabilization is a lossy process that can reduce video quality due to zoom and interpolation effects.
+- Some users may notice overall wobbliness in stabilized videos, especially at higher stabilization levels. This is an inherent characteristic of this filter.
+- Depending on your use case, consider employing two-pass encoding along with these stabilization steps.

@@ -8,17 +8,15 @@ import TabItem from '@theme/TabItem';
 
 # uavs3e
 
-`[uavs3e](https://github.com/uavs3/uavs3e/)` is an open-source encoder for the [AVS3](/docs/video/AVS3) codec. It was developed by Chinese research institutions, including Peking University Shenzhen Graduate School, Peng Cheng Laboratory, and Guangdong Bohua UHD Innovation Corporation.
+[uavs3e](https://github.com/uavs3/uavs3e/) is an open-source encoder for the [AVS3](/docs/video/AVS3) codec, developed by Chinese research institutions including Peking University Shenzhen Graduate School, Peng Cheng Laboratory, and Guangdong Bohua UHD Innovation Corporation.
 
-The encoder is infrequently updated, which may lead to bugs & compilation issues. It supports AMD64 with AVX2, ARM with NEON, and LoongArch CPUs.
+The encoder receives infrequent updates, which may result in bugs and compilation issues. It supports AMD64 with AVX2, ARM with NEON, and LoongArch CPUs.
 
 ## Installation
 
 <Tabs>
     <TabItem value="unixlike" label="Linux & macOS">
-        The developers do not provide pre-built binaries of their encoder, so you'll need to compile it yourself.
-
-        Compilation requires GNU Make and CMake. As of August 2024, `uavs3e` doesn't compile with GCC 14. Using Clang 18 instead of GCC resolves this issue.
+        The developers do not provide pre-built binaries, so you'll need to compile it yourself. Compilation requires GNU Make and CMake. As of August 2024, `uavs3e` does not compile with GCC 14, using Clang 18 instead resolves this issue.
 
         ```bash
         git clone https://github.com/uavs3/uavs3e.git
@@ -37,9 +35,6 @@ The encoder is infrequently updated, which may lead to bugs & compilation issues
 
         Binaries will be available in the `build/linux` folder. On Linux, you can run `make install` to install the encoder (may require elevated permissions).
 
-        ### 10-bit Support
-
-        To enable 10-bit support, set `-DCOMPILE_10BIT=1` in the CMake command. However, the encoder compiled with this flag has been reported to [cause segmentation faults on some systems](https://github.com/uavs3/uavs3e/issues/53).
     </TabItem>
     <TabItem value="windows" label="Windows">
         1. Ensure you have the following prerequisites installed before starting the build process:
@@ -61,15 +56,23 @@ The encoder is infrequently updated, which may lead to bugs & compilation issues
 
         Binaries will be available in the `bin` folder.
 
-        ### 10-bit Support
+    </TabItem>
+</Tabs>
 
+### 10-bit Support
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+        To enable 10-bit support, set `-DCOMPILE_10BIT=1` in the CMake command. However, the encoder compiled with this flag has been reported to cause [segmentation faults](https://github.com/uavs3/uavs3e/issues/53) on some systems.
+    </TabItem>
+    <TabItem value="windows" label="Windows">
         To enable 10-bit support, change the line `#define COMPILE_10BIT 0` to `#define COMPILE_10BIT 1` in the `inc/com_api.h` file.
     </TabItem>
 </Tabs>
 
 ## Usage
 
-The encoder cannot parse `.y4m` files, so they need to be converted to the raw video (`.yuv`) format.
+The encoder cannot parse `.y4m` files, they need to be converted to raw video (`.yuv`) format.
 
 ```bash title="Simple 8-bit FHD 23.976 fps input with QP 20 and raw avs3 bitstream output"
 uavs3enc -i input.yuv -w 1920 -h 1080 -d 8 --fps_num 24000 --fps_den 1001 -q 20 -o output.avs3
@@ -84,5 +87,5 @@ Currently, uavs3e [does not support piping](https://github.com/uavs3/uavs3e/issu
 ## Notes
 
 1. Usable speed presets range from 0 to 4, where 0 is the slowest and 4 is the fastest.
-2. The encoder can be quite competitive, even compared to the newest [AV1](../video/AV1.mdx) and [VVC](../video/VVC.mdx) encoders in terms of visual fidelity.
+2. The encoder can be quite competitive, even compared with the newest [AV1](../video/AV1.mdx) and [VVC](../video/VVC.mdx) encoders in terms of visual fidelity.
 3. `uavs3d` can be used to decode the output bitstream. For real-time playback, you need to have [FFmpeg](/docs/utilities/ffmpeg) compiled with `--enable-libuavs3d`.
