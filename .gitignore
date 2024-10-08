@@ -4,3 +4,4 @@ node_modules
 yarn.lock
 build
 .DS_Store
+bun.lockb
