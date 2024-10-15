@@ -5,11 +5,11 @@ sidebar_position: 2
 
 # gzip
 
-Gzip is a DEFLATE implementation for use with individual files. It is popular on Unix-like systems such as Linux & macOS, and is often seen paired with `tar` to create `.tar.gz` archives. Formats like [ZIP](../data/zip.mdx) & [PNG](../images/PNG.mdx) also use Deflate to different effects.
+Gzip is a DEFLATE implementation for use with individual files. It is popular on Unix-like systems such as Linux & macOS, and is often seen paired with [`tar`](../data/tar.mdx) to create `.tar.gz` archives. Formats like [ZIP](../data/zip.mdx) & [PNG](../images/PNG.mdx) also use Deflate to different effects.
 
 ## Format Breakdown
 
-While ZIP is a multi-file format that can compress multiple files into a single compressed file, Gzip is a single-file format that compresses a single file into a single compressed file. Both use DEFLATE for compression. ZIP supports encryption, while Gzip does not. ZIP also stores more extensive header information.
+While ZIP is a multi-file archiving format that can compress multiple files into a single compressed file, Gzip is a single-file format that compresses a single file into a single compressed file. Both use DEFLATE for compression. ZIP supports encryption, while Gzip does not. ZIP also stores more extensive header information.
 
 ## History
 
@@ -25,7 +25,7 @@ In the early 1990s the [gzip](../data/gzip.mdx) format was developed, derived fr
 
 As a `compress` replacement, the Unix gzip utility can decompress data that was compressed using `compress`. Gzip compresses quite a bit better than Unix compress due to its use of DEFLATE, and it has very fast decompression. It also adds a CRC-32 checksum as an integrity check for the archived data. The header format permits the storage of more information than the compress format allowed, such as the original file name & the file modification time.
 
-The popular `tar` utility, which creates an archive of files, has an option to compress directly to the `.tar.gz` format and is a very popular use caze for gzip. Since the compression of a `.tar` can take advantage of redundancy across files, ZIP often compresses less effectively than the marriage of tar & gz. `.tar.gz` is the most common archive format in use on Unix due to its very high portability, but there are better compression methods available. Some of these include [XZ](../data/xz.mdx), [bzip2](../data/bzip2.mdx), [brotli](../data/brotli.mdx), [7-zip](../data/7z.mdx), & [Zstandard](../data/zstd.mdx).
+The popular [`tar`](../data/tar.mdx) utility, which creates an archive of files, has an option to compress directly to the `.tar.gz` format and is a very popular use caze for gzip. Since the compression of a `.tar` can take advantage of redundancy across files, ZIP often compresses less effectively than the marriage of tar & gz. `.tar.gz` is the most common archive format in use on Unix due to its very high portability, but there are better compression methods available. Some of these include [XZ](../data/xz.mdx), [bzip2](../data/bzip2.mdx), [brotli](../data/brotli.mdx), [7-zip](../data/7z.mdx), & [Zstandard](../data/zstd.mdx).
 
 ## Encoding
 

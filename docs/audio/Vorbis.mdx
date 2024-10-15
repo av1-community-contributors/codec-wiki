@@ -9,4 +9,16 @@ sidebar_position: 5
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
 
-Vorbis is an open-source audio codec that has seen great success in its usage by Spotify, among others. It is the default audio codec for Minecraft's sounds & music. It has largely been replaced by [Opus](../audio/Opus.mdx).
+Vorbis is an open-source audio codec first released in 2000, maintainted by the Xiph.org Foundation. It has seen great success in its usage by Spotify, among others. It is the default audio codec for Minecraft's sounds & music. It has largely been replaced by [Opus](../audio/Opus.mdx).
+
+## Usage
+Vorbis is supported in [ffmpeg](../utilities/ffmpeg.mdx).
+### Encoder
+```bash
+ffmpeg -i input.wav -c:a libvorbis output.ogg
+```
+### Decoder
+```bash
+ffmpeg -i input.ogg output.wav
+```
+See [ffmpeg](../utilities/ffmpeg.mdx) for more options.
