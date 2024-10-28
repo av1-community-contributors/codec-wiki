@@ -72,7 +72,7 @@ mkdir libvpx_build && cd libvpx_build
 Now here comes the annoying part, the configure file have really bad defaults. So you will need to adjust them, here are some recommended options you should use:
 
 ```bash
-../configure --cpu=native --extra-cxxflags="-flto" --extra-cflags="-flto" --as=auto --enable-vp9-highbitdepth --enable-libyuv --enable-webm-io --enable-vp9 --enable-runtime-cpu-detect --enable-internal-stats --enable-postproc --enable-vp9-postproc --enable-static --disable-shared --enable-vp9-temporal-denoising --disable-unit-tests --disable-docs --enable-multithread
+../configure --cpu=native --extra-cxxflags="-ffat-lto-objects -flto" --extra-cflags="-ffat-lto-objects -flto" --as=auto --enable-vp9-highbitdepth --enable-libyuv --enable-webm-io --enable-vp9 --enable-runtime-cpu-detect --enable-internal-stats --enable-postproc --enable-vp9-postproc --enable-static --disable-shared --enable-vp9-temporal-denoising --disable-unit-tests --disable-docs --enable-multithread
 ```
 
 Now let's break down what each of them do.
@@ -81,7 +81,7 @@ Now let's break down what each of them do.
 - `--cpu=native`
 Native CPU optimizations.
 
-- `--extra-cxxflags="-flto" --extra-cflags="-flto"`
+- `--extra-cxxflags="-ffat-lto-objects -flto" --extra-cflags="-ffat-lto-objects -flto"`
 More CPU optimizations for faster encoding.
 
 - `--as=auto`
