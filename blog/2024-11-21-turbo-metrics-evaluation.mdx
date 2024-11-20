@@ -8,7 +8,7 @@ authors:
   url: https://github.com/0xb01u/
   image_url: https://avatars.githubusercontent.com/u/4998967
 tags: [video, metrics, benchmarks]
-image: /img/turbo-metrics_blog_11-2024/image.avif
+image: /img/blog_turbo-metrics_11-2024/image.avif
 hide_table_of_contents: false
 ---
 
@@ -17,7 +17,7 @@ import rehypeKatex from 'rehype-katex';
 
 # Introduction
 
-Video encoding is a time-consuming task by itself. When it comes to assessing the resulting encodes, objective quality metrics are often used, providing advantages over subjective measurements, e.g. faster evaluation processes. Nevertheless, the computation of some of these metrics is still somewhat slow. This is the case for [SSIMULACRA2](https://wiki.x266.mov/docs/metrics/SSIMULACRA2), one of the most popular objective metrics for image and video assessment.
+Video encoding is a time-consuming task by itself. When it comes to assessing the resulting encodes, objective quality metrics are often used, providing advantages over subjective measurements, e.g., faster evaluation processes. Nevertheless, the computation of some of these metrics is still somewhat slow. This is the case for [SSIMULACRA2](https://wiki.x266.mov/docs/metrics/SSIMULACRA2), one of the most popular objective metrics for image and video assessment.
 
 In this blog entry, we will evaluate the performance of [TurboMetrics](https://github.com/Gui-Yom/turbo-metrics), a software which provides a GPU-accelerated implementation of SSIMULACRA2, and promises to save a lot of time in its computation.
 
@@ -32,14 +32,14 @@ Before we start with the evaluation, we will first cover some fundamental (and n
 SSIMULACRA2, which is sometimes abbreviated as "ssimu2", is a perceptual metric for images, based on the concept of the multi-scale structural similarity index measure ([MS-SSIM](https://en.wikipedia.org/wiki/Structural_similarity_index_measure)). In the words of its developer, it is "[based on MS-SSIM], computed in a perceptually relevant color space, adding two other (asymmetric) error maps, and aggregating using two different norms". A total of 54 error maps are computed over multiple downscalings (from 1:1 to 1:32) of the image to assess (_distorted_) and its source image (_reference_). These error maps are then added using a weighted sum to produce the final SSIMULACRA2 score. The weight of each error map is tuned based on a large set of subjective scores from different image benchmarks.
 
 SSIMULACRA2 scores are in the range [-inf, 100]. They are reported to correlate to subjective visual quality scores as follows:
- - 30 = low quality
- - 50 = medium quality
- - 70 = high quality
- - 90 = very high quality; likely impossible to distinguish from the original when viewed at 1:1 from a normal viewing distance
+* 30 = low quality
+* 50 = medium quality
+* 70 = high quality
+* 90 = very high quality; likely impossible to distinguish from the original when viewed at 1:1 from a normal viewing distance
 
 One special consideration when using SSIMULACRA2 to assess video quality is that, even though the developers state that a score of 90 corresponds to a "visually lossless" image, for videos, this threshold is considered to be lower, around 80. This is because it is harder to notice artifacts on individual frames, given the short period of time the viewer perceives them (usually, between 1/24 and 1/60 of a second, 0.04167 and 0.0167 seconds, respectively).
 
-The reference implementation for SSIMULACRA2 can be found [here](https://github.com/cloudinary/ssimulacra2). Other popular implementations include [the Rust implementation](https://docs.rs/crate/ssimulacra2_rs/latest), and [Zig implementation](https://github.com/dnjulek/vapoursynth-ssimulacra2).
+The reference implementation for SSIMULACRA2 can be found [here](https://github.com/cloudinary/ssimulacra2). Other popular implementations include [the Rust implementation](https://docs.rs/crate/ssimulacra2_rs/latest), and [the Zig implementation](https://github.com/dnjulek/vapoursynth-zip).
 
 Although technically speaking SSIMULACRA2 is an image-focused metric, it has gained popularity as a video assessment metric due to its reliability in correlating to subjective measurements. It is considered to provide better results than other historically more popular metrics, such as [PSNR](https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio), [(MS-)SSIM](https://en.wikipedia.org/wiki/Structural_similarity_index_measure), and even [VMAF](https://github.com/Netflix/vmaf). In that context, each video frame is treated as a separate image. SSIMULACRA2 scores are computed for each of the video's frames independently, and the average is taken as the video's score. Other useful statistics include the standard deviation (which correlates to the consistency of the quality of the video), the median, the 5th percentile, and the 95th percentile. Although SSIMULACRA2 is considered to be quite reliable for video assessment, it is worth noting that, being a purely image-based metric, it disregards any temporal information present in videos, which might be seen as a disadvantage. Other metrics, such as [XPSNR](https://github.com/fraunhoferhhi/xpsnr), were developed with video assessment as their main objective, and do consider temporal information.
 
@@ -49,30 +49,30 @@ As stated previously, SSIMULACRA2 computes 54 error maps per image assessed. Thi
 #### In-depth: SSIMULACRA2 computation
 
 The summary of the algorithm for SSIMULACRA2 is the following, as [reported here](https://github.com/Gui-Yom/turbo-metrics/blob/master/crates/ssimulacra2-cuda/README.md#computing-ssimulacra2):
- 1. Get the frame pair (reference and distorted).
- 2. Convert the frames to linear RGB (using 32-bit floating-point).
- 3. For each scale (1:1 to 1:32, downsampling by 2 every step: 6 different scales):
-   1. Downscale by the scale number (if needed).
-   2. Convert the frames to XYB color space.
-   3. Blur the following pictures, using a recursive Gaussian blur: (reference * reference), (distorted * distorted), (reference * distorted), (reference), (distorted).
-   4. Compute 1-SSIM, artifact and detail\_loss error scores from the 5 blurred images and the original frame pair; this yields 3 error maps.
-   5. The error maps are reduced to a single number using the 1-norm and 4-norm.
- 4. From this, we get 6 scores for each scale (6) and color component (3), totaling 108 scores.
- 5. The scores are added using a weighted sum.
- 6. The final value is processed through a non-linear function and clipped to render a score between 100 and -infinite.
+1. Get the frame pair (reference and distorted).
+2. Convert the frames to linear RGB (using 32-bit floating-point).
+3. For each scale (1:1 to 1:32, downsampling by 2 every step: 6 different scales):
+    1. Downscale by the scale number (if needed).
+    2. Convert the frames to XYB color space.
+    3. Blur the following pictures, using a recursive Gaussian blur: (reference * reference), (distorted * distorted), (reference * distorted), (reference), (distorted).
+    4. Compute 1-SSIM, artifact and detail\_loss error scores from the 5 blurred images and the original frame pair; this yields 3 error maps.
+    5. The error maps are reduced to a single number using the 1-norm and 4-norm.
+4. From this, we get 6 scores for each scale (6) and color component (3), totaling 108 scores.
+5. The scores are added using a weighted sum.
+6. The final value is processed through a non-linear function and clipped to render a score between 100 and -infinite.
 
 
 #### SSIMULACRA2 subsampling
 
-Given that the metric is quite slow to compute, it is often computed over a subset (subsample) of the video frames, instead of over all of them. For example, a _stride_ of 3 could be used, to compute SSIMULACRA2 scores for 1 frame out of every 3 in the video, skipping the computation for the other 2 frames. This is expected to speedup the computation by a factor of x3.
+Given that the metric is quite slow to compute, it is often computed over a subset (subsample) of the video frames, instead of over all of them. For example, a _stride_ of 3 could be used, to compute SSIMULACRA2 scores for 1 frame out of every 3 in the video, skipping the computation for the other 2 frames. This is expected to speedup the computation by a factor of ×3.
 
-However, this evidently induces an _error_ in the score, as the average of the scores of a subsample of the video frames is not guaranteed to be equal to the average of the scores of all the frames. The smaller the subsample (i.e. the higher the computation stride), the higher this error will be. Nevertheless, it has been reported that small strides usually produce averages significantly close to the real average of all the frames. Thus, it is pretty safe to do this. To minimize the error of this sampling method, it has been stated that "as long as you don't sample in a power of two ([i.e., every] 2, 4, 8... [frames]), you'll be fine, as you want to pick frames from every temporal layer [of the video]". Other sources further recommend picking strides that are prime numbers (e.g. 1 every 3, 5, 7, 11... frames), since "prime numbers reduce the likelihood of sampling bias due to constant frame rate".
+However, this evidently induces an _error_ in the score, as the average of the scores of a subsample of the video frames is not guaranteed to be equal to the average of the scores of all the frames. The smaller the subsample (i.e., the higher the computation stride), the higher this error will be. Nevertheless, it has been reported that small strides usually produce averages significantly close to the real average of all the frames. Thus, it is pretty safe to do this. To minimize the error of this sampling method, it has been stated that "as long as you don't sample in a power of two ([i.e., every] 2, 4, 8... [frames]), you'll be fine, as you want to pick frames from every temporal layer [of the video]". Other sources further recommend picking strides that are prime numbers (e.g., 1 every 3, 5, 7, 11... frames), since "prime numbers reduce the likelihood of sampling bias due to constant frame rate".
 
 ### TurboMetrics
 
 [TurboMetrics](https://github.com/Gui-Yom/turbo-metrics) is a WIP software suite developed by the very talented [Gui-Yom/LimelioN](https://github.com/Gui-Yom). It is "a collection of video related libraries and tools oriented at performance and hardware acceleration". It comes as a collection of Rust libraries/crates, and some include command-line applications to interact with them. There are currently no public releases of the suite in the dedicated "Releases" page of its GitHub repository, but you can download the code and compile it yourself. The latest tagged version of the software, at the moment of writing, is v0.2.2.
 
-TurboMetrics focuses mainly on **NVIDIA GPUs** using CUDA. However, the developer is actively working on adding support for other hardware (e.g. AMD and Intel GPUs). Nevertheless, I only have experience with NVIDIA GPUs, so I cannot tell how the progress is going on that front.
+TurboMetrics focuses mainly on **NVIDIA GPUs** using CUDA. However, the developer is actively working on adding support for other hardware (e.g., AMD and Intel GPUs). Nevertheless, I only have experience with NVIDIA GPUs, so I cannot tell how the progress is going on that front.
 
 Among the tools, there is a working SSIMULACRA2 implementation that uses CUDA to leverage GPU acceleration, ssimulacra2-cuda. We will focus exclusively on it from now on. We will use this tool to compute SSIMULACRA2 scores for certain video samples. However, it is worth noting that the tool is also able to compute other metrics, such as SSIM and PSNR. It can even compute multiple metrics on the same rum.
 
@@ -82,52 +82,56 @@ ssimulacra2-cuda is [stated to be](https://github.com/Gui-Yom/turbo-metrics/tree
 #### In-depth: Implementation differences from the reference
 
 As [reported here](https://github.com/Gui-Yom/turbo-metrics/blob/master/crates/ssimulacra2-cuda/README.md#differences-from-the-reference-implementation), the GPU implementation of SSIMULACRA2 provided in TurboMetrics differs from the reference implementation in the following ways that can affect the accuracy of the reported scores:
- * The conversion from YUV to linear RGB might not yield the same results as other tools.
- * Explicit Fused Multiply-Add (FMA) operations are used when possible, as the GPU can leverage them for higher performance.
- * The order of operations might not be the same, as some calculations have been rearranged.
- * Floating-point operations might not yield the same results, especially with the approximated math functions used in the GPU (like `powf`).
- * The original weights were computed by fitting the error scores to Mean Opinion Score (MOS), and deviation in the error scores is amplified by these weights.
- * The final non-linear function is rather steep (x³), and thus score variations are amplified again.
+* The conversion from YUV to linear RGB might not yield the same results as other tools.
+* Explicit Fused Multiply-Add (FMA) operations are used when possible, as the GPU can leverage them for higher performance.
+* The order of operations might not be the same, as some calculations have been rearranged.
+* Floating-point operations might not yield the same results, especially with the approximated math functions used in the GPU (like `powf`).
+* The original weights were computed by fitting the error scores to Mean Opinion Score (MOS), and deviation in the error scores is amplified by these weights.
+* The final non-linear function is rather steep (x³), and thus score variations are amplified again.
 
 ## Performance evaluation
 
 ### Setup
 
-In this experiment, we will evaluate TurboMetrics in terms of performance; that is, the amount of ssimu2 scores computed per unit of time. For that, an episode of an animated series (~25 minutes), encoded with H.264, has been chosen as sample video. However, the kind of video content used, and most of its technical characteristics (e.g. codec, encoding parameters, etc.) except for resolution should be irrelevant, as the same computations are performed for every video of a specific frame dimensions. In this case, the video has a resolution of 1080p (1920x1080 pixels per frame), with 8 bits per pixel, and YUV color space with 4:2:0 chroma subsampling.
+In this experiment, we will evaluate TurboMetrics in terms of performance; that is, the amount of ssimu2 scores computed per unit of time. For that, an episode of an animated series (~25 minutes), encoded with H.264, has been chosen as sample video. However, the kind of video content used, and most of its technical characteristics (e.g., codec, encoding parameters, etc.) except for resolution, should be irrelevant, as the same computations are performed for every video of specific frame dimensions. In this case, the video has a resolution of 1080p (1920×1080 pixels per frame), with 8 bits per pixel, and YUV color space with 4:2:0 chroma subsampling.
 
-The video source and example distorted encode have been compared using **ssimulacra2\_rs** and **TurboMetrics**. I am aware the Zig implementation of SSIMULACRA2 is reportedly faster than ssimulacra2\_rs; however, I am not familiar with Zig or Vapoursynth, so its usage was not considered.
+The video source and example distorted encode have been compared using **ssimulacra2\_rs**, **vszip**, and **TurboMetrics**. ssimulacra2\_rs and vszip are both CPU implementations of SSIMULACRA2, the former written in Rust and the latter in Zig (but invoked from VapourSynth/Python scripts). It has been reported that the Zig implementation is considerably faster than the Rust one, and we can check that out as well!
 
-ssimulacra2\_rs has been executed on an Intel i5-11400 CPU (base frequency of 2.60 GHz, turbo frequency of 4.40 GHz), using 6 CPU cores (`-f 6` parameter in ssimulacra2\_rs). TurboMetrics has been executed both on an NVIDIA GTX 1060 GPU, and an NVIDIA RTX 4060 GPU. Both programs have been executed for the same video pair with **varying frame strides: 1, 3, 5, 7, 11, 13, 17, 19 and 23** (not skipping frames, plus every prime number lower than 24 frames / 1 second, excluding 2).
+The CPU implementations have been executed on an Intel i5-11400 CPU (base frequency of 2.60 GHz, turbo frequency of 4.40 GHz), using 6 CPU cores (`-f 6` parameter in ssimulacra2\_rs, `-t 6` parameter in ssimulacravszip.py). TurboMetrics has been executed both on an NVIDIA GTX 1060 GPU and an NVIDIA RTX 4060 GPU. The three programs have been executed for the same video pair with **varying frame strides: 1, 3, 5, 7, 11, 13, 17, 19, and 23** (not skipping frames, plus every prime number lower than 24 frames / 1 second, excluding 2).
 
-For the CPU and RTX 4060, the distorted video was an AV1 encode of the reference video. For the GTX 1060, as it does not have AV1 decoding hardware support, the H.264 reference video was compared to itself (the computations being performed should be equivalent anyway).
+For the CPU and RTX 4060 executions, the distorted video was a custom AV1 encode of the reference video. For the GTX 1060, as it does not have AV1 decoding hardware support, the H.264 reference video was compared to itself (the computations being performed should be equivalent anyway).
 
 ### Results and discussion
 
 The exact results of this experiment are shown in the following table:
 
-| Stride | CPU FPS | GTX 1060 FPS | RTX 4060 FPS |
-|:-:|:-:|:-:|:-:|
-| 1 | 3.37 | 46.70 | 85.64 |
-| 3 | 9.55 | 133.86 | 245.73 |
-| 5 | 15.15 | 164.34 | 350.01 |
-| 7 | 20.45 | 197.17 | 400.94 |
-| 11 | 30.23 | 222.98 | 458.61 |
-| 13 | 34.54 | 239.17 | 488.83 |
-| 17 | 40.51 | 249.58 | 520.30 |
-| 19 | 42.82 | 258.71 | 525.44 |
-| 23 | 45.43 | 264.85 | 546.14 |
+| Stride | ssimulacra2\_rs FPS | vszip FPS | GTX 1060 GPU FPS | RTX 4060 GPU FPS |
+|:-:|:-:|:-:|:-:|:-:|
+| 1 | 3.37 | 14.63 | 46.70 | 85.64 |
+| 3 | 9.55 | 37.67 | 133.86 | 245.73 |
+| 5 | 15.15 | 49.34 | 164.34 | 350.01 |
+| 7 | 20.45 | 56.37 | 197.17 | 400.94 |
+| 11 | 30.23 | 64.46 | 222.98 | 458.61 |
+| 13 | 34.54 | 66.65 | 239.17 | 488.83 |
+| 17 | 40.51 | 69.23 | 249.58 | 520.30 |
+| 19 | 42.82 | 69.99 | 258.71 | 525.44 |
+| 23 | 45.43 | 88.60 | 264.85 | 546.14 |
 
 Here they are in graph form, for better visualization:
 
-![CPU vs GPUs decoded FPS](/img/turbo-metrics_blog_11-2024/ssimu2_cpu-gpu_dec.svg)
+![CPU vs GPUs decoded FPS](/img/blog_turbo-metrics_11-2024/ssimu2_cpu-gpu_dec.svg)
 
 On a superficial level, we can already make some observations:
-* CPU computation of SSIMULACRA2 scores is quite slow: 3.37 frames per second when using 6 threads (for entire video processing). That's like 0.56 frames per second per thread. I know the CPU used is not a beast by any measure, but beast CPUs are quite expensive, and that is something to consider. This performance still says a lot about the computational complexity of SSIMULACRA2. Those processing speeds are comparable to some of the slower-ish presets of SVT-AV1.
-* GPU computation of SSIMULACRA2 scores is impressive, considering the (multithreaded) CPU baseline: Speedups for the GTX 1060 (an 8-year-old GPU) are between x13.86 (full video computation) and x5.83 (stride of 23). Speedups for the RTX 4060 are between x25.41 (full video computation) and x12.02 (stride of 23). It's amazing seeing how GPUs not only achieve real-time SSIMULACRA2 computation of entire videos, but more than x1.94 and x3.56 real-time processing, even (GTX and RTX, respectively).
+* SSIMULACRA2 computation with ssimulacra2\_rs is quite slow: 3.37 frames per second (without skipping frames) when using 6 threads. That is like 0.56 frames per second per thread. I know the CPU used is no beast by any measure, but beast CPUs are quite expensive and not that common (that is something to keep in mind). Those processing speeds are comparable to some of the slower-ish presets of SVT-AV1.
+  - vszip is, in fact, considerably faster: Between ×4.34 (full video computation) and ×1.63 (stride of 19) with the same amount of threads. However, it seems that vszip does not scale as well as the other implementations (except for that weird performance boost with a stride of 23).
+* GPU computation of SSIMULACRA2 scores is impressive, considering the CPU performances:
+  - Compared to ssimulacra2\_rs: Speedups for the GTX 1060 (an 8-year-old GPU) are between ×14.01 (stride of 3) and ×5.83 (stride of 23). Speedups for the RTX 4060 are between ×25.73 (stride of 3) and ×12.02 (stride of 23).
+  - Compared to vszip: Speedups for the GTX 1060 are between ×3.70 (stride of 19) and ×2.99 (stride of 23). Speedups for the RTX 4060 are between ×7.51 (stride of 17) and ×5.85 (stride of 1 / full video computation).
+  - It is amazing seeing how GPUs not only achieve real-time SSIMULACRA2 computation of entire videos, but more than ×1.94 and ×3.56 real-time processing, even (GTX and RTX, respectively).
 
 Nevertheless, the most interesting observation is made when we use computation strides bigger than 1: The performance does _not_ scale linearly with the stride, as it would be expected. This happens with both the CPU and GPUs, although it is more noticeable in the case of the GPUs due to their higher performance.
 
-Why is that? Well, there is actually a good explanation: The reported FPS are _decoded_ FPS. That is, the speed in which the software is decoding and processing all the video frames. All the frames in the video bitstream are decoded and reconstructed as images, but the SSIMULACRA2 score is only computed for some of them. SSIMULACRA2 computation affects decoding speed in that the decoding of each frame only starts after the processing of the previous has finished (kind of, this may not be entirely true for multithreaded CPU implementations, but we can ignore that). The faster the SSIMULACRA2 processing is done, the sooner the next frame starts decoding. And there is no faster processing than not doing any processing at all, that is, skipping the frame! However, **the decoding itself is a process that has to be done regardless**, and the time it takes should not be disregarded. Although decoding as a process is considerably faster than SSIMULACRA2 computation, it starts becoming the bottleneck when you both compute SSIMULACRA2 so fast, and skip computing frames.
+Why is that? Well, there is actually a good explanation: The reported FPS are _decoded_ FPS. That is, the speed in which the software is decoding and processing all the video frames. All the frames in the video bitstream are decoded and reconstructed as images, but the SSIMULACRA2 score is only computed for some of them. SSIMULACRA2 computation affects decoding speed in that the decoding of each frame only starts after the processing of the previous has finished (kind of, this is not be entirely true for multithreaded CPU implementations, but we can ignore that). The faster the SSIMULACRA2 processing is done, the sooner the next frame starts decoding. And there is no faster processing than not doing any processing at all, that is, skipping the frame! However, **the decoding itself is a process that has to be done regardless**, and the time it takes should not be disregarded. Although decoding as a process is considerably faster than SSIMULACRA2 computation, it starts becoming the bottleneck when you both compute SSIMULACRA2 so fast, and skip computing frames.
 
 ### Considerations about video decoding performance
 
@@ -136,28 +140,28 @@ Why is that? Well, there is actually a good explanation: The reported FPS are _d
 * The RTX 4060 is able to decode H.264 1080p YUV 4:2:0 video at up to 883 frames per second.
 * The RTX 4060 is able to decode AV1 1080p YUV 4:2:0 video at up to 1005 frames per second.
 
-Being proprietary NVIDIA technology, served as a black box through their API, we cannot be sure how the NVDEC engines are implemented and what exactly are their limitations under scenarios such as these (i.e. concurrent decoding of multiple video streams of same or different codecs). We can only trust the information NVIDIA provides. NVIDIA states that all GeForce products consist of a single NVDEC; however, we cannot be certain how its resources are managed or shared when working with multiple simultaneous decoding contexts.
+Being proprietary NVIDIA technology, served as a black box through their API, we cannot be sure how the NVDEC engines are implemented and what exactly are their limitations under scenarios such as these (i.e., concurrent decoding of multiple video streams of same or different codecs). We can only trust the information NVIDIA provides. NVIDIA states that all GeForce products consist of a single NVDEC; however, we cannot be certain how its resources are managed or shared when working with multiple simultaneous decoding contexts.
 In our case, considering two videos are being decoded at the same time:
-* The GTX 1060 decodes up to 529.7 H.264 (2x264.85) frames per second when using a stride of 23 frames, which corresponds to 75% of its reported peak decoding performance for H.264.
+* The GTX 1060 decodes up to 529.7 H.264 (2×264.85) frames per second when using a stride of 23 frames, which corresponds to 75% of its reported peak decoding performance for H.264.
 * The RTX 4060 decodes up to 546.14 H.264 + 546.14 AV1 (1092.28 total) frames per second when using a stride of 23 frames, which corresponds to 61.85% and 54.34% of its reported peak decoding performance for H.264 and AV1 respectively. Notice how, even though the NVDEC hardware resources are reportedly being shared between the two decodes, both are able to reach more than 50% peak performance **at the same time**.
 
 We can just focus on _processed_ FPS, that is, only not-skipped frames processed per second, or SSIMULACRA2 scores computed per second, to see how the processing performance degrades with increasing strides.
 
-| Stride | CPU FPS | GTX 1060 FPS | RTX 4060 FPS |
-|:-:|:-:|:-:|:-:|
-| 1 | 3.37 | 46.70 | 85.64 |
-| 3 | 3.18 | 44.62 | 81.91 |
-| 5 | 3.03 | 32.87 | 70.00 |
-| 7 | 2.92 | 28.17 | 57.28 |
-| 11 | 2.75 | 20.27 | 41.69 |
-| 13 | 2.66 | 18.40 | 37.60 |
-| 17 | 2.38 | 14.68 | 30.61 |
-| 19 | 2.25 | 13.62 | 27.65 |
-| 23 | 1.98 | 11.52 | 23.75 |
+| Stride | ssimulacra2\_rs FPS | vszip FPS | GTX 1060 GPU FPS | RTX 4060 GPU FPS |
+|:-:|:-:|:-:|:-:|:-:|
+| 1 | 3.37 | 14.63 | 46.70 | 85.64 |
+| 3 | 3.18 | 12.56 | 44.62 | 81.91 |
+| 5 | 3.03 | 9.87 | 32.87 | 70.00 |
+| 7 | 2.92 | 8.05 | 28.17 | 57.28 |
+| 11 | 2.75 | 5.86 | 20.27 | 41.69 |
+| 13 | 2.66 | 5.13 | 18.40 | 37.60 |
+| 17 | 2.38 | 4.07 | 14.68 | 30.61 |
+| 19 | 2.25 | 3.68 | 13.62 | 27.65 |
+| 23 | 1.98 | 3.85 | 11.52 | 23.75 |
 
 Here they are in graph form, for better visualization:
 
-![CPU vs GPUs processed FPS](/img/turbo-metrics_blog_11-2024/ssimu2_cpu-gpu_comp.svg)
+![CPU vs GPUs processed FPS](/img/blog_turbo-metrics_11-2024/ssimu2_cpu-gpu_comp.svg)
 
 It can be seen how the actual SSIMULACRA2 processing performance quickly decreases, as more and more relative time gets dedicated to decoding the videos.
 
@@ -177,7 +181,7 @@ One may think that a possible solution to the decoding speed bottleneck, which d
 
 Another, more useful approach one may think of, would be to exploit **computation overlapping**: To keep decoding frames while the SSIMULACRA2 scores are being computed, storing the decoded frames that are to be processed in a buffer. This seems to be partially implemented in TurboMetrics already, but only to some extent.
 
-Without any modification to the SSIMULACRA2 computations, the overlap in computation and decoding would still have limited effect for low strides (where SSIMULACRA2 computation is still the bottleneck), as every time the decoded frame buffer fills completely, the decoder would have to wait for it to have free space again. In theory, the SSIMULACRA2 computations could be sped up further (maybe requiring faster but more imprecise approximations). And, ideally, TurboMetrics should aim to approach the theoretical decode FPS limit in the computation of the SSIMULACRA2 scores, thus perfectly overlapping computing and decoding. In such scenario, skipping the computation of any frames would not make sense anymore, as no speed advantage would be obtained from it. However, this is still far from being a reality, as a speedup of at least x10.31 is needed for a RTX 4060 to match its decoding speeds with a computation stride of 1.
+Without any modification to the SSIMULACRA2 computations, the overlap in computation and decoding would still have limited effect for low strides (where SSIMULACRA2 computation is still the bottleneck), as every time the decoded frame buffer fills completely, the decoder would have to wait for it to have free space again. In theory, the SSIMULACRA2 computations could be sped up further (maybe requiring faster but more imprecise approximations). And, ideally, TurboMetrics should aim to approach the theoretical decode FPS limit in the computation of the SSIMULACRA2 scores, thus perfectly overlapping computing and decoding. In such scenario, skipping the computation of any frames would not make sense anymore, as no speed advantage would be obtained from it. However, this is still far from being a reality, as a speedup of at least ×10.31 is needed for an RTX 4060 to match its decoding speeds with a computation stride of 1.
 
 ## Short discussion on scoring error
 
@@ -185,18 +189,18 @@ My original idea for this blog entry was to evaluate TurboMetrics both in terms 
 
 The main concern about the error the GPU computation incurs on SSIMULACRA2 scores is that SSIMULACRA2 scores have been tuned mathematically to correlate with visual quality, while the GPU implementation's scores _try to mimic_ those scores, but have not undergone any kind of mathematical tuning or assessment themselves. The GPU scores could be seen as "SSIMULACRA2 + random error", and that "random error" might break the desired correlation, thus reducing the reliability of the metric.
 
-It is worth noting, however, that SSIMULACRA2 is not by any means a kind of "perfect metric" or "absolute truth" about video quality assessment. **SSIMULACRA2 still is unreliable in some situations, and it does not always present a perfect correlation with visual observations**. (For example, while SSIMULACRA2 seems to be great for anime and CGI, some people report it penalizes denoising too harshly, especially compared to VMAF, making it "okay" for other types of content.) In that regard, the results provided by TurboMetrics are not "incorrect", but rather provide a kind of "alternative metric".
+It is worth noting, however, that SSIMULACRA2 is not by any means a kind of "perfect metric" or "absolute truth" about video quality assessment. **SSIMULACRA2 still is unreliable in some situations, and it does not always present a perfect correlation with visual observations**. You may find here and there specific examples of SSIMULACRA2 scores that do not accurately reflect the (perceived) quality of a compressed image or video. Besides, we should keep in mind that quality is a subjective matter. In that regard, and as an example, people who do not care much about film grain might give denoised videos higher quality scores than those that SSIMULACRA2 gives. (Other metrics, such as VMAF, are more resistant to denoising.) With all this in mind, the results provided by TurboMetrics are not necessarily "incorrect", but rather provide a kind of "alternative metric".
 
 Just to give a preview on the error evaluation thus far, I will share the following: The preliminary results I obtained from that now-scraped evaluation seem to indicate that:
- * The scores provided by the GPU implementation of SSIMULACRA2 are **statistically different** to the real scores (provided by the CPU implementation).
- * **No linear correlation** between the real scores and the GPU scores has been found.
- * TurboMetrics **might tend to under-score** the frames over the real results, although this has yet to be assessed over a larger sample size to prove its veracity.
+* The scores provided by the GPU implementation of SSIMULACRA2 are **statistically different** to the real scores (provided by the CPU implementations).
+* **No linear correlation** between the real scores and the GPU scores has been found.
+* TurboMetrics **might tend to under-score** the frames over the real results, although this has yet to be assessed over a larger sample size to prove its veracity.
 
 I am looking for help with the error evaluation for the follow-up blog entry. Mainly, I need a considerably larger sample of SSIMULACRA2 scores for videos, computed both in CPU and GPU. I myself do not have enough material (encoded videos and/or the SSIMULACRA2 scores for all their frames) yet to do a sufficiently good evaluation, and it would take me quite some time to get it. Thus, I am looking for anyone who has saved the SSIMULACRA2 scores for all the frames of any video they had assessed, and is able to re-assess those same videos using TurboMetrics. If you think you can help, and are willing to, please contact me through the [AV1 for Dummies Discord server](https://discord.gg/bbQD5MjDr3).
 
 ## Overall conclusions and final thoughts
 
-In this blog entry, we have tested the GPU implementation of SSIMULACRA2 available through TurboMetrics, in terms of performance (i.e. scores computed per unit of time). The main conclusions are the following:
+In this blog entry, we have tested the GPU implementation of SSIMULACRA2 available through TurboMetrics, in terms of performance (i.e., scores computed per unit of time). The main conclusions are the following:
 * All in all, TurboMetrics provides **impressive acceleration** of the SSIMULACRA2 computation.
 * **The performance of TurboMetrics does not scale linearly with the computational stride/frame skipping**. When increasing the stride, a point of diminishing returns is reached rather soon.
   - This is caused by the time taken to decode the video frames, which is non-negligible, and becomes the bottleneck when computing SSIMULACRA2 so fast and only for some of the frames.
@@ -208,15 +212,15 @@ After developing this blog entry, **my own recommendation** for assessing videos
 ## Future
 
 TurboMetrics' development is still ongoing, and I know Gui-Yom has tons of ideas for it. To begin with, I know the following ideas are being worked on:
- * Support for GPUs of other vendors (AMD, Intel).
- * Support for FFmpeg piping, to enable working with videos of any codec.
- * GPU acceleration of XPSNR.
+* Support for GPUs of other vendors (AMD, Intel).
+* Support for FFmpeg piping, to enable working with videos of any codec.
+* GPU acceleration of XPSNR.
 
 All these features would improve TurboMetrics significantly, while also opening the door for more tests to be performed. Additionally, as it has been mentioned in this blog entry, the SSIMULACRA2 computation can still be optimized further, including overlapping computation and decoding. Gui-Yom knows this, and plans to tackle that issue eventually.
 
 A list of features to improve TurboMetrics' computation of SSIMULACRA2, written by the main developer, can be found [here](https://github.com/Gui-Yom/turbo-metrics/blob/master/crates/ssimulacra2-cuda/README.md#how-to-do-better-).
 
-As I said earlier, I also plan to write a follow-up blog entry evaluating the scoring error incurred in the GPU implementation, to test the reliability of the scores provided by TurboMetrics. Additionally, it may be insightful to evaluate the error for GPU implementations of other video metrics, such as [VMAF CUDA](https://github.com/Netflix/vmaf/blob/master/libvmaf/README.md), and see if we find any similarities. I don't recall reading any analysis on the matter for other metrics, either. Nevertheless, I cannot give a date yet for when that follow-up blog entry might come out. I reckon it will take quite some time to perform the required experimentation, as well as processing and analyzing the results.
+As I said earlier, I also plan to write a follow-up blog entry evaluating the scoring error incurred in the GPU implementation, to test the reliability of the scores provided by TurboMetrics. Additionally, it may be insightful to evaluate the error for GPU implementations of other video metrics, such as [VMAF CUDA](https://github.com/Netflix/vmaf/blob/master/libvmaf/README.md), and see if we find any similarities. I do not recall reading any analysis on the matter for other metrics, either. Nevertheless, I cannot give a date yet for when that follow-up blog entry might come out. I reckon it will take quite some time to perform the required experimentation, as well as processing and analyzing the results.
 
 Also, this blog entry is heavily missing information on 4K video, which I believe to be of high interest. The main reason for it is that most 4K content is served using HEVC, and TurboMetrics still does not support that codec. When support for it gets added, experiments with 4K video should be conducted.
 
@@ -226,6 +230,7 @@ And, lastly, thank you very much for reading!
 
 #### Special thanks
 
- * Gui-Yom, for developing TurboMetrics, and also for proofreading and green-lighting this blog entry.
+* Gui-Yom, for developing TurboMetrics, and also for proofreading and green-lighting this blog entry.
+* Trix, for linking me to the Python script to easily compute SSIMULACRA2 using vszip, and for helping me getting it to work.
 
 {}
