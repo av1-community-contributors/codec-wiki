@@ -189,12 +189,12 @@ My original idea for this blog entry was to evaluate TurboMetrics both in terms 
 
 The main concern about the error the GPU computation incurs on SSIMULACRA2 scores is that SSIMULACRA2 scores have been tuned mathematically to correlate with visual quality, while the GPU implementation's scores _try to mimic_ those scores, but have not undergone any kind of mathematical tuning or assessment themselves. The GPU scores could be seen as "SSIMULACRA2 + random error", and that "random error" might break the desired correlation, thus reducing the reliability of the metric.
 
-It is worth noting, however, that SSIMULACRA2 is not by any means a kind of "perfect metric" or "absolute truth" about video quality assessment. **SSIMULACRA2 still is unreliable in some situations, and it does not always present a perfect correlation with visual observations**. You may find here and there specific examples of SSIMULACRA2 scores that do not accurately reflect the (perceived) quality of a compressed image or video. Besides, we should keep in mind that quality is a subjective matter. In that regard, and as an example, people who do not care much about film grain might give denoised videos higher quality scores than those that SSIMULACRA2 gives. (Other metrics, such as VMAF, are more tolerant to denoising.) With all this in mind, the results provided by TurboMetrics are not necessarily "incorrect", but rather provide a kind of "alternative metric".
+Nevertheless, it is worth noting that SSIMULACRA2 is not by any means a kind of "perfect metric" or "absolute truth" about video quality assessment. **SSIMULACRA2 still is unreliable in some situations, and it does not always present a perfect correlation with visual observations**. You may find here and there specific examples of SSIMULACRA2 scores that do not accurately reflect the (perceived) quality of a compressed image or video. Besides, we should keep in mind that quality is a subjective matter. In that regard, and as an example, people who do not care much about film grain might give denoised videos higher quality scores than those that SSIMULACRA2 gives. (Other metrics, such as VMAF, are more tolerant to denoising.) With all this in mind, the results provided by TurboMetrics are not necessarily "incorrect", but rather provide a kind of "**alternative metric**".
 
 Just to give a preview on the error evaluation thus far, I will share the following: The preliminary results I obtained from that now-scraped evaluation seem to indicate that:
 * The scores provided by the GPU implementation of SSIMULACRA2 are **statistically different** to the real scores (provided by the CPU implementations).
 * **No linear correlation** between the real scores and the GPU scores has been found.
-* TurboMetrics **might tend to under-score** the frames over the real results, although this has yet to be assessed over a larger sample size to prove its veracity.
+* TurboMetrics **might tend to under-score**, compared to the real scores (i.e., the results for the frames tend to be lower than those a CPU implementation gives). This has yet to be assessed over a larger sample size to prove if it is really true, though.
 
 I am looking for help with the error evaluation for the follow-up blog entry. Mainly, I need a considerably larger sample of SSIMULACRA2 scores for videos, computed both in CPU and GPU. I myself do not have enough material (encoded videos and/or the SSIMULACRA2 scores for all their frames) yet to do a sufficiently good evaluation, and it would take me quite some time to get it. Thus, I am looking for anyone who has saved the SSIMULACRA2 scores for all the frames of any video they had assessed, and is able to re-assess those same videos using TurboMetrics. If you think you can help, and are willing to, please contact me through the [AV1 for Dummies Discord server](https://discord.gg/bbQD5MjDr3).
 
@@ -230,7 +230,7 @@ And, lastly, thank you very much for reading!
 
 #### Special thanks
 
-* Gui-Yom, for developing TurboMetrics, and also for proofreading and green-lighting this blog entry.
-* Trix, for linking me to the Python script to easily compute SSIMULACRA2 using vszip (ssimulacravszip.py), and for helping me to get it to work the way I needed.
+* **Gui-Yom**, for developing TurboMetrics, and also for proofreading and green-lighting this blog entry.
+* **Trix**, for linking me to the Python script to easily compute SSIMULACRA2 using vszip (ssimulacravszip.py), and for helping me to get it to work the way I needed.
 
 {}
