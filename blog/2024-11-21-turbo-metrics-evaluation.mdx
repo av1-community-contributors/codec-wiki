@@ -82,12 +82,14 @@ ssimulacra2-cuda is [stated to be](https://github.com/Gui-Yom/turbo-metrics/tree
 #### In-depth: Implementation differences from the reference
 
 As [reported here](https://github.com/Gui-Yom/turbo-metrics/blob/master/crates/ssimulacra2-cuda/README.md#differences-from-the-reference-implementation), the GPU implementation of SSIMULACRA2 provided in TurboMetrics differs from the reference implementation in the following ways that can affect the accuracy of the reported scores:
-* The conversion from YUV to linear RGB might not yield the same results as other tools.
+* The conversion from YUV to linear RGB might not be yielding the same results as other tools.
 * Explicit Fused Multiply-Add (FMA) operations are used when possible, as the GPU can leverage them for higher performance.
 * The order of operations might not be the same, as some calculations have been rearranged.
 * Floating-point operations might not yield the same results, especially with the approximated math functions used in the GPU (like `powf`).
-* The original weights were computed by fitting the error scores to Mean Opinion Score (MOS), and deviation in the error scores is amplified by these weights.
-* The final non-linear function is rather steep (x³), and thus score variations are amplified again.
+
+Additionally, the differences in scores are amplified by the following features of the SSIMULACRA2 computation:
+* The original weights were computed by fitting the error scores to Mean Opinion Score (MOS), and deviation in the error scores is amplified by them.
+* The final non-linear function is rather steep (it is a cubic function, x³), and, thus, score variations are amplified again.
 
 ## Performance evaluation
 
