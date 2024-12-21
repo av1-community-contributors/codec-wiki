@@ -12,15 +12,13 @@ import TabItem from '@theme/TabItem';
 This entry is about a fork of SVT-AV1 called SVT-AV1-PSY. If you'd like to learn about the mainline SVT-AV1 encoder before reading, visit our [SVT-AV1 wiki entry](./SVT-AV1.mdx).
 :::
 
-SVT-AV1-PSY is a project that aims to enhance the Scalable Video Technology for AV1 Encoder with perceptual enhancements for psychovisually optimal AV1 encoding. The ultimate goal is to create the best encoding implementation for perceptual quality with AV1. The development of this project involves a collaborative effort from a team of dedicated developers and contributors who are committed to improving the perceptual quality of AV1 encoding.
+SVT-AV1-PSY is a project that aims to enhance the Scalable Video Technology for AV1 Encoder with perceptual enhancements for psychovisually optimal AV1 encoding. The ultimate goal is to create the best encoding implementation for perceptual quality with AV1. The development of this project involves a collaborative effort from a team of dedicated developers and contributors who are committed to improving the encoder's [psychovisual](../introduction/psychovisual.mdx) quality.
 
 The SVT-AV1-PSY project is maintained by [Gianni Rosato](https://github.com/gianni-rosato), [Julio Barba](https://github.com/juliobbv), & [Clybius](https://github.com/Clybius), as well as a number of community contributors including [BlueSwordM](https://github.com/BlueSwordM), the maintainer of the [SVT-AV1-PSY AUR package](https://aur.archlinux.org/packages/svt-av1-psy-git) & the original author of [aom-av1-psy](https://github.com/BlueSwordM/aom-av1-psy).
 
 The development process involves community testing and optimization to ensure that the encoder and decoder deliver optimal performance. The team uses a variety of tools and methodologies to analyze and improve the performance of the encoder and decoder, including subjective analyses. [SSIMULACRA2](../metrics/SSIMULACRA2.mdx) and [XPSNR](../metrics/XPSNR.mdx) are used extensively for metrics testing, and the team is committed to improving the overall quality and performance of the encoder using these two metrics as general guidelines and benchmarks. However, the stated goal is not to improve metric scores but to improve the overall perceptual quality of the encoder; naturally, changes are often made to SVT-AV1-PSY that end up degrading metric performance in favor of perceptual fidelity per bit.
 
-SVT-AV1-PSY is a superset of SVT-AV1, meaning any valid SVT-AV1 command will work with SVT-AV1-PSY given the modified defaults do not conflict with the settings provided.
-
-SVT-AV1-PSY is used by default in [Aviator](../utilities/Aviator.mdx) and can be used in [rAV1ator CLI](../utilities/rav1ator-cli.mdx) by using the pre-compiled binaries available with the tool or by building a binary yourself.
+If you are interested in reading more about the project, you can visit [the project's website](https://svt-av1-psy.com/) for more information.
 
 SVT-AV1-PSY contributors are not in any way affiliated with the Alliance for Open Media or any upstream SVT-AV1 project contributors who have not also contributed to the SVT-AV1-PSY project.
 
@@ -34,82 +32,7 @@ Micro-releases are tagged with letters starting at `A` to indicate that they con
 
 SVT-AV1-PSY includes a number of new features that are not present in mainline SVT-AV1. These features are designed to improve the visual quality of AV1 encodes, and offer more flexibility when configuring the encoder for a wide range of encoding scenarios. Many of these changes are being integrated into mainline SVT-AV1 as the project matures.
 
-- `--variance-boost-strength` *1 to 4* (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/merge_requests/2195)**)
-
-Provides control over our augmented AQ Modes 0 and 2 which can utilize variance information in each frame for more consistent quality under high/low contrast scenes. Four curve options are provided, and the default is curve 2. 1: mild, 2: gentle, 3: medium, 4: aggressive
-
-- `--variance-octile` *1 to 8* (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/merge_requests/2195)**)
-
-Controls how "selective" the algorithm is when boosting superblocks, based on their low/high 8x8 variance ratio. A value of 1 is the least selective, and will readily boost a superblock if only 1/8th of the superblock is low variance. Conversely, a value of 8 will only boost if the *entire* superblock is low variance. Lower values increase bitrate. The default value is 6.
-
-- `--enable-alt-curve` *0 and 1*
-
-Enable an alternative variance boost curve, with different bit allocation and visual characteristics. The default is 0.
-
-- `Presets -2 & -3`
-
-Terrifically slow encoding modes for research purposes.
-
-- `Tune 3`
-
-A new tune based on Tune 2 (SSIM) called SSIM with Subjective Quality Tuning. Generally harms metric performance in exchange for better visual fidelity.
-
-- `--sharpness` *-7 to 7*
-
-A parameter for modifying loopfilter deblock sharpness and rate distortion to improve visual fidelity. The default is 0 (no sharpness).
-
-- `--dolby-vision-rpu` *path to file*
-
-Set the path to a Dolby Vision RPU for encoding Dolby Vision video. SVT-AV1-PSY needs to be built with the `enable-libdovi` flag enabled in build.sh (see `./Build/linux/build.sh --help` for more info) (Thank you @quietvoid !)
-
-- `Progress 3`
-
-A new progress mode that provides more detailed information about the encoding process.
-
-- `--fgs-table` *path to file* (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/commit/ae7ce1abc5f3f7913624f728ae123f8b8c1e30de)**)
-
-Argument for providing a film grain table for synthetic film grain (similar to aomenc's '--film-grain-table=' argument).
-
-- `Extended CRF`
-
-Provides a more versatile and granular way to set CRF. Range has been expanded to 70 (from 63) to help with ultra-low bitrate encodes, and can now be set in quarter-step (0.25) increments.
-
-- `--qp-scale-compress-strength` *0 to 3*
-
-Increases video quality temporal consistency, especially with clips that contain film grain and/or contain fast-moving objects.
-
-- `--enable-dlf 2`
-
-Enables a more accurate loop filter that prevents blocking, for a modest increase in compute time (most noticeable at presets 7 to 9)
-
-- `Higher-quality presets for 8K`
-
-Lowers the minimum available preset from 8 to 2 for higher-quality 8K encoding (64 GB of RAM recommended per encoding instance)
-
-- `--frame-luma-bias` *0 to 100*
-
-Enables frame-level luma bias to improve quality in dark scenes by adjusting frame-level QP based on average luminance across each frame
-
-## Modified Defaults
-
-SVT-AV1-PSY has different defaults than mainline SVT-AV1 in order to provide better visual fidelity out of the box. They include:
-
-- Default 10-bit color depth when given a 10-bit input.
-- Disable film grain denoising by default, as it often harms visual fidelity. (**[Merged to Mainline](https://gitlab.com/AOMediaCodec/SVT-AV1/-/commit/8b39b41df9e07bbcdbd19ea618762c5db3353c03)**)
-- Default to Tune 2 instead of Tune 1, as it reliably outperforms Tune 1 perceptually.
-- Enable quantization matrices by default.
-- Set minimum QM level to 0 by default.
-- `--enable-variance-boost` enabled by default.
-
-### Other Changes
-
-- `--color-help`
-
-Prints the information found in Appendix A.2 of the user guide in order to help users more easily understand the Color Description Options in SvtAv1EncApp.
-
-- `Micro-Releases`
-
-In order to make SVT-AV1-PSY feature additions more clear, micro-release tags indicate when significant new feature additions have been made. Micro-release tags are letters starting with `A`, so new releases will be tagged as `v#.#.#-A`, `v#.#.#-B`, etc. This is discussed earlier in this entry.
+The full suite of changes can be found in the [SVT-AV1-PSY README](https://github.com/gianni-rosato/svt-av1-psy/blob/master/README.md).
 
 ## Installation
 
@@ -137,8 +60,6 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         ```
 
         The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
-
-        If you'd like to build from the latest release (2.1.0 at the time of writing - last updated 23 May 2024) please run `git reset --hard 5471bd78311d70ab4691af1ae54fd80e25f214f5` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
 
         If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO (and LTO, or link-time optimization) by following this script:
 
@@ -192,8 +113,6 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         ```
 
         The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
-
-        If you'd like to build from the latest release (2.1.0 at the time of writing - last updated 23 May 2024) please run `git reset --hard 5471bd78311d70ab4691af1ae54fd80e25f214f5` in the cloned directory.
     </TabItem>
 </Tabs>
 

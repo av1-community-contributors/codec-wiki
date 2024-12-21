@@ -9,8 +9,6 @@ x264 is a software library and command line application for encoding H.264 / AVC
 
 x264 has great fine detail retention which makes it perfect for high fidelity content.
 
-
-
 ## FFmpeg
 
 x264 is available in FFmpeg via `libx264`, to check if you have it, run `ffmpeg -h encoder=libx264`. You can input non-FFmpeg standard x264 parameters via `-x264-params`.
@@ -46,8 +44,6 @@ x264 supports the following color spaces:
 - https://code.videolan.org/videolan/x264
 
 Choose your operating system there, or you can try using your package manager.
-
-
 
 ## Usage
 
@@ -121,7 +117,6 @@ These parameters are responsible for the amount of reference frames x264 will us
 
 This option disables mb-tree rate control. mb-tree rate control is intended to redistribute bitrate to give more bits to frames that have less motion, and less bits to frames that have more motion (because artifacts in those frames will be less noticeable when the video is playing).
 However, many users claim this can have negative effects on video quality, especially when encoding videos that have significant amounts of grain.
-
 
 ### Lossless Encoding
 

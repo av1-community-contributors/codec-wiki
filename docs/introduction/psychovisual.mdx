@@ -8,17 +8,51 @@ sidebar_position: 5
 The content in this entry is incomplete & is in the process of being completed.
 :::
 
-:::danger Pending Review
-The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
-:::
+## Definition
 
-"*Traditionally, the encoder tends to favor blurred reconstructed blocks over blocks which have wrong motion. The human eye generally prefers the wrong motion over the blur. Psycho-visual options combat this. While technically less “correct”, which is why they are disabled for research purposes, they should be enabled for content intended for “human eyes”.* "
+"Psychovisual fidelity" is a common term used in video encoding to describe the quality of an encoded video as perceived by the human visual system. It has a number of alternate terms that mean the same thing:
+- "Perceptual quality"
+- "Subjective quality"
+- "Visual quality"
 
--- Kokomins' x265 [guide](https://kokomins.wordpress.com/2019/10/10/anime-encoding-guide-for-x265-and-why-to-never-use-flac)
+Psychovisual options are introduced into encoders to combat the limitations of traditional decision-making inside video encoders, which tends to prioritize efficiency as measured by simple metrics like [PSNR](../metrics/PSNR.mdx).
 
+The amount of care and attention an encoder directs towards preserving psychovisual fidelity is often indicative of an encoder's maturity, and is a key reason why mature encoders like [x264](../encoders/x264.mdx) and [x265](../encoders/x265.mdx) are so widely regarded as being well-designed and effective.
 
-## Breakdown
+## Explanation
 
-Traditionally, encoders prioritize blurring out fine details to maintain performance on simple metrics like [PSNR](../metrics/PSNR.mdx), but the human visual system is much more complex. This discrepancy can lead to encoders rejecting sharp blocks that don't fit perfectly with adjacent blocks, resulting in a loss of detail. Psychovisual options address this issue by providing the encoder with the necessary "confidence" to incorporate these sharper blocks, even if they don't strictly adhere to metric performance.
+Via the [x265 documentation](https://x265.readthedocs.io/en/master/cli.html#psycho-visual-options):
 
-Blurring can be beneficial at lower bitrates to help reduce the visibility of blocking artifacts, and it is generally preferable to view a slightly blurry image rather than a blocky one with distracting artifacts. However, it is essential to strike a balance when setting psychovisual options, as over-reliance on these settings can also have negative consequences. Experimentation is key to finding the optimal sweet spot for specific types of content.
+> Left to its own devices, video encoders will make mode decisions based on a simple rate distortion formula, trading distortion for bitrate. This is generally effective except for the manner in which this distortion is measured. It tends to favor blurred reconstructed blocks over blocks which have wrong motion. The human eye generally prefers the wrong motion over the blur and thus x265 offers psycho-visual adjustments to the rate distortion algorithm.
+
+An important concept that is essential to understanding psychovisual fidelity is the idea behind *visual energy*. While the x265 documentation snippet above correctly identifies that the human eye prefers wrong motion over blur, a similar concept applies in the case of detail preservation. The human eye is more forgiving in the presence of detail – even if it is wrong detail – than in the presence of blur due to our preference for visual energy. Psychovisual options are often tailored to preserving visual energy in the encoded video.
+
+### Fidelity Versus Appeal
+
+Via [Cloudinary's blog](https://cloudinary.com/blog/what_to_focus_on_in_image_compression_fidelity_or_appeal):
+
+> Fidelity in images is about visually preserving the original; appeal is about hiding the compression artifacts. Depending on your priority, you would compress images with either of these approaches to reduce the file size while still maintaining a reasonable level of visual “quality” ...
+
+Many people report that they prefer blurring in videos over blocking artifacts, which is a conflation of the value of fidelity versus appeal. While blurring can be beneficial at lower bitrates to help reduce the visibility of blocking artifacts, it is generally preferable to view a slightly blurry image rather than a blocky one with *distracting* artifacts. This underscores how essential it is to strike a balance with psychovisual options in encoders; heavily utilizing these settings can negatively effect visual quality in certain scenarios, like when encoding at low fidelity where artifacts would be erroneous enough that they would be distracting.
+
+### Psychovisual Options
+
+The following are some common psychovisual options that are available in x265, from the x265 documentation linked prior:
+
+> `--psy-rd` will add an extra cost to reconstructed blocks which do not match the visual energy of the source block. The higher the strength of `--psy-rd` the more strongly it will favor similar energy over blur and the more aggressively it will ignore rate distortion. If it is too high, it will introduce visual artifacts and increase bitrate enough for rate control to increase quantization globally, reducing overall quality. psy-rd will tend to reduce the use of blurred prediction modes, like DC and planar intra and bi-directional inter prediction.
+
+> `--psy-rdoq` will adjust the distortion cost used in rate-distortion optimized quantization (RDO quant), enabled by `--rdoq-level` 1 or 2, favoring the preservation of energy in the reconstructed image. `--psy-rdoq` prevents RDOQ from blurring all of the encoding options which psy-rd has to choose from. At low strength levels, psy-rdoq will influence the quantization level decisions, favoring higher AC energy in the reconstructed image. As psy-rdoq strength is increased, more non-zero coefficient levels are added, and fewer coefficients are zeroed by RDOQ's rate distortion analysis. High levels of psy-rdoq can double the bitrate which can have a drastic effect on rate control, forcing higher overall QP, and can cause ringing artifacts. psy-rdoq is less accurate than psy-rd, it is biasing towards energy in general while psy-rd biases towards the energy of the source image. But very large psy-rdoq values can sometimes be beneficial.
+
+In summary, `--psy-rd` attempts to preserve the visual energy of the encode relative to the source video, while `--psy-rdoq` attempts to make decisions generally in favor of preserving visual energy. 
+
+Currently, [x264](../encoders/x264.mdx) includes both of the above options alongside a number of other psychovisual options, and is considered the most mature psychovisually optimized open source video encoder. While it doesn't have `--psy-rdoq`, [SVT-AV1-PSY](../encoders/SVT-AV1-PSY.mdx) is an AV1 encoder that includes a number of psychovisual options (including `--psy-rd`, as of version 3.0.0).
+
+### Metrics
+
+Currently, it is difficult to measure the effectiveness of psychovisual options in encoders without subjective visual testing. While metrics like [VMAF](../metrics/VMAF.mdx) and [SSIM](../metrics/SSIM.mdx) are designed to be more perceptually accurate than PSNR, they are far from perfect and are usually misleading.
+
+More modern metrics like [SSIMULACRA2](../metrics/SSIMULACRA2.mdx) and [XPSNR](../metrics/XPSNR.mdx) are designed to be more perceptually accurate than others, and while SSIMULACRA2 largely achieves this goal, newer metrics are still not perfect and usually reward disabling all psychovisual options even when the options clearly help preserve psychovisual fidelity.
+
+## Conclusion
+
+Psychovisual options are essential to preserving visual quality. While perceptually driven features are hard to develop, difficult to test and measure, and somewhat rare, they are generally considered to be beneficial to the encoding process. The inclusion of well-built psychovisual options in encoders often signifies maturity and effectiveness, contributing to the overwhelmingly positive legacies of encoders like x264 and x265 which have consistently prioritized visual quality to great effect.
