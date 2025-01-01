@@ -5,6 +5,24 @@ sidebar_position: 1
 
 # PSNR
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+PSNR (Peak Signal-to-Noise Ratio) is one of the most widely used objective full-reference image and video quality metrics. It measures the ratio between the maximum possible signal power and the power of corrupting noise, expressed in decibels (dB). The metric is calculated using the Mean Squared Error (MSE) between a reference image and a distorted image. The theory and math behind PSNR are well covered in [Wikipedia's PSNR entry](https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio).
+
+## Video Compression
+
+PSNR is widely used in video encoding applications because it is fast to compute, making it practical for real-time encoding decisions, and because it provides a consistent mathematical basis for comparing different encoding approaches. It is also used within video encoders to help make compression decisions.
+
+### Inside Video Encoders
+
+Within video encoders, PSNR plays a crucial role in rate-distortion optimization (RDO), which is the process of finding the optimal balance between bitrate and quality. Encoders use PSNR as an in-loop metric when evaluating different encoding decisions, such as mode selection, motion estimation, and quantization parameter (QP) selection.
+
+For example, when deciding between different prediction modes or block sizes, the encoder will calculate the PSNR impact of each option along with its bit cost to determine the best choice.
+
+### Limitations
+
+While PSNR is widely used due to its simplicity and computational efficiency, it has several notable limitations. The metric has notoriously poor correlation with the human eye's perception of quality, as PSNR is highly sensitive to all pixel-level errors when many do not have any perceptually relevant impact. When PSNR is used to inform RDO in video encoding, it can lead to suboptimal quality decisions; to combat this, encoders have to creatively take the human visual system into account. We cover some of this in the [Psychovisual entry](../introduction/psychovisual.mdx).
+
+PSNR's weaknesses as a full reference distortion metric have led to the development of more advanced metrics like [SSIM](./SSIM.mdx), [VMAF](./VMAF.mdx), and [XPSNR](./XPSNR.mdx), which attempt to better model human visual perception. 
+
+## Practical Use Cases
+
+PSNR is commonly used for evaluating image and video compression algorithms, assessing streaming quality, comparing codec performance, and more. Many video encoding tools and analysis suites report PSNR values for different luma/chroma components (Y, U, V) separately, as well as a weighted average. Despite its limitations, PSNR continues to be an important tool in the video compression field, particularly when used in conjunction with other quality metrics and subjective evaluation methods.

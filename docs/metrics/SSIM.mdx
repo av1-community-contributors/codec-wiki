@@ -5,6 +5,16 @@ sidebar_position: 1
 
 # SSIM
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+The Structural Similarity Index Measure (SSIM) is a full-reference image and video quality metric that quantifies image fidelity degradation caused by processing such as lossy compression. Published in 2004 as part of an issue of [*IEEE Transactions on Image Processing*](https://en.wikipedia.org/wiki/IEEE_Transactions_on_Image_Processing), SSIM attempts to address the limitations of traditional metrics like [Peak Signal-to-Noise Ratio (PSNR)](./PSNR.mdx) by evaluating visual quality based on the structural information that humans naturally use to assess visual quality.
+
+## Overview
+
+SSIM works by comparing three key elements between the original and processed images: luminance, contrast, and structure. The luminance comparison measures the similarity of the average pixel intensities between the two images. These three comparisons are combined to produce a single similarity score ranging from -1 to 1, where 1 indicates perfect structural similarity.
+
+One of SSIM's main advantages is its ability to better align with human visual perception compared to traditional metrics. SSIM recognizes that pixels have strong inter-dependencies, especially when they are spatially close, which makes SSIM particularly effective at detecting changes in structural information that human observers would notice, such as blurring, blocking artifacts, or noise.
+
+As an in-loop metric in video encoders to improve decisionmaking, SSIM is more computationally expensive than PSNR, and doesn't always yield drastic improvements in fidelity per bit. [Psychovisual](../introduction/psychovisual.mdx) encoder options are still necessary in many cases to achieve the best perceptual efficiency.
+
+## Limitations
+
+In multimedia compression, SSIM can be more valuable in optimization scenarios where the goal is to maintain optimal perceptual quality for a given size. However, SSIM doesn't perfectly correlate with the human visual system; newer metrics like [XPSNR](./XPSNR.mdx) and [SSIMULACRA2](./SSIMULACRA2.mdx) have been developed to correlate more closely with human perception. Modern variations and extensions of SSIM have been developed to address specific needs. Multi-scale SSIM (MS-SSIM) evaluates images at different scales to better match human visual perception. Color SSIM variants have been proposed to better handle color information, and SSIMULACRA (succeeded by SSIMULACRA2) was developed to improve correlation with human perception. These adaptations have improved upon SSIM's perceptual goals in an ever-changing multimedia compression landscape.
