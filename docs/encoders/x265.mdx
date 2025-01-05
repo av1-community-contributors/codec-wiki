@@ -66,9 +66,15 @@ to using a value higher than `8`, and it would just slow down the encoder for no
 
 `--sao`, `--limit-sao`, `--no-sao`
 
-SAO stands for Sample Adaptive Offset, and is a loop filter used by x265 to prevent artifacting. However, it has the side effect of losing sharpness on details.
-It is recommended to leave this on (default) at high CRF values (>=22). For medium values between 17-21, you can use `--limit-sao` which will limit the effects of SAO to have
-less of a significant effect. For low CRF values (\<=16), you can safely use `--no-sao` to prefer detail preservation, as the higher bitrates will naturally lead to fewer artifacts.
+SAO or Sample Adaptive Offset is a restoration filter in h.265 used to prevent obvious blocking and ringing artifacts especially around sharp edges.
+However this does sometimes come at the cost of some finer details in the video like for example human skin and surface details.
+Generally speaking at crf values at or above 20 you can leave this option on which is default as it does a good job of making the overall video more appealing.
+
+x265 however has a primitive implementation of SAO which tends to be too aggressive at high quality or fidelity ranges leading to blurring around crf 19-16.
+while it does "limit" how much the encoder uses SAO, `--limit-sao` is more of an early termination for the encoder deciding where to use it rather than limiting its strength.
+However it does generally do a good job of preserving more detail than normal even if it makes some artifacts more noticeable.
+
+For below crf 16 depending on your content it might be preferable to outright disable sao with `--no-sao` as usually at such high quality its not usually needed.
 
 ### Deblock
 
@@ -82,30 +88,42 @@ more grain and detail.
 
 `--psy-rd` and `--psy-rdoq`
 
-The parameters control psychovisual rate distribution. What this means is the redistribution of bits to make a video more pleasing to human eyes. These options may be harmful to metrics
-that compare videos mathematically, but are better for viewing human eyes because they prioritize facets of the video that humans prefer.
+To make a long story short `--psy-rd` and `--psy-rdoq` together are psychovisual optimization tools used to control the encoders willingness to retain finer detail and noise in the
+final encode. However the way the two settings achieve this are very different.
 
-`--psy-rd` biases toward matching the level of energy in the source image, which makes it good for retaining detail. For standard anime, it is recommended to use `--psy-rd 1.0`. The more
-grain, detail, and dark scenes in a source, the higher this should be raised. Many modern anime tends to have more detailed backgrounds and surfaces, so `--psy-rd 1.5` may be a better
-default for modern anime. For live action, a `--psy-rd 1.5` or possibly even `2.0` may be preferred, as live action naturally has more detail and grain than anime.
+`--psy-rd` retains detail by affecting the how the encoder weights sections of the frame based off the amount of "energy" or high frequency information it contains and boosts them
+accordingly.
 
-`--psy-rdoq` biases toward energy in general, which makes it key for preserving grain. `--psy-rdoq 1.0` is a safe default for anime. Like psy-rd, this value should be increased more
-for sources with more grain. For grainy anime, `--psy-rdoq 2.0` or even `3.0` can be preferable. Likewise, for many live action series, a default of `--psy-rdoq 3.0` can be preferable,
-or even `4.0` with heavy grain.
+`--psy-rdoq` retains detail by affecting how the encoder quantizes coefficients after transformations. It has no reference to the source in its calculation and only prefers
+retaining overall detail and nothing specific.
 
-These are two settings that should be tweaked according to the source material.
+Both settings are highly source dependent and ideally would be tweaked per scene in a video. Unless you know what you're doing and are willing to test thoroughly that the settings you
+are using are beneficial its almost always recommended to never touch either setting as the defaults for both are good general purpose settings.
+However as a general rule of thumb `--psy-rd` is better at retaining specific detail and overall sharpness while `--psy-rdoq` is better at retaining overall noise.
 
 You can read more about the importance of perceptual optimization in video encoders on the [psychovisual](../introduction/psychovisual.mdx) page.
 
 ### Adaptive Quantization
 
-`--aq-mode 3 --aq-strength <variable>`
+`--aq-mode` and `--aq-strength`
 
-Adaptive quantization, shortened to AQ, is a mechanism to redistribute bitrate within a frame to improve visual quality by reducing artifacts.
-x265 has several different AQ modes, and `--aq-mode 3` is nearly always best, because this mode adds a bias favoring dark scenes, which greatly reduces the effects of banding and blocking.
-The strength of AQ can also be set with `--aq-strength`. The optimal setting for this may vary depending on the type of content you are encoding.
-For anime, `--aq-strength 0.7` will typically produce good results. For live action, a slightly higher `0.8` may be a better default.
-Higher values, up to `--aq-strength 1`, can be helpful for sources with heavy grain, although this will also increase overall bitrate.
+Adaptive quantization (`--aq-mode`), shortened to AQ, is a mechanism to redistribute bitrate within a frame to improve perceptual quality consistency.
+In x265 we have 4 modes.
+ 1. AQ enabled
+ 2. AQ with auto variance (default)
+ 3. AQ 2 with a bias for dark scenes
+ 4. AQ 2 with edge information 
+
+Generally speaking we always want AQ 2 or AQ with auto variance as this will bias both parts of the frame that are smooth and textured. Normally these parts of the frame are bitrate starved
+and have the most noticeable artifacting.
+
+Some people will use AQ 3 to as the name implies preserve detail in dark scenes and parts of the frame. However in metric analysis and some visual, AQ 3 sometimes bloats bitrates for minor to
+no gains. When playing back on newer displays like high contrast VA TVs or oleds dark parts tend to also be much dark making it harder to see artifacts and blurring otherwise more noticeable on
+older technologies like ips with backlight glow. While this is not an entirely useless AQ mode, thorough testing should be done before using it.
+
+The relative strength of an AQ mode can also be controlled with `--aq-strength`. While the default is `1.0`, many people do lower it to `0.7` or `0.8` for flat anime or compressed irl content.
+In general like other psychovisual optimization tools in x265, these settings are highly source dependant and are best left at their defaults unless you know what you are doing and have data
+to back it up.
 
 ### CU-Tree
 
