@@ -50,19 +50,43 @@ may be needed to find the value you prefer. A decent "balanced" target will be a
 a value of 12 or 13 will result in visually lossless output for most videos, but will result in a much larger filesize. For miniature encodes, try raising the CRF as much as you feel comfortable
 before the quality becomes unbearable. CRFs of 22 or higher are generally considered "low bitrate", so how high you raise the CRF depends on how low of a filesize you are trying to achieve.
 
-### bframes
+## B-frames
 
-`--bframes`
+`--bframes`, `--b-adapt`, `--bframe-bias` and `--b-pyramid`
 
-B-frames are bi-directional predictive frames, this means that they can reference frames both before and after themselves, which makes them very efficient.
-The `--bframes` parameter controls how many B-frames can be used consecutively. Higher values can result in better compression, but this value has diminishing returns,
-as the encoder won't use extra B-frames in situations where it would reduce efficiency.
+B-frames are bi-directional predictive frames. This means they can reference either past, future or both types of frames at the same time making them one of the most efficient types.
+B-frames however usually are the most compressed frame types. Referencing other frames rather than storing their own detail (usually.) makes them often the worse quality and blurry frames.
+In total we have 4 different settings to control how they are used by the encoder. Usually you will only use 1 or none of them.
 
-The default value at preset slow is `4`. It is recommended to increase this to `--bframes 5` for live action and CGI content, or `--bframes 8` for anime and cartoons.
-Content with little motion benefits more from high B-frames values, but even on anime where there are many still scenes, there is no measurable benefit
-to using a value higher than `8`, and it would just slow down the encoder for no benefit.
+### `--bframes`
 
-### SAO
+`--bframes` is used to control the max number of consecutive B-frames the encoder is allowed to use and search for. Generally the larger this value is to a max of `16` the slower but more
+efficient the encoder becomes. However in higher fidelity encodes around crf 18 or lower, beyond 8-12 B-frames can start to hurt detail for the reasons stated above. Likewise the benefits of
+more B-frames vs the time it takes makes it not typically worth it beyond a similar point.
+
+In general it is best to leave this setting at the default for your preset. However for content like anime or otherwise flat non IRL adding +2 B-frames to the current preset generally gives a
+small efficiency boost. You can also set it to the max value of 16 for micro encodes to try and squeeze the most efficient possible out of the encoder if time is no object to you.
+
+### `--b-adapt`
+
+`--b-adapt` controls the method that the encoder uses to decide where to put B-frames. It has 3 options
+ 1. fixed
+ 2. light lookahead
+ 3. Viterbi trellis (default)
+
+It is always recommended to use 3 as it comes at a negligible speed penalty and is the smartest at placing B-frames for maximum efficiency without harming visual fidelity.
+
+### `--bframe-bias`
+
+`--bframe-bias` as the name implies is used to control the bias for x265 to use B-frames over other frame types. Normally you should never touch this setting as the default of `0` is already
+optimal for most cases, however for high fidelity encodes or micro encodes adjusting this bias can help retain detail or sacrifice spacial detail for better temporal information.
+
+### `--b-pyramid`
+
+`--b-pyramid` or `--no-b-pyramid` decides if B-frames can be used as reference frames for other B-frames or other frame types. Normally this should always be on and is the default. However for
+high fidelity encodes it might be worth wild experimenting with turning it off only in limited use cases.
+
+## SAO
 
 `--sao`, `--limit-sao`, `--no-sao`
 
@@ -76,7 +100,7 @@ However it does generally do a good job of preserving more detail than normal ev
 
 For below crf 16 depending on your content it might be preferable to outright disable sao with `--no-sao` as usually at such high quality its not usually needed.
 
-### Deblock
+## Deblock
 
 `--deblock`
 
@@ -84,7 +108,7 @@ Deblock is another loop filter, this one intended to reduce blocking in videos, 
 at the default value. At lower CRF values, it may be desirable to lower this to `--deblock -1:-1` for anime or `--deblock -2:-2` for live action, in order to preserve
 more grain and detail.
 
-### Psy-RD
+## Psy-RD
 
 `--psy-rd` and `--psy-rdoq`
 
@@ -103,7 +127,7 @@ However as a general rule of thumb `--psy-rd` is better at retaining specific de
 
 You can read more about the importance of perceptual optimization in video encoders on the [psychovisual](../introduction/psychovisual.mdx) page.
 
-### Adaptive Quantization
+## Adaptive Quantization
 
 `--aq-mode` and `--aq-strength`
 
@@ -125,9 +149,13 @@ The relative strength of an AQ mode can also be controlled with `--aq-strength`.
 In general like other psychovisual optimization tools in x265, these settings are highly source dependant and are best left at their defaults unless you know what you are doing and have data
 to back it up.
 
-### CU-Tree
+## CU-Tree
 
-`--no-cutree`
+`--cutree` and `--no-cutree`
 
-CU-Tree is a mechanism very similar to MB-Tree in x264, which is intended to redistribute bitrate in a more optimal psychovisual manner. However, many people find CU-Tree to be harmful to quality,
-especially when attempting to encode videos with considerable amounts of grain, and therefore many people recommend disabling this with `--no-cutree`.
+CU-Tree similar to MB-Tree in x264 is a method for the encoder to keep track of what parts of the frame are used or referenced by future frames. In a sense this is temporal motion quantizer.
+It has been very common for a long time all the way back when only x264 existed for people to disable MB-Tree due to the idea that it removed too much detail or blurred the video. However
+a lot of that blur and detail loss was in parts of the frame temporally one would not be able to see very well or were not still making the overall images better in playback. Both MB-Tree and
+CU-tree have also gotten a lot better since their original implementation making it almost always worse to disable them rather than to keep them enabled.
+
+Anyone telling you to disable either must provide evidence of it being actually better. This is one of the largest peices of misinformation around video encoders ever.
