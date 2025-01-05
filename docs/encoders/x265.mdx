@@ -7,56 +7,68 @@ sidebar_position: 2
 
 x265 is a software library and command line application for encoding [H.265 / HEVC](../video/HEVC.mdx) developed by MulticoreWare, written in C++ and x86 assembly, and released in 2013.
 
-By default, x265 is tuned for low-bitrate content due to the blurring filters it applies. However, it can be tuned using CLI options to be very effective for high-fidelity content as well.
-It is a more efficient and modern encoder compared to x264, and is currently a popular choice for both high-fidelity and mini encodes.
+By default, x265 is tuned for medium to high quality encodes at FHD+ resolutions and can be tuned for high fidelity and micro encodes easily.
 
 x265 is currently not recommended for lossless encoding. For that niche, x264 is considerably faster without meaningful efficiency loss.
 
-## FFmpeg
+# FFmpeg
 
 x265 is available in FFmpeg via `libx265`, to check if you have it, run `ffmpeg -h encoder=libx265`.
 
-## Installation
+# Installation
 
 **Pre-built binary (Recommended):**
 
 - http://msystem.waw.pl/x265/
 
-## Parameters
+# Parameters
 
 This section will overview the most important parameters for controlling output and quality in x265. The parameters will be listed in the format used by the standalone x265 binary,
 but all of the parameters should also be usable in ffmpeg in the format e.g. `-x265-params pass=1`.
 
-### Preset
+## Preset
 
-`--preset slow`
+`--preset`
 
-If encoding speed is a priority, x265 is probably not the best choice. x264 at `--preset veryslow` will likely be faster than x265 at `--preset fast`, while providing comparable efficiency.
-However, x265 finds its sweet spot at `--preset slow`, and this is the preset most people should use. This preset provides high quality while not being unreasonably slow.
+In x265 we have a preset system to easily control how much effort and therefore time x265 puts into compressing your video. This preset system has the following presets.
 
-The exception where you may want to tax your CPU by going to `--preset veryslow` is when doing lower bitrate encodes (e.g. crf >=22). This is because the `veryslow` preset provides
-better motion estimation at low bitrates. However, it is exceptionally slow, so it is not generally recommended for everyday use.
+ultrafast, superfast, faster, fast, medium (default), slow, slower, veryslow and placebo
 
-### CRF
+Generally speaking the further left of medium the preset is the faster and therefore less efficient the encode is and the opposite is true for the right side.
+
+It is recommended to pick the slowest preset you can bare to use on your hardware before messing with any of the following settings on this page as this will be your baseline for encoder performance.
+
+It is not recommended to use the two extremes as ultrafast is terrible in its consistency and you're better off using something like x264. placebo on the other hand performs slightly worse than
+veryslow for reasons that will be explained later.
+
+## CRF
 
 `--crf`
 
-CRF, standing for Constant Rate Factor, is a method for selecting a level of quality-to-filesize tradeoff. CRF is preferable to bitrate targeting because CRF only requires one encoding pass,
-so bitrate targeting should only be used if you need to target a specific filesize. Nowadays, those situations are uncommon and it is preferred to use CRF to target a quality level.
-CRF is preferable to QP because CRF allows the encoder to vary the quality level from frame to frame for better viewing quality in areas of the video that need it the most.
+CRF or Constant Rate Factor is the closest thing in x265 to a quality slider for the final encode where a smaller value is higher quality and a larger value is lower quality.
+While CRF is a good overall consistency, the exact quality you get at a specific CRF does still vary by source although not as much as other methods. while the quality at a given CRF is generally
+similar with the same settings, changing specific settings (like psy-rd) or the preset you're using can change the quality at a given CRF. Usually the slower the preset the higher the quality given a CRF.
 
-What CRF to use will vary depending on your goals. The range of valid CRF values is 0-51, with larger values providing smaller filesize but lower quality. Some amount of experimentation
-may be needed to find the value you prefer. A decent "balanced" target will be around 17 or 18, providing good quality without inflating filesize too much. For a focus on maximum quality,
-a value of 12 or 13 will result in visually lossless output for most videos, but will result in a much larger filesize. For miniature encodes, try raising the CRF as much as you feel comfortable
-before the quality becomes unbearable. CRFs of 22 or higher are generally considered "low bitrate", so how high you raise the CRF depends on how low of a filesize you are trying to achieve.
+Below is a list of rough CRF values to experiment with when targeting a specific quality. This is only rough as it is source and setting dependant as explained earlier.
+
+| Quality          	| 720 	| 1080 	| 4k 	|
+|----------------	|-----	|------	|----	|
+| Transparent    	| 14  	| 16   	| 18 	|
+| High Quality   	| 18  	| 22   	| 24 	|
+| Medium Quality 	| 24  	| 26   	| 28 	|
+| Low Quality    	| 28  	| 30   	| 32 	|
+
+While not always consistent, x265 aims for a increase of 6 CRF or a decrease of 6 CRF to be a half or doubling of file size respectively. 
+
+CRF is also preferable to other rate control methods due to its consistency in quality and being the most efficient mode of them all.
 
 ## B-frames
 
 `--bframes`, `--b-adapt`, `--bframe-bias` and `--b-pyramid`
 
-B-frames are bi-directional predictive frames. This means they can reference either past, future or both types of frames at the same time making them one of the most efficient types.
-B-frames however usually are the most compressed frame types. Referencing other frames rather than storing their own detail (usually.) makes them often the worse quality and blurry frames.
-In total we have 4 different settings to control how they are used by the encoder. Usually you will only use 1 or none of them.
+B-frames are bi-directional predictive frames. This means they can reference either past, future or both types of frames at the same time making them one of the most efficient types. B-frames
+however usually are the most compressed frame types. Referencing other frames rather than storing their own detail (usually.) makes them often the worse quality and blurry frames. In total we
+have 4 different settings to control how they are used by the encoder. Usually you will never touch these.
 
 ### `--bframes`
 
@@ -69,10 +81,13 @@ small efficiency boost. You can also set it to the max value of 16 for micro enc
 
 ### `--b-adapt`
 
-`--b-adapt` controls the method that the encoder uses to decide where to put B-frames. It has 3 options
- 1. fixed
- 2. light lookahead
- 3. Viterbi trellis (default)
+`--b-adapt` controls the method that the encoder uses to decide where to put B-frames. It has 3 different modes.
+| mode   | feature                    |
+|--------|----------------------------|
+| 1      | Fixed                      |
+| 2      | Light lookahead            |
+| 3      | Viterbi trellis (default)  |
+
 
 It is always recommended to use 3 as it comes at a negligible speed penalty and is the smartest at placing B-frames for maximum efficiency without harming visual fidelity.
 
@@ -104,6 +119,8 @@ For below crf 16 depending on your content it might be preferable to outright di
 
 `--deblock`
 
+Word of caution i dont know who wrote this part and the documentation around the deblock setting is esoteric.
+
 Deblock is another loop filter, this one intended to reduce blocking in videos, but may have a blurring effect at high strengths. For most encodes, it is fine to leave this
 at the default value. At lower CRF values, it may be desirable to lower this to `--deblock -1:-1` for anime or `--deblock -2:-2` for live action, in order to preserve
 more grain and detail.
@@ -118,8 +135,8 @@ final encode. However the way the two settings achieve this are very different.
 `--psy-rd` retains detail by affecting the how the encoder weights sections of the frame based off the amount of "energy" or high frequency information it contains and boosts them
 accordingly.
 
-`--psy-rdoq` retains detail by affecting how the encoder quantizes coefficients after transformations. It has no reference to the source in its calculation and only prefers
-retaining overall detail and nothing specific.
+`--psy-rdoq` retains detail by affecting how the encoder quantizes coefficients after transformations. It has no reference to the source in its calculation and only prefers retaining overall visual
+energy and nothing specific.
 
 Both settings are highly source dependent and ideally would be tweaked per scene in a video. Unless you know what you're doing and are willing to test thoroughly that the settings you
 are using are beneficial its almost always recommended to never touch either setting as the defaults for both are good general purpose settings.
@@ -133,17 +150,19 @@ You can read more about the importance of perceptual optimization in video encod
 
 Adaptive quantization (`--aq-mode`), shortened to AQ, is a mechanism to redistribute bitrate within a frame to improve perceptual quality consistency.
 In x265 we have 4 modes.
- 1. AQ enabled
- 2. AQ with auto variance (default)
- 3. AQ 2 with a bias for dark scenes
- 4. AQ 2 with edge information 
+| mode | feature                                      |
+|------|----------------------------------------------|
+| 1    | AQ enabled                                   |
+| 2    | AQ with auto variance (default)              |
+| 3    | AQ 2 with a bias for dark scenes             |
+| 4    | AQ 2 with edge information                   |
+
 
 Generally speaking we always want AQ 2 or AQ with auto variance as this will bias both parts of the frame that are smooth and textured. Normally these parts of the frame are bitrate starved
 and have the most noticeable artifacting.
 
 Some people will use AQ 3 to as the name implies preserve detail in dark scenes and parts of the frame. However in metric analysis and some visual, AQ 3 sometimes bloats bitrates for minor to
-no gains. When playing back on newer displays like high contrast VA TVs or oleds dark parts tend to also be much dark making it harder to see artifacts and blurring otherwise more noticeable on
-older technologies like ips with backlight glow. While this is not an entirely useless AQ mode, thorough testing should be done before using it.
+no gains. While this is not an entirely useless AQ mode, thorough testing should be done before using it.
 
 The relative strength of an AQ mode can also be controlled with `--aq-strength`. While the default is `1.0`, many people do lower it to `0.7` or `0.8` for flat anime or compressed irl content.
 In general like other psychovisual optimization tools in x265, these settings are highly source dependant and are best left at their defaults unless you know what you are doing and have data
@@ -158,4 +177,4 @@ It has been very common for a long time all the way back when only x264 existed 
 a lot of that blur and detail loss was in parts of the frame temporally one would not be able to see very well or were not still making the overall images better in playback. Both MB-Tree and
 CU-tree have also gotten a lot better since their original implementation making it almost always worse to disable them rather than to keep them enabled.
 
-Anyone telling you to disable either must provide evidence of it being actually better. This is one of the largest peices of misinformation around video encoders ever.
+Anyone telling you to disable either must provide evidence of it being actually better.
