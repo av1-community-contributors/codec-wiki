@@ -41,9 +41,9 @@ It is recommended to pick the slowest preset you can bare to use on your hardwar
 It is not recommended to use the two extremes as ultrafast is terrible in its consistency and you're better off using something like x264. placebo on the other hand performs slightly worse than
 veryslow for reasons that will be explained later.
 
-## CRF
+## Rate Control
 
-`--crf`
+### `--crf`
 
 CRF or Constant Rate Factor is the closest thing in x265 to a quality slider for the final encode where a smaller value is higher quality and a larger value is lower quality.
 While CRF is a good overall consistency, the exact quality you get at a specific CRF does still vary by source although not as much as other methods. while the quality at a given CRF is generally
@@ -51,7 +51,7 @@ similar with the same settings, changing specific settings (like psy-rd) or the 
 
 Below is a list of rough CRF values to experiment with when targeting a specific quality. This is only rough as it is source and setting dependant as explained earlier.
 
-| Quality          	| 720 	| 1080 	| 4k 	|
+| Quality        	| 720 	| 1080 	| 4k 	|
 |----------------	|-----	|------	|----	|
 | Transparent    	| 14  	| 16   	| 18 	|
 | High Quality   	| 18  	| 22   	| 24 	|
@@ -61,6 +61,33 @@ Below is a list of rough CRF values to experiment with when targeting a specific
 While not always consistent, x265 aims for a increase of 6 CRF or a decrease of 6 CRF to be a half or doubling of file size respectively. 
 
 CRF is also preferable to other rate control methods due to its consistency in quality and being the most efficient mode of them all.
+
+### `--bitrate`
+
+`--bitrate` as the name implies is used to specify the target ABR for 1 pass encoding or target bitrate for VBR in 2pass+. 
+
+It is highly discouraged to use rate control unless required as it is less efficient than CRF and does not keep a consistent quality like CRF either.
+
+## Threading
+
+`--wpp` and `--frame-threads`
+
+x265 features several threading features that each comes with their own upsides and downsides when used.
+
+### `--wpp`
+
+`--wpp` or Wavefront Parallel Processing is the default method x265 uses to parallelize encoding first and foremost. with only an efficiency hit of 1-3% of the final encode it increases threading of x265
+by 3-5x. unless you're using a tool like av1an for a maximum efficiency encode it is always recommended to have this setting on (default). 
+
+WPP works by splitting the video frame up into rows where the row is 2 CU or super blocks in libvpx terms behind the row above it. This allows the encoder to reference everything allowed by the 
+h.265 specification. Due to it not being single threaded some optimizations cannot be done resulting in a small loss.
+
+### `--frame-threads`
+
+`--frame-threads` is an extension of the idea of wpp across multiple frame being encoded concurrently. similarly, this results in a further 1-3% efficiency however can 5-7x threading on top of wpp.
+
+According to reports by some users in older versions of x265 the larger the number of frame threads the worse the efficiency impact. However in the latest version of x265 4.1 there is no difference
+between 2 frame threads and the max 16 threads.
 
 ## B-frames
 
@@ -101,9 +128,11 @@ optimal for most cases, however for high fidelity encodes or micro encodes adjus
 `--b-pyramid` or `--no-b-pyramid` decides if B-frames can be used as reference frames for other B-frames or other frame types. Normally this should always be on and is the default. However for
 high fidelity encodes it might be worth wild experimenting with turning it off only in limited use cases.
 
-## SAO
+## Restoration Filtering
 
-`--sao`, `--limit-sao`, `--no-sao`
+`--sao`, `--limit-sao`, `--no-sao` and `--deblock`
+
+### `--sao`, `--limit-sao` and `--no-sao`
 
 SAO or Sample Adaptive Offset is a restoration filter in h.265 used to prevent obvious blocking and ringing artifacts especially around sharp edges.
 However this does sometimes come at the cost of some finer details in the video like for example human skin and surface details.
@@ -115,19 +144,21 @@ However it does generally do a good job of preserving more detail than normal ev
 
 For below crf 16 depending on your content it might be preferable to outright disable sao with `--no-sao` as usually at such high quality its not usually needed.
 
-## Deblock
+### `--deblock`
 
-`--deblock`
-
-Word of caution i dont know who wrote this part and the documentation around the deblock setting is esoteric.
+Word of caution i don't know who wrote this part and the documentation around the deblock setting is esoteric.
 
 Deblock is another loop filter, this one intended to reduce blocking in videos, but may have a blurring effect at high strengths. For most encodes, it is fine to leave this
 at the default value. At lower CRF values, it may be desirable to lower this to `--deblock -1:-1` for anime or `--deblock -2:-2` for live action, in order to preserve
 more grain and detail.
 
-## Psy-RD
+## Psycho-visual options
 
-`--psy-rd` and `--psy-rdoq`
+`--psy-rd`, `--psy-rdoq`, `--aq-mode` and `--aq-strength`
+
+You can read more about the importance of perceptual optimization in video encoders on the [psychovisual](../introduction/psychovisual.mdx) page.
+
+### `--psy-rd` and `--psy-rdoq`
 
 To make a long story short `--psy-rd` and `--psy-rdoq` together are psychovisual optimization tools used to control the encoders willingness to retain finer detail and noise in the
 final encode. However the way the two settings achieve this are very different.
@@ -142,11 +173,7 @@ Both settings are highly source dependent and ideally would be tweaked per scene
 are using are beneficial its almost always recommended to never touch either setting as the defaults for both are good general purpose settings.
 However as a general rule of thumb `--psy-rd` is better at retaining specific detail and overall sharpness while `--psy-rdoq` is better at retaining overall noise.
 
-You can read more about the importance of perceptual optimization in video encoders on the [psychovisual](../introduction/psychovisual.mdx) page.
-
-## Adaptive Quantization
-
-`--aq-mode` and `--aq-strength`
+### `--aq-mode` and `--aq-strength`
 
 Adaptive quantization (`--aq-mode`), shortened to AQ, is a mechanism to redistribute bitrate within a frame to improve perceptual quality consistency.
 In x265 we have 4 modes.
