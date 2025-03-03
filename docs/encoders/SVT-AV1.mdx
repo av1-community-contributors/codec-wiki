@@ -62,8 +62,6 @@ SVT-AV1 supports the following color spaces:
 
         The compiled binaries will be in the `Bin/Release` directory, including SvtAv1EncApp. If you just want the encoder, adding the `no-dec` flag will skip building SvtAv1DecApp and save on compilation time.
 
-        If you'd like to build from the latest release (2.1.0 at the time of writing - last updated 16 Apr 2024) please run `git reset --hard 2aeeb4f1a1d495b84bf5c21dbb60ae10e991fada` in the cloned directory. It is recommended that you do this, as new changes to git aren't always stable right away & a release will guarantee more stability.
-
         If you want extra performance, it is possible to build SVT-AV1 using PGO (Profile-guided Optimization). **Be aware that this particular script infers that you have a .y4m file (or multiple) in `/dev/shm` for transcoding**. You can compile statically linked SVT-AV1 with PGO (and LTO, or link-time optimization) by following this script:
 
         ```bash title="Bulding SVT-AV1 with profile guided optimization"

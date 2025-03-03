@@ -125,12 +125,16 @@ This color primary setting is used in the following standards:
 
 ### 11: DCI-P3
 
-DCI-P3 is a wide-gamut colorspace used alongside RGB. It is used internally by most HDR monitors on the market.
+DCI-P3 is a color space created by [Digital Cinema Initiatives](https://www.dcimovies.com). DCI-P3 has similar chromaticities (end points) and color gamut to AdobeRGB, which is more widely used in graphic arts and photography. DCI-P3 features a substantially larger gamut than sRGB.
 
-### 12: Display-P3
+### 12: Display P3
 
-Display-P3 is a variant of DCI-P3 developed by Apple because they wanted to be different.
+Display P3 is a standard developed by Apple that is used across iPhones, iPads, iMacs, MacBooks, and Apple-branded external displays released since 2016.  
+
+Display P3 differs from DCI-P3 in a couple of ways:
+- Unlike DCI-P3, Display P3's white point is the same as the sRGB/AdobeRGB white point of 6500K
+- DCI-P3 has a gamma of 2.6, while Display P3 uses sRGB's gamma, which is closer to 2.2
 
 ### 22: EBU Tech 3213
 
-Nobody really knows what this is.
+The EBU Tech 3213 standard defines the colorspace used by PAL/SECAM television systems in 1975, defining the chromaticities of primary colors and the white reference. It has largely been superseded by newer standards like SMPTE 170M and is considered obsolete for modern applications. The transfer function was never properly defined for this colorspace.

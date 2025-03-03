@@ -1,0 +1,44 @@
+---
+title: dav1d
+sidebar_position: 15
+---
+
+# dav1d
+
+The dav1d (which stands for "dav1d is an AV1 decoder") AV1 decoder is a high-performance, lightweight, and open-source software decoder for the AV1 video codec. It is primarily developed by [Two Orioles, LLC](https://www.twoorioles.com) on behalf of Videolan. It is known for being extremely lightweight and very fast.
+
+## Features
+
+- **Design**: Written in C99 with assembly optimizations (NASM/GAS syntax), dav1d is designed for speed and low resource consumption
+- **Platform Support**: Compatible with x86, x64, ARMv7, ARMv8, & more. It runs on Windows, Linux, macOS, Android, and iOS.
+- **Adoption**: dav1d is used across all Android devices as well as major browsers like Chrome, Safari, Edge, and Firefox. It is believed that the AVIF decoding on Apple devices uses a version of dav1d that may be an internal fork.
+
+## Binary Size
+
+dav1d's binary size is approximately one-third that of libaom's decoder, weighing in at around 0.9 MB. It also has a much smaller codebase that libaom, about one-tenth the lines of code; making it lightweight and easier to integrate into applications.
+
+## Performance Comparison
+
+### libgav1
+
+- dav1d significantly outperforms Google's libgav1 in decoding speed. For example:
+  - On a Google Pixel 3 XL (without hardware acceleration), dav1d achieves 50 fps for 4K60 video decoding, whereas libgav1 achieves less than 10 fps.
+  - dav1d is more efficient in CPU resource usage and power consumption, making it ideal for low-end devices.
+
+### libaom
+
+- dav1d offers better decoding performance than libaom (the AV1 reference implementation), particularly after optimizations with assembly code. While libaom is slower due to its focus on demonstrating codec functionality rather than performance, dav1d is optimized for real-world use cases.
+- Memory usage is also significantly lower with dav1d—about one-fourth that of libaom.
+
+### ffhevc
+
+dav1d's decoding efficiency rivals or exceeds that of ffhevc.
+
+## Recent Developments
+
+As of April 2024:
+- Android officially adopted dav1d as its default AV1 software decoder via a Play System update. This change significantly improved video playback on devices without hardware AV1 decoders
+- dav1d supports smooth playback of 720p30 videos on most devices and even higher resolutions on capable hardware
+
+## Conclusion
+dav1d stands out as the most efficient and widely adopted software-based AV1 decoder. Its small binary size, high performance across platforms, and low resource consumption make it a preferred choice over alternatives like libgav1 and libaom. Additionally, its adoption by major platforms such as Android underscores its effectiveness in real-world applications.

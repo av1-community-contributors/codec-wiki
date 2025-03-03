@@ -8,7 +8,9 @@ import TabItem from '@theme/TabItem';
 
 # JPEG XL
 
-JPEG XL (JXL) is a compression format for images that was developed by the Joint Photographic Experts Group (JPEG) in 2020. It is designed to provide improved compression efficiency compared to the traditional [JPEG](./JPEG.mdx) format, while still maintaining image quality. JPEG XL uses a combination of techniques such as perceptual color encoding, advanced entropy coding, and a new image prediction method to achieve its improved compression performance. It also has a lossless JPEG recompression mode, where an existing JPEG file can be turned into a JXL that can be decoded for a bit-for-bit exact replica of the original JPEG.
+JPEG XL (JXL) is a compression format for images that was developed by the Joint Photographic Experts Group (JPEG) in 2020. It is designed to provide improved compression efficiency compared to the traditional [JPEG](./JPEG.mdx) format, while still maintaining image quality.
+
+JPEG XL uses a combination of techniques such as perceptual color encoding & advanced entropy coding to achieve its improved compression performance. It also has a lossless JPEG recompression mode, where an existing JPEG file can be turned into a JXL that can be decoded for a bit-for-bit exact replica of the original JPEG.
 
 ## Performance Checklist
 
@@ -53,7 +55,7 @@ Example: JPEG XL compresses [this 16-bit AdobeRGB PNG](https://imgsaver.com/imag
 
 ### Lossy Compression
 
-JPEG XL is also adept at lossy compression, especially at quality levels that we as humans care about. It promises to be around 60% better than JPEG. While video-based codecs like AVIF can be competitive when given lots of CPU time, JPEG XL is both fast and efficient for medium to high fidelity photographic imaging.
+JPEG XL is also adept at lossy compression, especially at quality levels that we as humans care about. It promises to be around 60% better than JPEG. While video-based codecs like AVIF are often better in terms of quality per bit, JPEG XL is both fast and efficient for medium and high fidelity photographic image compression.
 
 ### Supported Bit Depth(s)
 
@@ -65,7 +67,7 @@ JPEG XL provides actual progressive decode support that you can experiment with 
 
 Progressive decode is a feature only JPEG is able to offer a real implementation of, rendering low frequency transform coefficients before the rest of the image arrives to allow an image to display before the entire thing has been sent over the network. Blurhashes do not replace this technology, but rather compliment it, allowing another layer of progressive decode that can be used even before the image begins to load progressively. This is an important feature to improve the user experience on websites featuring large images, or on any website if your Internet connection isn't strong.
 
-### Lossless JPEG Re-compression
+### Lossless JPEG Re-Compression
 
 An incredibly unique JPEG XL feature is lossless JPEG re-compression, or the ability to take a JPEG input and provide an output with a smaller filesize (on average, 20% smaller) that is pixel-for-pixel identical. This is why companies like Meta have endorsed JPEG XL, as it offers a path forward for the existing JPEGs on the Internet.
 
