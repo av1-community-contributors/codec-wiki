@@ -188,7 +188,7 @@ const config = {
               },
               {
                 label: 'Privacy Policy',
-                href: 'https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement',
+                href: 'https://wiki.x266.mov/docs/privacy-policy',
               },
             ],
           },
