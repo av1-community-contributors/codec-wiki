@@ -5,7 +5,7 @@ slug: svt-av1-third-deep-dive
 authors:
 - name: Trix
   title: Encoder
-  url: https://github.com/trixoniisama/
+  url: https://github.com/nekotrix/
   image_url: https://avatars.githubusercontent.com/u/93526043
 tags: [video, compression, benchmarks]
 image: /img/svt-2.2.x-testing-blog-image.webp
@@ -45,8 +45,6 @@ The clips used in this test were acquired legally. The Codec Wiki and its contri
 SvtAv1EncApp was compiled directly from the [v2.1.2 and v2.2.1 source code](https://gitlab.com/AOMediaCodec/SVT-AV1/-/releases/) using Clang 18.1.8 and the provided `Build/linux/build.sh` script with the following command: `build.sh cc=clang cxx=clang++ jobs=$(nproc) enable-lto static native release`. The testing machine is comprised of an i3 12100 in its stock configuration, with 2x8GB of 3200MHz CL14 DDR4 RAM, in Arch Linux with kernel 6.9.12 and the performance governor enabled. All encodes have been made in the same session without rebooting.
 
 I want to give a disclaimer concerning encoding speeds. Contrary to the efficiency results which should be reproducible independantly of the machine, measuring speed is a pretty difficult endeavor, with increased risks for errors. The performance numbers I mention may differ for you depending on the hardware configuration at hand.
-
-This testing was conducted within the [AV1 Weeb Edition](https://discord.gg/83dRFDFDp7) Discord server, which is focused on encoding animated content in AV1.
 
 ## Samples & Encoding Settings
 
