@@ -83,7 +83,8 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         **Clang-CL** is the best option for building in Windows, as it results in faster binaries than building with MSYS2 (either GCC/Clang) and MSVC. The full build process is detailed here.
 
         0. Make sure you have the following prerequisites before beginning the build process:
-		- [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools): Inside Build Tools, select "Desktop development with C++" and under optional, select "C++ Clang tools"
+		- [LLVM](https://github.com/llvm/llvm-project/releases/latest)
+		- [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools): Inside Build Tools, select "Desktop development with C++" and under optional, only MSVC and the Windows 11 SDK is needed, feel free to unselect other optionals.
 		- [CMake](https://cmake.org/download)
 		- [NASM](https://nasm.us)
 		- [Git](https://git-scm.com/downloads)
@@ -98,7 +99,11 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         2. Configure compilation:
 
         ```bash title="Configure SVT-AV1-PSY"
-        cmake --fresh -B svt_build -T ClangCL -DENABLE_AVX512=OFF -DBUILD_SHARED_LIBS=OFF -DSVT_AV1_LTO=OFF -DCMAKE_CXX_FLAGS_RELEASE="-flto /clang:-O2 /DNDEBUG -march=native" -DCMAKE_C_FLAGS_RELEASE="-flto /clang:-O2 /DNDEBUG -march=native"
+        call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+        set "Path=C:\Program Files\LLVM\bin;%Path%"
+        set "CC=clang"
+        set "CXX=clang"
+        cmake --fresh -B svt_build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DSVT_AV1_LTO=OFF -DENABLE_AVX512=OFF -DCMAKE_CXX_FLAGS_RELEASE="-flto /DNDEBUG /clang:-O2 -march=native" -DCMAKE_C_FLAGS_RELEASE="-flto /DNDEBUG /clang:-O2 -march=native"
         ```
         **Note**: On Ryzen 5000, `-march=native` actually decrease performance. Please use `-march=znver2` instead.
         **Note**: If your CPU supports AVX512, you can enable it by changing `-DENABLE_AVX512=OFF` to `-DENABLE_AVX512=ON` for better performance.
@@ -106,7 +111,7 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         3. Compile:
 
         ```bash title="Build release"
-        cmake --build svt_build --config Release --parallel
+        ninja -C svt_build
         ```
 
         The compiled binary will be in the `Bin/Release` directory.
