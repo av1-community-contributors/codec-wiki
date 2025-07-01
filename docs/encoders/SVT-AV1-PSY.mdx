@@ -102,8 +102,8 @@ Building & installing SVT-AV1-PSY is the same as building & installing mainline 
         ```bash title="Configure SVT-AV1-PSY"
         call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
         set "Path=C:\Program Files\LLVM\bin;%Path%"
-        set "CC=clang"
-        set "CXX=clang"
+        set "CC=clang-cl"
+        set "CXX=clang-cl"
         cmake --fresh -B svt_build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DSVT_AV1_LTO=OFF -DENABLE_AVX512=OFF -DCMAKE_CXX_FLAGS_RELEASE="-flto /DNDEBUG /clang:-O2 -march=native" -DCMAKE_C_FLAGS_RELEASE="-flto /DNDEBUG /clang:-O2 -march=native"
         ```
         **Note**: On Ryzen 5000, `-march=native` actually decrease performance. Please use `-march=znver2` instead.
