@@ -36,6 +36,8 @@ The author of variance boost made a highly visual explanation of the feature in 
 
 You can enable varboost via the `--enable-variance-boost` parameter and control its behavior by changing its `--variance-boost-strength` or its `--variance-octile` setting. Basically, the strength controls how much areas are to be boosted, while octile controls how much of the area needs to be deemed low-contrast before being boosted.
 
+> *In every graph of this section, you will notice `vbs_o_` in the legend. The `vb` stands for `varboost`, the `s` stands for `strength` and lastly the `o` stands for octile. In the last subsection, you will even see `vbs_o_c_` with the `c` standing for `curve`. To take one example, `vbs1o4c2` means `varboost at strength 1 and octile 4 on the 2nd curve`.*
+
 ---
 #### Varboost Strength
 
@@ -2037,7 +2039,15 @@ For an octile value that supposedly should boost too many blocks in frames, `1` 
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### Let's look at `--variance-octile 2`:
 
@@ -2428,7 +2438,15 @@ For an octile value that supposedly should boost too many blocks in frames, `1` 
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### Let's test `--variance-octile 3`:
 
@@ -2819,7 +2837,15 @@ It can be summarized the same as *octile 1* and *2*.
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### And `--variance-octile 4`:
 
@@ -3210,7 +3236,15 @@ I swear it's not just me getting lazy, there's not much more to say than as alre
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### And `--variance-octile 5`!
 
@@ -3601,7 +3635,15 @@ Cf. previous interpretations.
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### What about `--variance-octile 6`, the default *octile* value in every iteration of SVT-AV1:
 
@@ -3988,11 +4030,19 @@ Cf. previous interpretations.
 
 ---> Interpretation:
 
-The default octile value tends, again, to perform better on higher strengths at high quality, and sometimes lower strengths at low quality. We notice it is getting easier to distinct between strengths as we've increased octile, which can be good depending on how you see things. Something we haven't discussed until now is how higher strengths tend to be more inconsistent according to SSIMU2 as you get closer to the CRF40-50 range, which could be problematic depending on your usecase, and thus something to keep in mind.
+The default octile value tends, again, to perform better on higher strengths at high quality, and sometimes lower strengths at low quality. We notice it is getting easier to distinct between strengths as we've increased octile, which can be good depending on how you see things. Something we haven't discussed until now is how higher strengths tend to be more inconsistent according to SSIMU2 as you get closer to the *CRF40-50* range, which could be problematic depending on your usecase, and thus something to keep in mind.
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### Following with `--variance-octile 7` tests:
 
@@ -4383,7 +4433,15 @@ Cf. previous interpretations.
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ##### And lastly `--variance-octile 8` testing:
 
@@ -4774,7 +4832,15 @@ Well, here we are, *octile 8* barely provides any gains and can be (quite) harmf
 
 ---> Visual Comparisons:
 
-*Coming soon™*
+| HQ | LQ |
+|:-:|:-:|
+| [Avatar (HQ)]() | [Avatar (LQ)]() |
+| [Ducks (HQ)]() | [Ducks (LQ)]() |
+| [Fallout (HQ)]() | [Fallout (LQ)]() |
+| [Minecraft (HQ)]() | [Minecraft (LQ)]() |
+| [Sol Levante (HQ)]() | [Sol Levante (LQ)]() |
+| [Suzume (HQ)]() | [Suzume (LQ)]() |
+| [The Mandalorian (HQ)]() | [The Mandalorian (LQ)]() |
 
 ---
 #### Varboost Curve
@@ -5584,11 +5650,11 @@ The winner is less clear here, this time we can say it's a tie. Such results are
 
 We have seen that, in SVT-AV1 v3.0.x, **__varboost on__ more often than not provides consistent improvements whatever the combination of settings**, though we see better gains at high qualities and/or with higher strengths and lower octiles, less gains at low qualities and/or with lower strengths and higher octiles. 
 
-> It is best to stay on the **default `--variance-boost-strength 2 --variance-octile 6`** unless you want to hyper-tune for your content, or you want to encode at lower than CRF20 where I guess a combination like `--variance-boost-strength 3 --variance-octile 3` *can* provide more consistent efficiency gains.
+> It is best to stay on the **default `--variance-boost-strength 2 --variance-octile 6`** unless you want to hyper-tune for your content, or you want to encode at lower than *CRF20* where I guess a combination like `--variance-boost-strength 3 --variance-octile 3` *can* provide more consistent efficiency gains.
 
 `--variance-boost-strength 4` is still clearly better than *no varboost* and sometimes lower strengths too, but it often performs worse than *3*. `--variance-octile 1 & 2` often came out on top, but they may be too aggressive or inflate filesizes too much, so a more conservative value is advised. 
 
-> My last recommendation would be to remember to **adjust CRF in consequence**, as enabling varboost, increasing the strength and decreasing octile can drastically boost filesizes. If you understand how these graphs work, then you know you aren't compromising anything by increasing CRF to compensate for the filesize increase.
+> My last recommendation would be to remember to **adjust __CRF__ in consequence**, as enabling varboost, increasing the strength and decreasing octile can drastically boost filesizes. If you understand how these graphs work, then you know you aren't compromising anything by increasing *CRF* to compensate for the filesize increase.
 
 ---
 ### `--tune`
@@ -6403,7 +6469,7 @@ So let's see the effect it can have on efficiency and visuals!
 On the HQ graphs, we can see no luma-bias tends to score last or at least lower than conservative luma-bias values.
 On the LQ graphs, we usually observe the opposite, that is to say that no luma-bias tends to barely come out on top, with increasing luma-bias values decreasing efficiency ever so slightly.
 
-If we look at performance, the impact of luma-bias is negligible at lower CRF values, but gradually increases with higher CRF values for the simple reason that the frames whose QP will be reduced will take a bit more time to encode, as is the expected behavior of any encoder. The effect on QP, and thus performance, is going to be more important the higher base CRF you start with.
+If we look at performance, the impact of luma-bias is negligible at lower *CRF* values, but gradually increases with higher *CRF* values for the simple reason that the frames whose QP will be reduced will take a bit more time to encode, as is the expected behavior of any encoder. The effect on QP, and thus performance, is going to be more important the higher base *CRF* you start with.
 
 Let's look at some BD-rate numbers directly, to try and clarify the graphs:
 
@@ -7274,7 +7340,7 @@ From this, it is recommended at a minimum to **reduce `--tf-strength`** from its
 ---
 ### `--lossless`
 
-SVT-AV1 finally added a lossless mode in v3.0.0! Until then, aomenc was the only AV1 software encoder capable of doing lossless encoding, as both rav1e and SVT-AV1 wouldn't allow you to set Q0/CRF0. It probably shouldn't be expected to see better lossless compression out of SVT-AV1, rather, the encoder aims to achieve feature parity with aomenc, but can it do it fast? 
+SVT-AV1 finally added a lossless mode in v3.0.0! Until then, aomenc was the only AV1 software encoder capable of doing lossless encoding, as both rav1e and SVT-AV1 wouldn't allow you to set *Q0*/*CRF0*. It probably shouldn't be expected to see better lossless compression out of SVT-AV1, rather, the encoder aims to achieve feature parity with aomenc, but can it do it fast? 
 
 I initially intended this section to compare aomenc to SVT-AV1, but complications quickly arose from my testing as you'll soon be able to see. Obviously, there is no question of efficiency graphs here as the metrics are expected to always be maxed out with lossless enabled. Anyway, no graphs will be needed here.
 
@@ -8641,7 +8707,7 @@ Keep in mind it has been observed that the output of *fast-decode* modes can be 
 
 AV1 tiles are a straightforward method of splitting the video frame into independent tiles of equal size to hopefully increase encoding and decoding thread-ability. In SVT-AV1, tiles don't increase encoding speeds but they can help devices (especially low-powered ones) to software decode AV1 more easily. We are going to challenge these claims.
 
-One can combine *fast-decode* and tiles to decrease decoding complexity further.
+> *In the following graphs and tables, `c` refers to `--tile-columns` and `r` refers to `--tile-rows`. For instance, `c2r1` can be read as `--tile-columns 2 --tile-rows 1`.*
 
 ---> Compression efficiency graphs, *"high quality"* range (CRF10 -> 23):
 
@@ -9028,6 +9094,10 @@ One can combine *fast-decode* and tiles to decrease decoding complexity further.
 
 Except on *"Suzume"*, and to some extent on *"Mandalorian"* at low qualities, where we see the higher number of tiles start to impact efficiency, the effect of tiles on efficiency is by in large negligible. It does seem like encoding speeds aren't particularly impacted by tiles in this encoder.
 
+Let's also look at decoding speeds, as we did with *fast-decode*!
+
+What follows are the relative decoding speed improvements relative to `c0r0`, starting with tests at *CRF12*:
+
 | Tiles Decoding Test (CRF12) | c0r0 | c1r0 | c1r1 | c2r0 | c2r1 |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 | Avatar      | 185fps | 335fps <span style={{color:'green'}}>*(+81%)*</span> | 446fps <span style={{color:'green'}}>*(+141%)*</span> | 477fps <span style={{color:'green'}}>*(+158%)*</span> | 487fps <span style={{color:'green'}}>*(+163%)*</span> |
@@ -9037,6 +9107,8 @@ Except on *"Suzume"*, and to some extent on *"Mandalorian"* at low qualities, wh
 | Sol Levante | 91fps | 162fps <span style={{color:'green'}}>*(+78%)*</span> | 205fps <span style={{color:'green'}}>*(+125%)*</span> | 219fps <span style={{color:'green'}}>*(+141%)*</span> | 217fps <span style={{color:'orange'}}>*(+138%)*</span> |
 | Suzume      | 324fps | 544fps <span style={{color:'green'}}>*(+68%)*</span> | 679fps <span style={{color:'green'}}>*(+110%)*</span> | 732fps <span style={{color:'green'}}>*(+126%)*</span> | 729fps <span style={{color:'orange'}}>*(+125%)*</span> |
 | Mandalorian | 312fps | 520fps <span style={{color:'green'}}>*(+67%)*</span> | 631fps <span style={{color:'green'}}>*(+102%)*</span> | 681fps <span style={{color:'green'}}>*(+118%)*</span> | 688fps <span style={{color:'green'}}>*(+121%)*</span> |
+
+The same tests were conducted at *CRF33* to quantify the differences in impact between two very distinctive quality targets:
 
 | Tiles Decoding Test (CRF33) | c0r0 | c1r0 | c1r1 | c2r0 | c2r1 |
 |:-:|:-:|:-:|:-:|:-:|:-:|
@@ -9048,9 +9120,9 @@ Except on *"Suzume"*, and to some extent on *"Mandalorian"* at low qualities, wh
 | Suzume      | 696fps | 991fps <span style={{color:'green'}}>*(+42%)*</span> | 1020fps <span style={{color:'green'}}>*(+47%)*</span> | 1082fps <span style={{color:'green'}}>*(+55%)*</span> | 1008fps <span style={{color:'orange'}}>*(+45%)*</span> |
 | Mandalorian | 902fps | 1183fps <span style={{color:'green'}}>*(+31%)*</span> | 1164fps <span style={{color:'orange'}}>*(+29%)*</span> | 1207fps <span style={{color:'green'}}>*(+34%)*</span> | 1128fps <span style={{color:'orange'}}>*(+25%)*</span> |
 
-No, you aren't dreaming! We immediately realize that the impact of tiles is significantly greater than either of the *fast-decode* modes, an especially appealing outcome given their relatively minor effect on compression efficiency. Decoding speeds improve even further at higher quality settings, with the smallest gain reaching **+67%** at CRF12. That kind of difference can turn an unplayable file into one that runs smoothly.
+No, you aren't dreaming! We immediately realize that the impact of tiles is significantly greater than either of the *fast-decode* modes, an especially appealing outcome given their relatively minor effect on compression efficiency. Decoding speeds improve even further at higher quality settings, with the smallest gain reaching **+67%** at *CRF12*. That kind of difference can turn an unplayable file into one that runs smoothly. A single additional tile can have important consequences.
 
-*Tile-rows* offer less benefit than *tile-columns*, and in some cases even cause slight regressions at lower qualities. Still, seeing up to +250% improvements in decoding speed is nothing to scoff at. [Dav1d](https://code.videolan.org/videolan/dav1d/)’s performance is genuinely impressive, now exceeding **1000fps** on certain clips!
+*Tile-rows* on average offer less benefit than *tile-columns*, and in some cases even cause slight regressions at lower qualities. Still, seeing up to +250% improvements in decoding speed is nothing to scoff at. [Dav1d](https://code.videolan.org/videolan/dav1d/)’s performance is genuinely impressive, now exceeding **1000fps** on certain clips!
 
 ---> Visual Comparisons:
 
@@ -9064,11 +9136,13 @@ No, you aren't dreaming! We immediately realize that the impact of tiles is sign
 | [Suzume (HQ)](https://slow.pics/c/uC13Y3J7) | [Suzume (LQ)](https://slow.pics/c/zL4abWSW) |
 | [Mandalorian (HQ)](https://slow.pics/c/cnUI9sTu) | [Mandalorian (LQ)](https://slow.pics/c/5WlGC4R6) |
 
-If I had to give recommendations based on what we saw, for a good balance between efficiency and decoding performance, consider the following tile settings:
+If I had to give recommendations based on what we saw, for a good balance between losses in efficiency and increased decoding performance, consider the following tile settings:
 - `--tile-columns 1 --tile-rows 0`: for 1080p and above
 - `--tile-columns 2 --tile-rows 0`: for 4K and above
 
 Of course, if decoding speed isn’t a concern at all, you can stick with the default `--tile-columns 0 --tile-rows 0`. But even then, I believe enabling tiles is worth considering for future-proofing purposes.
+
+One can combine *fast-decode* and tiles to decrease decoding complexity further.
 
 ## Statistics
 
@@ -9080,7 +9154,7 @@ Here's this deep dive in numbers:
 - ...which makes for an average of about **28MB** per file
 - **3928** total graphs
 - **2030** total decoding runs
-- **427** slow.pics comps...
+- **483** slow.pics comps...
 - ...for a grand total of about *12000* distinct screenshots uploaded!
 
 Even I was flabbergasted when I discovered the actual scope of this benchmarking session!
@@ -9097,9 +9171,11 @@ Thanks again for reading, and I hope you found this deep dive insightful!
 
 ## Future
 
-First of all, I do not consider this testing complete. I have been told some comps had issues, and while re-generating them, I ended up rate-limited by slow.pics again, though only temporarily fortunately. As you can imagine, even with scripts, preparing and uploading these takes quite a while already, but I'm taking even more precautions to avoid getting banned again. I decided not to delay this Part further, so you wouldn't have to wait more, but I'll ask you to be patient a bit longer for me to add the fixed comps for Part 1 and the varboost octiles comps for this Part. I expect to be able to update both articles before the end of the week.
+~~First of all, I do not consider this testing complete. I have been told some comps had issues, and while re-generating them, I ended up rate-limited by slow.pics again, though only temporarily fortunately. As you can imagine, even with scripts, preparing and uploading these takes quite a while already, but I'm taking even more precautions to avoid getting banned again. I decided not to delay this Part further, so you wouldn't have to wait more, but I'll ask you to be patient a bit longer for me to add the fixed comps for Part 1 and the varboost octiles comps for this Part. I expect to be able to update both articles before the end of the week.~~
 
-As I eluded in the last section, I have ideas for future blog posts. First of all, **SVT-AV1 v3.1.0 is right around the corner**, and it is touted to be quite an update especially for VBR and realtime usecases! It could be the occasion for me to do the long awaited *target bitrate* tests and compare efficiency with CRF on our test samples...
+**EDIT (July 4):** These concerns have been addressed.
+
+As I alluded to in the last section, I have ideas for future blog posts. First of all, **SVT-AV1 v3.1.0 is right around the corner**, and it is touted to be quite an update especially for VBR and realtime usecases! It could be the occasion for me to do the long awaited *target bitrate* tests and compare efficiency with CRF on our test samples...
 
 Second, most of the ideas I proposed in past articles remain valid possibilities and I still want to test other AV1 encoders in this format. AV2 is approaching too so it would be interesting to make some early comparisons of AV1 with AVM, if there's enough time for that.
 
