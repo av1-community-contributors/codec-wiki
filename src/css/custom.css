@@ -36,7 +36,8 @@
 
 @font-face {
   font-family: "Mona Sans";
-  src: url("/static/fonts/Mona-Sans.woff2") format("woff2 supports variations"),
+  src:
+    url("/static/fonts/Mona-Sans.woff2") format("woff2 supports variations"),
     url("/static/fonts/Mona-Sans.woff2") format("woff2-variations");
   font-weight: 500 900;
   font-stretch: 75% 125%;
@@ -44,7 +45,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("/static/fonts/Inter.var.woff2") format("woff2 supports variations"),
+  src:
+    url("/static/fonts/Inter.var.woff2") format("woff2 supports variations"),
     url("/static/fonts/Inter.var.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 75% 125%;
@@ -52,7 +54,9 @@
 
 @font-face {
   font-family: "Monaspace Neon";
-  src: url("/static/fonts/Monaspace-Neon.woff2") format("woff2 supports variations"),
+  src:
+    url("/static/fonts/Monaspace-Neon.woff2")
+    format("woff2 supports variations"),
     url("/static/fonts/Monaspace-Neon.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 100% 100%;
@@ -76,7 +80,7 @@ code * {
   font-variant-ligatures: discretionary-ligatures;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   /* OKLCH color space: oklch(lightness chroma hue) */
   --ifm-color-primary-darkest: oklch(66.47% 0.298 7);
   --ifm-color-primary-darker: oklch(66.47% 0.298 7);
@@ -87,7 +91,7 @@ code * {
   --ifm-color-primary-lightest: oklch(66.47% 0.298 7);
 }
 
-[data-theme='light'] {
+[data-theme="light"] {
   --ifm-color-primary-darkest: oklch(66.47% 0.298 7);
   --ifm-color-primary-darker: oklch(66.47% 0.298 7);
   --ifm-color-primary-dark: oklch(66.47% 0.298 7);
@@ -135,5 +139,5 @@ html[data-theme="dark"] .header-github-link:before {
 }
 
 .centered-text {
-    text-align: center;
+  text-align: center;
 }
