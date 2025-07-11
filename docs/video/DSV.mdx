@@ -1,0 +1,50 @@
+---
+title: DSV
+sidebar_position: 16
+---
+
+# DSV
+
+DSV or DSV1 (Digital Subband Video 1) is a compact, software-only video codec focusing on simplicity and wavelet-based compression, with features rivaling early MPEG standards. The reference implementation of the codec is designed for flexibility and ease of use in C environments. As of October 2024, DSV1 has been superseded by [DSV2](./DSV2.mdx).
+
+## Features
+
+- **Wavelet-based compression:** Uses multiresolution subband analysis (wavelet transform) instead of DCT. More information on wavelet transforms is available on the [DSV2](./DSV2.mdx) page.
+- **Motion Compensation:** Supports half-pixel motion compensation.
+- **Chroma Subsampling:** 4:1:1, 4:2:0, 4:2:2, and 4:4:4 formats.
+- **Adaptive Quantization:** Dynamically adjusts quantization for better quality.
+- **Frame Types:** Supports intra and inter frames with variable-length closed GOPs (no bidirectional/B-frames, only forward prediction).
+- **Entropy Coding:** Uses interleaved exponential-Golomb coding for simplicity.
+- **Compression Range:** Supports a wider range of compression and lower bitrates than MPEG-1/2.
+
+The reference DSV encoder features:
+
+- **Rate Control:** Single-pass average bitrate (ABR) or constant rate factor (CRF).
+- **Human Visual System (HVS) Optimization:** Simple intra block mode determination.
+- **Scene Change Detection:** Based on average luma changes.
+- **Hierarchical Motion Estimation:** For improved efficiency.
+- **Adaptive Quantization Stability Tracking:** Improves quality.
+- **C89 Compatibility:** Written for standard C89, no external libraries, integer-only arithmetic, single-threaded, and portable.
+
+## Limitations
+
+- No built-in interlacing support.
+- Only 8 bits per component supported.
+- Frame dimensions must be divisible by 2.
+
+### Example Usage
+
+The only DSV encoder available is the reference encoder.
+
+- Encoding:
+  ```
+  ./dsv1 e -y -v -inp_bus_cif.yuv -out_saved.dsv -gop12 -w352 -h288 -fps_num30 -qp85 -kbps1100
+  ```
+- Decoding:
+  ```
+  ./dsv1 d -inp_video.dsv -out_decompressed.yuv -out420p
+  ```
+
+### Documentation & More
+
+Detailed information is available in [the repository](https://github.com/LMP88959/Digital-Subband-Video-1)’s PDF documents (`DSV1_spec.pdf`, `DSV1_encoder.pdf`). More example videos and usage instructions are provided in the README and linked resources in the repo.

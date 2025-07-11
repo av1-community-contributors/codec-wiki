@@ -1,0 +1,113 @@
+---
+title: DSV2
+sidebar_position: 17
+---
+
+# DSV2
+
+
+**DSV2** (or Digital Subband Video 2) is a lossy and lossless video codec that utilizes a wavelet transform and block-based motion compensation for video compression. It is designed to perform optimally at medium-low to medium-high bitrates for resolutions ranging from CIF (352x288) up to Full HD (1920x1080). In terms of compression efficiency and quality, its performance is comparable to MPEG-4 Part 2 and [AVC/H.264](./AVC.mdx) (using only P-frames). The bitstream for version 2.8 was frozen as of June 20, 2025.
+
+DSV2 supersedes the original [DSV](./DSV.mdx) codec.
+
+## Core Features
+
+DSV2 includes a range of modern codec features, focusing on integer-only operations and avoiding third-party libraries.
+
+- **Compression Method**: Employs a multiresolution subband analysis, also known as a wavelet transform, instead of the more common DCT.
+- **Motion Compensation**: Supports up to quarter-pixel motion compensation and features an "Expanded Prediction Range Mode" (EPRM) for improved prediction.
+- **Frame Types**: Uses intra (I-frames) and inter (P-frames) with a variable-length closed Group of Pictures (GOP). It does not support bi-directional prediction (B-frames).
+- **Color Space**: Compatible with multiple chroma subsampling formats, including 4:1:0, 4:1:1, 4:2:0, 4:2:2, and 4:4:4.
+- **Quality Optimization**: Incorporates adaptive quantization, in-loop filtering, and psychovisual enhancements to improve visual quality.
+- **Lossless Coding**: Offers a lossless compression mode.
+
+## Encoder Implementation
+
+The specific encoder implementation detailed in the project repository has several advanced features:
+
+- **Rate Control**: Supports single-pass average bitrate (ABR) and constant rate factor (CRF).
+- **Scene Detection**: Includes complex algorithms for detecting scene changes.
+- **Human Visual System (HVS)**: Utilizes HVS-based models for making decisions on intra block modes and adaptive quantization.
+- **Motion Estimation**: Implements hierarchical motion estimation.
+
+## Limitations
+
+The codec has several self-imposed developer limitations as well as technical limitations:
+
+- Does not support interlaced video.
+- Component bit depth is limited to 8 bits.
+- Frame dimensions must be divisible by two.
+- The reference implementation is single-threaded and does not use any hardware acceleration, SIMD instructions, or floating-point math.
+
+## Compilation & Use
+
+The DSV2 reference codec is written in C89 and can be compiled with a standard C compiler or by using the Zig build system. It is the only encoder/decoder pair available for DSV2.
+
+### Encoder Usage
+
+To encode a video, use the `e` command. The following is a sample command line:
+
+```bash
+./dsv2 e -inp=video.y4m -out=compressed.dsv -y4m=1 -qp=60 -gop=48
+```
+
+### Decoder Usage
+
+To decode a DSV2 file, use the `d` command. The following is a sample command line:
+
+```bash
+./dsv2 d -inp=video.dsv -out=decompressed.y4m -y4m=1 -out420p=1
+```
+
+## Wavelets
+
+Wavelet-based video codecs like DSV2 utilize wavelet transforms to reduce the amount of data required to represent a digital video.
+
+Compared to the widely used [Discrete Cosine Transform](../introduction/terminology.mdx#discrete-cosine-transform-dct) (DCT), wavelets feature essentially the opposite methodology. Each coeﬃcient in a DCT represents a constant pattern applied to an entire block, while each coeﬃcient in a wavelet transform represents a localized pattern applied to a section of the block.
+
+Because wavelet transforms can take advantage of large-scale redundancy in an image, they are often used to analyze entire frames at once, or in large overlapping sections. By contrast, DCTs are usually quite small and are intended to cover areas of roughly uniform patterns and complexity (forming the foundation of modern block-based video codecs like [AVC/H.264](./AVC.mdx))
+
+### The Compression Process
+
+The core of wavelet compression involves a multi-step process that transforms pixel data into a more compressible format. The CineForm codec serves as a practical example of this process.
+
+#### The Wavelet Transform
+
+A wavelet can be thought of as a one-dimensional filter that separates low-frequency data (the general, smoother areas of an image) from high-frequency data (the details and edges). To compress a 2D image, this process is applied both horizontally and vertically.
+
+For instance, the 2-6 Wavelet used in CineForm calculates low and high-frequency samples. For every two pixels, the low-frequency component is their sum:
+
+`low frequency sample = pixel[x] + pixel[x+1]`
+
+The high-frequency component is calculated using six input pixels to capture finer details:
+
+`high frequency sample = pixel[x] - pixel[x+1] + (-pixel[x-2] - pixel[x-1] + pixel[x+2] + pixel[x+3])/8`
+
+This operation is repeated, typically for three levels, on the low-frequency quadrant of the image, progressively concentrating the image's energy into smaller areas. This encompasses the methodology behind the 2-6 Wavelet.
+
+#### Quantization
+
+After the wavelet transform, the high-frequency data is quantized. The human eye is less sensitive to subtle changes in high-frequency regions, a characteristic exploited by dividing the wavelet output by a quantizer value. This step is a primary source of data reduction, as it discards information that is less likely to be perceived by the viewer.
+
+`high frequency sample = (wavelet output) / quantizer`
+
+Entroping coding, or [lossless compression](../introduction/lossless.mdx), follows this step.
+
+### Advantages & Disadvantages
+
+Wavelet compression presents a different set of trade-offs compared to the block-based DCT approach used in codecs like H.264.
+
+#### Advantages
+
+- Because wavelet transforms are not confined to sharp-edged blocks, they avoid the "blocking" artifacts and ringing that can appear in DCT-based codecs, especially at lower bitrates.
+- The efficiency of wavelet codecs like CineForm improves as video resolution increases, making them well-suited for HD, 4K, and 360° video production.
+- Wavelets can be designed to decode video at lower resolutions at very high speeds, allowing for faster editing workflows.
+
+#### Disadvantages
+
+Despite their theoretical benefits, wavelet codecs face significant practical challenges that have limited their widespread adoption.
+
+- Wavelet codecs lack an efficient method for intra-frame prediction. Unlike H.264, which can predict a block based on its exact neighboring pixels, the overlapping nature of wavelets makes this impossible, resulting in less efficient compression for intra-frames.
+- To avoid blockiness in motion-compensated frames, wavelet codecs often use Overlapped Block Motion Compensation (OBMC), which is significantly more demanding on CPU resources than standard motion compensation.
+- At lower bitrates, wavelet codecs can produce a blurry look because they don't preserve visual energy and sharp details as effectively as DCT codecs. This blurriness might result in improved [PSNR](../metrics/PSNR.mdx) but can be visually less appealing. Visual aliasing can also occur, where parts of the image appear to be coded at a lower resolution and then poorly scaled up.
+- Many wavelet codecs do not feature spatial adaptive quantization, a technique that improves visual quality by varying quantization across different areas of an image. This can lead to blurring in areas with subtle textures.
