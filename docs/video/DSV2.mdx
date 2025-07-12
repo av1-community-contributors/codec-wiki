@@ -5,7 +5,6 @@ sidebar_position: 17
 
 # DSV2
 
-
 **DSV2** (or Digital Subband Video 2) is a lossy and lossless video codec that utilizes a wavelet transform and block-based motion compensation for video compression. It is designed to perform optimally at medium-low to medium-high bitrates for resolutions ranging from CIF (352x288) up to Full HD (1920x1080). In terms of compression efficiency and quality, its performance is comparable to MPEG-4 Part 2 and [AVC/H.264](./AVC.mdx) (using only P-frames). The bitstream for version 2.8 was frozen as of June 20, 2025.
 
 DSV2 supersedes the original [DSV](./DSV.mdx) codec.
@@ -39,9 +38,9 @@ The codec has several self-imposed developer limitations as well as technical li
 - Frame dimensions must be divisible by two.
 - The reference implementation is single-threaded and does not use any hardware acceleration, SIMD instructions, or floating-point math.
 
-## Compilation & Use
+## Usage
 
-The DSV2 reference codec is written in C89 and can be compiled with a standard C compiler or by using the Zig build system. It is the only encoder/decoder pair available for DSV2.
+The DSV2 reference codec is written in C89 and can be compiled with a standard C compiler or by using the Zig build system. It is the only encoder/decoder pair available for DSV2. Build instructions for the reference implementation as well as source code are available on the [DSV2 GitHub repository](https://github.com/LMP88959/Digital-Subband-Video-2).
 
 ### Encoder Usage
 
