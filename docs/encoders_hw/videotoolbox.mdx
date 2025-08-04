@@ -41,7 +41,27 @@ Just run `ffmpeg -help encoder=hevc_videotoolbox` or `ffmpeg -help encoder=h264_
 
 ### Handbrake
 
-To be filled.
+[HandBrakeCLI](https://handbrake.fr/docs/en/latest/cli/cli-options.html) can be installed via [Homebrew](https://formulae.brew.sh/formula/handbrake):
+
+```bash
+brew install handbrake
+```
+
+Here are some example commands for encoding with VideoToolbox on Apple Silicon via HandBrakeCLI:
+
+```bash title="H.264 encoding with VideoToolbox"
+HandBrakeCLI -i input.mkv -o output.mp4 --encoder vt_h264 --quality [0-100]
+```
+
+```bash title="H.265 encoding with VideoToolbox"
+HandBrakeCLI -i input.mkv -o output.mp4 --encoder vt_h265 --quality [0-100]
+```
+
+```bash title="H.265 10-bit encoding with VideoToolbox"
+HandBrakeCLI -i input.mkv -o output.mp4 --encoder vt_h265_10bit --quality [0-100]
+```
+
+Use `HandBrakeCLI --help` to see all available VideoToolbox options (and encoders, under **Video Options**).
 
 *Sources*
 (1) Video Toolbox | Apple Developer Documentation. https://developer.apple.com/documentation/videotoolbox.
