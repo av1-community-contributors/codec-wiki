@@ -3,8 +3,96 @@ title: Butteraugli
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Butteraugli
 
 :::danger Help Wanted
 This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
 :::
+
+Butteraugli is a perceptual distance metric that estimates the psychovisual similarity of two images. It is capable of outputting a heatmap containing differences between two input clips.
+
+While a [reference implementation by Google](https://github.com/google/butteraugli) exists,
+most people will want to use the [HIP/CUDA implementation `vship`](https://github.com/Line-fr/Vship).  
+Vship is intended for use in Vapoursynth scripts or as a standalone CLI tool without Vapoursynth and runs on GPU (Nvidia and AMD Radeon).
+
+## Installing
+
+The [Release page](https://github.com/Line-fr/Vship/releases) of the repository provides up-to-date binaries for Windows users.
+
+<Tabs>
+    <TabItem value="compiling" label="Compiling" default>
+        To compile Vship, follow the [instructions](https://github.com/Line-fr/Vship?tab=readme-ov-file#installation) on the repository.
+    </TabItem>
+    <TabItem value="archlinux" label="Archlinux AUR">
+        On archlinux, you may use the [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) to install.
+        Simply use your favorite AUR helper to install `vapoursynth-plugin-vship-cuda-git` (Nvidia) or `vapoursynth-plugin-vship-amd-git` (AMD Radeon)
+
+        ```bash
+        paru -S vapoursynth-plugin-vship-amd-git
+        ```
+    </TabItem>
+</Tabs>
+
+## Running
+
+### Using the standalone FFVship library
+
+```bash
+usage: ./FFVship [-h] [--source SOURCE] [--encoded ENCODED]
+                    [-m {SSIMULACRA2, Butteraugli}]
+                    [--start start] [--end end] [-e --every every]
+                    [-t THREADS] [-g gpuThreads] [--gpu-id gpu_id]
+                    [--json OUTPUT]
+                    [--list-gpu]
+                    Specific to Butteraugli: 
+                    [--intensity-target Intensity(nits)]
+```
+
+### In Vapoursynth scripts
+
+Example script:
+```py
+import vapoursynth as vs
+core = vs.core
+
+# Load reference and distorted clips
+ref = core.bs.VideoSource("reference.mp4")
+dist = core.bs.VideoSource("distorted.mp4")
+
+# Calculate Butteraugli scores
+# intensity_multiplier controls sensitivity
+result = ref.vship.BUTTERAUGLI(dist, distmap=0, numStream = 4)
+
+# Extract scores from frame properties (three different norms available)
+scores_2norm = [frame.props["_BUTTERAUGLI_2Norm"] for frame in result.frames()]
+scores_3norm = [frame.props["_BUTTERAUGLI_3Norm"] for frame in result.frames()]
+scores_infnorm = [frame.props["_BUTTERAUGLI_INFNorm"] for frame in result.frames()]
+
+# Get all scores in one pass
+all_scores = [[frame.props["_BUTTERAUGLI_2Norm"],
+               frame.props["_BUTTERAUGLI_3Norm"],
+               frame.props["_BUTTERAUGLI_INFNorm"]]
+              for frame in result.frames()]
+
+# Print average scores
+print(f"Average Butteraugli 3Norm distance: {sum(scores_3norm) / len(scores_3norm)})
+print(f"Average Butteraugli 2Norm distance: {sum(scores_2norm) / len(scores_2norm)})
+print(f"Average Butteraugli MaxNorm distance: {sum(scores_infnorm) / len(scores_infnorm)})
+```
+
+:::tip Graphical visualization
+You can optionally generate visual distortion maps with:
+```py
+# Set distmap=1 to visualize distortion
+distmap_result = ref.vship.BUTTERAUGLI(dist, distmap=1)
+
+# The resulting clip is a grayscale visualization of distortions
+distmap_result.set_output()
+```
+:::
+
+## Scoring
+Butteraugli outputs score in the range 0..inf with lower being better (closer to the source). A score below 1.0 is usually considered very good.
