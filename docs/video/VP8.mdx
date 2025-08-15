@@ -10,7 +10,7 @@ VP8 is a video compression format developed by On2 Technologies released in 2008
 ## Design Assumptions
 
 VP8's design is built upon several core assumptions tailored for web video.
-- It is designed to operate efficiently within a quality range from "watchable video" (around 30dB PSNR) to "visually lossless" (around 45dB PSNR), anticipating limited network bandwidth.
+- It is designed to operate efficiently within a quality range from "watchable video" (around 30dB [PSNR](../metrics/PSNR.mdx)) to "visually lossless" (around 45dB PSNR), anticipating limited network bandwidth.
 - VP8 was designed to support efficient implementations across a wide breadth of client devices, from low-power mobile/embedded systems to powerful desktops.
 - VP8 is optimized to handle common web video image formats; 4:2:0 color sampling, 8-bit per channel color depth, progressive scan (not interlaced), and image dimensions up to 16383x16383 pixels. Internally, lossy VP8 works exclusively in 8-bit YUV 4:2:0 (chroma is 1/4 the resolution of luma).
 
@@ -112,3 +112,10 @@ In practice, reactions to VP8's initial performance were mixed. Moscow State Uni
 In her "Diary Of An x264 Developer" blog, Fiona Glaser (co-author of [FFmpeg](../utilities/ffmpeg.mdx)'s native highly optimized VP8 decoder) discussed the positive and negative aspects of the VP8 video format. She acknowledged that VP8 doesn't have to be the best in compression to be useful while the current encoder issues are likely related to the encoder implementation's maturity, but she criticized Google for releasing an incomplete and inconsistent “bitstream guide” instead of a proper spec for the codec. The actual encoder/decoder implementation in libvpx differed from the bitstream specification, so the "bitstream guide" nomenclature took hold in what appeared to be a means of avoiding fixing the core issue. Fiona also praised VP8’s `TM_PRED` intra prediction mode and tree-based arithmetic coding, but criticized its slow deblocking filter and suboptimal inverse transform ordering.
 
 Today, [VP9](./VP9.mdx) and to some extent [AV1](./AV1.mdx) have largely replaced VP8 as the web's most prominent royalty-free video compression standards. While VP8 may have had a rocky development cycle as well as a lackluster reference encoder, the effects of VP8's introduction are still felt today. WebP is still a widely adopted web image standard, and VP8 set important precedents for web video that helped push the industry forward (e.g. no interlaced video support; Fiona described interlacing as "the scourge of H.264"). Finally, royalty-free video standardization efforts have seen progressively fewer issues with implementation-to-spec parity, helping guide hardware vendors toward successful implementations more effectively.
+
+*Sources:*
+
+- *[Fiona Glaser's blog](https://web.archive.org/web/20150301015756/http://x264dev.multimedia.cx/archives/486)*
+- *VP8 Data Format and Decoding Guide – [RFC6386](https://datatracker.ietf.org/doc/rfc6386/)*
+- *[Technical overview of VP8, an open source video codec for the web
+](https://ieeexplore.ieee.org/abstract/document/6012227)*
