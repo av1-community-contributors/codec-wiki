@@ -8,93 +8,10 @@ import TabItem from '@theme/TabItem';
 
 # SSIMULACRA2
 
-:::info Under Maintenance
-The content in this entry is incomplete & is in the process of being completed.
-:::
-
-SSIMULACRA 2 is a visual fidelity metric based on the concept of the multi-scale structural similarity index measure (MS-SSIM), computed in a perceptually relevant color space, adding two other (asymmetric) error maps, and aggregating using two different norms. It is currently the most reputable visual quality metric according to its correlation with subjective results, and is considered a very robust means of comparing encoders. It is debatable whether [Butteraugli](../metrics/butteraugli.mdx) is better for very high fidelity, but SSIMULACRA 2 is considered the best for medium/low fidelity comparisons. Although it does not feature any inter-frame temporal awareness, it is still considered a very strong metric for video fidelity comparison nonetheless.
-
-While a [reference implementation by Cloudinary](https://github.com/cloudinary/ssimulacra2) exists,
-most people will want to use [the rust implementation `ssimulacra2_rs`](https://github.com/rust-av/ssimulacra2).
-
-## Installing
-
-<Tabs>
-    <TabItem value="cargo" label="Cargo" default>
-        To install ssimulacra2_rs using cargo, run this:
-        ```bash
-        cargo install ssimulacra2_rs
-        ```
-    </TabItem>
-    <TabItem value="archlinux" label="Archlinux AUR">
-        On archlinux, you may use the [AUR](https://wiki.archlinux.org/title/Arch_User_Repository) to install.
-        Simply use your favorite AUR helper to install `ssimulacra2_bin-git`
-
-        ```bash
-        paru -S ssimulacra2_bin-git
-        ```
-    </TabItem>
-</Tabs>
-
-## Running
-### On Images
-Comparing images is simple, run this:
-```bash
-ssimulacra2_rs image source.png distorted.png
-```
-
-### On Videos
-
-If you want to compare videos, run this:
-```bash
-ssimulacra2_rs video source.mkv distorted.mkv
-```
-
-:::tip Graphical visualization
-You can optionally output a graph using the `-g` parameter:
-```bash
-ssimulacra2_rs video source.mkv distorted.mkv -g
-```
-:::
-#### Multithreading
-Multithreading with ssimulacra2_rs works, but it scales badly.
-This is likely due to memory bandwidth limitations.
-However, the speedup is worth it.
-
-To run multithreaded, use the `--frame-threads` or `-f` parameters.
-For example, to run with 16 threads:
-```bash
-ssimulacra2_rs video source.mkv distorted.mkv -f 16
-```
-:::info Thread amount
-You should set the amount of threads to half of your actual thread count, as going any higher won't make a difference.
-:::
-
-:::warning Memory limitation
-If you have a small amount of system memory, you may encounter out of memory errors while running with multi-threading.
-If that's the case, you need to lower the amount of threads. 
-:::
-#### Frame skipping
-SSIMULACRA 2 is, at its core, an image quality assessment metric, not a video quality one.
-This means that it does not use any temporal information when applied to videos; just the independent scores of each individual frame.
-Consequently, it can be applied to a subset of a video's frames, instead of to all of them, to obtain a meaningful estimate of the score in a reduced time.
-
-To run ssimulacra2_rs with frame skip enabled, use the `--increment` or `-i` parameters.
-For example, to compute the score for every 3rd frame:
-```bash
-ssimulacra2_rs video source.mkv distorted.mkv -i 3
-```
-
-:::info Frame skip amount
-To avoid biased score estimates, it is recommended to sample frames using an odd value as increment.
-Prime numbers further reduce the likelihood of sampling bias.
-Thus increments of 3, 5, 7, 11 or 13 frames are good options to compute score estimates with little deviation to the true score.
-
-In any case, powers of two (2, 4, 8, 16...) should be avoided as increment, due to the way video encoders deal with temporal layers.
-:::
-
+SSIMULACRA2 is a visual fidelity metric based on the concept of the multi-scale structural similarity index measure (MS-SSIM), computed in a perceptually relevant color space, adding two other (asymmetric) error maps, and aggregating using two different norms. It is currently the most reputable visual quality metric according to its correlation with subjective results, and is considered a very robust means of comparing encoders. It is debatable whether [Butteraugli](../metrics/butteraugli.mdx) is better for very high fidelity, but SSIMULACRA2 is considered the best for medium/low fidelity comparisons.
 
 ## Scoring
+
 The score that SSIMULACRA 2 outputs is simple: a number in range -inf..100. According to the developers of the metric, for image quality assessment, SSIMULACRA 2 scores correlate to subjective visual quality as follows:
 
 - Very high quality: `90` and above
@@ -102,6 +19,101 @@ The score that SSIMULACRA 2 outputs is simple: a number in range -inf..100. Acco
 - Medium quality: `50` to `70`
 - Low quality: Below `50`
 
-For video quality assessment, however, the scores need not be as high for similar subjective visual quality correlation.
-For example, it is believed that an average score of around `80` corresponds to a "visually lossless" video.
-Nevertheless, this has not been thoroughly verified.
+## Metric Breakdown
+
+A step-by-step description of the SSIMULACRA2 metric follows. The steps assume we have two input images, a reference image as well as a distorted image to be compared and scored.
+
+### Convert sRGB to Linear RGB
+
+Undo the sRGB gamma curve to obtain linear light values for each RGB channel.
+This converts perceptual-encoded pixel values into physically meaningful intensities.
+
+### Transform to XYB
+
+Map linear RGB into an opsin-inspired space that separates perceptual channels.
+Steps: apply an absorbance-like linear transform, clamp negatives, take a cube root to compress dynamic range, add small biases, then mix into three channels (X, Y, B).
+Resulting channels are tuned to align better with human vision than raw RGB.
+
+### Normalize Values
+
+Apply slight shifts and scalings so all channel values are positive and stable for later statistical operations.
+This prevents division instability and extreme ratios in subsequent steps.
+
+### Build a Multi-Scale Image Pyramid
+
+Create multiple downscaled versions of both images (typically several scales, each half the previous dimension).
+Each scale captures structure at a different spatial frequency.
+The metric computes statistics independently at every scale.
+
+### Blurred Statistics
+
+For each scale and each perceptual channel, compute local blurred statistics. Local blurred quantities are computed on each pixel using a separable spatial blur:
+- Local mean (blurred image).
+- Local second moments: blurred squared values and blurred cross-products between reference and distorted channels.
+
+These give local variance and covariance estimates analogous to SSIM’s variance/covariance.
+
+### Similarity & Artifacts
+
+**Similarity map (SSIM-like):**
+Combine local means, variances, and covariance into a per-pixel similarity value.
+This value measures structural agreement while using small stabilizing constants to avoid division by zero.
+Similarity is clamped to a sensible range and emphasizes structural fidelity.
+
+**Edge / artifact map:**
+Compare local deviations from local means between distorted and reference images to detect:
+
+- New artifacts (excess local detail or harsh edges introduced by distortion).
+- Lost detail (original detail suppressed or blurred).
+  Compute per-pixel artifact and lost-detail measures, and preserve higher-order statistics to capture outliers.
+
+### Aggregate statistics per channel and scale
+
+Across each channel and scale compute compact summaries:
+
+- Mean of the per-pixel similarity and artifact/lost-detail measures.
+- Higher-order moment summaries (fourth-moment based measures reduced by a fourth-root) to detect heavy tails and strong local errors.
+
+These condensed statistics encode both average behavior and extreme localized errors.
+
+### Weighted combination of statistics
+
+Multiply each aggregated statistic by a pre-tuned weight.
+Sum all weighted terms across channels and scales to produce a single scalar accumulator.
+Weights are learned/tuned to map the diverse statistics into a perceptually meaningful predictor.
+
+### Nonlinear mapping to final score
+
+Pass the accumulator through a nonlinear curve (polynomial and a power-law transform).
+This mapping compresses the predictor into a bounded perceptual score.
+The final value is expressed on a convenient scale where higher means better and values near the top indicate imperceptible differences.
+
+## Notes
+
+- The metric examines structure and edge behavior separately. It penalizes both new artifacts and lost detail.
+- Multi-scale analysis makes it sensitive to distortions at different spatial frequencies.
+- Aggregating higher-order moments preserves sensitivity to rare but visually important outliers.
+
+## Implementations
+
+There are a couple of different SSIMULACRA2 implementations available, some useful in different contexts.
+
+### Cloudinary's SSIMULACRA2
+
+[Cloudinary's SSIMULACRA2 implementation](https://github.com/cloudinary/ssimulacra2) is the reference implementation written in C++. It comes from the libjxl project, the reference implementation of the [JPEG XL](../images/JXL.mdx) image codec.
+
+### `vapoursynth-zip` Filter
+
+[`vapoursynth-zip`](https://github.com/dnjulek/vapoursynth-zip) is a collection of filters for use with [Vapoursynth](../filtering/vapoursynth.mdx). It is written in Zig, and features a SSIMULACRA2 implementation.
+
+### fssimu2
+
+[fssimu2](https://github.com/gianni-rosato/fssimu2) is a fast SSIMULACRA2 implementation written in Zig. It is designed for speed, claiming to be up to 14% more performant while using just 50% of the memory. It displays a recorded error of ~1.5% relative to Cloudinary's reference implementation, and it achieves 99.7% correlation according to the Pearson correlation coefficient documented in the README. It is based on Julek's Zig implementation.
+
+### vship
+
+[Vship](https://github.com/Line-fr/Vship) is a GPU-accelerated metrics toolkit compatible with Vapoursynth. It also features its own standalone FFVship binary, available independent of Vapoursynth. Vship's SSIMULACRA2 implementation is an order of magnitude faster than CPU-based implementations, and has reportedly high correlation with the reference implementation.
+
+### `ssimulacra2_rs`
+
+[`ssimulacra2_rs`](https://github.com/rust-av/ssimulacra2_bin) is a binary interface to the [Rust implementation of the SSIMULACRA2 metric](https://github.com/rust-av/ssimulacra2). It is notable for being one of the first independent implementations, as well as one of the first to consider video inputs.
