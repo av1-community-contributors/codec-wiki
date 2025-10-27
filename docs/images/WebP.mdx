@@ -5,26 +5,7 @@ sidebar_position: 4
 
 # WebP
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
-
 WebP is a free image file format first released by Google in 2010. It consists of 2 primary "modes" of operation. A lossy mode derived from the [VP8](../video/VP8.mdx) video codec, and a novel lossless mode added in 2011.
-
-## Encoding
-
-### Using libwebp
-libwebp supports WebP, JPEG, PNG, PNM (PGM, PPM, PAM), TIFF as input formats, and a quality (`-q`) value between 0 (lowest quality, smallest file) and 100 (highest quality, largest file). Should you need the lossless mode, you need to instead use a `-z` argument, with values representing the effort used between 0 (fastest encode, largest file) and 9 (slowest encode, smallest file).
-
-```bash
-cwebp example.png -q 75 -o example.webp
-```
-
-## decoding
-
-```bash
-dwebp example.webp -o example.png
-```
 
 ## Performance Checklist
 
@@ -44,3 +25,81 @@ Transparency? *Yes*
 Progressive Decode? *No*
 
 Royalty Free? *Yes*
+
+## History
+
+Google announced the WebP format on 30 September 2010. It was initially proposed as a new open format for lossy compressed true-color graphics on the web, aiming to create files that were smaller than comparable JPEG files while maintaining similar image quality. The foundation of WebP utilized technology acquired by Google during its purchase of On2 Technologies. WebP is closely related to VP8, serving as a derivative, and is a sister project to the WebM multimedia container format. The reference library (libwebp) is released under a BSD free software license.
+
+Additional features were added after the initial release:
+
+- Extended File Format (October 2011): An extension enabling WebP to support features like animation, embedding an ICC profile, and including XMP and Exif metadata. This format also initially supported tiling, but that was later removed.
+- Lossless Compression and Transparency (November 2011): Google announced a new lossless compression mode and the ability to support transparency (alpha channel) in both lossy & lossless modes. This support was enabled by default in libwebp, starting with version 0.2.0 on 16 August 2012. Google's initial benchmarks showed that converting PNG files found on the web to lossless WebP resulted in a 45% reduction in file size.
+
+### Adoption
+
+libwebp is developed by Google, and reached version 1.0 in April 2018. In November 2024, WebP was formally specified and published by the IETF as [RFC 9649](https://www.rfc-editor.org/rfc/rfc9649).
+
+WebP has seen widespread adoption across the internet to reduce image sizes. [caniuse.com](https://caniuse.com) reports that over [95% of web browsers fully support WebP](https://caniuse.com/?search=webp). Support has also grown across various software programs since 2010.
+
+### Criticism
+
+Despite its adoption, WebP has faced criticism:
+
+Critics, including [Josh Aas from Mozilla Research](https://research.mozilla.org/2014/07/15/mozilla-advances-jpeg-encoding-with-mozjpeg-2-0/) in 2014, have questioned whether the format offers significant speed benefits, noting that studies were "not able to conclude that WebP outperformed JPEG by any significant margin". Early critiques in 2010 noted that the quality of WebP-encoded results could be poor, particularly due to blurriness, arguing that the encoder attempted to optimize too hard for [PSNR](../metrics/PSNR.mdx) rather than [psychovisual quality](../introduction/psychovisual.mdx). There is apparently an attempt to address this issue in the form of Halide Compression's [Iris-WebP](https://halide.cx/iris/) encoder released in 2025, though performance claims cannot be directly validated due to the encoder's proprietary nature.
+
+The biggest challenge facing WebP's reputation has been lack of compatibility with older software, and the practice of content delivery networks replacing source JPEG/PNG files with WebP versions have been cited as making the format "user-unfriendly". Users who download images often find they must convert the file format later.
+
+### Vulnerabilities
+
+In September 2023, critical vulnerabilities were discovered relating to WebP images in libwebp's decoder. [CVE-2023-4863](https://www.cve.org/CVERecord?id=CVE-2023-4863), was actively exploited and carried a high-risk rating (CVSS 8.8). This flaw could be triggered by a maliciously crafted lossless WebP file, potentially causing an overflow condition that could result in denial of service or remote code execution. The extensive use of libwebp across major browsers posed a patching challenge as well.
+
+### WebP 2
+
+In June 2021, Google began developing WebP 2, intended to achieve better compression ratios while providing faster encoding and decoding speeds than other modern formats. However, in October 2022 Google changed [the development repository](https://chromium.googlesource.com/codecs/libwebp2/)'s README file to state that "WebP 2 would not be released as an image format."
+
+## Technical Details
+
+The WebP file format is based on the [Resource Interchange File Format](https://en.wikipedia.org/wiki/Resource_Interchange_File_Format) (RIFF). The file structure is composed of chunks, each identified by a 32-bit FourCC (four-character code) and followed by a 32-bit size field indicating the payload size. The WebP container allows for features beyond a single VP8 key frame. The side length of WebP images is limited to 16,383 pixels squared.
+
+WebP uses two primary compression schemes: lossy (based on VP8) and lossless (novel).
+
+### Lossy
+
+See the [VP8](../video/VP8.mdx) page for more information.
+
+### Lossless
+
+:::note Lossless Compression
+If you would like to dive more deeply into the topic of lossless compression, you can check out the [Lossless Compression](../introduction/lossless.mdx) entry in the Introduction section of the wiki.
+:::
+
+WebP's lossless compression uses a newer algorithm designed by Google software engineer Jyrki Alakuijala, which is unrelated to VP8. Simple lossless WebP files use a RIFF container followed by a "VP8L" chunk containing the VP8L bitstream data.
+
+Lossless WebP supports **8-bit RGBA** (red, green, blue, alpha) color space exclusively. The format stores and restores pixel values exactly, even for fully transparent pixels. It relies on a universal algorithm for sequential data compression (LZ77), prefix coding (Huffman coding), and a color cache to compress bulk data.
+
+The lossless mode employs dedicated entropy codes for different color channels, exploitation of 2D locality of backward reference distances, A color cache for recently used colors (which allows referencing them with shorter codes), and transforms such as the Predictor Transform, Color Transform, Subtract Green Transform, and Color Indexing Transform are applied before entropy coding to reduce symbolic entropy.
+
+A distinctive aspect of the lossless format is its *recursive definition*: control images used for functions like local entropy code selection are encoded using the same methods as the main image itself.
+
+### Extended Format Features
+
+The WebP container format (the RIFF container for WebP) enables several advanced features collectively known as the *Extended File Format*.
+
+WebP supports animation, which is promoted by Google as an alternative to GIF. Animated WebP supports 24-bit color depth with transparency, allows combining frames using both lossy and lossless compression within the same animation, and supports seeking to specific frames. The animation parameters are managed by:
+- A 'VP8X' chunk to indicate the extended WebP spec
+- An 'ANIM' Chunk containing global parameters, such as the background color & loop count (0 = infinite loops)
+- Multiple 'ANMF' Chunks: Contain information for a single frame, including its position, duration, blending method (alpha-blending or overwrite), and disposal method (leave canvas as is, or dispose to background color).
+
+Converting animated GIFs to lossy WebP can reportedly reduce file size by 64%.
+
+Additionally, transparency information is supported through an alpha channel. In the extended format, alpha data for lossy images is stored in an optional 'ALPH' chunk. This data can be stored as raw 8-bit transparency values or compressed using the WebP lossless format.
+
+The extended format also allows embedding metadata and color profiles. An image may contain an embedded ICC profile, described by the International Color Consortium. If not present, sRGB is assumed. Metadata can be stored in Exif or XMP formats, placed in optional 'EXIF' or 'XMP' chunks.
+
+The RIFF container allows for the inclusion of *unknown chunks* (FourCCs not defined in the specification) for future extensions or application-specific data. Readers should ignore these chunks, and writers should preserve them.
+
+## Conclusion
+
+WebP is largely succeeded by [AVIF](./AVIF.mdx), and the libwebp encoder has not received adequate psychovisual attention to compete with more technically advanced encoders like [libaom](../encoders/aomenc.mdx) or more well-optimized perceptual encoders like Google's [jpegli](https://github.com/google/jpegli) JPEG encoder.
+
+While a lot of WebP's original criticisms aren't as relevant in 2025, the three biggest issues with the format that have historically drawn the most ire (lack of support, vulnerabilities, poor perceptual encoding) have marred WebP's reputation in a way that the community may not reconcile for a long time, if ever. Especially since the Chromium browser engine's removal of the [JPEG XL](./JXL.mdx) image format (effectively killing widespread web adoption), new video-derived web image codecs sit in an uncomfortable place, and WebP is the poster child of this unfortunate discomfort.

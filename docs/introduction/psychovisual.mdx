@@ -4,12 +4,6 @@ sidebar_position: 5
 
 # Psychovisual
 
-:::info Under Maintenance
-The content in this entry is incomplete & is in the process of being completed.
-:::
-
-## Definition
-
 "Psychovisual fidelity" is a common term used in video encoding to describe the quality of an encoded video as perceived by the human visual system. It has a number of alternate terms that mean the same thing:
 - "Perceptual quality"
 - "Subjective quality"
@@ -43,7 +37,7 @@ The following are some common psychovisual options that are available in x265, f
 
 > `--psy-rdoq` will adjust the distortion cost used in rate-distortion optimized quantization (RDO quant), enabled by `--rdoq-level` 1 or 2, favoring the preservation of energy in the reconstructed image. `--psy-rdoq` prevents RDOQ from blurring all of the encoding options which psy-rd has to choose from. At low strength levels, psy-rdoq will influence the quantization level decisions, favoring higher AC energy in the reconstructed image. As psy-rdoq strength is increased, more non-zero coefficient levels are added, and fewer coefficients are zeroed by RDOQ's rate distortion analysis. High levels of psy-rdoq can double the bitrate which can have a drastic effect on rate control, forcing higher overall QP, and can cause ringing artifacts. psy-rdoq is less accurate than psy-rd, it is biasing towards energy in general while psy-rd biases towards the energy of the source image. But very large psy-rdoq values can sometimes be beneficial.
 
-In summary, `--psy-rd` attempts to preserve the visual energy of the encode relative to the source video, while `--psy-rdoq` attempts to make decisions generally in favor of preserving visual energy. 
+In summary, `--psy-rd` attempts to preserve the visual energy of the encode relative to the source video, while `--psy-rdoq` attempts to make decisions generally in favor of preserving visual energy.
 
 Currently, [x264](../encoders/x264.mdx) includes both of the above options alongside a number of other psychovisual options, and is considered the most mature psychovisually optimized open source video encoder. While it doesn't have `--psy-rdoq`, [SVT-AV1-PSY](../encoders/SVT-AV1-PSY.mdx) is an AV1 encoder that includes a number of psychovisual options (including `--psy-rd`, as of version 3.0.0).
 
