@@ -38,7 +38,7 @@ Av1an is available as a pre-built binary under the "[latest](https://github.com/
 #### Compile from Source
 To compile from source, it is easier to use mingw-w64 which comes with [MSYS2](https://msys2.org). Once installed, open MinGW64 and run the following:
 ```bash
-pacman -Syuu; pacman -S cmake git nasm python3 mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake base-devel mingw-w64-x86_64-ffmpeg mingw-w64-x86_64-rust mingw-w64-x86_64-lld mingw-w64-x86_64-clang mingw-w64-x86_64-make
+pacman -Syuu && pacman -S cmake git nasm python3 mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake base-devel mingw-w64-x86_64-ffmpeg mingw-w64-x86_64-rust mingw-w64-x86_64-lld mingw-w64-x86_64-clang mingw-w64-x86_64-make
 ```
 
 Then, before you do anything further. Download Vapoursynth **portable** (`VapourSynth64-Portable-RXX.7z`) from its GitHub [release page](https://github.com/vapoursynth/vapoursynth/releases). Make sure the version you chose is compatible with the current MinGW64 Python version. For example, R65 supports 3.8 and 3.11, the version from Pacman (currently) is 3.11, so you should choose that.
