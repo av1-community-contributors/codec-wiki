@@ -5,20 +5,33 @@ sidebar_position: 15
 
 # ECM
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
-:::
+ECM (Enhanced Compression Model) is not a finished codec but a **research test model** by JVET (the ISO/IEC MPEG + ITU-T VCEG joint team behind [VVC](./VVC.mdx)): a fork of the [VTM](../encoders/VTM.mdx) reference encoder stacked with experimental coding tools that go beyond what the VVC standard allows. Its purpose is to answer one question, *how much more compression can still be squeezed out of the traditional block-based video coding architecture?*, with computational cost as a secondary concern.
 
-ECM (Enhanced Compression Model) is a video codec developed by the Fraunhofer Heinrich-Hertz-Institute. It is purportedly designed to succeed H.266, or [VVC](../video/VVC.mdx).
+The results of that exploration are significant: ECM-20.0 reports roughly **28% average luma bitrate reduction versus VTM** on natural content in random-access coding, and around **43% on screen content** (per JVET reporting; individual videos vary). On an informal like-for-like test (same tiny clip, same QP), ECM-20.0 encoded ~24% smaller than VTM 24.0 at slightly higher PSNR, while taking roughly 10× longer to do it.
 
-The [Git repo](https://vcgit.hhi.fraunhofer.de/ecm/ECM) provides a bit more information:
+With ECM 20.0 (2026), JVET considers the exploration phase complete & has issued a joint Call for Proposals for video coding beyond VVC (July 2026, responses to be evaluated in January 2027 & a first standard version targeted for October 2029), from which a future standard (informally "H.267") will be selected. ECM is therefore best understood as the bridge between VVC and that next standard, not as a deliverable codec itself.
 
-```md
-# ECM reference software
+## What's actually in it
 
-This software package is the reference software for Enhanced Compression Model (ECM). The reference software includes both encoder and decoder functionality.
-Reference software is useful in aiding users of a video coding standard to establish and test conformance and interoperability, and to educate users and demonstrate the capabilities of the test model.
-The software has been jointly developed by the ITU-T Video Coding Experts Group (VCEG, Question 6 of ITU-T Study Group 16) and the ISO/IEC Moving Picture Experts Group (MPEG, Working Group 11 of Subcommittee 29 of ISO/IEC Joint Technical Committee 1).
-```
+ECM keeps VVC's overall architecture (block-based hybrid coding, CTU partitioning, in-loop filtering) & layers dozens of exploratory tools on top. The headline themes:
 
-Other than this generic overview, build instructions are provided in the repo's README. Not much else is known about ECM besides the fact that it will likely become H.267.
+- **Smarter prediction without signaling**: decoder-side intra mode derivation (DIMD/TIMD), template matching prediction (IntraTMP), & cross-component prediction improvements (CCCM variants) let the decoder *derive* what VVC would have to spend bits signaling.
+- **Heavier inter prediction**: local illumination compensation, template-matching-based merge candidate reordering, multi-pass DMVR/BDOF refinement, geometric partitioning (GPM) extensions, & sub-pel intra block copy for screen content.
+- **Bigger & more flexible transforms**: CTU/transform sizes up to 256×256, 8-state dependent quantization (VVC: 4), non-separable primary transforms (NSPT), & expanded transform selection.
+- **More in-loop filtering**: larger adaptive loop filters, temporal ALF, a bilateral filter (BIF), cross-component SAO, & optionally a neural-network loop filter (NNLF, requires a build with the NN extension enabled).
+- **Entropy & precision**: 15-bit CABAC probability precision, 12-bit internal pipeline, & better coefficient sign/level prediction.
+
+The full tool inventory is documented in the ECM algorithm description documents in the [ECM repository](https://vcgit.hhi.fraunhofer.de/ecm/ECM); the above is what matters for understanding its performance profile.
+
+## Practical reality
+
+- **Nothing decodes ECM but ECM.** The bitstream is intentionally *not* VVC-compatible: [FFmpeg](../utilities/ffmpeg.mdx)'s VVC decoder rejects it outright, no hardware decodes it, & no player supports it. Round-tripping requires the reference `DecoderApp`.
+- **Encoding is extraordinarily slow.** The encoder is single-threaded, like VTM, but 5-10× slower still; expect hours per second of 1080p video on a single core.
+- **It is reference-grade software**: configuration-file driven, fixed-QP or simple bitrate-targeting rate control, no scene detection, raw YUV/Y4M input only.
+
+Unless you are doing codec research or benchmarking future-standard candidates, there is no practical reason to encode with ECM today; see the [ECM encoder entry](../encoders/ECM.mdx) if you do.
+
+## Sources
+
+- [Ofinno standards readout: JVET issues the Joint Call for Proposals for video coding beyond VVC](https://ofinno.com/standards-readout/jvet-issues-the-joint-call-for-proposals-for-video-coding-beyond-vvc/) (ECM 20.0 efficiency figures, final-release status & CfP timeline)
+- [ITU-T SG21 JVET page](https://www.itu.int/en/ITU-T/studygroups/2025-2028/21/video/Pages/jvet.aspx) (JVET scope & the July 2026 joint CfP)

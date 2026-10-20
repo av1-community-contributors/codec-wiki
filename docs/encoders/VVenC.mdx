@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 <picture>
     <source srcset="https://raw.githubusercontent.com/av1-community-contributors/images/main/VVenC_Spam.avif" type="image/avif" />
     <img src="https://autumn.revolt.chat/attachments/wU4lo6SU-hRjZSVeqd9vCOeAskthYXmiWHaXUTjyTa/VVenC_Spam.webp"
-alt="vvencapp spamming the terminal output with progress per-picture-order-count cause god knows why" width="XX" height="YY" loading="lazy" />
+alt="vvencapp spamming the terminal output with progress per-picture-order-count cause god knows why" loading="lazy" />
 </picture> 
 
 VVenC is an open source command line application for encoding [H.266/VVC](../video/VVC.mdx) written in C++ and developed by Fraunhofer Heinrich-Hertz-Institute (HHI).
@@ -71,9 +71,21 @@ VVenC is an open source command line application for encoding [H.266/VVC](../vid
 
     </TabItem>
     <TabItem value="windows" label="Windows">
-        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx).
+        VVenC builds with Visual Studio via CMake; with VS & CMake installed:
+
+        ```powershell
+        git clone https://github.com/fraunhoferhhi/vvenc.git
+        cd vvenc
+        mkdir build; cd build
+        cmake .. -G "Visual Studio 17 2022" -A x64
+        ```
+        Then open the generated solution & build the `vvencapp` target in Release configuration. Alternatively, MSYS2/MinGW builds work with the Linux instructions above.
     </TabItem>
 </Tabs>
+
+## Supported Color Space
+
+vvencapp accepts 4:2:0 & 4:0:0 (grayscale) input, in 8-bit (`yuv420`) or 10-bit (`yuv420_10`). 4:2:2 & 4:4:4 are not supported by the simple app; the expert `vvencFFapp` exposes more, but VVC deployment reality is 4:2:0 anyway.
 
 ## Usage
 
@@ -103,3 +115,27 @@ FFmpeg vvenc plugin only supports yuv420p10le output pixel format which means re
 VVenC by default operates with QP (Quantization Parameter), which is basically fixed quality. For "CRF-like" rate control, QPA is enabled by default
 QPA (provided by --qpa) enables perceptually motivated QP adaptation based on [XPSNR](../metrics/XPSNR.mdx). QPA modifies the QP value on the fly spatially and temporally as well as enabling temporal RDO.
 :::
+
+### Parameters worth knowing
+
+- `--preset [faster|fast|medium|slow|slower|medium_lowDecEnergy]`
+
+Presets trading speed for efficiency, `medium` by default. `medium_lowDecEnergy` matches `medium` quality while targeting lower decode energy (useful for mobile playback).
+
+- `-q, --qp [0-63]`
+
+Fixed QP for constant-quality encoding, or `-b/--bitrate` for rate control (which can run two passes: `--passes 2`, with optional `-m/--maxrate` for capped VBR).
+
+- `-t, --threads [-1]`
+
+Thread count. By default VVenC scales automatically with resolution: 4 threads below 720p, 8 up to 5K, 12 beyond.
+
+- `-i input.y4m`
+
+Y4M input files are auto-detected from the header (width, height, framerate, bit depth). **When piping from stdin (`-i -`), pass `--y4m` explicitly**: there is no file extension to sniff, & without the flag vvencapp encodes zero frames.
+
+- `--refreshtype` / `--refreshsec` / `--intraperiod`
+
+Keyframe placement: `--refreshtype cra` (open GOP) is the default, with intra refresh every 1 second by default via `--refreshsec 1`. Use `--intraperiod N` to specify in frames, or `--refreshtype idr` for closed GOP. Scene cuts are not detected; the refresh interval is fixed.
+
+The raw `.266` output muxes into MP4 with [FFmpeg](../utilities/ffmpeg.mdx) 7.0+ the same way as [VTM](./VTM.mdx) output: `ffmpeg -f vvc -i output.266 -c copy output.mp4`.

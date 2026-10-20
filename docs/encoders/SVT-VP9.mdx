@@ -3,20 +3,86 @@ title: SVT-VP9
 sidebar_position: 9
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # SVT-VP9
 
-:::info Under Maintenance
-The content in this entry is incomplete & is in the process of being completed.
-:::
-
-SVT-VP9 is a [VP9](../video/VP9.mdx) encoder developed by Intel.<br/>
+SVT-VP9 is a [VP9](../video/VP9.mdx) encoder developed by Intel & licensed under BSD+Patent.<br/>
 Like [its](../encoders/SVT-HEVC.mdx) [siblings](../encoders/SVT-AV1.mdx) in the SVT encoder family, it scales very well on multicore processors by default.
 
-The [reference encoder](../encoders/vpxenc.mdx) beats it in rate control flexibility and supports 10-bit color,<br/>but SVT-VP9 is much faster out of the box.
+The [reference encoder](../encoders/vpxenc.mdx) beats it in rate control flexibility and supports 10-bit color,<br/>but SVT-VP9 is much faster out of the box. Development is slow (version 0.3.1 was tagged in December 2025), so don't expect rapid feature growth.
 
-## FFmpeg
+## Installation
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+
+    To build SVT-VP9 from source, first clone the repository & enter the build directory.
+
+    ```bash
+    git clone https://github.com/OpenVisualCloud/SVT-VP9
+    cd SVT-VP9/Build/linux
+    ```
+
+    In the directory, simply run `./build.sh [flags]` to build. Be aware that building requires CMake & either GCC or Clang.
+
+    ```bash title="Build release"
+    ./build.sh release
+    ```
+
+    The compiled binaries will be in the `Bin/Release` directory, including `SvtVp9EncApp`.
+
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+        To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 
+    </TabItem>
+</Tabs>
+
+## Usage
+
+### Standalone
+
+:::warning Raw YUV input only
+Unlike its siblings, `SvtVp9EncApp` has **no Y4M support**. Feeding it a `.y4m` file fails with the misleading error `Input yuv does not contain enough frames` (the frame counter does file size ÷ raw frame size math & the Y4M header breaks it). Feed it raw YUV & always set `-w`, `-h` & `-fps` yourself.
+:::
+
+```bash title="Simple raw YUV input, preset 6"
+SvtVp9EncApp -i input.yuv -w 1920 -h 1080 -fps 24 -enc-mode 6 -q 40 -b output.ivf
+```
+
+```bash title="Piping raw YUV from FFmpeg (stdin is supported)"
+ffmpeg -v error -i input.mkv -f rawvideo -pix_fmt yuv420p - | SvtVp9EncApp -i stdin -w 1920 -h 1080 -fps 24 -enc-mode 6 -q 40 -b output.ivf
+```
+
+Note that `-n` (frames to encode) is effectively required when reading from a pipe, since the encoder can't know the length of stdin. The most useful parameters:
+
+- `-enc-mode [0-9]`
+
+Speed preset; 0 is the slowest/best, 9 the fastest (the FFmpeg wrapper calls this `preset`).
+
+- `-q [0-63]`
+
+Quantizer value for constant-QP mode (the default rate control). Note this is the VP9 quantizer range, not HEVC's 0-51.
+
+- `-tune [0-2]`
+
+0 = VQ (visually optimized), 1 = OQ (PSNR/SSIM, the default), 2 = VMAF.
+
+- `-rc [0-2]` & `-tbr`
+
+Rate control: 0 = CQP (default), 1 = VBR, 2 = CBR, with the target bitrate set via `-tbr`.
+
+- `-intra-period [-2..255]`
+
+Distance between keyframes; -1 disables intra updates, -2 is auto. There is no scene change detection.
+
+The output is an IVF stream; remux it with [FFmpeg](../utilities/ffmpeg.mdx) (`ffmpeg -i output.ivf -c copy output.webm`).
+
+### FFmpeg
+
 There are patches bundled in the SVT-VP9 source code for an FFmpeg plugin that adds the `libsvt_vp9` encoder.<br/>
-One must recompile FFmpeg with the plugin patch applied to take advantage of it.<br/>
+The wrapper has never been merged into mainline FFmpeg, so a custom build with the plugin patch applied is required.<br/>
 (An easy way to do so on Windows is using [media-autobuild_suite](https://github.com/m-ab-s/media-autobuild_suite).)
 
 Operation is not too different from the SVT-AV1 FFmpeg integration. Your commands will generally look like this:<br/>
@@ -41,7 +107,3 @@ Operation is not too different from the SVT-AV1 FFmpeg integration. Your command
 ## Supported Color Space
 
 SVT-VP9 only supports 8-bit yuv420p.
-
-## Usage
-### Standalone
-To be filled. If you believe you can help, see our [Contribution Guide](../contribution-guide.mdx). 

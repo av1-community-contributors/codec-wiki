@@ -3,10 +3,123 @@ title: VTM
 sidebar_position: 14
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # VTM
 
-:::danger Help Wanted
-This section is in need of contributions. If you believe you can help, please see our [Contribution Guide](../contribution-guide.mdx) to get started as a contributor!
+VTM (VVC Test Model) is the original [H.266](../video/VVC.mdx) (better known as VVC) reference encoder & decoder, developed by the Joint Video Experts Team (JVET) of ISO/IEC MPEG & ITU-T VCEG. In the modern day, it joins other MPEG reference encoders such as [HM](../encoders/HM.mdx) & [JM](../encoders/JM.mdx) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages. [VVenC](../encoders/VVenC.mdx) originated as a multithreaded, preset-driven descendant of VTM & is what almost everyone should use for practical VVC encoding.
+
+Where VTM remains relevant is efficiency & completeness: it is the metric baseline every VVC encoder is compared against, it implements every standard tool (often years before anyone else), & its compression efficiency at its default configurations still sits at or above the slowest VVenC presets. If you are willing to burn CPU time for the smallest possible VVC bitstream, VTM is a defensible pick, much like HM is for [HEVC](../video/HEVC.mdx) versus a slowed-down [x265](../encoders/x265.mdx).
+
+## Installation
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+
+    Compilation from source requires CMake & a C++ compiler (GCC or Clang).
+
+    ```bash
+    git clone https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM.git
+    cd VVCSoftware_VTM
+    mkdir build && cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release
+    make -j$(nproc)
+    ```
+
+    The encoder binary `EncoderAppStatic` can be found in the `bin/` directory of the repository after building, & can be copied to `/usr/local/bin` for encoding. The matching decoder is `DecoderAppStatic`. The `master` branch tracks ongoing JVET development; if you care about reproducibility, check out a release tag first (e.g. `git checkout VTM-24.0`).
+
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+
+    With CMake & Visual Studio installed, generate a solution & build it from the generated project:
+
+    ```powershell
+    git clone https://vcgit.hhi.fraunhofer.de/jvet/VVCSoftware_VTM.git
+    cd VVCSoftware_VTM
+    mkdir build; cd build
+    cmake .. -G "Visual Studio 17 2022" -A x64
+    ```
+    Then open the generated solution in Visual Studio & build the `EncoderApp` target in Release configuration.
+
+    </TabItem>
+</Tabs>
+
+## Usage
+
+VTM is configuration-file driven rather than preset driven: you always start from one of the cfg files in the repository's `cfg/` directory & override what you need on the command line.
+
+```bash title="Random access encode from a Y4M file"
+EncoderAppStatic -c cfg/encoder_randomaccess_vtm.cfg -i input.y4m -b output.vvc -o /dev/null -q 27
+```
+
+```bash title="Low delay (no future references, smaller GOP)"
+EncoderAppStatic -c cfg/encoder_lowdelay_vtm.cfg -i input.y4m -b output.vvc -o /dev/null -q 27 -f 500
+```
+
+```bash title="All-intra"
+EncoderAppStatic -c cfg/encoder_intra_vtm.cfg -i input.y4m -b output.vvc -o /dev/null -q 27
+```
+
+:::warning Parameter order matters
+Options are applied in the order they appear, & the **last value wins**. The cfg files set their own `BitstreamFile` (`str.bin`) & `ReconFile` (`rec.yuv`), so if `-b`/`-o` come *before* `-c`, the cfg file silently overrides them & your bitstream lands in `str.bin` in the working directory. Always put `-c` first, then your overrides, & pass `-o /dev/null` to skip dumping the reconstructed YUV.
 :::
 
-VTM is the original [H.266](../video/VVC.mdx) (better known as VVC) reference encoder, in competition with alternatives like [VVenC](../encoders/VVenC.mdx). In the modern day, it joins other MPEG reference encoders such as [HM](../encoders/HM.mdx) & [JM](../encoders/JM.mdx) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages; however, VTM may be more useful due to the current difficulty facing VVC encoding regardless of the encoding implementation one chooses to use. x264 is more efficient than JM.
+- `-i input.y4m`
+
+Specifies the input file. Raw YUV (planar) & Y4M are supported, but Y4M is detected by file extension only, & input cannot be piped from stdin at all (`-i -` fails). If you need to transcode with [FFmpeg](../utilities/ffmpeg.mdx) first, write a temporary `.y4m` file (`ffmpeg -i in.mkv -strict -1 -pix_fmt yuv420p10le tmp.y4m`). A Y4M header automatically sets width, height, framerate, bit depth & chroma format, overriding anything else you passed.
+
+- `-b output.vvc`
+
+Sets the raw VVC bitstream output.
+
+- `-c cfg/encoder_randomaccess_vtm.cfg`
+
+Picks the coding configuration. The main choices:
+
+| Config file | GOP size | Use case |
+|-------------|:--------:|----------|
+| `encoder_randomaccess_vtm.cfg` | 32 | Highest efficiency, default choice (`_gop8`/`_gop16` variants shrink the GOP) |
+| `encoder_lowdelay_vtm.cfg` | 8 | No future references; latency-friendly |
+| `encoder_lowdelay_P_vtm.cfg` | 8 | Low delay with P slices only |
+| `encoder_intra_vtm.cfg` | 1 | All-intra |
+
+There are no speed presets. The only "alternative" configs shipped are in `cfg/alternative_high_perf/`, which are *slower* than the defaults in exchange for slightly better compression. Everything else (10-bit configs in `cfg/hbd/`, lossless in `cfg/lossless/`, 4:4:4 in `cfg/444/`) is layered on top of these base configs with a second `-c`.
+
+- `-q 27`
+
+Sets the QP (0–51). This is a fixed-QP encode; there is no CRF-like perceptual mode. VTM's only other rate control is single-pass bitrate targeting: `RateControl=1 TargetBitrate=1000000` (bits per second).
+
+- `-f 500`
+
+Number of frames to encode. Omit it to encode the whole file.
+
+- `-fr 24`
+
+Input framerate. Accepts fractions for NTSC rates, e.g. `-fr 24000:1001`. Unnecessary when the input is Y4M.
+
+- `-wdt 1920 -hgt 1080`
+
+Source dimensions for raw YUV input. Unnecessary when the input is Y4M.
+
+### Keyframe placement
+
+`IntraPeriod` controls intra period placement: `-1` (the low delay default) puts a keyframe only at the very start, while the random access config uses `-32`, a fixed period aligned to the GOP size. There is **no scene detection**, so like [HM](../encoders/HM.mdx), VTM cannot adaptively place keyframes; for content with scene changes you either accept the fixed period or chunk the encode externally with a tool like [Av1an](../utilities/av1an.mdx) & stitch the bitstreams afterwards.
+
+### Muxing & playback
+
+The output is a raw (Annex B) VVC bitstream. [FFmpeg](../utilities/ffmpeg.mdx) 7.0+ can mux & decode it:
+
+```bash title="Mux to MP4"
+ffmpeg -f vvc -i output.vvc -c copy output.mp4
+```
+
+Note the explicit `-f vvc`; auto-detection of raw VVC input often fails.
+
+## Strengths
+
+VTM's compression efficiency is the yardstick for VVC: at its default configs it matches or beats every other VVC encoder on BD-rate, including VVenC at its slowest preset. It also supports essentially everything the standard offers out of the box (4:0:0/4:2:0/4:2:2/4:4:4 chroma, 8 to 16-bit depth, lossless coding, screen-content tools) & implements new VVC features as they are adopted, years before production encoders. For codec research, conformance testing, or establishing an upper bound on VVC quality, it is the tool of record.
+
+## Weaknesses
+
+Speed, by an enormous margin. The encoder is entirely single-threaded, & the random access config spends seconds per frame even at tiny resolutions (a 160×128, 8-frame clip takes ~13 seconds on a modern desktop CPU); extrapolate to minutes per 1080p frame, or days for real content. Memory usage is also far above production encoders. The config-file workflow (no presets, no piping, no scene detection, fixed-QP or bitrate-target rate control only) makes it clumsy for everyday encoding, which is why [VVenC](../encoders/VVenC.mdx) exists.

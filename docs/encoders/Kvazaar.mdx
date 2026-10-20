@@ -89,7 +89,7 @@ Here are some examples of how to use Kvazaar on its own:
 kvazaar -i input.y4m --input-file-format y4m --qp 20 -o output.265
 ```
 
-```bash title="Preset slow, CRF 20, Y4M input"
+```bash title="Preset slow, QP 20, Y4M input"
 kvazaar -i input.y4m --input-file-format y4m --qp 20 --preset slow -o output.265
 ```
 
@@ -98,3 +98,31 @@ The command below still uses the `kvazaar` binary, but reads from a YUV4MPEG pip
 ```bash title="FFmpeg piping"
 ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | kvazaar -i - --input-file-format y4m --qp 20 --preset slow -o output.265
 ```
+
+### Parameters worth knowing
+
+- `--preset [ultrafast..placebo]`
+
+Eleven x264-style presets from `ultrafast` to `placebo`; `medium` is the default.
+
+- `-q, --qp [0-51]`
+
+Fixed QP (22 by default), or `--bitrate N` for single-pass bitrate-targeting rate control (algorithm selectable via `--rc-algorithm`).
+
+- `-p, --period [N]`
+
+Intra period in frames: `0` puts an intra frame only at the start, `1` is all-intra, `N` every Nth frame (64 by default). There is no scene change detection. `--gop` selects the GOP structure (`8`/`16` B-pyramids or low-delay `lp-g8d4t2`-style strings; RA 16 is the default).
+
+- `--threads N` / `--owf N` / `--wpp`
+
+Kvazaar parallelizes out of the box: WPP is enabled by default & thread count is auto-selected. `--owf` adds frame-level parallelism.
+
+- `--lossless`
+
+Enables lossless coding.
+
+- `--vaq N`
+
+Variance adaptive quantization (strength 1-20, 5 recommended), off by default.
+
+When encoding 10-bit (see the build instructions above), pass `--input-bitdepth 10` explicitly: Kvazaar does not pick the bit depth up from a Y4M header & fails with `Failed to read a frame` otherwise.

@@ -12,13 +12,17 @@ import TabItem from '@theme/TabItem';
 
 The encoder is written in C with some parts in Assembly and licensed under **BSD+Patent**.
 
+:::info Project archived
+The [SVT-HEVC repository](https://github.com/OpenVisualCloud/SVT-HEVC) has been archived on GitHub. The final release is v1.5.1 (June 2021), & the master branch saw its last change in July 2024. No further releases or fixes are coming.
+:::
+
 :::info
 It is recommended to use [x265](/docs/encoders/x265) instead as it performs much better in quality.
 :::
 
 ## FFmpeg
 
-SVT-HEVC is only available in FFmpeg when it is compiled with their provided [plugin](https://github.com/OpenVisualCloud/SVT-HEVC/tree/master/ffmpeg_plugin). Otherwise it is via `libsvt_hevc`, to check if you have it, run `ffmpeg -h encoder=libsvt_hevc`.
+SVT-HEVC is only available in FFmpeg when it is compiled with their provided [plugin](https://github.com/OpenVisualCloud/SVT-HEVC/tree/master/ffmpeg_plugin); the wrapper (`libsvt_hevc`) has never been merged into mainline FFmpeg, so distro packages won't have it. To check if you have it, run `ffmpeg -h encoder=libsvt_hevc`.
 
 
 ## Supported Color Space
@@ -35,7 +39,7 @@ SVT-HEVC supports the following color spaces:
 
 <Tabs>
     <TabItem value="unixlike" label="Linux & macOS">
-        To build SVT-AV1 from source, first clone the SVT-HEVC repository & enter the build directory.
+        To build SVT-HEVC from source, first clone the SVT-HEVC repository & enter the build directory.
 
         ```bash title="Clone SVT-HEVC and cd"
         git clone https://github.com/OpenVisualCloud/SVT-HEVC
@@ -66,7 +70,7 @@ SVT-HEVC supports the following color spaces:
 SvtHevcEncApp -i input.y4m -q 20 -b output.265
 ```
 
-```bash title="Preset 4, CRF 20, Y4M input"
+```bash title="Preset 4, QP 20, Y4M input"
 SvtHevcEncApp -i input.y4m -q 20 -encMode 4 -b output.265
 ```
 
@@ -75,7 +79,7 @@ ffmpeg -v error -i input.mkv -f yuv4mpegpipe -strict -1 - | SvtHevcEncApp -i std
 ```
 
 :::danger
-SVT-HEVC currently does not have the ability to detect EOF (End of File) within Y4M pipes ([issue](https://github.com/OpenVisualCloud/SVT-HEVC/issues/634#issuecomment-1434911798)), so the encode process will go on indefinitely until your drive is full.
+SVT-HEVC does not have the ability to detect EOF (End of File) within Y4M pipes ([issue](https://github.com/OpenVisualCloud/SVT-HEVC/issues/634#issuecomment-1434911798)), so the encode process will go on indefinitely until your drive is full. This is still the case in the final v1.5.1 release & will never be fixed, as the project is archived.
 The only known solution is to manually set the number of frames to encode via `-n`.
 :::
 

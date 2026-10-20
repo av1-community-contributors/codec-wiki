@@ -3,56 +3,108 @@ title: HM
 sidebar_position: 16
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # HM
 
-:::caution Pending Review
-The content in this entry may not be entirely accurate, & is pending further review to assess the quality of the information.
-:::
+[HM](https://vcgit.hhi.fraunhofer.de/jvet/HM) (HEVC Test Model) is the original [H.265](../video/HEVC.mdx) reference encoder, predating alternatives like [x265](../encoders/x265.mdx). In the modern day, it joins other MPEG reference encoders such as [JM](../encoders/JM.mdx) & [VTM](../encoders/VTM.mdx) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages.
 
-HM is the original [H.265](../video/HEVC.mdx) reference encoder, predating alternatives like [x265](../encoders/x265.mdx). In the modern day, it joins other MPEG reference encoders such as [JM](../encoders/JM.mdx) & [VTM](../encoders/VTM.mdx) in their reputations for being highly niche offerings that are used rarely due to their usage complexity & speed disadvantages. x264 is more efficient than JM.
-
-HM is capable of producing higher quality streams than highly tuned x265, even at excruciatingly slow speeds. This is only a theoretical advantage, though, as HM is incapable of placing keyframes automatically with scene detection & would need a chunking too reminiscent of [Av1an](../utilities/av1an.mdx) to do this. For videos containing few enough frames where keyframe placement isn't a concern, HM is better in practice than x265 at the expense of a massive dropoff in speed. HM doesn't have any threading capabilities & is much slower than even x265 placebo.
+HM is capable of producing higher quality streams than highly tuned x265, even at excruciatingly slow speeds. This is only a theoretical advantage, though, as HM is incapable of placing keyframes automatically with scene detection & would need a chunking tool reminiscent of [Av1an](../utilities/av1an.mdx) to do this. For videos containing few enough frames where keyframe placement isn't a concern, HM is better in practice than x265 at the expense of a massive dropoff in speed. The encoder is entirely single-threaded (HM links OpenMP but never uses it) & is much slower than even x265 placebo.
 
 ## Installation
 
-These build instructions are valid for Linux & macOS.
+:::warning Build with GCC, not Clang
+HM's CMake configuration turns compiler warnings into errors, & its suppression list predates current Clang versions. Modern Clang (tested with Clang 23) fails the build with `-Wbitwise-instead-of-logical` errors in `TComDataCU.h` & `-Wmissing-braces` errors in `SEIFilmGrainSynthesizer.cpp`. GCC is not affected: build with GCC, & everything compiles cleanly. ([VTM](../encoders/VTM.mdx), by contrast, builds fine with Clang.)
+:::
 
-```bash
-git clone https://vcgit.hhi.fraunhofer.de/jvet/HM
-cd HM/
-mkdir build && cd build
-cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j$(nproc)
-```
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
 
-The binary `TAppEncoderStatic` or `TAppEncoder` can be found within the cloned directories, & can be copied to `/usr/local/bin` for encoding. Decoding & other functions of the reference codec implementation aren't covered in this entry.
+    These build instructions are valid for Linux & macOS & require CMake.
+
+    ```bash
+    git clone https://vcgit.hhi.fraunhofer.de/jvet/HM
+    cd HM/
+    mkdir build && cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+    make -j$(nproc)
+    ```
+
+    The binary `TAppEncoderStatic` can be found within the `bin/` directory & can be copied to `/usr/local/bin` for encoding. The matching decoder is `TAppDecoderStatic`. Decoding & other functions of the reference codec implementation aren't covered in this entry.
+
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+
+    With CMake & Visual Studio installed, generate a solution & build the `TAppEncoder` target in Release configuration:
+
+    ```powershell
+    git clone https://vcgit.hhi.fraunhofer.de/jvet/HM
+    cd HM
+    mkdir build; cd build
+    cmake .. -G "Visual Studio 17 2022" -A x64
+    ```
+
+    </TabItem>
+</Tabs>
 
 ## Usage
 
-Here is a sample command: `TAppEncoderStatic -i input.yuv -b out.265 -c ~/HM/cfg/encoder_randomaccess_main10.cfg -wdt 1280 -hgt 720 -fr 50 -f 500 -q 27 -xPS 0`
+Like [VTM](../encoders/VTM.mdx), HM is configuration-file driven: you start from one of the cfg files in the repository's `cfg/` directory & override what you need on the command line.
 
-Make sure only to use only YUV input when encoding with HM. Each parameter does the following:
+```bash title="Random access encode from a raw YUV file"
+TAppEncoderStatic -c cfg/encoder_randomaccess_main.cfg -i input.yuv -b output.265 -o /dev/null -wdt 1280 -hgt 720 -fr 50 -f 500 -q 27
+```
 
-- `-i input.yuv -b out.265`
+:::warning Parameter order matters
+Options are applied in the order they appear, & the **last value wins**. Every cfg file sets its own `BitstreamFile` (`str.bin`) & `ReconFile` (`rec.yuv`), so if `-b`/`-o` come *before* `-c`, the cfg silently overrides them & the bitstream lands in `str.bin` in the working directory. Always put `-c` first, then your overrides, & pass `-o /dev/null` to skip dumping the reconstructed YUV.
+:::
 
-Specifies a raw YUV input file & an output raw h265 bitstream. To mux into an MP4 container, it is recommended that you use [mp4box](../utilities/mp4box.mdx) instead of muxing with [FFmpeg](../utilities/ffmpeg.mdx).
+Make sure only to use raw planar YUV input when encoding with HM: Y4M is not supported & input cannot be piped from stdin. Use [FFmpeg](../utilities/ffmpeg.mdx) to dump a raw file first (`ffmpeg -i in.mkv -pix_fmt yuv420p input.yuv`). Each parameter does the following:
+
+- `-i input.yuv -b output.265`
+
+Specifies the raw YUV input file & the raw HEVC bitstream output.
 
 - `-c [path/to/config]`
 
-Specifies the desired path to your HM configuration file. This makes it easier to encode without having to manually specify a plethora of settings.
+Specifies the desired HM configuration file. The main choices:
+
+| Config file | GOP size | Use case |
+|-------------|:--------:|----------|
+| `encoder_randomaccess_main.cfg` | 16 | Highest efficiency, default choice |
+| `encoder_lowdelay_main.cfg` | 8 | No future references |
+| `encoder_lowdelay_P_main.cfg` | 8 | Low delay, P slices only |
+| `encoder_intra_main.cfg` | 1 | All-intra |
+
+Variants with the same structure exist for 10-bit (`*_main10.cfg`) & range extensions (`*_rext.cfg`, covering 4:2:2/4:4:4 & higher bit depths). Lossless configs live in `cfg/lossless/`.
 
 - `-wdt 1280 -hgt 720`
 
-Sets the input & output width & height.
+Sets the input width & height. Unlike VTM there is no Y4M autodetection, so these are always required.
 
 - `-fr 50 -f 500`
 
-Sets the framerate (FPS) & the number of frames to encode. In this case, we are encoding 500 frames of a video that is to be played back at 50fps.
+Sets the framerate (integer only, no fractional framerates) & the number of frames to encode. In this case, we are encoding 500 frames of a video that is to be played back at 50fps.
 
 - `-q 27`
 
-Sets a quality target for the encoder.
+Sets the QP (0–51) for fixed-QP encoding. HM has no CRF-like mode; the only other option is single-pass bitrate targeting with `RateControl=1 TargetBitrate=1000000` (bits per second).
 
 - `-xPS 0`
 
-Zero clue what this does. If someone has an idea, please contribute!
+Enables [xPSNR](../metrics/XPSNR.mdx), a cross-component PSNR metric HM can compute alongside encoding. Leaving it disabled doesn't affect the encoded bitstream at all, only the metrics printed to the console.
+
+### Keyframe placement
+
+`IntraPeriod` controls intra period placement: `-1` (the low delay default) puts a keyframe only at the very start, while the random access config uses `-32`, a fixed period aligned to the GOP size. There is **no scene detection**, so HM cannot adaptively place keyframes. For content with scene changes, either accept the fixed period or chunk the encode externally & stitch the bitstreams afterwards.
+
+### Muxing
+
+The output is a raw (Annex B) HEVC bitstream. Muxing with [FFmpeg](../utilities/ffmpeg.mdx) works:
+
+```bash title="Mux to MP4"
+ffmpeg -f hevc -i output.265 -c copy output.mp4
+```
+
+Note the explicit `-f hevc`; auto-detection of raw HEVC input sometimes fails. [mp4box](../utilities/mp4box.mdx) is a common alternative muxer.

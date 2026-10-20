@@ -1,0 +1,85 @@
+---
+title: ECM
+sidebar_position: 17.5
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# ECM
+
+The [ECM](https://vcgit.hhi.fraunhofer.de/ecm/ECM) (Enhanced Compression Model) reference encoder is JVET's exploration platform for video coding beyond [VVC](../video/ECM.mdx): a [VTM](./VTM.mdx) fork carrying dozens of non-standard coding tools that trade enormous compute for roughly 28% bitrate savings over VTM. See the [codec page](../video/ECM.mdx) for what ECM is & why it exists; this entry covers building & running the software. Version 20.0 is the final release: the exploration phase has ended with a JVET Call for Proposals for the next standard.
+
+If you have used VTM, you already know how to drive ECM: it is the same EncoderApp with the same configuration-file workflow, the same parameter-ordering behavior, & the same limitations (single-threaded, no scene detection, no piping), only slower.
+
+## Installation
+
+<Tabs>
+    <TabItem value="unixlike" label="Linux & macOS">
+
+    Compilation from source requires CMake & a C++ compiler (GCC or Clang; both work).
+
+    ```bash
+    git clone https://vcgit.hhi.fraunhofer.de/ecm/ECM
+    cd ECM
+    mkdir build && cd build
+    cmake .. -DCMAKE_BUILD_TYPE=Release
+    make -j$(nproc)
+    ```
+
+    The binaries `EncoderAppStatic` & `DecoderAppStatic` can be found in the `bin/` directory. If you want the neural-network loop filter (NNLF), configure with `-DEXTENSION_NNLF=1` & initialize the SADL submodule (`git submodule init && git submodule update`) before building.
+
+    </TabItem>
+    <TabItem value="windows" label="Windows">
+
+    With CMake & Visual Studio installed, generate a solution & build the `EncoderApp` target in Release configuration:
+
+    ```powershell
+    git clone https://vcgit.hhi.fraunhofer.de/ecm/ECM
+    cd ECM
+    mkdir build; cd build
+    cmake .. -G "Visual Studio 17 2022" -A x64
+    ```
+
+    </TabItem>
+</Tabs>
+
+## Usage
+
+Identical in shape to [VTM](./VTM.mdx): pick a cfg file from `cfg/`, then override on the command line. Remember that **the last value wins**, so put `-c` before your overrides (the cfg sets `BitstreamFile: str.bin`, which will silently swallow your `-b` otherwise).
+
+```bash title="Random access encode from a Y4M file"
+EncoderAppStatic -c cfg/encoder_randomaccess_ecm.cfg -i input.y4m -b output.ebm -o /dev/null -q 27
+```
+
+```bash title="All-intra"
+EncoderAppStatic -c cfg/encoder_intra_ecm.cfg -i input.y4m -b output.ebm -o /dev/null -q 27
+```
+
+- `-i input.y4m`
+
+Raw YUV or Y4M input (Y4M is auto-detected by file extension & fills in resolution/framerate/bit depth). Like VTM, stdin is not supported (`-i -` fails).
+
+- `-c cfg/encoder_randomaccess_ecm.cfg`
+
+The coding configuration. `encoder_randomaccess_ecm.cfg` (GOP 32) & `encoder_lowdelay_ecm.cfg` (GOP 8) are the main choices, alongside `encoder_intra_ecm.cfg` & low-delay P; a `_gop16` random-access variant also exists. The `cfg/base/` directory holds VTM-equivalent configs (useful for like-for-like comparisons), & `cfg/groupoff/` holds per-tool-group ablation configs for research use. Per-sequence configs for the JVET test sets (including a gaming/screen-content set) are in `cfg/per-sequence*/`.
+
+- `-q 27`
+
+Fixed QP (0–51). The only other rate control is single-pass bitrate targeting: `RateControl=1 TargetBitrate=1000000`.
+
+- `-f 500`
+
+Number of frames to encode. `-fr`, `-wdt` & `-hgt` behave exactly as in VTM & are unnecessary with Y4M input.
+
+### Decoding & interop
+
+**Only the ECM reference decoder can read ECM bitstreams.** They are deliberately incompatible with VVC: [FFmpeg](../utilities/ffmpeg.mdx)'s VVC decoder rejects them (`sps_log2_diff_max_bt_min_qt_intra_slice_chroma out of range`), no hardware or player supports them, & there is no container muxing story. Round-trip with the bundled decoder:
+
+```bash
+DecoderAppStatic -b output.ebm -o decoded.yuv
+```
+
+## Strengths & Weaknesses
+
+ECM is the most efficient block-based encoder software available anywhere; that is its only job. In exchange: encodes run 5-10× slower than VTM's already glacial pace (an 8-frame 160×128 random-access clip took 133 seconds on a modern desktop, versus 13 seconds for VTM on the same input), memory use is higher still, the workflow is configuration-file driven with fixed-QP-or-bitrate rate control only, & nothing in the playback ecosystem can decode the result. Use it for research & benchmarking; use [VVenC](./VVenC.mdx) or VTM for anything deliverable.
